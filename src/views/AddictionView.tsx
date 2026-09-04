@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle, ShieldAlert, HeartPulse, ArrowRight, Activity, Phone } from 'lucide-react';
+import { AlertCircle, ArrowRight, Phone } from 'lucide-react';
 import { Language, SubstanceInfo } from '../types';
 import { substancesData } from '../data/substances';
 import { translations } from '../data/translations';
@@ -20,15 +20,14 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
   return (
     <div className="space-y-8 pb-12">
       {/* Header */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">
-          <AlertCircle className="w-3.5 h-3.5" />
-          <span>{currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति चिकित्सा' : 'વ્યસન મુક્તિ ચિકિત્સા'}</span>
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <div className="space-y-2">
+        <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+          {currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति चिकित्सा' : 'વ્યસન મુક્તિ ચિકિત્સા'}
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#1c2430] tracking-tight">
           {t.nav.addiction}
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-stone-600 max-w-3xl leading-relaxed">
           {currentLang === 'en'
             ? 'Addiction is a chronic, relapsing brain disorder characterized by compulsive substance seeking and physical neuroadaptation. It is a treatable medical condition, not a personal weakness or moral failure.'
             : currentLang === 'hi'
@@ -38,18 +37,18 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
       </div>
 
       {/* LIFE-SAVING OVERDOSE SAFETY ALERT */}
-      <div className="p-5 sm:p-6 bg-rose-50 border-2 border-rose-300 rounded-2xl flex flex-col sm:flex-row items-start justify-between gap-4">
+      <div className="p-5 sm:p-6 bg-[#fef2f2] border border-[#fecaca] rounded-xl flex flex-col sm:flex-row items-start justify-between gap-4">
         <div className="flex items-start gap-3">
-          <ShieldAlert className="w-6 h-6 text-rose-600 shrink-0 mt-0.5 animate-pulse" />
+          <AlertCircle className="w-5 h-5 text-[#991b1b] shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h3 className="font-bold text-base text-rose-950">
+            <h2 className="font-semibold text-base text-[#991b1b]">
               {currentLang === 'en'
-                ? 'Suspect an Acute Overdose or Severe Alcohol Withdrawal?'
+                ? 'Suspect an Acute Overdose or Severe Withdrawal Emergency?'
                 : currentLang === 'hi'
                 ? 'क्या अत्यधिक नशा (ओवरडोज) या दौरे पड़ने की आपात स्थिति है?'
                 : 'શું ઓવરડોઝ કે આંચકી આવવાની ઇમરજન્સી છે?'}
-            </h3>
-            <p className="text-xs sm:text-sm text-rose-900 leading-relaxed max-w-2xl">
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-700 leading-relaxed max-w-2xl">
               {currentLang === 'en'
                 ? 'Unresponsiveness, slow breathing, bluish lips, vomiting while unconscious, or severe shaking with hallucinations are life-threatening medical emergencies. Turn the person on their side (Recovery Position) and call emergency services immediately.'
                 : currentLang === 'hi'
@@ -62,7 +61,7 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
         <div className="flex items-center gap-2 shrink-0">
           <a
             href="tel:112"
-            className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition shadow-sm flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-md bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold text-xs transition flex items-center gap-1.5 min-h-[44px]"
           >
             <Phone className="w-3.5 h-3.5" />
             <span>Call 112 Dispatch</span>
@@ -76,55 +75,55 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
           <div
             key={sub.id}
             onClick={() => onSelectSubstance(sub)}
-            className="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white hover:border-amber-500 hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-2 text-xs text-stone-500">
+                <span className="font-medium uppercase tracking-wider">
                   SUBSTANCE GUIDE
                 </span>
-                <span className="text-xs text-slate-400 font-mono">
+                <span className="font-mono text-[11px]">
                   {sub.medicalTerms[currentLang]}
                 </span>
               </div>
 
-              <h2 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-amber-800 transition">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
                 {sub.name[currentLang]}
-              </h2>
+              </h3>
 
-              <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed line-clamp-3">
+              <p className="text-sm text-stone-600 leading-relaxed line-clamp-3">
                 {sub.whatIsIt[currentLang]}
               </p>
 
               {/* Highlights */}
-              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-700">
+              <div className="mt-4 pt-3 border-t border-stone-100 space-y-1.5 text-xs text-stone-700">
                 <div>
-                  <strong className="text-slate-900">Why Addictive:</strong> {sub.whyAddictive[currentLang].slice(0, 95)}...
+                  <strong className="text-[#1c2430] font-semibold">Why Addictive:</strong> {sub.whyAddictive[currentLang].slice(0, 95)}...
                 </div>
                 <div>
-                  <strong className="text-slate-900">Withdrawal Risk:</strong> {sub.withdrawalSymptoms[currentLang].slice(0, 95)}...
+                  <strong className="text-[#1c2430] font-semibold">Withdrawal Risk:</strong> {sub.withdrawalSymptoms[currentLang].slice(0, 95)}...
                 </div>
               </div>
             </div>
 
-            <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-800">
+            <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59] min-h-[44px]">
               <span>{currentLang === 'en' ? 'Open De-Addiction Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
         ))}
       </div>
 
       {/* Understanding the Path to Recovery */}
-      <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-        <h3 className="font-bold text-base text-slate-900">
+      <div className="p-6 rounded-xl bg-white border border-stone-200 space-y-2">
+        <h2 className="font-semibold text-base text-[#1c2430]">
           {currentLang === 'en'
             ? 'The Stages of Scientific Recovery in Psychiatry'
             : currentLang === 'hi'
             ? 'मनोचिकित्सा में वैज्ञानिक नशा मुक्ति के मुख्य चरण'
             : 'વૈજ્ઞાનિક પદ્ધતિથી વ્યસન મુક્તિના મુખ્ય તબક્કા'}
-        </h3>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        </h2>
+        <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
           {currentLang === 'en'
             ? 'Effective de-addiction involves four interconnected pillars: (1) Safe medical detoxification to prevent dangerous seizures and severe withdrawal; (2) Medication-Assisted Treatment (MAT) to reduce biological cravings; (3) Motivational Interviewing and Cognitive Behavioral Relapse Prevention to rewire lifestyle triggers; and (4) Family psychoeducation to rebuild home stability.'
             : currentLang === 'hi'
@@ -135,3 +134,4 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
     </div>
   );
 };
+

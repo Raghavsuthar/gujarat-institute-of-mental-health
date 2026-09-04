@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Activity, BookOpen, AlertTriangle, ChevronDown, ChevronUp, ShieldCheck, CheckCircle2, ShieldAlert, Sparkles, HelpCircle } from 'lucide-react';
+import { X, ChevronDown, ChevronUp, CheckCircle2, ShieldAlert } from 'lucide-react';
 import { Condition, Language } from '../types';
 import { translations } from '../data/translations';
 
@@ -21,82 +21,93 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
   const t = translations[currentLang];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
+      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
         {/* Modal Header */}
-        <div className="bg-slate-900 text-white p-5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
+        <div className="bg-white border-b border-stone-200 p-5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-teal-900/80 text-teal-300 border border-teal-700/60">
+              <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
                 {condition.category.toUpperCase()}
               </span>
-              <span className="text-[11px] text-slate-400 font-mono">
+              <span className="text-xs text-stone-400 font-mono">
                 {condition.medicalTerms[currentLang]}
               </span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
               {condition.name[currentLang]}
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-stone-500 mt-1">
               {t.common.lastReviewed}: {condition.lastReviewed} • {t.doctorName}
             </p>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer shrink-0"
+            aria-label="Close dialog"
+            className="p-2 rounded-md text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition cursor-pointer shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Navigation Tabs within Modal */}
-        <div className="bg-slate-100 border-b border-slate-200 px-4 flex items-center gap-2 overflow-x-auto text-xs font-semibold shrink-0">
+        <div className="bg-stone-50 border-b border-stone-200 px-4 flex items-center gap-2 overflow-x-auto text-xs font-semibold shrink-0" role="tablist">
           <button
+            role="tab"
+            aria-selected={activeTab === 'overview'}
             onClick={() => setActiveTab('overview')}
-            className={`py-2.5 px-3 border-b-2 transition cursor-pointer whitespace-nowrap ${
+            className={`py-3 px-3.5 border-b-2 transition cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               activeTab === 'overview'
-                ? 'border-teal-600 text-teal-900 bg-white/70'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
+                ? 'border-[#115e59] text-[#115e59] bg-white'
+                : 'border-transparent text-stone-600 hover:text-stone-900'
             }`}
           >
             {t.conditions.overview} & {t.conditions.symptoms}
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'causes'}
             onClick={() => setActiveTab('causes')}
-            className={`py-2.5 px-3 border-b-2 transition cursor-pointer whitespace-nowrap ${
+            className={`py-3 px-3.5 border-b-2 transition cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               activeTab === 'causes'
-                ? 'border-teal-600 text-teal-900 bg-white/70'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
+                ? 'border-[#115e59] text-[#115e59] bg-white'
+                : 'border-transparent text-stone-600 hover:text-stone-900'
             }`}
           >
             {t.conditions.causes} & {t.conditions.diagnosis}
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'treatment'}
             onClick={() => setActiveTab('treatment')}
-            className={`py-2.5 px-3 border-b-2 transition cursor-pointer whitespace-nowrap ${
+            className={`py-3 px-3.5 border-b-2 transition cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               activeTab === 'treatment'
-                ? 'border-teal-600 text-teal-900 bg-white/70'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
+                ? 'border-[#115e59] text-[#115e59] bg-white'
+                : 'border-transparent text-stone-600 hover:text-stone-900'
             }`}
           >
             {t.conditions.treatment}
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'recovery'}
             onClick={() => setActiveTab('recovery')}
-            className={`py-2.5 px-3 border-b-2 transition cursor-pointer whitespace-nowrap ${
+            className={`py-3 px-3.5 border-b-2 transition cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               activeTab === 'recovery'
-                ? 'border-teal-600 text-teal-900 bg-white/70'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
+                ? 'border-[#115e59] text-[#115e59] bg-white'
+                : 'border-transparent text-stone-600 hover:text-stone-900'
             }`}
           >
             {t.conditions.recovery} & {t.conditions.urgentSigns}
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'faqs'}
             onClick={() => setActiveTab('faqs')}
-            className={`py-2.5 px-3 border-b-2 transition cursor-pointer whitespace-nowrap ${
+            className={`py-3 px-3.5 border-b-2 transition cursor-pointer whitespace-nowrap min-h-[44px] flex items-center ${
               activeTab === 'faqs'
-                ? 'border-teal-600 text-teal-900 bg-white/70'
-                : 'border-transparent text-slate-600 hover:text-slate-900'
+                ? 'border-[#115e59] text-[#115e59] bg-white'
+                : 'border-transparent text-stone-600 hover:text-stone-900'
             }`}
           >
             {t.common.faqs} & {t.common.myths}
@@ -104,44 +115,41 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
         </div>
 
         {/* Modal Scrollable Content */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-slate-700 leading-relaxed text-sm">
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm">
           {/* TAB 1: OVERVIEW & SYMPTOMS */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              {/* Overview */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.overview}
                 </h3>
-                <p className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-slate-800">
+                <p className="bg-stone-50 p-4 rounded-lg border border-stone-200 text-stone-800">
                   {condition.overview[currentLang]}
                 </p>
               </div>
 
-              {/* Common Symptoms */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.symptoms}
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-2.5">
                   {condition.commonSymptoms[currentLang].map((symptom, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-lg border border-slate-200/80 bg-white shadow-xs flex items-start gap-2.5"
+                      className="p-3 rounded-lg border border-stone-200 bg-white flex items-start gap-2.5"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm text-slate-800">{symptom}</span>
+                      <CheckCircle2 className="w-4 h-4 text-[#115e59] shrink-0 mt-0.5" />
+                      <span className="text-xs sm:text-sm text-stone-800">{symptom}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Daily Life Impact */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.impact}
                 </h3>
-                <p className="text-slate-700 text-sm">
+                <p className="text-stone-700 text-sm leading-relaxed">
                   {condition.dailyLifeImpact[currentLang]}
                 </p>
               </div>
@@ -151,41 +159,38 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* TAB 2: CAUSES & DIAGNOSIS */}
           {activeTab === 'causes' && (
             <div className="space-y-6">
-              {/* Causes (Bio-Psycho-Social) */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.causes} (Bio-Psycho-Social Model)
                 </h3>
-                <p className="text-slate-700 text-sm bg-teal-50/50 p-4 rounded-xl border border-teal-100">
+                <p className="text-stone-800 text-sm bg-stone-50 p-4 rounded-lg border border-stone-200">
                   {condition.causes[currentLang]}
                 </p>
               </div>
 
-              {/* Risk Factors */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   Risk Factors
                 </h3>
                 <ul className="space-y-2">
                   {condition.riskFactors[currentLang].map((rf, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2 shrink-0" />
+                    <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-stone-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2 shrink-0" />
                       <span>{rf}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Clinical Assessment */}
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                <h4 className="text-sm font-bold text-slate-900 mb-1">
+              <div className="bg-stone-50 p-4 rounded-lg border border-stone-200 space-y-2">
+                <h4 className="text-sm font-semibold text-[#1c2430]">
                   How a Psychiatrist Diagnoses (Clinical Evaluation)
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-700 mb-3">
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                   {condition.psychiatricAssessment[currentLang]}
                 </p>
-                <div className="text-xs text-slate-600 border-t border-slate-200 pt-2.5">
-                  <strong>Differential Considerations:</strong> {condition.differentialConsiderations[currentLang]}
+                <div className="text-xs text-stone-600 border-t border-stone-200 pt-2">
+                  <strong className="text-stone-800">Differential Considerations:</strong> {condition.differentialConsiderations[currentLang]}
                 </div>
               </div>
             </div>
@@ -194,54 +199,50 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* TAB 3: TREATMENT PLAN */}
           {activeTab === 'treatment' && (
             <div className="space-y-5">
-              <h3 className="text-base font-bold text-slate-900">
+              <h3 className="text-base font-semibold text-[#1c2430]">
                 {t.conditions.treatment}
               </h3>
 
               <div className="grid gap-3.5">
-                {/* Psychotherapy */}
-                <div className="p-4 rounded-xl border border-slate-200 bg-white">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-teal-800 mb-1">
+                <div className="p-4 rounded-lg border border-stone-200 bg-white">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
                     Psychotherapy & Psychological Interventions
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-700">
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                     {condition.treatment.psychotherapy[currentLang]}
                   </p>
                 </div>
 
-                {/* Medications */}
-                <div className="p-4 rounded-xl border border-slate-200 bg-white">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-800 mb-1">
+                <div className="p-4 rounded-lg border border-stone-200 bg-white">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
                     Pharmacotherapy & Medical Management
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-700">
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                     {condition.treatment.medications[currentLang]}
                   </p>
                 </div>
 
-                {/* Lifestyle & Psychoeducation */}
-                <div className="p-4 rounded-xl border border-slate-200 bg-white">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-800 mb-1">
+                <div className="p-4 rounded-lg border border-stone-200 bg-white">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
                     Lifestyle, Sleep & Psychoeducation
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-700">
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                     {condition.treatment.lifestyleSupport[currentLang]}
                   </p>
                 </div>
 
-                {/* Family & Social */}
-                <div className="p-4 rounded-xl border border-slate-200 bg-white">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-amber-800 mb-1">
+                <div className="p-4 rounded-lg border border-stone-200 bg-white">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
                     Family & Social Support System
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-700">
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                     {condition.treatment.familySocialInterventions[currentLang]}
                   </p>
                 </div>
               </div>
 
-              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700">
-                <strong>Treatment Goals:</strong> {condition.treatmentGoals[currentLang]}
+              <div className="p-3.5 bg-stone-50 rounded-lg border border-stone-200 text-xs sm:text-sm text-stone-700">
+                <strong className="text-stone-900">Treatment Goals:</strong> {condition.treatmentGoals[currentLang]}
               </div>
             </div>
           )}
@@ -249,42 +250,39 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* TAB 4: RECOVERY & WARNING SIGNS */}
           {activeTab === 'recovery' && (
             <div className="space-y-6">
-              {/* Recovery Outlook */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.recovery}
                 </h3>
-                <p className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 text-slate-800 text-sm">
+                <p className="bg-[#f0fdfa] p-4 rounded-lg border border-[#ccfbf1] text-stone-800 text-sm leading-relaxed">
                   {condition.recoveryOutlook[currentLang]}
                 </p>
               </div>
 
-              {/* Relapse Prevention */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   Relapse Prevention & Early Detection
                 </h3>
-                <p className="text-slate-700 text-sm">
+                <p className="text-stone-700 text-sm leading-relaxed">
                   {condition.relapsePrevention[currentLang]}
                 </p>
               </div>
 
-              {/* Urgent Warning Signs */}
-              <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl">
-                <div className="flex items-center gap-2 text-rose-900 font-bold text-sm mb-1.5">
-                  <ShieldAlert className="w-5 h-5 text-rose-600 shrink-0" />
+              <div className="p-4 bg-[#fef2f2] border border-[#fecaca] rounded-lg">
+                <div className="flex items-center gap-2 text-[#991b1b] font-semibold text-sm mb-1.5">
+                  <ShieldAlert className="w-4 h-4 text-[#991b1b] shrink-0" />
                   <span>{t.conditions.urgentSigns}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-rose-900 leading-relaxed">
+                <p className="text-xs sm:text-sm text-stone-800 leading-relaxed">
                   {condition.urgentWarningSigns[currentLang]}
                 </p>
-                <div className="mt-3 pt-2 border-t border-rose-200 flex items-center gap-2 text-xs font-semibold text-rose-800">
+                <div className="mt-3 pt-2 border-t border-[#fecaca] flex items-center gap-2 text-xs font-semibold text-[#991b1b]">
                   <span>Immediate Crisis Help:</span>
-                  <a href="tel:14416" className="underline hover:text-rose-950 font-bold">
+                  <a href="tel:14416" className="underline font-bold">
                     Tele-MANAS: 14416
                   </a>
                   <span>|</span>
-                  <a href="tel:112" className="underline hover:text-rose-950 font-bold">
+                  <a href="tel:112" className="underline font-bold">
                     Emergency: 112
                   </a>
                 </div>
@@ -295,23 +293,22 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* TAB 5: FAQS & MYTHS */}
           {activeTab === 'faqs' && (
             <div className="space-y-6">
-              {/* Myths vs Facts */}
               {condition.mythsVsFacts.length > 0 && (
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 mb-3">
+                  <h3 className="text-base font-semibold text-[#1c2430] mb-3">
                     {t.common.myths}
                   </h3>
                   <div className="space-y-3">
                     {condition.mythsVsFacts.map((mf, i) => (
-                      <div key={i} className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/70 space-y-1.5">
-                        <div className="text-xs font-semibold text-rose-800">
-                          <span className="font-bold uppercase tracking-wider text-[10px] mr-1.5 px-1.5 py-0.5 rounded bg-rose-100">
+                      <div key={i} className="p-3.5 rounded-lg border border-stone-200 bg-stone-50 space-y-1.5">
+                        <div className="text-xs font-semibold text-stone-700">
+                          <span className="font-semibold uppercase tracking-wider text-[10px] mr-1.5 px-1.5 py-0.5 rounded bg-stone-200 text-stone-700">
                             Myth
                           </span>
                           "{mf.myth[currentLang]}"
                         </div>
-                        <div className="text-xs font-semibold text-emerald-800">
-                          <span className="font-bold uppercase tracking-wider text-[10px] mr-1.5 px-1.5 py-0.5 rounded bg-emerald-100">
+                        <div className="text-xs font-medium text-stone-800">
+                          <span className="font-semibold uppercase tracking-wider text-[10px] mr-1.5 px-1.5 py-0.5 rounded bg-[#ccfbf1] text-[#115e59]">
                             Fact
                           </span>
                           {mf.fact[currentLang]}
@@ -322,9 +319,8 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 </div>
               )}
 
-              {/* FAQs Accordion */}
               <div>
-                <h3 className="text-base font-bold text-slate-900 mb-3">
+                <h3 className="text-base font-semibold text-[#1c2430] mb-3">
                   {t.common.faqs}
                 </h3>
                 <div className="space-y-2">
@@ -333,21 +329,21 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                     return (
                       <div
                         key={idx}
-                        className="rounded-xl border border-slate-200 bg-white overflow-hidden transition"
+                        className="rounded-lg border border-stone-200 bg-white overflow-hidden transition"
                       >
                         <button
                           onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                          className="w-full text-left p-3.5 flex items-center justify-between gap-3 text-slate-900 font-semibold text-xs sm:text-sm hover:bg-slate-50 transition cursor-pointer"
+                          className="w-full text-left p-3.5 flex items-center justify-between gap-3 text-[#1c2430] font-semibold text-xs sm:text-sm hover:bg-stone-50 transition cursor-pointer min-h-[44px]"
                         >
                           <span>{faq.question[currentLang]}</span>
                           {isOpen ? (
-                            <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
+                            <ChevronUp className="w-4 h-4 text-stone-400 shrink-0" />
                           ) : (
-                            <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
+                            <ChevronDown className="w-4 h-4 text-stone-400 shrink-0" />
                           )}
                         </button>
                         {isOpen && (
-                          <div className="px-3.5 pb-3.5 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-2 leading-relaxed bg-slate-50/50">
+                          <div className="px-3.5 pb-3.5 text-xs sm:text-sm text-stone-600 border-t border-stone-100 pt-2 leading-relaxed bg-stone-50">
                             {faq.answer[currentLang]}
                           </div>
                         )}
@@ -357,13 +353,12 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 </div>
               </div>
 
-              {/* Scientific References */}
               {condition.references.length > 0 && (
-                <div className="pt-4 border-t border-slate-200">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-                    {t.common.references}
+                <div className="pt-4 border-t border-stone-200">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-2">
+                    {t.common?.references || 'Scientific References'}
                   </h4>
-                  <ul className="space-y-1 text-xs text-slate-500 font-mono">
+                  <ul className="space-y-1 text-xs text-stone-500 font-mono">
                     {condition.references.map((ref, i) => (
                       <li key={i}>• {ref.citation}</li>
                     ))}
@@ -374,22 +369,21 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           )}
 
           {/* Contextual Medical Disclaimer */}
-          <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start gap-2">
-            <ShieldCheck className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+          <div className="p-3.5 bg-stone-50 border border-stone-200 rounded-lg text-xs text-stone-700 leading-relaxed">
             <span>
-              {t.disclaimer.banner}
+              {t.disclaimer?.banner || t.disclaimer?.text || ''}
             </span>
           </div>
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0">
-          <span className="text-xs text-slate-500">
+        <div className="p-4 bg-stone-50 border-t border-stone-200 flex items-center justify-between shrink-0">
+          <span className="text-xs text-stone-500">
             {condition.name[currentLang]} • {t.doctorName}
           </span>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold transition cursor-pointer"
+            className="px-4 py-2 rounded-md bg-[#115e59] hover:bg-[#0f4f4b] text-white text-xs font-semibold transition cursor-pointer min-h-[44px]"
           >
             {currentLang === 'en' ? 'Close Guide' : currentLang === 'hi' ? 'मार्गदर्शिका बंद करें' : 'માર્ગદર્શિકા બંધ કરો'}
           </button>
@@ -398,3 +392,4 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
     </div>
   );
 };
+

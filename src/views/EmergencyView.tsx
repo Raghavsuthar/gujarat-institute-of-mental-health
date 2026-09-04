@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, ShieldAlert, CheckCircle2, XCircle, Building2, Check } from 'lucide-react';
+import { Phone, ShieldAlert, Building2 } from 'lucide-react';
 import { Language } from '../types';
 import { officialHelplines, crisisWarningSigns, whatToDoInCrisis, whatNotToDoInCrisis } from '../data/emergency';
 import { translations } from '../data/translations';
@@ -14,15 +14,15 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
   return (
     <div className="space-y-8 pb-12">
       {/* Header with High-Visibility Crisis Notice */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100 border border-rose-300 text-rose-900 text-xs font-bold animate-pulse">
-          <ShieldAlert className="w-4 h-4 text-rose-700" />
+      <div className="space-y-2">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] text-xs font-semibold">
+          <ShieldAlert className="w-4 h-4 text-[#991b1b]" />
           <span>{currentLang === 'en' ? 'Emergency Crisis Assistance (India)' : currentLang === 'hi' ? 'आपातकालीन संकट सहायता (भारत)' : 'ઇમરજન્સી સહાય (ભારત)'}</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#1c2430] tracking-tight">
           {t.nav.emergency}
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-stone-600 max-w-3xl leading-relaxed">
           {currentLang === 'en'
             ? 'If you or someone you know is in acute distress, experiencing thoughts of self-harm, severe agitation, delirium, or an overdose, help is available immediately. These official government and non-profit helplines are toll-free, confidential, and available 24 hours a day.'
             : currentLang === 'hi'
@@ -36,47 +36,48 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
         {officialHelplines.map((item, idx) => (
           <div
             key={idx}
-            className={`p-6 rounded-2xl border transition ${
+            className={`p-6 rounded-xl border transition ${
               idx === 0
-                ? 'bg-rose-50/70 border-rose-300 shadow-sm'
-                : 'bg-white border-slate-200'
+                ? 'bg-white border-[#fecaca] shadow-xs'
+                : 'bg-white border-stone-200'
             }`}
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-900 text-white">
+                <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
                   {item.availableHours[currentLang]}
                 </span>
-                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mt-2">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1c2430] mt-1">
                   {item.name[currentLang]}
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5 font-medium">
+                <p className="text-xs text-stone-500 mt-0.5">
                   {item.operatedBy}
                 </p>
               </div>
 
               <a
                 href={`tel:${item.number.replace(/[^0-9]/g, '')}`}
-                className="p-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white shadow-md transition shrink-0 flex items-center justify-center cursor-pointer"
+                className="p-3 rounded-md bg-[#991b1b] hover:bg-[#7f1d1d] text-white transition shrink-0 flex items-center justify-center cursor-pointer min-h-[44px] min-w-[44px]"
                 title={`Call ${item.number}`}
+                aria-label={`Call ${item.name[currentLang]} at ${item.number}`}
               >
                 <Phone className="w-5 h-5" />
               </a>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-200/80">
+            <div className="mt-4 pt-3 border-t border-stone-100">
               <a
                 href={`tel:${item.number.replace(/[^0-9]/g, '')}`}
-                className="text-2xl font-black text-rose-700 hover:text-rose-800 tracking-tight font-mono block"
+                className="text-2xl font-bold text-[#991b1b] hover:underline tracking-tight font-mono block"
               >
                 {item.number}
               </a>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+              <p className="text-sm text-stone-600 mt-1.5 leading-relaxed">
                 {item.description[currentLang]}
               </p>
-              <div className="mt-2 text-[11px] text-slate-500 space-y-0.5">
-                <div><strong>Languages:</strong> {item.languages[currentLang]}</div>
-                <div><strong>Cost:</strong> {item.cost[currentLang]} • Verified: {item.verifiedDate}</div>
+              <div className="mt-3 text-xs text-stone-500 space-y-0.5">
+                <div><strong className="text-stone-700">Languages:</strong> {item.languages[currentLang]}</div>
+                <div><strong className="text-stone-700">Cost:</strong> {item.cost[currentLang]} • Verified: {item.verifiedDate}</div>
               </div>
             </div>
           </div>
@@ -86,15 +87,14 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
       {/* Immediate DOs and DON'Ts in a Psychiatric Crisis */}
       <div className="grid sm:grid-cols-2 gap-5">
         {/* DOs */}
-        <div className="p-6 bg-emerald-50/70 border border-emerald-200 rounded-2xl space-y-3">
-          <div className="flex items-center gap-2 text-emerald-900 font-bold text-base">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-            <span>{currentLang === 'en' ? 'DO in a Mental Health Crisis:' : currentLang === 'hi' ? 'क्या करें (What to Do):' : 'શું કરવું:'}</span>
-          </div>
-          <ul className="space-y-2 text-xs sm:text-sm text-emerald-950 leading-relaxed">
+        <div className="p-6 bg-[#f0fdfa] border border-[#ccfbf1] rounded-xl space-y-3">
+          <h2 className="text-[#115e59] font-semibold text-base">
+            {currentLang === 'en' ? 'DO in a Mental Health Crisis:' : currentLang === 'hi' ? 'क्या करें (What to Do):' : 'શું કરવું:'}
+          </h2>
+          <ul className="space-y-2 text-xs sm:text-sm text-stone-800 leading-relaxed">
             {whatToDoInCrisis.map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="text-emerald-600 font-bold mt-0.5">•</span>
+                <span className="text-[#115e59] font-bold mt-0.5">•</span>
                 <span>{item[currentLang]}</span>
               </li>
             ))}
@@ -102,15 +102,14 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
         </div>
 
         {/* DON'Ts */}
-        <div className="p-6 bg-rose-50/70 border border-rose-200 rounded-2xl space-y-3">
-          <div className="flex items-center gap-2 text-rose-900 font-bold text-base">
-            <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
-            <span>{currentLang === 'en' ? 'DO NOT in a Mental Health Crisis:' : currentLang === 'hi' ? 'क्या न करें (What to Avoid):' : 'શું ન કરવું:'}</span>
-          </div>
-          <ul className="space-y-2 text-xs sm:text-sm text-rose-950 leading-relaxed">
+        <div className="p-6 bg-[#fef2f2] border border-[#fecaca] rounded-xl space-y-3">
+          <h2 className="text-[#991b1b] font-semibold text-base">
+            {currentLang === 'en' ? 'DO NOT in a Mental Health Crisis:' : currentLang === 'hi' ? 'क्या न करें (What to Avoid):' : 'શું ન કરવું:'}
+          </h2>
+          <ul className="space-y-2 text-xs sm:text-sm text-stone-800 leading-relaxed">
             {whatNotToDoInCrisis.map((item, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="text-rose-600 font-bold mt-0.5">•</span>
+                <span className="text-[#991b1b] font-bold mt-0.5">•</span>
                 <span>{item[currentLang]}</span>
               </li>
             ))}
@@ -119,14 +118,14 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
       </div>
 
       {/* Acute Crisis Warning Signs */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-amber-50/60 border border-amber-200/80 space-y-3">
-        <h3 className="text-base sm:text-lg font-bold text-amber-950">
+      <div className="p-6 sm:p-8 rounded-xl bg-stone-50 border border-stone-200 space-y-3">
+        <h2 className="text-base font-semibold text-[#1c2430]">
           {currentLang === 'en' ? 'Critical Warning Signs Requiring Immediate Medical Intervention:' : currentLang === 'hi' ? 'खतरे के गंभीर संकेत जिन पर तुरंत ध्यान देना जरूरी है:' : 'તાત્કાલિક સારવારની જરૂર દર્શાવતા ગંભીર સંકેતો:'}
-        </h3>
+        </h2>
         <div className="grid sm:grid-cols-2 gap-3">
           {crisisWarningSigns.map((sign, idx) => (
-            <div key={idx} className="p-3 bg-white rounded-xl border border-amber-200 flex items-start gap-2 text-xs text-amber-950">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-600 mt-1.5 shrink-0" />
+            <div key={idx} className="p-3.5 bg-white rounded-lg border border-stone-200 flex items-start gap-2.5 text-xs sm:text-sm text-stone-700">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#991b1b] mt-2 shrink-0" />
               <span>{sign[currentLang]}</span>
             </div>
           ))}
@@ -134,20 +133,18 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
       </div>
 
       {/* What Happens in a Hospital Emergency Department */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-slate-100 text-slate-700">
-            <Building2 className="w-5 h-5" />
-          </div>
-          <h3 className="text-base sm:text-lg font-bold text-slate-900">
+      <div className="p-6 sm:p-8 rounded-xl bg-white border border-stone-200 space-y-3">
+        <div className="flex items-center gap-2.5">
+          <Building2 className="w-5 h-5 text-stone-600" />
+          <h2 className="text-base sm:text-lg font-semibold text-[#1c2430]">
             {currentLang === 'en'
               ? 'What to Expect in a Hospital Emergency Department (Casualty)'
               : currentLang === 'hi'
               ? 'अस्पताल के आपातकालीन कक्ष (कैजुअल्टी) में क्या होता है?'
               : 'હોસ્પિટલના ઇમરજન્સી વિભાગમાં શું પ્રક્રિયા થાય છે?'}
-          </h3>
+          </h2>
         </div>
-        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
           {currentLang === 'en'
             ? 'When you arrive at a hospital casualty department for a psychiatric emergency in India: (1) Immediate Triage: The medical officer evaluates airway, breathing, blood pressure, blood sugar, and vitals; (2) Medical Exclusion: Blood tests and ECG are performed to rule out medical intoxications or organ failure; (3) Psychiatric Assessment: The on-call psychiatrist conducts a rapid crisis interview to determine immediate safety and safety planning; (4) Supportive Observation: The person is kept in a quiet, safe environment until acute agitation or distress subsides.'
             : currentLang === 'hi'
@@ -158,3 +155,4 @@ export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => 
     </div>
   );
 };
+

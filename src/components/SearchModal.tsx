@@ -129,47 +129,49 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 backdrop-blur-sm p-4 pt-16 sm:pt-24 overflow-y-auto">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4 pt-16 sm:pt-24 overflow-y-auto" role="dialog" aria-modal="true">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
         {/* Search Header */}
-        <div className="p-4 border-b border-slate-100 flex items-center gap-3">
-          <Search className="w-5 h-5 text-teal-600 shrink-0" />
+        <div className="p-4 border-b border-stone-200 flex items-center gap-3">
+          <Search className="w-5 h-5 text-stone-500 shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.search.placeholder}
             autoFocus
-            className="w-full text-base sm:text-lg outline-none text-slate-800 placeholder-slate-400 font-medium"
+            className="w-full text-base outline-none text-[#1c2430] placeholder-stone-400 font-medium"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition cursor-pointer"
+              aria-label="Clear search"
+              className="p-2 rounded-md text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition cursor-pointer shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               <X className="w-4 h-4" />
             </button>
           )}
           <button
             onClick={onClose}
-            className="px-2.5 py-1 text-xs font-semibold rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 transition cursor-pointer"
+            aria-label="Close search"
+            className="px-3 py-1.5 text-xs font-semibold rounded-md bg-stone-100 hover:bg-stone-200 text-stone-700 transition cursor-pointer min-h-[44px] flex items-center"
           >
             ESC
           </button>
         </div>
 
         {/* Results Body */}
-        <div className="max-h-[60vh] overflow-y-auto p-3 space-y-2 divide-y divide-slate-100">
+        <div className="max-h-[60vh] overflow-y-auto p-3 space-y-2 divide-y divide-stone-100">
           {!query && (
-            <div className="py-8 text-center text-slate-500 text-sm">
-              <p className="font-medium text-slate-700">
+            <div className="py-8 text-center text-stone-500 text-sm">
+              <p className="font-medium text-stone-700">
                 {currentLang === 'en'
                   ? 'Search across conditions, medications, addiction, therapies & symptoms'
                   : currentLang === 'hi'
                   ? 'बीमारियों, दवाओं, नशा मुक्ति, थेरेपी और लक्षणों को खोजें'
                   : 'બીમારીઓ, દવાઓ, વ્યસન મુક્તિ અને લક્ષણો શોધો'}
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-stone-400 mt-1">
                 {currentLang === 'en'
                   ? 'Example: "Depression", "CBT", "Alcohol", "Sleep", "SSRIs"'
                   : currentLang === 'hi'
@@ -180,10 +182,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           )}
 
           {query && results.length === 0 && (
-            <div className="py-10 text-center text-slate-500">
-              <AlertCircle className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-              <p className="font-semibold text-slate-700">{t.search.noResults}</p>
-              <p className="text-xs text-slate-400 mt-1">
+            <div className="py-10 text-center text-stone-500">
+              <AlertCircle className="w-8 h-8 text-stone-400 mx-auto mb-2" />
+              <p className="font-semibold text-stone-800">{t.search.noResults}</p>
+              <p className="text-xs text-stone-500 mt-1">
                 {currentLang === 'en'
                   ? 'Try searching with English, Hindi, or Gujarati terms'
                   : currentLang === 'hi'
@@ -194,30 +196,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           )}
 
           {results.map((res) => {
-            let Icon = BookOpen;
             let typeLabel = 'Topic';
-            let badgeBg = 'bg-slate-100 text-slate-700';
 
             if (res.type === 'condition') {
-              Icon = Activity;
               typeLabel = t.nav.conditions;
-              badgeBg = 'bg-teal-50 text-teal-700 border-teal-200';
             } else if (res.type === 'substance') {
-              Icon = AlertCircle;
               typeLabel = t.nav.addiction;
-              badgeBg = 'bg-amber-50 text-amber-800 border-amber-200';
             } else if (res.type === 'medication') {
-              Icon = Pill;
               typeLabel = t.nav.medications;
-              badgeBg = 'bg-indigo-50 text-indigo-700 border-indigo-200';
             } else if (res.type === 'therapy') {
-              Icon = HeartPulse;
               typeLabel = t.nav.treatments;
-              badgeBg = 'bg-emerald-50 text-emerald-700 border-emerald-200';
             } else if (res.type === 'symptom') {
-              Icon = HelpCircle;
               typeLabel = t.nav.symptoms;
-              badgeBg = 'bg-purple-50 text-purple-700 border-purple-200';
             }
 
             return (
@@ -231,27 +221,24 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   if (res.type === 'symptom') onSelectSymptom(res.rawItem);
                   onClose();
                 }}
-                className="pt-2 pb-2 px-3 hover:bg-slate-50 rounded-xl transition cursor-pointer group flex items-start justify-between gap-3"
+                className="pt-2.5 pb-2.5 px-3 hover:bg-stone-50 rounded-lg transition cursor-pointer group flex items-start justify-between gap-3 min-h-[44px]"
               >
                 <div className="flex items-start gap-3">
-                  <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-teal-100 text-slate-600 group-hover:text-teal-700 transition mt-0.5 shrink-0">
-                    <Icon className="w-4 h-4" />
-                  </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className={`text-[10px] font-semibold uppercase px-2 py-0.5 rounded border ${badgeBg}`}>
+                      <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded border border-stone-200 bg-stone-100 text-stone-700">
                         {typeLabel}
                       </span>
-                      <h4 className="text-sm font-bold text-slate-800 group-hover:text-teal-700 transition">
+                      <h4 className="text-sm font-semibold text-[#1c2430] group-hover:text-[#115e59] transition">
                         {res.title}
                       </h4>
                     </div>
-                    <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-stone-600 mt-1 line-clamp-2 leading-relaxed">
                       {res.snippet}
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-teal-600 shrink-0 mt-2 transition" />
+                <ArrowRight className="w-4 h-4 text-stone-400 group-hover:text-[#115e59] shrink-0 mt-1.5 transition" />
               </div>
             );
           })}

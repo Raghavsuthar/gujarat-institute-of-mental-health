@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Phone } from 'lucide-react';
 import { Language, ActiveTab, Condition, SubstanceInfo, MedicationClass } from './types';
 import { Header } from './components/Header';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
@@ -73,7 +74,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-teal-100 selection:text-teal-900">
+    <div className="min-h-screen flex flex-col bg-[#faf9f5] text-[#1c2430] selection:bg-teal-100 selection:text-teal-900">
       {/* Top Persistent Medical Disclaimer Banner */}
       <DisclaimerBanner currentLang={currentLang} />
 
@@ -87,8 +88,8 @@ export default function App() {
         onOpenCrisis={() => setIsCrisisOpen(true)}
       />
 
-      {/* Main Body Content */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+      {/* Main Body Content: Centered, spacious, calm max-width column */}
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {activeTab === 'home' && (
           <HomeView
             currentLang={currentLang}
@@ -212,6 +213,38 @@ export default function App() {
         onTabChange={handleTabChange}
         onOpenCrisis={() => setIsCrisisOpen(true)}
       />
+
+      {/* Floating Emergency Icon (Left Lower Corner) */}
+      <button
+        id="floating-emergency-icon"
+        onClick={() => setIsCrisisOpen(true)}
+        aria-label={
+          currentLang === 'en'
+            ? 'Emergency Crisis Support - Tele-MANAS 14416 (24x7)'
+            : currentLang === 'hi'
+            ? 'आपातकालीन संकट सहायता - टेली-मानस 14416 (24x7)'
+            : 'ઇમરજન્સી સંકટ સહાય - ટેલી-માનસ ૧૪૪૧૬ (૨૪x૭)'
+        }
+        title={
+          currentLang === 'en'
+            ? 'Emergency Crisis Support (Tele-MANAS 14416 / 112)'
+            : currentLang === 'hi'
+            ? 'आपातकालीन संकट सहायता (टेली-मानस 14416 / 112)'
+            : 'ઇમરજન્સી સંકટ સહાય (ટેલી-માનસ ૧૪૪૧૬ / ૧૧૨)'
+        }
+        className="fixed bottom-5 left-5 z-40 group flex items-center gap-2.5 bg-[#991b1b] hover:bg-[#7f1d1d] text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-lg shadow-red-950/25 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-200 cursor-pointer min-h-[48px] min-w-[48px]"
+      >
+        <span className="relative flex items-center justify-center">
+          <Phone className="w-5 h-5 text-white" />
+          <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-300"></span>
+          </span>
+        </span>
+        <span className="text-xs font-bold tracking-wide hidden sm:inline-block">
+          {currentLang === 'en' ? 'Emergency 14416' : currentLang === 'hi' ? 'आपातकालीन 14416' : 'ઇમરજન્સી ૧૪૪૧૬'}
+        </span>
+      </button>
     </div>
   );
 }

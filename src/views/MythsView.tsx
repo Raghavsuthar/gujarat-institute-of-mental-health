@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, CheckCircle2, XCircle, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Language, MythFact } from '../types';
 import { mythsData } from '../data/myths';
 import { translations } from '../data/translations';
@@ -29,15 +29,14 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
   return (
     <div className="space-y-8 pb-12">
       {/* Header */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-900 text-xs font-semibold">
-          <HelpCircle className="w-3.5 h-3.5" />
-          <span>{currentLang === 'en' ? 'Public Stigma Eradication' : currentLang === 'hi' ? 'सामाजिक भ्रांतियों का निवारण' : 'ગેરમાન્યતાઓનું નિવારણ'}</span>
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <div className="space-y-2">
+        <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+          {currentLang === 'en' ? 'Public Stigma Eradication' : currentLang === 'hi' ? 'सामाजिक भ्रांतियों का निवारण' : 'ગેરમાન્યતાઓનું નિવારણ'}
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#1c2430] tracking-tight">
           {t.nav.myths}
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-stone-600 max-w-3xl leading-relaxed">
           {currentLang === 'en'
             ? 'Stigma and misinformation prevent millions of people in India from seeking timely medical care for psychiatric conditions. Here are the 10 most common myths analyzed with medical facts.'
             : currentLang === 'hi'
@@ -46,16 +45,16 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
         </p>
       </div>
 
-      {/* Category Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1">
+      {/* Category Pills - accessible min-h 44px */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1" role="group" aria-label="Myth categories">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer ${
+            className={`px-3.5 py-2 rounded-md text-xs font-semibold whitespace-nowrap transition cursor-pointer min-h-[44px] flex items-center ${
               selectedCategory === cat.id
-                ? 'bg-purple-600 text-white shadow-xs'
-                : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                ? 'bg-[#115e59] text-white'
+                : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
             }`}
           >
             {cat.label}
@@ -70,47 +69,41 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
           return (
             <div
               key={item.id}
-              className="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white hover:shadow-sm transition"
+              className="p-6 rounded-xl border border-stone-200 bg-white"
             >
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {/* The Myth */}
-                <div className="p-3.5 rounded-xl bg-rose-50/70 border border-rose-200/80 flex items-start gap-3">
-                  <XCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 px-1.5 py-0.5 rounded bg-rose-100">
-                      COMMON MYTH
-                    </span>
-                    <p className="text-sm font-semibold text-rose-950 mt-1">
-                      "{item.myth[currentLang]}"
-                    </p>
-                  </div>
+                <div className="p-4 rounded-lg bg-stone-50 border border-stone-200">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 block">
+                    COMMON MYTH
+                  </span>
+                  <p className="text-base font-semibold text-[#1c2430] mt-1">
+                    "{item.myth[currentLang]}"
+                  </p>
                 </div>
 
                 {/* The Medical Fact */}
-                <div className="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 px-1.5 py-0.5 rounded bg-emerald-100">
-                      MEDICAL FACT
-                    </span>
-                    <p className="text-sm font-bold text-emerald-950 mt-1">
-                      {item.fact[currentLang]}
-                    </p>
-                  </div>
+                <div className="p-4 rounded-lg bg-[#f0fdfa] border border-[#ccfbf1]">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#115e59] block">
+                    MEDICAL FACT
+                  </span>
+                  <p className="text-sm sm:text-base font-medium text-stone-900 mt-1">
+                    {item.fact[currentLang]}
+                  </p>
                 </div>
 
                 {/* Scientific Explanation */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <button
                     onClick={() => setExpandedId(isExpanded ? null : item.id)}
-                    className="text-xs font-bold text-purple-700 hover:text-purple-900 transition flex items-center gap-1 cursor-pointer"
+                    className="text-xs font-semibold text-[#115e59] hover:underline transition flex items-center gap-1.5 cursor-pointer min-h-[44px]"
                   >
                     <span>{isExpanded ? 'Hide Detailed Scientific Explanation' : 'Read Detailed Scientific Explanation'}</span>
                     {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                   </button>
 
                   {isExpanded && (
-                    <div className="mt-3 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed animate-fade-in">
+                    <div className="mt-2 p-4 bg-stone-50 rounded-lg border border-stone-200 text-sm text-stone-700 leading-relaxed">
                       {item.explanation[currentLang]}
                     </div>
                   )}
@@ -123,3 +116,4 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
     </div>
   );
 };
+

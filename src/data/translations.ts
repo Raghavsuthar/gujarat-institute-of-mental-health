@@ -51,6 +51,11 @@ export const translations: Record<
     disclaimer: {
       title: string;
       text: string;
+      banner: string;
+    };
+    emergency: {
+      bannerTitle: string;
+      bannerSubtitle: string;
     };
     common: {
       searchPlaceholder: string;
@@ -61,6 +66,7 @@ export const translations: Record<
       myths: string;
       viewMore: string;
       close: string;
+      references: string;
     };
     home: {
       heroTagline: string;
@@ -72,7 +78,14 @@ export const translations: Record<
     };
     conditions: {
       title: string;
+      overview: string;
       symptoms: string;
+      causes: string;
+      diagnosis: string;
+      treatment: string;
+      recovery: string;
+      urgentSigns: string;
+      impact: string;
       neurobiology: string;
       treatments: string;
       whenToSeekHelp: string;
@@ -116,6 +129,11 @@ export const translations: Record<
     disclaimer: {
       title: 'Medical Educational Disclaimer',
       text: disclaimerText.en,
+      banner: disclaimerText.en,
+    },
+    emergency: {
+      bannerTitle: 'Emergency Crisis Support (India)',
+      bannerSubtitle: 'Tele-MANAS 14416 | Emergency 112 (24x7 Toll-Free)',
     },
     common: {
       searchPlaceholder: 'Search conditions, symptoms, medications...',
@@ -126,6 +144,7 @@ export const translations: Record<
       myths: 'Myths vs. Facts',
       viewMore: 'Read Full Guide',
       close: 'Close',
+      references: 'Scientific References & Clinical Guidelines',
     },
     home: {
       heroTagline: 'Evidence-Based Public Psychiatry Portal',
@@ -137,7 +156,14 @@ export const translations: Record<
     },
     conditions: {
       title: 'Psychiatric Conditions',
+      overview: 'Clinical Overview',
       symptoms: 'Common Clinical Symptoms',
+      causes: 'Etiology & Causes',
+      diagnosis: 'Diagnostic Evaluation',
+      treatment: 'Multidisciplinary Treatment',
+      recovery: 'Prognosis & Recovery',
+      urgentSigns: 'Urgent Red Flags',
+      impact: 'Functional & Cognitive Impact',
       neurobiology: 'Neurobiology & Causes',
       treatments: 'Multidisciplinary Treatment',
       whenToSeekHelp: 'When to Consult a Psychiatrist',
@@ -180,6 +206,11 @@ export const translations: Record<
     disclaimer: {
       title: 'चिकित्सीय शैक्षणिक अस्वीकरण (Disclaimer)',
       text: disclaimerText.hi,
+      banner: disclaimerText.hi,
+    },
+    emergency: {
+      bannerTitle: 'आपातकालीन संकट सहायता (भारत)',
+      bannerSubtitle: 'टेली-मानस 14416 | आपातकाल 112 (24x7 निःशुल्क)',
     },
     common: {
       searchPlaceholder: 'बीमारियां, लक्षण, दवाएं या विषय खोजें...',
@@ -190,6 +221,7 @@ export const translations: Record<
       myths: 'भ्रांतियां बनाम सच',
       viewMore: 'पूरी मार्गदर्शिका पढ़ें',
       close: 'बंद करें',
+      references: 'वैज्ञानिक संदर्भ एवं दिशानिर्देश',
     },
     home: {
       heroTagline: 'प्रमाण-आधारित जन मनोरोग शिक्षा पोर्टल',
@@ -201,7 +233,14 @@ export const translations: Record<
     },
     conditions: {
       title: 'मानसिक स्वास्थ्य स्थितियां',
+      overview: 'चिकित्सीय अवलोकन (Overview)',
       symptoms: 'प्रमुख लक्षण',
+      causes: 'कारण एवं न्यूरोबायोलॉजी',
+      diagnosis: 'डायग्नोस्टिक मूल्यांकन',
+      treatment: 'वैज्ञानिक उपचार पद्धतियां',
+      recovery: 'पुनर्प्राप्ति एवं रोकथाम',
+      urgentSigns: 'आपातकालीन खतरे के संकेत',
+      impact: 'दैनिक जीवन व कार्यप्रणाली पर प्रभाव',
       neurobiology: 'जैविक कारण व न्यूरोबायोलॉजी',
       treatments: 'वैज्ञानिक उपचार पद्धतियां',
       whenToSeekHelp: 'डॉक्टर से कब मिलें',
@@ -244,6 +283,11 @@ export const translations: Record<
     disclaimer: {
       title: 'તબીબી શૈક્ષણિક ડિસ્ક્લેમર',
       text: disclaimerText.gu,
+      banner: disclaimerText.gu,
+    },
+    emergency: {
+      bannerTitle: 'ઇમરજન્સી સંકટ સહાય (ભારત)',
+      bannerSubtitle: 'ટેલી-માનસ 14416 | ઇમરજન્સી 112 (24x7 વિનામૂલ્યે)',
     },
     common: {
       searchPlaceholder: 'બીમારીઓ, લક્ષણો, દવાઓ શોધો...',
@@ -254,6 +298,7 @@ export const translations: Record<
       myths: 'માન્યતાઓ સામે સત્ય',
       viewMore: 'વિગતવાર વાંચો',
       close: 'બંધ કરો',
+      references: 'વૈજ્ઞાનિક સંદર્ભો અને માર્ગદર્શિકા',
     },
     home: {
       heroTagline: 'પુરાવા-આધારિત જાહેર મનોચિકિત્સા શિક્ષણ',
@@ -265,7 +310,14 @@ export const translations: Record<
     },
     conditions: {
       title: 'માનસિક વિકૃતિઓ',
+      overview: 'ક્લિનિકલ ઝાંખી (Overview)',
       symptoms: 'મુખ્ય લક્ષણો',
+      causes: 'કારણો અને જૈવિક પ્રક્રિયા',
+      diagnosis: 'ડાયગ્નોસ્ટિક મૂલ્યાંકન',
+      treatment: 'વૈજ્ઞાનિક સારવાર પદ્ધતિઓ',
+      recovery: 'રિકવરી અને ભવિષ્યની સંભાળ',
+      urgentSigns: 'તાત્કાલિક જોખમી સંકેતો',
+      impact: 'દૈનિક જીવન પર અસર',
       neurobiology: 'જૈવિક કારણો અને મગજની રચના',
       treatments: 'વૈજ્ઞાનિક સારવાર',
       whenToSeekHelp: 'ડૉક્ટરની સલાહ ક્યારે લેવી',

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Brain, CheckCircle2, ArrowRight, Activity } from 'lucide-react';
+import { Search, ArrowRight, Check } from 'lucide-react';
 import { Language, Condition } from '../types';
 import { conditionsData } from '../data/conditions';
 import { translations } from '../data/translations';
@@ -41,15 +41,14 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
   return (
     <div className="space-y-8 pb-12">
       {/* Header section */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
-          <Activity className="w-3.5 h-3.5" />
-          <span>{currentLang === 'en' ? 'Clinical Educational Library' : currentLang === 'hi' ? 'नैदानिक शैक्षणिक पुस्तकालय' : 'શૈક્ષણિક માર્ગદર્શિકા'}</span>
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <div className="space-y-2">
+        <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+          {currentLang === 'en' ? 'Clinical Educational Library' : currentLang === 'hi' ? 'नैदानिक शैक्षणिक पुस्तकालय' : 'શૈક્ષણિક માર્ગદર્શિકા'}
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-[#1c2430] tracking-tight">
           {t.nav.conditions}
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+        <p className="text-sm sm:text-base text-stone-600 max-w-3xl leading-relaxed">
           {currentLang === 'en'
             ? 'Evidence-based psychiatric educational guides describing symptoms, causes, neurobiology, assessment methods, and multidisciplinary treatment approaches.'
             : currentLang === 'hi'
@@ -59,17 +58,17 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        {/* Category filter pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+      <div className="space-y-3">
+        {/* Category filter pills - accessible min 44px */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1" role="group" aria-label="Category filters">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer ${
+              className={`px-3.5 py-2 rounded-md text-xs font-semibold whitespace-nowrap transition cursor-pointer min-h-[44px] flex items-center ${
                 selectedCategory === cat.id
-                  ? 'bg-teal-600 text-white shadow-xs'
-                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                  ? 'bg-[#115e59] text-white'
+                  : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
               }`}
             >
               {cat.label}
@@ -78,22 +77,22 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
         </div>
 
         {/* Search input */}
-        <div className="relative min-w-[240px]">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+        <div className="relative w-full max-w-md">
+          <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={currentLang === 'en' ? 'Filter conditions...' : currentLang === 'hi' ? 'बीमारियां खोजें...' : 'શોધો...'}
-            className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs text-slate-800 placeholder-slate-400 focus:outline-teal-500"
+            className="w-full pl-10 pr-3 py-2.5 rounded-md border border-stone-300 bg-white text-sm text-stone-800 placeholder-stone-400 focus:outline-[#115e59] min-h-[44px]"
           />
         </div>
       </div>
 
       {/* Conditions Grid */}
       {filteredConditions.length === 0 ? (
-        <div className="p-12 text-center bg-slate-50 rounded-2xl border border-slate-200 text-slate-500">
-          <p className="font-semibold text-slate-700">{t.search.noResults}</p>
+        <div className="p-8 text-center bg-white rounded-xl border border-stone-200 text-stone-600">
+          <p className="font-semibold text-stone-800">{t.search.noResults}</p>
           <p className="text-xs mt-1">Try clearing your search query or choosing another category.</p>
         </div>
       ) : (
@@ -102,35 +101,35 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
             <div
               key={cond.id}
               onClick={() => onSelectCondition(cond)}
-              className="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+              className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
             >
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-100">
-                    {cond.category.toUpperCase()}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-2 text-xs text-stone-500">
+                  <span className="font-medium uppercase tracking-wider">
+                    {cond.category}
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="font-mono text-[11px]">
                     {cond.medicalTerms[currentLang]}
                   </span>
                 </div>
 
-                <h2 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-teal-700 transition">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
                   {cond.name[currentLang]}
                 </h2>
 
-                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed line-clamp-3">
+                <p className="text-sm text-stone-600 leading-relaxed line-clamp-3">
                   {cond.overview[currentLang]}
                 </p>
 
                 {/* Common Symptoms preview */}
-                <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5">
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <div className="mt-4 pt-3 border-t border-stone-100 space-y-2">
+                  <span className="text-xs font-semibold text-stone-700 uppercase tracking-wider block">
                     {t.conditions.symptoms}:
                   </span>
-                  <div className="space-y-1">
+                  <div className="space-y-1.5">
                     {cond.commonSymptoms[currentLang].slice(0, 3).map((symp, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                      <div key={i} className="flex items-start gap-2 text-xs text-stone-700">
+                        <Check className="w-3.5 h-3.5 text-[#115e59] shrink-0 mt-0.5" />
                         <span className="line-clamp-1">{symp}</span>
                       </div>
                     ))}
@@ -138,9 +137,9 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
                 </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59] min-h-[44px]">
                 <span>{currentLang === 'en' ? 'Open Clinical Guide' : currentLang === 'hi' ? 'पूरी मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition" />
+                <ArrowRight className="w-4 h-4" />
               </div>
             </div>
           ))}
@@ -149,3 +148,4 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
     </div>
   );
 };
+

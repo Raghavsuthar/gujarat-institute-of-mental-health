@@ -6,20 +6,16 @@ import {
   AlertCircle,
   HelpCircle,
   Users,
-  Sparkles,
   Phone,
-  ShieldAlert,
   ArrowRight,
   BookOpen,
   Search,
-  CheckCircle2,
   Activity,
-  HeartHandshake
+  ShieldCheck
 } from 'lucide-react';
 import { Language, ActiveTab, Condition, SubstanceInfo } from '../types';
 import { translations } from '../data/translations';
 import { conditionsData } from '../data/conditions';
-import { substancesData } from '../data/substances';
 
 interface HomeViewProps {
   currentLang: Language;
@@ -43,102 +39,124 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const t = translations[currentLang];
 
   return (
-    <div className="space-y-12 pb-12">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-10 md:p-14 shadow-xl border border-slate-700/60">
-        <div className="relative z-10 max-w-3xl space-y-5">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-900/80 border border-teal-600/50 text-teal-300 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.home.heroTagline}</span>
-          </div>
+    <div className="space-y-12 sm:space-y-16 pb-12">
+      {/* Hero Section: Quiet, dignified typography */}
+      <section className="bg-white rounded-2xl border border-stone-200 p-6 sm:p-10 space-y-6">
+        <div className="space-y-3 max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+            {t.home.heroTagline}
+          </p>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-[#1c2430]">
             {t.home.heroTitle}
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
+          <p className="text-stone-700 text-base sm:text-lg leading-relaxed font-normal">
             {t.home.heroDescription}
           </p>
+        </div>
 
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <button
-              onClick={() => onTabChange('conditions')}
-              className="px-5 py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-bold transition shadow-md flex items-center gap-2 cursor-pointer"
+        {/* Immediate Crisis Notice Box */}
+        <div className="p-4 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <Phone className="w-4 h-4 shrink-0 text-[#991b1b]" />
+            <span>
+              {currentLang === 'en'
+                ? 'In acute emotional distress or crisis? Help is free, confidential, and 24x7.'
+                : currentLang === 'hi'
+                ? 'यदि आप या कोई परिजन गंभीर मानसिक संकट में हैं, तो तत्काल 24 घंटे सहायता उपलब्ध है।'
+                : 'જો તમે કે તમારા સ્વજન ગંભીર માનસિક સંકટમાં હોવ, તો તાત્કાલિક સહાય ઉપલબ્ધ છે.'}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <a
+              href="tel:14416"
+              className="px-3.5 py-2 rounded-md bg-[#991b1b] hover:bg-[#7f1d1d] text-white text-xs font-semibold transition min-h-[44px] flex items-center gap-1.5"
             >
-              <BookOpen className="w-4 h-4" />
-              <span>{t.home.exploreConditions}</span>
-            </button>
-
-            <button
-              onClick={onOpenSearch}
-              className="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-semibold border border-slate-600 transition flex items-center gap-2 cursor-pointer"
-            >
-              <Search className="w-4 h-4 text-slate-400" />
-              <span>{currentLang === 'en' ? 'Search All Topics' : currentLang === 'hi' ? 'विषय खोजें' : 'બધા વિષયો શોધો'}</span>
-            </button>
-
+              <Phone className="w-3.5 h-3.5" />
+              <span>Tele-MANAS: 14416</span>
+            </a>
             <button
               onClick={onOpenCrisis}
-              className="px-4 py-3 rounded-xl bg-rose-900/60 hover:bg-rose-800/80 text-rose-200 text-xs sm:text-sm font-semibold border border-rose-700/60 transition flex items-center gap-2 cursor-pointer"
+              className="px-3 py-2 rounded-md text-xs font-semibold text-[#991b1b] hover:bg-rose-100 transition min-h-[44px] flex items-center"
             >
-              <Phone className="w-4 h-4 text-rose-300" />
-              <span>{currentLang === 'en' ? 'Crisis Helplines (14416)' : currentLang === 'hi' ? 'हेल्पलाइन (14416)' : 'હેલ્પલાઇન (૧૪૪૧૬)'}</span>
+              {currentLang === 'en' ? 'All Crisis Numbers & 112' : currentLang === 'hi' ? 'सभी हेल्पलाइन व 112' : 'તમામ હેલ્પલાઇન અને ૧૧૨'}
             </button>
           </div>
         </div>
 
-        {/* Decorative subtle background gradient aura */}
-        <div className="absolute -right-16 -bottom-16 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center gap-3 pt-2">
+          <button
+            onClick={() => onTabChange('conditions')}
+            className="px-5 py-2.5 rounded-md bg-[#115e59] hover:bg-[#0f4f4a] text-white text-sm font-semibold transition flex items-center gap-2 cursor-pointer min-h-[44px]"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>{t.home.exploreConditions}</span>
+          </button>
+
+          <button
+            onClick={onOpenScreener}
+            className="px-5 py-2.5 rounded-md bg-stone-100 hover:bg-stone-200 text-stone-800 text-sm font-semibold border border-stone-300 transition flex items-center gap-2 cursor-pointer min-h-[44px]"
+          >
+            <Activity className="w-4 h-4 text-stone-600" />
+            <span>{currentLang === 'en' ? 'Self-Reflection Tools' : currentLang === 'hi' ? 'आत्म-मूल्यांकन (PHQ-9 / GAD-7)' : 'આત્મ-મૂલ્યાંકન ટૂલ'}</span>
+          </button>
+
+          <button
+            onClick={onOpenSearch}
+            className="px-4 py-2.5 rounded-md bg-white hover:bg-stone-50 text-stone-700 text-sm font-medium border border-stone-200 transition flex items-center gap-2 cursor-pointer min-h-[44px]"
+          >
+            <Search className="w-4 h-4 text-stone-500" />
+            <span>{currentLang === 'en' ? 'Search All Topics' : currentLang === 'hi' ? 'विषय खोजें' : 'બધા વિષયો શોધો'}</span>
+          </button>
+        </div>
       </section>
 
       {/* Core Philosophy Banner: EDUCATE — DO NOT DIAGNOSE */}
-      <section className="p-6 rounded-2xl bg-teal-50 border border-teal-200/80 shadow-xs">
-        <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-teal-600 text-white shrink-0 mt-0.5 shadow-sm">
-            <HeartHandshake className="w-6 h-6" />
-          </div>
+      <section className="p-6 rounded-2xl bg-white border border-stone-200 space-y-2">
+        <div className="flex items-start gap-3.5">
+          <ShieldCheck className="w-5 h-5 text-[#115e59] shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <h2 className="text-base sm:text-lg font-bold text-teal-950">
+            <h2 className="text-base sm:text-lg font-semibold text-[#1c2430]">
               {t.home.corePhilosophy}
             </h2>
-            <p className="text-xs sm:text-sm text-teal-900/90 leading-relaxed max-w-4xl">
+            <p className="text-sm text-stone-600 leading-relaxed">
               {t.home.corePhilosophyDesc}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Primary Educational Libraries Grid */}
+      {/* Primary Educational Libraries Grid: Clean unified cards */}
       <section className="space-y-6">
-        <div className="flex items-end justify-between">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-              {currentLang === 'en' ? 'Explore Educational Libraries' : currentLang === 'hi' ? 'शैक्षणिक विषय श्रेणियां' : 'શૈક્ષણિક વિષય શ્રેણીઓ'}
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              {currentLang === 'en'
-                ? 'Curated, scientifically rigorous psychiatric education by Dr. Raghav Suthar'
-                : currentLang === 'hi'
-                ? 'डॉ. राघव सुथार द्वारा तैयार वैज्ञानिक और प्रमाण-आधारित मानसिक स्वास्थ्य ज्ञान'
-                : 'ડૉ. રાઘવ સુથાર દ્વારા તૈયાર કરાયેલ વૈજ્ઞાનિક અને પુરાવા-આધારિત શિક્ષણ'}
-            </p>
-          </div>
+        <div className="space-y-1">
+          <h2 className="text-xl sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
+            {currentLang === 'en' ? 'Educational Libraries' : currentLang === 'hi' ? 'शैक्षणिक विषय श्रेणियां' : 'શૈક્ષણિક વિષય શ્રેણીઓ'}
+          </h2>
+          <p className="text-sm text-stone-600">
+            {currentLang === 'en'
+              ? 'Evidence-based psychiatric knowledge written in accessible language.'
+              : currentLang === 'hi'
+              ? 'डॉ. राघव सुथार द्वारा तैयार वैज्ञानिक और प्रमाण-आधारित मानसिक स्वास्थ्य ज्ञान'
+              : 'ડૉ. રાઘવ સુથાર દ્વારા તૈયાર કરાયેલ વૈજ્ઞાનિક અને પુરાવા-આધારિત શિક્ષણ'}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Card 1: Conditions */}
           <div
             onClick={() => onTabChange('conditions')}
-            className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-teal-400 hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center mb-3 group-hover:bg-teal-600 group-hover:text-white transition">
+            <div className="space-y-2">
+              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
                 <Brain className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-teal-700 transition">
+              <h3 className="font-semibold text-base text-[#1c2430]">
                 {t.nav.conditions}
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {currentLang === 'en'
                   ? 'Comprehensive guides on Depression, Bipolar, Anxiety, OCD, Schizophrenia, PTSD, and Geriatric Psychiatry.'
                   : currentLang === 'hi'
@@ -146,25 +164,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'ડિપ્રેશન, બાયપોલર, ચિંતા, ઓસીડી, સિઝોફ્રેનિયા અને વડીલોના માનસિક રોગોની સંપૂર્ણ માહિતી.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-teal-700">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Browse Conditions' : currentLang === 'hi' ? 'बीमारियां देखें' : 'બીમારીઓ જુઓ'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 2: Addiction */}
           <div
             onClick={() => onTabChange('addiction')}
-            className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-amber-400 hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3 group-hover:bg-amber-600 group-hover:text-white transition">
+            <div className="space-y-2">
+              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
                 <AlertCircle className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-amber-800 transition">
+              <h3 className="font-semibold text-base text-[#1c2430]">
                 {t.nav.addiction}
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {currentLang === 'en'
                   ? 'Understanding addiction as a brain disease. Overdose first aid, alcohol, nicotine, cannabis, and opioids.'
                   : currentLang === 'hi'
@@ -172,25 +190,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'વ્યસન મગજનો રોગ કેમ છે? દારૂ, તમાકુ, ગાંજો અને ઓપિયોઇડ્સથી મુક્તિના તબીબી ઉપાયો.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-amber-800">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति मार्गदर्शन' : 'વ્યસન મુક્તિ માર્ગદર્શન'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 3: Medications */}
           <div
             onClick={() => onTabChange('medications')}
-            className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-indigo-400 hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center mb-3 group-hover:bg-indigo-600 group-hover:text-white transition">
+            <div className="space-y-2">
+              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
                 <Pill className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-indigo-700 transition">
+              <h3 className="font-semibold text-base text-[#1c2430]">
                 {t.nav.medications}
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {currentLang === 'en'
                   ? 'Antidepressants, Antipsychotics, Mood Stabilizers, and Anxiolytics. Mechanisms, side effects, and strict safety rules.'
                   : currentLang === 'hi'
@@ -198,25 +216,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'દવાઓ કેવી રીતે કામ કરે છે? આડઅસરો, સલામતીના નિયમો અને અંધશ્રદ્ધાનું નિવારણ.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-indigo-700">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Medication Facts' : currentLang === 'hi' ? 'दवाओं की जानकारी' : 'દવાઓની માહિતી'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
-          {/* Card 4: Treatments & Psychotherapy */}
+          {/* Card 4: Treatments */}
           <div
             onClick={() => onTabChange('treatments')}
-            className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-emerald-400 hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-3 group-hover:bg-emerald-600 group-hover:text-white transition">
+            <div className="space-y-2">
+              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
                 <HeartPulse className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-emerald-700 transition">
+              <h3 className="font-semibold text-base text-[#1c2430]">
                 {t.nav.treatments}
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {currentLang === 'en'
                   ? 'Evidence-based psychotherapies: CBT, ERP for OCD, DBT, Supportive Counseling, and Family Therapy.'
                   : currentLang === 'hi'
@@ -224,25 +242,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'સાયકોથેરાપી: CBT, ERP, DBT, ફેમિલી થેરાપી અને કાઉન્સેલિંગની વૈજ્ઞાનિક પદ્ધતિઓ.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-700">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Explore Therapies' : currentLang === 'hi' ? 'थेरेपी विधियां' : 'થેરાપી પદ્ધતિઓ'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
-          {/* Card 5: Myths vs Facts */}
+          {/* Card 5: Myths */}
           <div
             onClick={() => onTabChange('myths')}
-            className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-purple-400 hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center mb-3 group-hover:bg-purple-600 group-hover:text-white transition">
+            <div className="space-y-2">
+              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
                 <HelpCircle className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-purple-700 transition">
+              <h3 className="font-semibold text-base text-[#1c2430]">
                 {t.nav.myths}
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {currentLang === 'en'
                   ? 'Debunking 10 harmful myths: willpower, medication addiction, split personality, and psychiatric stigma.'
                   : currentLang === 'hi'
@@ -250,25 +268,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : '૧૦ મોટી ગેરમાન્યતાઓ સામે વૈજ્ઞાનિક સત્ય: માનસિક રોગ, નશો અને સામાજિક કલંક.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-purple-700">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Bust Mental Health Myths' : currentLang === 'hi' ? 'भ्रांतियां दूर करें' : 'માન્યતાઓ તપાસો'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
-          {/* Card 6: For Families & Caregivers */}
+          {/* Card 6: Caregivers */}
           <div
             onClick={() => onTabChange('caregivers')}
-            className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-blue-400 hover:shadow-md transition cursor-pointer group flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-3 group-hover:bg-blue-600 group-hover:text-white transition">
+            <div className="space-y-2">
+              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
                 <Users className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 group-hover:text-blue-700 transition">
+              <h3 className="font-semibold text-base text-[#1c2430]">
                 {t.nav.caregivers}
               </h3>
-              <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
                 {currentLang === 'en'
                   ? 'Practical communication guidance for families: what to say, what to avoid, preventing relapse and caregiver burnout.'
                   : currentLang === 'hi'
@@ -276,29 +294,28 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'પરિવાર માટે માર્ગદર્શન: શું કહેવું અને શું ન કહેવું, ક્લેશ ઘટાડવો અને વડીલોની સંભાળ.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-700">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Caregiver Guidance' : currentLang === 'hi' ? 'देखभालकर्ताओं की मदद' : 'સંભાળ રાખનાર માટે'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Educational Self-Reflection Banner (PHQ-9 / GAD-7) */}
-      <section className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-lg border border-slate-800">
+      <section className="p-6 sm:p-8 rounded-2xl bg-white border border-stone-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-900/80 text-teal-300 text-xs font-bold border border-teal-700/60">
-            <Activity className="w-3.5 h-3.5" />
-            <span>{currentLang === 'en' ? 'Non-Diagnostic Reflection' : currentLang === 'hi' ? 'आत्म-अवलोकन' : 'આત્મ-મૂલ્યાંકન'}</span>
-          </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
+          <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+            {currentLang === 'en' ? 'Non-Diagnostic Reflection' : currentLang === 'hi' ? 'आत्म-अवलोकन' : 'આત્મ-મૂલ્યાંકન'}
+          </span>
+          <h3 className="text-xl sm:text-2xl font-semibold text-[#1c2430]">
             {currentLang === 'en'
               ? 'Educational Symptom Reflection (PHQ-9 & GAD-7)'
               : currentLang === 'hi'
               ? 'डिप्रेशन व चिंता लक्षण आत्म-अवलोकन (PHQ-9 व GAD-7)'
               : 'ડિપ્રેશન અને ચિંતાના લક્ષણોનું આત્મ-મૂલ્યાંકન'}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
             {currentLang === 'en'
               ? 'Standardized psychological questionnaires used for education and tracking. Learn what your symptoms may signify and how to discuss them with a doctor.'
               : currentLang === 'hi'
@@ -309,7 +326,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
         <button
           onClick={onOpenScreener}
-          className="px-5 py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs sm:text-sm transition shadow-md shrink-0 flex items-center gap-2 cursor-pointer"
+          className="px-5 py-2.5 rounded-md bg-[#115e59] hover:bg-[#0f4f4a] text-white font-semibold text-sm transition shrink-0 flex items-center gap-2 cursor-pointer min-h-[44px]"
         >
           <span>{currentLang === 'en' ? 'Start Reflection Tool' : currentLang === 'hi' ? 'टूल शुरू करें' : 'ટૂલ શરૂ કરો'}</span>
           <ArrowRight className="w-4 h-4" />
@@ -320,16 +337,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+            <h3 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
               {currentLang === 'en' ? 'Frequently Researched Conditions' : currentLang === 'hi' ? 'सामान्य मानसिक विकार' : 'સામાન્ય માનસિક વિકૃતિઓ'}
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs sm:text-sm text-stone-600">
               {currentLang === 'en' ? 'Evidence-based overviews written for the public' : currentLang === 'hi' ? 'जनता के लिए निष्पक्ष वैज्ञानिक जानकारी' : 'જાહેર જનતા માટે સરળ ભાષામાં માર્ગદર્શન'}
             </p>
           </div>
           <button
             onClick={() => onTabChange('conditions')}
-            className="text-xs font-bold text-teal-700 hover:text-teal-900 transition flex items-center gap-1 cursor-pointer"
+            className="text-xs sm:text-sm font-semibold text-[#115e59] hover:text-[#0f4f4a] transition flex items-center gap-1 cursor-pointer min-h-[44px]"
           >
             <span>{currentLang === 'en' ? 'View All 8 Guides' : currentLang === 'hi' ? 'सभी 8 देखें' : 'તમામ ૮ જુઓ'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -341,22 +358,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div
               key={cond.id}
               onClick={() => onSelectCondition(cond)}
-              className="p-4 rounded-xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-sm transition cursor-pointer flex flex-col justify-between group"
+              className="p-5 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
             >
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700 px-2 py-0.5 rounded bg-teal-50">
+              <div className="space-y-1.5">
+                <span className="text-xs text-stone-500 font-medium">
                   {cond.category}
                 </span>
-                <h4 className="font-bold text-sm text-slate-900 mt-2 group-hover:text-teal-700 transition line-clamp-1">
+                <h4 className="font-semibold text-sm text-[#1c2430]">
                   {cond.name[currentLang]}
                 </h4>
-                <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
                   {cond.overview[currentLang]}
                 </p>
               </div>
-              <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-teal-700">
+              <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
                 <span>{currentLang === 'en' ? 'Read Guide' : currentLang === 'hi' ? 'पढ़ें' : 'વાંચો'}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </div>
             </div>
           ))}
@@ -364,28 +381,28 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* About Dr. Raghav Suthar Snippet */}
-      <section className="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col md:flex-row items-center gap-6">
-        <div className="w-20 h-20 rounded-2xl bg-teal-700 text-white flex items-center justify-center font-bold text-2xl shrink-0 shadow-inner">
+      <section className="p-6 sm:p-8 rounded-2xl bg-white border border-stone-200 flex flex-col sm:flex-row items-start gap-6">
+        <div className="w-16 h-16 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center font-bold text-xl shrink-0 border border-stone-200">
           RS
         </div>
-        <div className="space-y-2 flex-1 text-center md:text-left">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <h3 className="text-xl font-bold text-slate-900">{t.doctorName}</h3>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded bg-teal-100 text-teal-800">
+        <div className="space-y-2 flex-1">
+          <div className="flex flex-wrap items-baseline gap-2">
+            <h3 className="text-lg sm:text-xl font-semibold text-[#1c2430]">{t.doctorName}</h3>
+            <span className="text-xs text-stone-500 font-medium">
               MBBS, MD (Psychiatry)
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-3xl">
             {currentLang === 'en'
               ? 'Consultant Psychiatrist registered under the National Medical Commission (NMC). This public education portal is maintained to provide scientifically validated, destigmatizing psychiatric information in English, Hindi, and Gujarati.'
               : currentLang === 'hi'
               ? 'राष्ट्रीय चिकित्सा आयोग (NMC) के अंतर्गत पंजीकृत कंसल्टेंट मनोचिकित्सक। यह पोर्टल अंग्रेजी, हिन्दी और गुजराती में प्रमाण-आधारित मानसिक स्वास्थ्य ज्ञान प्रदान करने के लिए समर्पित है।'
               : 'નેશનલ મેડિકલ કમિશન (NMC) હેઠળ નોંધાયેલ કન્સલ્ટન્ટ મનોચિકિત્સક. આ પોર્ટલ અંગ્રેજી, હિન્દી અને ગુજરાતીમાં પુરાવા-આધારિત જ્ઞાન પૂરું પાડે છે.'}
           </p>
-          <div className="pt-1">
+          <div className="pt-2">
             <button
               onClick={() => onTabChange('about')}
-              className="text-xs font-bold text-teal-700 hover:text-teal-900 underline cursor-pointer"
+              className="text-xs font-semibold text-[#115e59] hover:underline cursor-pointer min-h-[44px] flex items-center"
             >
               {currentLang === 'en' ? 'Read Full Professional Profile & Ethics Compliance' : currentLang === 'hi' ? 'पूरा प्रोफाइल व आचार संहिता देखें' : 'સંપૂર્ણ પ્રોફાઇલ જુઓ'} →
             </button>
@@ -395,3 +412,4 @@ export const HomeView: React.FC<HomeViewProps> = ({
     </div>
   );
 };
+
