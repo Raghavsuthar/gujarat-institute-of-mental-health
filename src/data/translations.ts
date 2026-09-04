@@ -1,0 +1,293 @@
+import { LocalizedString, Language } from '../types';
+
+export const siteMetadata = {
+  doctorName: 'Dr. Raghav Suthar',
+  tagline: {
+    en: 'Understanding the Mind. Understanding Mental Health.',
+    hi: 'मन को समझें। मानसिक स्वास्थ्य को समझें।',
+    gu: 'મનને સમજો. માનસિક સ્વાસ્થ્યને સમજો.',
+  } as LocalizedString,
+  subTagline: {
+    en: 'Reliable, evidence-based psychiatric education for patients, families, and the public.',
+    hi: 'मरीजों, परिवारों और आम जनता के लिए प्रमाण-आधारित मनोरोग शिक्षा।',
+    gu: 'દર્દીઓ, પરિવારો અને સામાન્ય જનતા માટે પુરાવા-આધારિત મનોચિકિત્સા શિક્ષણ.',
+  } as LocalizedString,
+  corePhilosophy: {
+    en: 'EDUCATE — DO NOT DIAGNOSE',
+    hi: 'शिक्षा दें — निदान (डायग्नोसिस) न करें',
+    gu: 'શિક્ષિત કરો — નિદાન ન કરો',
+  } as LocalizedString,
+};
+
+export const disclaimerText: Record<'en' | 'hi' | 'gu', string> = {
+  en: 'This website provides general educational information about mental health and psychiatric conditions. It is not a substitute for professional medical evaluation, diagnosis or treatment. Information on this website should not be used to start, stop or change medication. If you are experiencing a medical or psychiatric emergency, seek immediate help from local emergency services or the nearest emergency department.',
+  hi: 'यह वेबसाइट मानसिक स्वास्थ्य और मनोरोग संबंधी स्थितियों के बारे में केवल सामान्य शैक्षिक जानकारी प्रदान करती है। यह किसी पेशेवर चिकित्सक या मनोचिकित्सक द्वारा मूल्यांकन, निदान (डायग्नोसिस) या उपचार का विकल्प नहीं है। इस वेबसाइट की जानकारी का उपयोग किसी भी दवा को शुरू करने, बंद करने या बदलने के लिए कभी न करें। यदि आप किसी आपातकालीन संकट का सामना कर रहे हैं, तो तुरंत नजदीकी अस्पताल के आपातकालीन विभाग या हेल्पलाइन से संपर्क करें।',
+  gu: 'આ વેબસાઇટ માનસિક સ્વાસ્થ્ય અને મનોરોગ સંબંધી સ્થિતિઓ વિશે માત્ર સામાન્ય શૈક્ષણિક માહિતી પૂરી પાડે છે. તે કોઈ વ્યાવસાયિક તબીબી મૂલ્યાંકન, નિદાન (ડાયગ્નોસિસ) અથવા સારવારનો વિકલ્પ નથી. આ વેબસાઇટ પરની માહિતીનો ઉપયોગ ક્યારેય કોઈપણ દવા શરૂ કરવા, બંધ કરવા અથવા બદલવા માટે કરશો નહીં. જો તમે કટોકટી કે ગંભીર સ્થિતિમાં હોવ, તો તાત્કાલિક નજીકના ઇમરજન્સી વિભાગ અથવા હેલ્પલાઇનનો સંપર્ક કરો.',
+};
+
+export const medicationMandatoryWarning: LocalizedString = {
+  en: 'Never start, stop, or change psychiatric medication without discussing it with your treating healthcare professional. Psychiatric medications must always be taken under direct medical supervision.',
+  hi: 'अपने मनोचिकित्सक से परामर्श किए बिना कभी भी कोई मनोरोग संबंधी दवा शुरू, बंद या खुराक में बदलाव न करें। दवाएं हमेशा डॉक्टर की प्रत्यक्ष निगरानी में ही ली जानी चाहिए।',
+  gu: 'તમારા મનોચિકિત્સક સાથે ચર્ચા કર્યા વિના ક્યારેય કોઈપણ દવા શરૂ, બંધ અથવા ડોઝમાં ફેરફાર કરશો નહીં. દવાઓ હંમેશા ડૉક્ટરની સીધી દેખરેખ હેઠળ લેવી જોઈએ.',
+};
+
+export const translations: Record<
+  Language,
+  {
+    doctorName: string;
+    nav: {
+      home: string;
+      conditions: string;
+      addiction: string;
+      medications: string;
+      treatments: string;
+      myths: string;
+      caregivers: string;
+      symptoms: string;
+      interactive: string;
+      emergency: string;
+      about: string;
+    };
+    disclaimer: {
+      title: string;
+      text: string;
+    };
+    common: {
+      searchPlaceholder: string;
+      emergencyBanner: string;
+      emergencyBtn: string;
+      lastReviewed: string;
+      faqs: string;
+      myths: string;
+      viewMore: string;
+      close: string;
+    };
+    home: {
+      heroTagline: string;
+      heroTitle: string;
+      heroDescription: string;
+      exploreConditions: string;
+      corePhilosophy: string;
+      corePhilosophyDesc: string;
+    };
+    conditions: {
+      title: string;
+      symptoms: string;
+      neurobiology: string;
+      treatments: string;
+      whenToSeekHelp: string;
+    };
+    addiction: {
+      title: string;
+      overdose: string;
+      withdrawal: string;
+      treatment: string;
+    };
+    medications: {
+      title: string;
+      indications: string;
+      mechanism: string;
+      sideEffects: string;
+      precautions: string;
+      warning: string;
+    };
+    search: {
+      title: string;
+      placeholder: string;
+      noResults: string;
+    };
+  }
+> = {
+  en: {
+    doctorName: 'Dr. Raghav Suthar',
+    nav: {
+      home: 'Home',
+      conditions: 'Conditions',
+      addiction: 'Addiction & De-Addiction',
+      medications: 'Medication Info',
+      treatments: 'Therapies & Treatment',
+      myths: 'Myths vs. Facts',
+      caregivers: 'For Families & Caregivers',
+      symptoms: 'Understanding Symptoms',
+      interactive: 'Educational Screeners',
+      emergency: 'Emergency Helplines',
+      about: 'About Dr. Raghav Suthar',
+    },
+    disclaimer: {
+      title: 'Medical Educational Disclaimer',
+      text: disclaimerText.en,
+    },
+    common: {
+      searchPlaceholder: 'Search conditions, symptoms, medications...',
+      emergencyBanner: 'Emergency Crisis Support (India): Tele-MANAS 14416 | Emergency 112 (24x7, Free)',
+      emergencyBtn: 'Crisis Helplines',
+      lastReviewed: 'Last reviewed',
+      faqs: 'Frequently Asked Questions',
+      myths: 'Myths vs. Facts',
+      viewMore: 'Read Full Guide',
+      close: 'Close',
+    },
+    home: {
+      heroTagline: 'Evidence-Based Public Psychiatry Portal',
+      heroTitle: 'Understanding Mental Health With Clarity and Dignity',
+      heroDescription: 'A clinical and scientific educational resource designed by Dr. Raghav Suthar to provide reliable, stigma-free psychiatric knowledge in English, Hindi, and Gujarati.',
+      exploreConditions: 'Explore Conditions Library',
+      corePhilosophy: 'CORE CLINICAL PRINCIPLE: EDUCATE — DO NOT DIAGNOSE',
+      corePhilosophyDesc: 'Mental health symptoms are complex and personal. This portal provides transparent, scientific education to empower conversations with licensed physicians. It does not provide personalized diagnosis or replace in-person psychiatric care.',
+    },
+    conditions: {
+      title: 'Psychiatric Conditions',
+      symptoms: 'Common Clinical Symptoms',
+      neurobiology: 'Neurobiology & Causes',
+      treatments: 'Multidisciplinary Treatment',
+      whenToSeekHelp: 'When to Consult a Psychiatrist',
+    },
+    addiction: {
+      title: 'De-Addiction Medicine',
+      overdose: 'Acute Overdose Warning & Emergency Protocol',
+      withdrawal: 'Withdrawal Symptoms & Medical Risks',
+      treatment: 'Evidence-Based De-Addiction Approach',
+    },
+    medications: {
+      title: 'Psychiatric Medications',
+      indications: 'Clinical Indications',
+      mechanism: 'Mechanism of Action in Plain Language',
+      sideEffects: 'Anticipated Side Effects',
+      precautions: 'Important Precautions & Regular Monitoring',
+      warning: medicationMandatoryWarning.en,
+    },
+    search: {
+      title: 'Global Search',
+      placeholder: 'Search psychiatric conditions, medications, symptoms, helplines...',
+      noResults: 'No matching educational topics found.',
+    },
+  },
+  hi: {
+    doctorName: 'डॉ. राघव सुथार',
+    nav: {
+      home: 'होम',
+      conditions: 'मानसिक विकार',
+      addiction: 'नशा व व्यसन मुक्ति',
+      medications: 'दवाओं की जानकारी',
+      treatments: 'उपचार व थेरेपी',
+      myths: 'भ्रांतियां और तथ्य',
+      caregivers: 'परिवार व देखभालकर्ता',
+      symptoms: 'लक्षणों की समझ',
+      interactive: 'आत्म-अवलोकन टूल',
+      emergency: 'आपातकालीन हेल्पलाइन',
+      about: 'डॉ. राघव सुथार के बारे में',
+    },
+    disclaimer: {
+      title: 'चिकित्सीय शैक्षणिक अस्वीकरण (Disclaimer)',
+      text: disclaimerText.hi,
+    },
+    common: {
+      searchPlaceholder: 'बीमारियां, लक्षण, दवाएं या विषय खोजें...',
+      emergencyBanner: 'मानसिक संकट सहायता (भारत): टेली-मानस 14416 | आपातकाल 112 (24x7 निःशुल्क)',
+      emergencyBtn: 'हेल्पलाइन नंबर',
+      lastReviewed: 'अंतिम समीक्षा',
+      faqs: 'अक्सर पूछे जाने वाले सवाल',
+      myths: 'भ्रांतियां बनाम सच',
+      viewMore: 'पूरी मार्गदर्शिका पढ़ें',
+      close: 'बंद करें',
+    },
+    home: {
+      heroTagline: 'प्रमाण-आधारित जन मनोरोग शिक्षा पोर्टल',
+      heroTitle: 'मानसिक स्वास्थ्य की वैज्ञानिक समझ और सम्मान',
+      heroDescription: 'डॉ. राघव सुथार द्वारा निर्मित एक निष्पक्ष शैक्षिक मंच, जो अंग्रेजी, हिन्दी और गुजराती में प्रामाणिक, कलंक-मुक्त मानसिक स्वास्थ्य ज्ञान उपलब्ध कराता है।',
+      exploreConditions: 'मानसिक स्थितियां देखें',
+      corePhilosophy: 'मूल सिद्धांत: शिक्षा दें — निदान (डायग्नोसिस) न करें',
+      corePhilosophyDesc: 'यह पोर्टल जागरूकता और शिक्षा के लिए है। यह किसी भी प्रकार का व्यक्तिगत चिकित्सीय परामर्श या डायग्नोसिस प्रदान नहीं करता।',
+    },
+    conditions: {
+      title: 'मानसिक स्वास्थ्य स्थितियां',
+      symptoms: 'प्रमुख लक्षण',
+      neurobiology: 'जैविक कारण व न्यूरोबायोलॉजी',
+      treatments: 'वैज्ञानिक उपचार पद्धतियां',
+      whenToSeekHelp: 'डॉक्टर से कब मिलें',
+    },
+    addiction: {
+      title: 'नशा मुक्ति चिकित्सा',
+      overdose: 'ओवरडोज चेतावनी व आपातकालीन प्रोटोकॉल',
+      withdrawal: 'विड्रॉल लक्षण व चिकित्सीय जोखिम',
+      treatment: 'वैज्ञानिक नशा मुक्ति उपचार',
+    },
+    medications: {
+      title: 'मनोरोग की दवाएं',
+      indications: 'उपयोग (Indications)',
+      mechanism: 'दवा कैसे कार्य करती है',
+      sideEffects: 'संभावित दुष्प्रभाव',
+      precautions: 'सावधानियां एवं डॉक्टर की निगरानी',
+      warning: medicationMandatoryWarning.hi,
+    },
+    search: {
+      title: 'समग्र खोज (Search)',
+      placeholder: 'बीमारियां, दवाएं, लक्षण, हेल्पलाइन खोजें...',
+      noResults: 'कोई परिणाम नहीं मिला।',
+    },
+  },
+  gu: {
+    doctorName: 'ડૉ. રાઘવ સુથાર',
+    nav: {
+      home: 'હોમ',
+      conditions: 'માનસિક સ્થિતિઓ',
+      addiction: 'વ્યસન મુક્તિ',
+      medications: 'દવાઓની માહિતી',
+      treatments: 'સારવાર અને થેરાપી',
+      myths: 'માન્યતાઓ અને તથ્યો',
+      caregivers: 'પરિવાર માટે માર્ગદર્શન',
+      symptoms: 'લક્ષણોની સમજ',
+      interactive: 'આત્મ-મૂલ્યાંકન',
+      emergency: 'ઇમરજન્સી સહાય',
+      about: 'ડૉ. રાઘવ સુથાર વિશે',
+    },
+    disclaimer: {
+      title: 'તબીબી શૈક્ષણિક ડિસ્ક્લેમર',
+      text: disclaimerText.gu,
+    },
+    common: {
+      searchPlaceholder: 'બીમારીઓ, લક્ષણો, દવાઓ શોધો...',
+      emergencyBanner: 'માનસિક સંકટ સહાય (ભારત): ટેલી-માનસ 14416 | ઇમરજન્સી 112 (24x7 વિનામૂલ્યે)',
+      emergencyBtn: 'ઇમરજન્સી હેલ્પલાઇન',
+      lastReviewed: 'છેલ્લી સમીક્ષા',
+      faqs: 'સામાન્ય પ્રશ્નો',
+      myths: 'માન્યતાઓ સામે સત્ય',
+      viewMore: 'વિગતવાર વાંચો',
+      close: 'બંધ કરો',
+    },
+    home: {
+      heroTagline: 'પુરાવા-આધારિત જાહેર મનોચિકિત્સા શિક્ષણ',
+      heroTitle: 'માનસિક સ્વાસ્થ્યને સમજો ગૌરવ અને સ્પષ્ટતા સાથે',
+      heroDescription: 'ડૉ. રાઘવ સુથાર દ્વારા તૈયાર કરાયેલ આ પ્લેટફોર્મ અંગ્રેજી, હિન્દી અને ગુજરાતીમાં પુરાવા-આધારિત જ્ઞાન પૂરું પાડે છે.',
+      exploreConditions: 'સ્થિતિઓનું પુસ્તકાલય',
+      corePhilosophy: 'મૂળ સિદ્ધાંત: શિક્ષિત કરો — નિદાન ન કરો',
+      corePhilosophyDesc: 'આ વેબસાઇટ માત્ર જાહેર શિક્ષણ અને જાગૃતિ માટે છે. તે કોઈ અંગત તબીબી નિદાન કે પ્રિસ્ક્રિપ્શન આપતી નથી.',
+    },
+    conditions: {
+      title: 'માનસિક વિકૃતિઓ',
+      symptoms: 'મુખ્ય લક્ષણો',
+      neurobiology: 'જૈવિક કારણો અને મગજની રચના',
+      treatments: 'વૈજ્ઞાનિક સારવાર',
+      whenToSeekHelp: 'ડૉક્ટરની સલાહ ક્યારે લેવી',
+    },
+    addiction: {
+      title: 'વ્યસન મુક્તિ માર્ગદર્શન',
+      overdose: 'ઓવરડોઝ ચેતવણી અને તાત્કાલિક સારવાર',
+      withdrawal: 'વિડ્રોઅલ લક્ષણો અને જોખમો',
+      treatment: 'વૈજ્ઞાનિક વ્યસન મુક્તિ',
+    },
+    medications: {
+      title: 'મનોરોગની દવાઓ',
+      indications: 'ઉપયોગ',
+      mechanism: 'દવા કેવી રીતે કામ કરે છે',
+      sideEffects: 'શક્ય આડઅસરો',
+      precautions: 'સાવચેતી અને નિયમિત તપાસ',
+      warning: medicationMandatoryWarning.gu,
+    },
+    search: {
+      title: 'શોધો (Search)',
+      placeholder: 'વિષયો, દવાઓ, લક્ષણો, હેલ્પલાઇન શોધો...',
+      noResults: 'કોઈ પરિણામ મળ્યા નથી.',
+    },
+  },
+};

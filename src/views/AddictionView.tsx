@@ -1,0 +1,137 @@
+import React from 'react';
+import { AlertCircle, ShieldAlert, HeartPulse, ArrowRight, Activity, Phone } from 'lucide-react';
+import { Language, SubstanceInfo } from '../types';
+import { substancesData } from '../data/substances';
+import { translations } from '../data/translations';
+
+interface AddictionViewProps {
+  currentLang: Language;
+  onSelectSubstance: (item: SubstanceInfo) => void;
+  onOpenCrisis: () => void;
+}
+
+export const AddictionView: React.FC<AddictionViewProps> = ({
+  currentLang,
+  onSelectSubstance,
+  onOpenCrisis,
+}) => {
+  const t = translations[currentLang];
+
+  return (
+    <div className="space-y-8 pb-12">
+      {/* Header */}
+      <div className="space-y-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold">
+          <AlertCircle className="w-3.5 h-3.5" />
+          <span>{currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति चिकित्सा' : 'વ્યસન મુક્તિ ચિકિત્સા'}</span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          {t.nav.addiction}
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+          {currentLang === 'en'
+            ? 'Addiction is a chronic, relapsing brain disorder characterized by compulsive substance seeking and physical neuroadaptation. It is a treatable medical condition, not a personal weakness or moral failure.'
+            : currentLang === 'hi'
+            ? 'नशा कोई नैतिक पतन या चरित्र की कमजोरी नहीं है; यह मस्तिष्क के न्यूरोलॉजिकल सर्किट की एक क्रोनिक बीमारी है जिसका उचित डॉक्टरी इलाज संभव है।'
+            : 'વ્યસન એ ચારિત્ર્યની નબળાઈ નથી પરંતુ મગજનો એક ગંભીર રોગ છે જે યોગ્ય તબીબી સારવારથી મટી શકે છે.'}
+        </p>
+      </div>
+
+      {/* LIFE-SAVING OVERDOSE SAFETY ALERT */}
+      <div className="p-5 sm:p-6 bg-rose-50 border-2 border-rose-300 rounded-2xl flex flex-col sm:flex-row items-start justify-between gap-4">
+        <div className="flex items-start gap-3">
+          <ShieldAlert className="w-6 h-6 text-rose-600 shrink-0 mt-0.5 animate-pulse" />
+          <div className="space-y-1">
+            <h3 className="font-bold text-base text-rose-950">
+              {currentLang === 'en'
+                ? 'Suspect an Acute Overdose or Severe Alcohol Withdrawal?'
+                : currentLang === 'hi'
+                ? 'क्या अत्यधिक नशा (ओवरडोज) या दौरे पड़ने की आपात स्थिति है?'
+                : 'શું ઓવરડોઝ કે આંચકી આવવાની ઇમરજન્સી છે?'}
+            </h3>
+            <p className="text-xs sm:text-sm text-rose-900 leading-relaxed max-w-2xl">
+              {currentLang === 'en'
+                ? 'Unresponsiveness, slow breathing, bluish lips, vomiting while unconscious, or severe shaking with hallucinations are life-threatening medical emergencies. Turn the person on their side (Recovery Position) and call emergency services immediately.'
+                : currentLang === 'hi'
+                ? 'बेहोशी, सांस धीमी होना, होंठ नीले पड़ना, या शराब छूटने पर दौरे पड़ना जानलेवा हो सकता है। मरीज को एक करवट लिटाएं और तुरंत 112 पर एम्बुलेंस बुलाएं।'
+                : 'બેભાન અવસ્થા, શ્વાસ ધીમો પડવો, હોઠ વાદળી થવા કે આંચકી આવવી એ જોખમી છે. દર્દીને પડખે સુવડાવો અને તુરંત ૧૧૨ પર કૉલ કરો.'}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 shrink-0">
+          <a
+            href="tel:112"
+            className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition shadow-sm flex items-center gap-1.5"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>Call 112 Dispatch</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Substances Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {substancesData.map((sub) => (
+          <div
+            key={sub.id}
+            onClick={() => onSelectSubstance(sub)}
+            className="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white hover:border-amber-500 hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+          >
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-200">
+                  SUBSTANCE GUIDE
+                </span>
+                <span className="text-xs text-slate-400 font-mono">
+                  {sub.medicalTerms[currentLang]}
+                </span>
+              </div>
+
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-amber-800 transition">
+                {sub.name[currentLang]}
+              </h2>
+
+              <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed line-clamp-3">
+                {sub.whatIsIt[currentLang]}
+              </p>
+
+              {/* Highlights */}
+              <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5 text-xs text-slate-700">
+                <div>
+                  <strong className="text-slate-900">Why Addictive:</strong> {sub.whyAddictive[currentLang].slice(0, 95)}...
+                </div>
+                <div>
+                  <strong className="text-slate-900">Withdrawal Risk:</strong> {sub.withdrawalSymptoms[currentLang].slice(0, 95)}...
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-800">
+              <span>{currentLang === 'en' ? 'Open De-Addiction Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Understanding the Path to Recovery */}
+      <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+        <h3 className="font-bold text-base text-slate-900">
+          {currentLang === 'en'
+            ? 'The Stages of Scientific Recovery in Psychiatry'
+            : currentLang === 'hi'
+            ? 'मनोचिकित्सा में वैज्ञानिक नशा मुक्ति के मुख्य चरण'
+            : 'વૈજ્ઞાનિક પદ્ધતિથી વ્યસન મુક્તિના મુખ્ય તબક્કા'}
+        </h3>
+        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          {currentLang === 'en'
+            ? 'Effective de-addiction involves four interconnected pillars: (1) Safe medical detoxification to prevent dangerous seizures and severe withdrawal; (2) Medication-Assisted Treatment (MAT) to reduce biological cravings; (3) Motivational Interviewing and Cognitive Behavioral Relapse Prevention to rewire lifestyle triggers; and (4) Family psychoeducation to rebuild home stability.'
+            : currentLang === 'hi'
+            ? 'सफल नशा मुक्ति चार चरणों पर टिकी है: (1) सुरक्षित मेडिकल डिटॉक्सिफिकेशन ताकि विड्रॉल के दौरे न पड़ें; (2) तलब (Cravings) कम करने वाली सुरक्षित दवाएं; (3) मनोवैज्ञानिक काउंसलिंग (CBT व मोटिवेशनल थेरेपी); और (4) परिवार का सहयोग।'
+            : 'સફળ વ્યસન મુક્તિના ૪ પાયા: (૧) સલામત મેડિકલ ડિટોક્સિફિકેશન; (૨) તલપ ઘટાડવાની દવાઓ; (૩) સાયકોલોજિકલ કાઉન્સેલિંગ; અને (૪) પરિવારનો સહકાર.'}
+        </p>
+      </div>
+    </div>
+  );
+};

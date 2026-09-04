@@ -1,0 +1,6 @@
+{
+  "name": "Dr. Raghav Suthar - Public Psychiatry Education",
+  "description": "Evidence-based, trilingual public psychiatry and mental health education resource in English, Hindi, and Gujarati by Dr. Raghav Suthar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

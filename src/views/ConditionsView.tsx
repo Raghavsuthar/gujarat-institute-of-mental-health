@@ -1,0 +1,151 @@
+import React, { useState, useMemo } from 'react';
+import { Search, Brain, CheckCircle2, ArrowRight, Activity } from 'lucide-react';
+import { Language, Condition } from '../types';
+import { conditionsData } from '../data/conditions';
+import { translations } from '../data/translations';
+
+interface ConditionsViewProps {
+  currentLang: Language;
+  onSelectCondition: (item: Condition) => void;
+}
+
+export const ConditionsView: React.FC<ConditionsViewProps> = ({
+  currentLang,
+  onSelectCondition,
+}) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const t = translations[currentLang];
+
+  const categories = [
+    { id: 'all', label: currentLang === 'en' ? 'All Conditions' : currentLang === 'hi' ? 'सभी विषय' : 'બધી બીમારીઓ' },
+    { id: 'mood', label: currentLang === 'en' ? 'Mood Disorders' : currentLang === 'hi' ? 'मूड विकार' : 'મૂડ વિકાર' },
+    { id: 'anxiety', label: currentLang === 'en' ? 'Anxiety & Panic' : currentLang === 'hi' ? 'चिंता व घबराहट' : 'ચિંતા અને ગભરાટ' },
+    { id: 'ocd', label: 'OCD' },
+    { id: 'psychotic', label: currentLang === 'en' ? 'Schizophrenia & Psychosis' : currentLang === 'hi' ? 'सिज़ोफ्रेनिया' : 'સિઝોફ્રેનિયા' },
+    { id: 'trauma', label: 'PTSD / Trauma' },
+    { id: 'geriatric', label: currentLang === 'en' ? 'Geriatric Psychiatry' : currentLang === 'hi' ? 'बुजुर्गों का स्वास्थ्य' : 'વૃદ્ધાવસ્થા' },
+  ];
+
+  const filteredConditions = useMemo(() => {
+    return conditionsData.filter((c) => {
+      const matchesCategory = selectedCategory === 'all' || c.category === selectedCategory;
+      const q = searchQuery.toLowerCase().trim();
+      if (!q) return matchesCategory;
+
+      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${c.overview[currentLang]}`.toLowerCase();
+      return matchesCategory && text.includes(q);
+    });
+  }, [selectedCategory, searchQuery, currentLang]);
+
+  return (
+    <div className="space-y-8 pb-12">
+      {/* Header section */}
+      <div className="space-y-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
+          <Activity className="w-3.5 h-3.5" />
+          <span>{currentLang === 'en' ? 'Clinical Educational Library' : currentLang === 'hi' ? 'नैदानिक शैक्षणिक पुस्तकालय' : 'શૈક્ષણિક માર્ગદર્શિકા'}</span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          {t.nav.conditions}
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
+          {currentLang === 'en'
+            ? 'Evidence-based psychiatric educational guides describing symptoms, causes, neurobiology, assessment methods, and multidisciplinary treatment approaches.'
+            : currentLang === 'hi'
+            ? 'मानसिक विकारों के लक्षण, जैविक कारण, मनोचिकित्सकीय जांच और वैज्ञानिक उपचार पद्धतियों का विस्तृत शैक्षणिक विवरण।'
+            : 'માનસિક વિકૃતિઓના લક્ષણો, જૈવિક કારણો, તબીબી તપાસ અને વૈજ્ઞાનિક સારવાર પદ્ધતિઓની વિગતવાર શૈક્ષણિક માહિતી.'}
+        </p>
+      </div>
+
+      {/* Filter and Search Bar */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        {/* Category filter pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition cursor-pointer ${
+                selectedCategory === cat.id
+                  ? 'bg-teal-600 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Search input */}
+        <div className="relative min-w-[240px]">
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={currentLang === 'en' ? 'Filter conditions...' : currentLang === 'hi' ? 'बीमारियां खोजें...' : 'શોધો...'}
+            className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 bg-white text-xs text-slate-800 placeholder-slate-400 focus:outline-teal-500"
+          />
+        </div>
+      </div>
+
+      {/* Conditions Grid */}
+      {filteredConditions.length === 0 ? (
+        <div className="p-12 text-center bg-slate-50 rounded-2xl border border-slate-200 text-slate-500">
+          <p className="font-semibold text-slate-700">{t.search.noResults}</p>
+          <p className="text-xs mt-1">Try clearing your search query or choosing another category.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {filteredConditions.map((cond) => (
+            <div
+              key={cond.id}
+              onClick={() => onSelectCondition(cond)}
+              className="p-5 sm:p-6 rounded-2xl border border-slate-200 bg-white hover:border-teal-500 hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-teal-50 text-teal-800 border border-teal-100">
+                    {cond.category.toUpperCase()}
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">
+                    {cond.medicalTerms[currentLang]}
+                  </span>
+                </div>
+
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-teal-700 transition">
+                  {cond.name[currentLang]}
+                </h2>
+
+                <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed line-clamp-3">
+                  {cond.overview[currentLang]}
+                </p>
+
+                {/* Common Symptoms preview */}
+                <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                    {t.conditions.symptoms}:
+                  </span>
+                  <div className="space-y-1">
+                    {cond.commonSymptoms[currentLang].slice(0, 3).map((symp, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 shrink-0" />
+                        <span className="line-clamp-1">{symp}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+                <span>{currentLang === 'en' ? 'Open Clinical Guide' : currentLang === 'hi' ? 'पूरी मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
