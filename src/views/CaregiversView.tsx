@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Language } from '../types';
 import { caregiversData } from '../data/caregivers';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
 
 interface CaregiversViewProps {
   currentLang: Language;
@@ -9,6 +10,19 @@ interface CaregiversViewProps {
 
 export const CaregiversView: React.FC<CaregiversViewProps> = ({ currentLang }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Family & Caregiver Support in Psychiatric Recovery' : currentLang === 'hi' ? 'परिवार व देखभालकर्ता मार्गदर्शन' : 'પરિવાર અને સંભાળ રાખનાર માટે માર્ગદર્શન',
+      description: currentLang === 'en'
+        ? 'Practical communication guidance for families: what to say, preventing high expressed emotion, and avoiding caregiver burnout.'
+        : currentLang === 'hi'
+        ? 'मरीज के परिजनों के लिए जरूरी सलाह: क्या कहें, क्या न कहें और अपनी मानसिक सेहत कैसे बचाएं।'
+        : 'દર્દીના પરિવારજનો માટે જરૂરી વ્યવહારુ સલાહ અને માર્ગદર્શન.',
+      path: 'caregivers',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">

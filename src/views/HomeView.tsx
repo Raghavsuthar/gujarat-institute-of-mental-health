@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Brain,
   Pill,
@@ -11,11 +11,20 @@ import {
   BookOpen,
   Search,
   Activity,
-  ShieldCheck
+  ShieldCheck,
+  FileText,
+  BookmarkCheck,
+  Printer
 } from 'lucide-react';
 import { Language, ActiveTab, Condition, SubstanceInfo } from '../types';
 import { translations } from '../data/translations';
 import { conditionsData } from '../data/conditions';
+import { updatePageSEO } from '../utils/seo';
+import { MythOfTheDay } from '../components/MythOfTheDay';
+import { PWAInstallButton } from '../components/PWAInstallButton';
+import { CategoryBadge } from '../components/CategoryBadge';
+import { getCategoryTheme } from '../data/categoryThemes';
+import { PortalHeroVisual } from '../components/visuals';
 
 interface HomeViewProps {
   currentLang: Language;
@@ -38,83 +47,116 @@ export const HomeView: React.FC<HomeViewProps> = ({
 }) => {
   const t = translations[currentLang];
 
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en'
+        ? 'Public Psychiatry Education Portal'
+        : currentLang === 'hi'
+        ? 'जन मनोरोग शिक्षा पोर्टल'
+        : 'જાહેર મનોચિકિત્સા શિક્ષણ પોર્ટલ',
+      description: currentLang === 'en'
+        ? 'Evidence-based psychiatric education for patients and families in India. Conditions, medications, treatments, and helplines in English, Hindi, and Gujarati.'
+        : currentLang === 'hi'
+        ? 'डॉ. राघव सुथार द्वारा मानसिक स्वास्थ्य, विकार, दवाएं और उपचार पर प्रमाण-आधारित निःशुल्क जानकारी।'
+        : 'ડૉ. રાઘવ સુથાર દ્વારા માનસિક સ્વાસ્થ્ય, દવાઓ અને સારવાર વિશે પુરાવા-આધારિત માહિતી.',
+      path: '',
+      lang: currentLang,
+    });
+  }, [currentLang]);
+
   return (
     <div className="space-y-12 sm:space-y-16 pb-12">
-      {/* Hero Section: Quiet, dignified typography */}
-      <section className="bg-white rounded-2xl border border-stone-200 p-6 sm:p-10 space-y-6">
-        <div className="space-y-3 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-            {t.home.heroTagline}
-          </p>
+      {/* Hero Section: The single bold, vivid moment anchoring the portal */}
+      <section className="bg-white rounded-2xl border border-stone-200/90 shadow-xs overflow-hidden">
+        {/* Fine Top Accent Line: Nilgiri Teal to Marigold to Jamun Plum */}
+        <div className="h-1 w-full bg-gradient-to-r from-[#115e59] via-[#b86b26] to-[#5e4a72]" aria-hidden="true" />
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-[#1c2430]">
-            {t.home.heroTitle}
-          </h1>
+        <div className="p-6 sm:p-10 space-y-6">
+          {/* Header Typography & Culturally Grounded Credential Badges */}
+          <div className="space-y-3.5 max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-[#fdf7ed] text-[#9a5212] border border-[#f5dcb7]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#b86b26]" aria-hidden="true" />
+                {t.home.heroTagline}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-[#f0fbf9] text-[#0d5d56] border border-[#c6ece6]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#115e59]" />
+                {currentLang === 'en' ? 'Evidence-Based Public Education' : currentLang === 'hi' ? 'प्रमाण-आधारित जन शिक्षा' : 'પુરાવા-આધારિત જાહેર શિક્ષણ'}
+              </span>
+            </div>
 
-          <p className="text-stone-700 text-base sm:text-lg leading-relaxed font-normal">
-            {t.home.heroDescription}
-          </p>
-        </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-[#1c2430]">
+              {t.home.heroTitle}
+            </h1>
 
-        {/* Immediate Crisis Notice Box */}
-        <div className="p-4 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <Phone className="w-4 h-4 shrink-0 text-[#991b1b]" />
-            <span>
-              {currentLang === 'en'
-                ? 'In acute emotional distress or crisis? Help is free, confidential, and 24x7.'
-                : currentLang === 'hi'
-                ? 'यदि आप या कोई परिजन गंभीर मानसिक संकट में हैं, तो तत्काल 24 घंटे सहायता उपलब्ध है।'
-                : 'જો તમે કે તમારા સ્વજન ગંભીર માનસિક સંકટમાં હોવ, તો તાત્કાલિક સહાય ઉપલબ્ધ છે.'}
-            </span>
+            <p className="text-stone-700 text-base sm:text-lg leading-relaxed font-normal">
+              {t.home.heroDescription}
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <a
-              href="tel:14416"
-              className="px-3.5 py-2 rounded-md bg-[#991b1b] hover:bg-[#7f1d1d] text-white text-xs font-semibold transition min-h-[44px] flex items-center gap-1.5"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Tele-MANAS: 14416</span>
-            </a>
+
+          {/* Central Vivid Visual Moment: Dawn Sanctuary Artwork */}
+          <PortalHeroVisual currentLang={currentLang} className="w-full h-40 sm:h-52 md:h-60" />
+
+          {/* Immediate Crisis Notice Box: Strictly Reserved Emergency Treatment */}
+          <div className="p-4 rounded-xl bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-sm font-medium">
+              <Phone className="w-4 h-4 shrink-0 text-[#991b1b]" />
+              <span>
+                {currentLang === 'en'
+                  ? 'In acute emotional distress or crisis? Help is free, confidential, and 24x7.'
+                  : currentLang === 'hi'
+                  ? 'यदि आप या कोई परिजन गंभीर मानसिक संकट में हैं, तो तत्काल 24 घंटे सहायता उपलब्ध है।'
+                  : 'જો તમે કે તમારા સ્વજન ગંભીર માનસિક સંકટમાં હોવ, તો તાત્કાલિક સહાય ઉપલબ્ધ છે.'}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <a
+                href="tel:14416"
+                className="px-3.5 py-2 rounded-md bg-[#991b1b] hover:bg-[#7f1d1d] text-white text-xs font-semibold transition min-h-[44px] flex items-center gap-1.5"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>Tele-MANAS: 14416</span>
+              </a>
+              <button
+                onClick={onOpenCrisis}
+                className="px-3 py-2 rounded-md text-xs font-semibold text-[#991b1b] hover:bg-rose-100 transition min-h-[44px] flex items-center"
+              >
+                {currentLang === 'en' ? 'All Crisis Numbers & 112' : currentLang === 'hi' ? 'सभी हेल्पलाइन व 112' : 'તમામ હેલ્પલાઇન અને ૧૧૨'}
+              </button>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-3 pt-1">
             <button
-              onClick={onOpenCrisis}
-              className="px-3 py-2 rounded-md text-xs font-semibold text-[#991b1b] hover:bg-rose-100 transition min-h-[44px] flex items-center"
+              onClick={() => onTabChange('conditions')}
+              className="px-5 py-2.5 rounded-md bg-[#115e59] hover:bg-[#0f4f4a] text-white text-sm font-semibold transition flex items-center gap-2 cursor-pointer min-h-[44px]"
             >
-              {currentLang === 'en' ? 'All Crisis Numbers & 112' : currentLang === 'hi' ? 'सभी हेल्पलाइन व 112' : 'તમામ હેલ્પલાઇન અને ૧૧૨'}
+              <BookOpen className="w-4 h-4" />
+              <span>{t.home.exploreConditions}</span>
+            </button>
+
+            <button
+              onClick={onOpenScreener}
+              className="px-5 py-2.5 rounded-md bg-stone-100 hover:bg-stone-200 text-stone-800 text-sm font-semibold border border-stone-300 transition flex items-center gap-2 cursor-pointer min-h-[44px]"
+            >
+              <Activity className="w-4 h-4 text-stone-600" />
+              <span>{currentLang === 'en' ? 'Self-Reflection Tools' : currentLang === 'hi' ? 'आत्म-मूल्यांकन (PHQ-9 / GAD-7)' : 'આત્મ-મૂલ્યાંકન ટૂલ'}</span>
+            </button>
+
+            <button
+              onClick={onOpenSearch}
+              className="px-4 py-2.5 rounded-md bg-white hover:bg-stone-50 text-stone-700 text-sm font-medium border border-stone-200 transition flex items-center gap-2 cursor-pointer min-h-[44px]"
+            >
+              <Search className="w-4 h-4 text-stone-500" />
+              <span>{currentLang === 'en' ? 'Search All Topics' : currentLang === 'hi' ? 'विषय खोजें' : 'બધા વિષયો શોધો'}</span>
             </button>
           </div>
         </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3 pt-2">
-          <button
-            onClick={() => onTabChange('conditions')}
-            className="px-5 py-2.5 rounded-md bg-[#115e59] hover:bg-[#0f4f4a] text-white text-sm font-semibold transition flex items-center gap-2 cursor-pointer min-h-[44px]"
-          >
-            <BookOpen className="w-4 h-4" />
-            <span>{t.home.exploreConditions}</span>
-          </button>
-
-          <button
-            onClick={onOpenScreener}
-            className="px-5 py-2.5 rounded-md bg-stone-100 hover:bg-stone-200 text-stone-800 text-sm font-semibold border border-stone-300 transition flex items-center gap-2 cursor-pointer min-h-[44px]"
-          >
-            <Activity className="w-4 h-4 text-stone-600" />
-            <span>{currentLang === 'en' ? 'Self-Reflection Tools' : currentLang === 'hi' ? 'आत्म-मूल्यांकन (PHQ-9 / GAD-7)' : 'આત્મ-મૂલ્યાંકન ટૂલ'}</span>
-          </button>
-
-          <button
-            onClick={onOpenSearch}
-            className="px-4 py-2.5 rounded-md bg-white hover:bg-stone-50 text-stone-700 text-sm font-medium border border-stone-200 transition flex items-center gap-2 cursor-pointer min-h-[44px]"
-          >
-            <Search className="w-4 h-4 text-stone-500" />
-            <span>{currentLang === 'en' ? 'Search All Topics' : currentLang === 'hi' ? 'विषय खोजें' : 'બધા વિષયો શોધો'}</span>
-          </button>
-        </div>
       </section>
 
-      {/* Core Philosophy Banner: EDUCATE — DO NOT DIAGNOSE */}
-      <section className="p-6 rounded-2xl bg-white border border-stone-200 space-y-2">
+      {/* Core Philosophy Banner */}
+      <section className="p-6 rounded-xl bg-white border border-stone-200 space-y-2">
         <div className="flex items-start gap-3.5">
           <ShieldCheck className="w-5 h-5 text-[#115e59] shrink-0 mt-0.5" />
           <div className="space-y-1">
@@ -128,7 +170,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* Primary Educational Libraries Grid: Clean unified cards */}
+      {/* Myth of the Day: Daily Shareable Destigmatization */}
+      <MythOfTheDay
+        currentLang={currentLang}
+        onNavigateToMyths={() => onTabChange('myths')}
+      />
+
+      {/* Primary Educational Libraries Grid: Intentional, cohesive wayfinding icons */}
       <section className="space-y-6">
         <div className="space-y-1">
           <h2 className="text-xl sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
@@ -149,8 +197,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
             onClick={() => onTabChange('conditions')}
             className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
-            <div className="space-y-2">
-              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#f0fbf9] text-[#0d5d56] border border-[#c6ece6] flex items-center justify-center">
                 <Brain className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-base text-[#1c2430]">
@@ -166,17 +214,16 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Browse Conditions' : currentLang === 'hi' ? 'बीमारियां देखें' : 'બીમારીઓ જુઓ'}</span>
-              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 2: Addiction */}
           <div
             onClick={() => onTabChange('addiction')}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#b86b26] transition cursor-pointer flex flex-col justify-between"
           >
-            <div className="space-y-2">
-              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#fdf7ed] text-[#9a5212] border border-[#f5dcb7] flex items-center justify-center">
                 <AlertCircle className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-base text-[#1c2430]">
@@ -190,19 +237,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'વ્યસન મગજનો રોગ કેમ છે? દારૂ, તમાકુ, ગાંજો અને ઓપિયોઇડ્સથી મુક્તિના તબીબી ઉપાયો.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#9a5212]">
               <span>{currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति मार्गदर्शन' : 'વ્યસન મુક્તિ માર્ગદર્શન'}</span>
-              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 3: Medications */}
           <div
             onClick={() => onTabChange('medications')}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#565a9f] transition cursor-pointer flex flex-col justify-between"
           >
-            <div className="space-y-2">
-              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#f2f2fa] text-[#3b3e79] border border-[#d7d8ee] flex items-center justify-center">
                 <Pill className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-base text-[#1c2430]">
@@ -216,19 +262,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'દવાઓ કેવી રીતે કામ કરે છે? આડઅસરો, સલામતીના નિયમો અને અંધશ્રદ્ધાનું નિવારણ.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#3b3e79]">
               <span>{currentLang === 'en' ? 'Medication Facts' : currentLang === 'hi' ? 'दवाओं की जानकारी' : 'દવાઓની માહિતી'}</span>
-              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 4: Treatments */}
           <div
             onClick={() => onTabChange('treatments')}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#387971] transition cursor-pointer flex flex-col justify-between"
           >
-            <div className="space-y-2">
-              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#eff7f6] text-[#225852] border border-[#cee5e2] flex items-center justify-center">
                 <HeartPulse className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-base text-[#1c2430]">
@@ -242,19 +287,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'સાયકોથેરાપી: CBT, ERP, DBT, ફેમિલી થેરાપી અને કાઉન્સેલિંગની વૈજ્ઞાનિક પદ્ધતિઓ.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#225852]">
               <span>{currentLang === 'en' ? 'Explore Therapies' : currentLang === 'hi' ? 'थेरेपी विधियां' : 'થેરાપી પદ્ધતિઓ'}</span>
-              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 5: Myths */}
           <div
             onClick={() => onTabChange('myths')}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#734b7f] transition cursor-pointer flex flex-col justify-between"
           >
-            <div className="space-y-2">
-              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#f8f2f9] text-[#54335c] border border-[#e8d7ec] flex items-center justify-center">
                 <HelpCircle className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-base text-[#1c2430]">
@@ -268,19 +312,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : '૧૦ મોટી ગેરમાન્યતાઓ સામે વૈજ્ઞાનિક સત્ય: માનસિક રોગ, નશો અને સામાજિક કલંક.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#54335c]">
               <span>{currentLang === 'en' ? 'Bust Mental Health Myths' : currentLang === 'hi' ? 'भ्रांतियां दूर करें' : 'માન્યતાઓ તપાસો'}</span>
-              <ArrowRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Card 6: Caregivers */}
           <div
             onClick={() => onTabChange('caregivers')}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#c4722b] transition cursor-pointer flex flex-col justify-between"
           >
-            <div className="space-y-2">
-              <div className="w-9 h-9 rounded-md bg-stone-100 text-stone-700 flex items-center justify-center">
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#fef8f0] text-[#8c4610] border border-[#f4deca] flex items-center justify-center">
                 <Users className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-base text-[#1c2430]">
@@ -294,9 +337,83 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   : 'પરિવાર માટે માર્ગદર્શન: શું કહેવું અને શું ન કહેવું, ક્લેશ ઘટાડવો અને વડીલોની સંભાળ.'}
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#8c4610]">
               <span>{currentLang === 'en' ? 'Caregiver Guidance' : currentLang === 'hi' ? 'देखभालकर्ताओं की मदद' : 'સંભાળ રાખનાર માટે'}</span>
-              <ArrowRight className="w-4 h-4" />
+            </div>
+          </div>
+
+          {/* Card 7: Clinical Articles */}
+          <div
+            onClick={() => onTabChange('articles')}
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#486581] transition cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#f0f4f8] text-[#2e4663] border border-[#d9e2ec] flex items-center justify-center">
+                <FileText className="w-5 h-5" />
+              </div>
+              <h3 className="font-semibold text-base text-[#1c2430]">
+                {t.nav.articles}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                {currentLang === 'en'
+                  ? 'In-depth clinical essays on first psychiatric appointments, depression vs grief, and youth digital habits.'
+                  : currentLang === 'hi'
+                  ? 'मनोरोग विशेषज्ञ द्वारा लिखित विस्तृत लेख: पहली बार डॉक्टर से मिलना, डिप्रेशन बनाम उदासी, और युवाओं में तनाव।'
+                  : 'પ્રથમ મુલાકાત, ડિપ્રેશન વિરુદ્ધ દુઃખ અને યુવાનોના માનસિક સ્વાસ્થ્ય પર ઊંડાણપૂર્વકના લેખો.'}
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#2e4663]">
+              <span>{currentLang === 'en' ? 'Read Articles' : currentLang === 'hi' ? 'लेख पढ़ें' : 'લેખો વાંચો'}</span>
+            </div>
+          </div>
+
+          {/* Card 8: Helplines & Resources */}
+          <div
+            onClick={() => onTabChange('resources')}
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#2b6cb0] transition cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#eef5fa] text-[#1b4a75] border border-[#cce0ef] flex items-center justify-center">
+                <Phone className="w-5 h-5" />
+              </div>
+              <h3 className="font-semibold text-base text-[#1c2430]">
+                {t.nav.resources}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                {currentLang === 'en'
+                  ? 'Verified national directory: Tele-MANAS (14416), ERSS 112, NIMHANS, AIIMS, and hospital crisis services.'
+                  : currentLang === 'hi'
+                  ? 'प्रमाणित राष्ट्रीय हेल्पलाइन डायरेक्टरी: टेली-मानस (14416), 112, निमहंस और प्रमुख सरकारी सहायता केंद्र।'
+                  : 'પ્રમાણિત રાષ્ટ્રીય હેલ્પલાઇન ડિરેક્ટરી: ટેલી-માનસ (૧૪૪૧૬), ૧૧૨ અને સરકારી હોસ્પિટલો.'}
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#1b4a75]">
+              <span>{currentLang === 'en' ? 'Directory of Helplines' : currentLang === 'hi' ? 'हेल्पलाइन देखें' : 'હેલ્પલાઇન જુઓ'}</span>
+            </div>
+          </div>
+
+          {/* Card 9: Outreach Materials */}
+          <div
+            onClick={() => onTabChange('outreach')}
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#3d7b52] transition cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-[#f0f7f2] text-[#225434] border border-[#cde5d5] flex items-center justify-center">
+                <Printer className="w-5 h-5" />
+              </div>
+              <h3 className="font-semibold text-base text-[#1c2430]">
+                {t.nav.outreach}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                {currentLang === 'en'
+                  ? 'Printable clinic flyers and noticeboard posters with QR codes for waiting rooms and community outreach.'
+                  : currentLang === 'hi'
+                  ? 'क्लीनिक, अस्पतालों और कम्युनिटी सेंटर के लिए प्रिंटेबल नोटिस और क्यूआर कोड सामग्री।'
+                  : 'વેઇટિંગ રૂમ અને ક્લિનિક માટે પ્રિન્ટ કરી શકાય તેવા પોસ્ટર અને ક્યૂઆર કોડ સાહિત્ય.'}
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#225434]">
+              <span>{currentLang === 'en' ? 'Printable Posters' : currentLang === 'hi' ? 'पोस्टर व क्यूआर' : 'પોસ્ટર અને ક્યૂઆર'}</span>
             </div>
           </div>
         </div>
@@ -354,35 +471,41 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {conditionsData.slice(0, 4).map((cond) => (
-            <div
-              key={cond.id}
-              onClick={() => onSelectCondition(cond)}
-              className="p-5 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
-            >
-              <div className="space-y-1.5">
-                <span className="text-xs text-stone-500 font-medium">
-                  {cond.category}
-                </span>
-                <h4 className="font-semibold text-sm text-[#1c2430]">
-                  {cond.name[currentLang]}
-                </h4>
-                <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
-                  {cond.overview[currentLang]}
-                </p>
+          {conditionsData.slice(0, 4).map((cond) => {
+            const theme = getCategoryTheme(cond.category);
+            return (
+              <div
+                key={cond.id}
+                onClick={() => onSelectCondition(cond)}
+                style={{ borderTopColor: theme.hex.accent, borderTopWidth: '3px' }}
+                className="p-5 rounded-xl border border-stone-200 bg-white hover:border-stone-300 transition cursor-pointer flex flex-col justify-between"
+              >
+                <div className="space-y-2">
+                  <div>
+                    <CategoryBadge category={cond.category} currentLang={currentLang} size="xs" />
+                  </div>
+                  <h4 className="font-semibold text-sm text-[#1c2430]">
+                    {cond.name[currentLang]}
+                  </h4>
+                  <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
+                    {cond.overview[currentLang]}
+                  </p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
+                  <span>{currentLang === 'en' ? 'Read Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'માર્ગદર્શિકા વાંચો'}</span>
+                </div>
               </div>
-              <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
-                <span>{currentLang === 'en' ? 'Read Guide' : currentLang === 'hi' ? 'पढ़ें' : 'વાંચો'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
+      {/* Install App as Offline PWA Banner */}
+      <PWAInstallButton currentLang={currentLang} variant="banner" />
+
       {/* About Dr. Raghav Suthar Snippet */}
       <section className="p-6 sm:p-8 rounded-2xl bg-white border border-stone-200 flex flex-col sm:flex-row items-start gap-6">
-        <div className="w-16 h-16 rounded-xl bg-stone-100 text-stone-700 flex items-center justify-center font-bold text-xl shrink-0 border border-stone-200">
+        <div className="w-16 h-16 rounded-xl bg-teal-50 text-[#115e59] flex items-center justify-center font-bold text-xl shrink-0 border border-teal-200">
           RS
         </div>
         <div className="space-y-2 flex-1">
@@ -404,7 +527,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               onClick={() => onTabChange('about')}
               className="text-xs font-semibold text-[#115e59] hover:underline cursor-pointer min-h-[44px] flex items-center"
             >
-              {currentLang === 'en' ? 'Read Full Professional Profile & Ethics Compliance' : currentLang === 'hi' ? 'पूरा प्रोफाइल व आचार संहिता देखें' : 'સંપૂર્ણ પ્રોફાઇલ જુઓ'} →
+              {currentLang === 'en' ? 'Read Full Professional Profile & Ethics Compliance' : currentLang === 'hi' ? 'पूरा प्रोफाइल व आचार संहिता देखें' : 'સંપૂર્ણ પ્રોફાઇલ જુઓ'}
             </button>
           </div>
         </div>

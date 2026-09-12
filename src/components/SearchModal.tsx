@@ -16,8 +16,9 @@ interface SearchModalProps {
   onSelectCondition: (item: Condition) => void;
   onSelectSubstance: (item: SubstanceInfo) => void;
   onSelectMedication: (item: MedicationClass) => void;
-  onSelectTherapy: (item: TherapyModality) => void;
-  onSelectSymptom: (item: SymptomEducation) => void;
+  onSelectTherapy?: (item: TherapyModality) => void;
+  onSelectSymptom?: (item: SymptomEducation) => void;
+  onNavigateTab?: (tab: any) => void;
 }
 
 export const SearchModal: React.FC<SearchModalProps> = ({
@@ -29,6 +30,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   onSelectMedication,
   onSelectTherapy,
   onSelectSymptom,
+  onNavigateTab: _onNavigateTab,
 }) => {
   const [query, setQuery] = useState('');
   const t = translations[currentLang];
@@ -49,13 +51,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     conditionsData.forEach((c) => {
       const title = c.name[currentLang] || c.name.en;
       const terms = c.medicalTerms[currentLang] || '';
-      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${c.overview[currentLang]}`.toLowerCase();
+      const overviewText = c.overview?.[currentLang] || c.overview?.en || '';
+      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${overviewText}`.toLowerCase();
       if (text.includes(q)) {
         matched.push({
           id: `c-${c.id}`,
           type: 'condition',
           title: `${title} (${terms})`,
-          snippet: c.overview[currentLang].slice(0, 140) + '...',
+          snippet: overviewText.slice(0, 140) + '...',
           rawItem: c,
         });
       }
@@ -65,13 +68,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     substancesData.forEach((s) => {
       const title = s.name[currentLang] || s.name.en;
       const terms = s.medicalTerms[currentLang] || '';
-      const text = `${s.name.en} ${s.name.hi} ${s.name.gu} ${s.medicalTerms.en} ${s.medicalTerms.hi} ${s.medicalTerms.gu} ${s.whatIsIt[currentLang]}`.toLowerCase();
+      const whatIsItText = s.whatIsIt?.[currentLang] || s.whatIsIt?.en || '';
+      const text = `${s.name.en} ${s.name.hi} ${s.name.gu} ${s.medicalTerms.en} ${s.medicalTerms.hi} ${s.medicalTerms.gu} ${whatIsItText}`.toLowerCase();
       if (text.includes(q)) {
         matched.push({
           id: `s-${s.id}`,
           type: 'substance',
           title: `${title} (${terms})`,
-          snippet: s.whatIsIt[currentLang].slice(0, 140) + '...',
+          snippet: whatIsItText.slice(0, 140) + '...',
           rawItem: s,
         });
       }
@@ -81,13 +85,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     medicationsData.forEach((m) => {
       const title = m.name[currentLang] || m.name.en;
       const examples = m.commonExamples.join(', ');
-      const text = `${m.name.en} ${m.name.hi} ${m.name.gu} ${examples} ${m.indications[currentLang]}`.toLowerCase();
+      const indicationsText = m.indications?.[currentLang] || m.indications?.en || '';
+      const text = `${m.name.en} ${m.name.hi} ${m.name.gu} ${examples} ${indicationsText}`.toLowerCase();
       if (text.includes(q)) {
         matched.push({
           id: `m-${m.id}`,
           type: 'medication',
           title: `${title} (${examples})`,
-          snippet: m.indications[currentLang].slice(0, 140) + '...',
+          snippet: indicationsText.slice(0, 140) + '...',
           rawItem: m,
         });
       }
@@ -96,13 +101,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     // Search Therapies
     treatmentsData.forEach((th) => {
       const title = th.name[currentLang] || th.name.en;
-      const text = `${th.name.en} ${th.name.hi} ${th.name.gu} ${th.shortName} ${th.plainSummary[currentLang]}`.toLowerCase();
+      const summaryText = th.plainSummary?.[currentLang] || th.plainSummary?.en || '';
+      const text = `${th.name.en} ${th.name.hi} ${th.name.gu} ${th.shortName} ${summaryText}`.toLowerCase();
       if (text.includes(q)) {
         matched.push({
           id: `th-${th.id}`,
           type: 'therapy',
           title: `${title} (${th.shortName})`,
-          snippet: th.plainSummary[currentLang].slice(0, 140) + '...',
+          snippet: summaryText.slice(0, 140) + '...',
           rawItem: th,
         });
       }
@@ -111,13 +117,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     // Search Symptoms
     symptomsData.forEach((sym) => {
       const title = sym.symptomName[currentLang] || sym.symptomName.en;
-      const text = `${sym.symptomName.en} ${sym.symptomName.hi} ${sym.symptomName.gu} ${sym.plainDescription[currentLang]}`.toLowerCase();
+      const descText = sym.plainDescription?.[currentLang] || sym.plainDescription?.en || '';
+      const text = `${sym.symptomName.en} ${sym.symptomName.hi} ${sym.symptomName.gu} ${descText}`.toLowerCase();
       if (text.includes(q)) {
         matched.push({
           id: `sym-${sym.id}`,
           type: 'symptom',
           title: title,
-          snippet: sym.plainDescription[currentLang].slice(0, 140) + '...',
+          snippet: descText.slice(0, 140) + '...',
           rawItem: sym,
         });
       }

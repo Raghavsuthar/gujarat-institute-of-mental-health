@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AlertCircle, ArrowRight, Phone } from 'lucide-react';
 import { Language, SubstanceInfo } from '../types';
 import { substancesData } from '../data/substances';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
+import { NeuralCircuitryIllustration } from '../components/visuals';
 
 interface AddictionViewProps {
   currentLang: Language;
@@ -16,6 +18,19 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
   onOpenCrisis,
 }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Addiction & De-Addiction Medicine' : currentLang === 'hi' ? 'नशा व व्यसन मुक्ति चिकित्सा' : 'વ્યસન મુક્તિ માર્ગદર્શન',
+      description: currentLang === 'en'
+        ? 'Medical understanding of alcohol, tobacco, cannabis, opioid, and behavioral addictions. Withdrawal risks and evidence-based treatments.'
+        : currentLang === 'hi'
+        ? 'शराब, तंबाकू, अफीम और अन्य नशों से मुक्ति: लक्षण, विड्रॉल और वैज्ञानिक चिकित्सा।'
+        : 'દારૂ, તમાકુ અને અન્ય નશાની આદતમાંથી મુક્તિ માટે વૈજ્ઞાનિક માર્ગદર્શન.',
+      path: 'addiction',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">
@@ -34,6 +49,11 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
             ? 'नशा कोई नैतिक पतन या चरित्र की कमजोरी नहीं है; यह मस्तिष्क के न्यूरोलॉजिकल सर्किट की एक क्रोनिक बीमारी है जिसका उचित डॉक्टरी इलाज संभव है।'
             : 'વ્યસન એ ચારિત્ર્યની નબળાઈ નથી પરંતુ મગજનો એક ગંભીર રોગ છે જે યોગ્ય તબીબી સારવારથી મટી શકે છે.'}
         </p>
+      </div>
+
+      {/* Visual Neurocircuitry Banner */}
+      <div className="w-full rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs bg-white">
+        <NeuralCircuitryIllustration className="w-full h-36 sm:h-44" />
       </div>
 
       {/* LIFE-SAVING OVERDOSE SAFETY ALERT */}

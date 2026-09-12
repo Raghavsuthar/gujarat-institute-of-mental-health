@@ -1,9 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 import { Phone } from 'lucide-react';
-import { Language, ActiveTab, Condition, SubstanceInfo, MedicationClass } from './types';
+import {
+  Language,
+  ActiveTab,
+  Condition,
+  SubstanceInfo,
+  MedicationClass,
+} from './types';
 import { Header } from './components/Header';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
 import { Footer } from './components/Footer';
+import { OfflineIndicator } from './components/OfflineIndicator';
 import { SearchModal } from './components/SearchModal';
 import { CrisisModal } from './components/CrisisModal';
 import { ScreenerModal } from './components/ScreenerModal';
@@ -22,46 +37,132 @@ import { SymptomsView } from './views/SymptomsView';
 import { CaregiversView } from './views/CaregiversView';
 import { InteractiveView } from './views/InteractiveView';
 import { EmergencyView } from './views/EmergencyView';
+import { ArticlesView } from './views/ArticlesView';
+import { ResourcesView } from './views/ResourcesView';
+import { OutreachView } from './views/OutreachView';
 import { AboutView } from './views/AboutView';
+import { AdminAnalyticsView } from './views/AdminAnalyticsView';
+import { EducationalQAAssistant } from './components/EducationalQAAssistant';
+
+// Data for deep linking lookups
+import { conditionsData } from './data/conditions';
+import { substancesData } from './data/substances';
+import { medicationsData } from './data/medications';
+import { recordPageView } from './utils/analytics';
+
+const VALID_LANGS: Language[] = ['en', 'hi', 'gu'];
+
+function getInitialLanguage(): Language {
+  try {
+    const saved = localStorage.getItem('dr_raghav_lang');
+    if (saved === 'hi' || saved === 'gu' || saved === 'en') return saved;
+  } catch {
+    // ignore
+  }
+  return 'en';
+}
 
 export default function App() {
-  const [currentLang, setCurrentLang] = useState<Language>(() => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Extract current language from URL (e.g. /en/..., /hi/..., /gu/...)
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  const urlLang = pathParts[0] as Language | undefined;
+  const currentLang: Language = VALID_LANGS.includes(urlLang as Language)
+    ? (urlLang as Language)
+    : getInitialLanguage();
+
+  // Save detected lang to localStorage
+  useEffect(() => {
     try {
-      const saved = localStorage.getItem('dr_raghav_lang');
-      if (saved === 'hi' || saved === 'gu' || saved === 'en') return saved;
+      localStorage.setItem('dr_raghav_lang', currentLang);
     } catch {
       // ignore
     }
-    return 'en';
-  });
+  }, [currentLang]);
 
-  const [activeTab, setActiveTab] = useState<ActiveTab>('home');
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [isCrisisOpen, setIsCrisisOpen] = useState<boolean>(false);
-  const [isScreenerOpen, setIsScreenerOpen] = useState<boolean>(false);
+  // Record aggregate, privacy-first page view
+  useEffect(() => {
+    recordPageView(location.pathname, currentLang);
+  }, [location.pathname, currentLang]);
 
-  // Selected items for detail modals
-  const [selectedCondition, setSelectedCondition] = useState<Condition | null>(null);
-  const [selectedSubstance, setSelectedSubstance] = useState<SubstanceInfo | null>(null);
-  const [selectedMedication, setSelectedMedication] = useState<MedicationClass | null>(null);
+  // Determine active tab from URL path
+  const activeTab: ActiveTab = useMemo(() => {
+    const section = pathParts[1] || 'home';
+    if (section === 'conditions') return 'conditions';
+    if (section === 'addiction' || section === 'substances') return 'addiction';
+    if (section === 'medications') return 'medications';
+    if (section === 'treatments') return 'treatments';
+    if (section === 'symptoms') return 'symptoms';
+    if (section === 'myths') return 'myths';
+    if (section === 'caregivers') return 'caregivers';
+    if (section === 'interactive') return 'interactive';
+    if (section === 'emergency') return 'emergency';
+    if (section === 'articles') return 'articles';
+    if (section === 'resources') return 'resources';
+    if (section === 'outreach') return 'outreach';
+    if (section === 'about') return 'about';
+    return 'home';
+  }, [pathParts]);
 
-  // Handle language switch
-  const handleLanguageChange = (lang: Language) => {
-    setCurrentLang(lang);
+  // Modal states
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCrisisOpen, setIsCrisisOpen] = useState(false);
+  const [isScreenerOpen, setIsScreenerOpen] = useState(false);
+
+  // Deep linking modal items derived from route params
+  const conditionSlug = pathParts[1] === 'conditions' && pathParts[2] ? pathParts[2] : null;
+  const substanceSlug = pathParts[1] === 'substances' && pathParts[2] ? pathParts[2] : null;
+  const medicationId = pathParts[1] === 'medications' && pathParts[2] ? pathParts[2] : null;
+
+  const deepLinkedCondition = useMemo(() => {
+    if (!conditionSlug) return null;
+    return conditionsData.find(
+      (c) => c.slug === conditionSlug || c.id === conditionSlug
+    ) || null;
+  }, [conditionSlug]);
+
+  const deepLinkedSubstance = useMemo(() => {
+    if (!substanceSlug) return null;
+    return substancesData.find(
+      (s) => s.slug === substanceSlug || s.id === substanceSlug
+    ) || null;
+  }, [substanceSlug]);
+
+  const deepLinkedMedication = useMemo(() => {
+    if (!medicationId) return null;
+    return medicationsData.find((m) => m.id === medicationId) || null;
+  }, [medicationId]);
+
+  // Language switcher: replaces the current /:lang prefix while maintaining remaining path
+  const handleLanguageChange = (newLang: Language) => {
     try {
-      localStorage.setItem('dr_raghav_lang', lang);
+      localStorage.setItem('dr_raghav_lang', newLang);
     } catch {
       // ignore
+    }
+
+    if (VALID_LANGS.includes(urlLang as Language)) {
+      const restOfPath = pathParts.slice(1).join('/');
+      const newPath = `/${newLang}${restOfPath ? `/${restOfPath}` : ''}`;
+      navigate(newPath);
+    } else {
+      navigate(`/${newLang}`);
     }
   };
 
-  // Handle tab switch
+  // Tab navigation
   const handleTabChange = (tab: ActiveTab) => {
-    setActiveTab(tab);
+    if (tab === 'home') {
+      navigate(`/${currentLang}`);
+    } else {
+      navigate(`/${currentLang}/${tab}`);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Global keyboard shortcut for search (Ctrl+K or Cmd+K)
+  // Keyboard shortcut Ctrl+K / Cmd+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -74,7 +175,10 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf9f5] text-[#1c2430] selection:bg-teal-100 selection:text-teal-900">
+    <div className="min-h-screen flex flex-col bg-[#f6f8f7] text-[#1c2430] selection:bg-teal-100 selection:text-teal-900">
+      {/* Offline Status Warning when disconnected */}
+      <OfflineIndicator currentLang={currentLang} />
+
       {/* Top Persistent Medical Disclaimer Banner */}
       <DisclaimerBanner currentLang={currentLang} />
 
@@ -88,73 +192,137 @@ export default function App() {
         onOpenCrisis={() => setIsCrisisOpen(true)}
       />
 
-      {/* Main Body Content: Centered, spacious, calm max-width column */}
+      {/* Main Body Content */}
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        {activeTab === 'home' && (
-          <HomeView
-            currentLang={currentLang}
-            onTabChange={handleTabChange}
-            onSelectCondition={(cond) => setSelectedCondition(cond)}
-            onSelectSubstance={(sub) => setSelectedSubstance(sub)}
-            onOpenSearch={() => setIsSearchOpen(true)}
-            onOpenCrisis={() => setIsCrisisOpen(true)}
-            onOpenScreener={() => setIsScreenerOpen(true)}
+        <Routes>
+          {/* Root redirect to language prefix */}
+          <Route path="/" element={<Navigate to={`/${getInitialLanguage()}`} replace />} />
+
+          {/* Language Root Routes */}
+          <Route
+            path="/:lang"
+            element={
+              <HomeView
+                currentLang={currentLang}
+                onTabChange={handleTabChange}
+                onSelectCondition={(cond) => navigate(`/${currentLang}/conditions/${cond.slug}`)}
+                onSelectSubstance={(sub) => navigate(`/${currentLang}/substances/${sub.slug || sub.id}`)}
+                onOpenSearch={() => setIsSearchOpen(true)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+                onOpenScreener={() => setIsScreenerOpen(true)}
+              />
+            }
           />
-        )}
 
-        {activeTab === 'conditions' && (
-          <ConditionsView
-            currentLang={currentLang}
-            onSelectCondition={(cond) => setSelectedCondition(cond)}
+          {/* Conditions & Deep-linked Condition */}
+          <Route
+            path="/:lang/conditions"
+            element={
+              <ConditionsView
+                currentLang={currentLang}
+                onSelectCondition={(cond) => navigate(`/${currentLang}/conditions/${cond.slug}`)}
+              />
+            }
           />
-        )}
-
-        {activeTab === 'addiction' && (
-          <AddictionView
-            currentLang={currentLang}
-            onSelectSubstance={(sub) => setSelectedSubstance(sub)}
-            onOpenCrisis={() => setIsCrisisOpen(true)}
+          <Route
+            path="/:lang/conditions/:slug"
+            element={
+              <ConditionsView
+                currentLang={currentLang}
+                onSelectCondition={(cond) => navigate(`/${currentLang}/conditions/${cond.slug}`)}
+              />
+            }
           />
-        )}
 
-        {activeTab === 'medications' && (
-          <MedicationsView
-            currentLang={currentLang}
-            onSelectMedication={(med) => setSelectedMedication(med)}
+          {/* Addiction & Deep-linked Substance */}
+          <Route
+            path="/:lang/addiction"
+            element={
+              <AddictionView
+                currentLang={currentLang}
+                onSelectSubstance={(sub) => navigate(`/${currentLang}/substances/${sub.slug || sub.id}`)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
           />
-        )}
-
-        {activeTab === 'treatments' && (
-          <TreatmentsView currentLang={currentLang} />
-        )}
-
-        {activeTab === 'myths' && (
-          <MythsView currentLang={currentLang} />
-        )}
-
-        {activeTab === 'symptoms' && (
-          <SymptomsView currentLang={currentLang} />
-        )}
-
-        {activeTab === 'caregivers' && (
-          <CaregiversView currentLang={currentLang} />
-        )}
-
-        {activeTab === 'interactive' && (
-          <InteractiveView
-            currentLang={currentLang}
-            onOpenScreener={() => setIsScreenerOpen(true)}
-            onOpenCrisis={() => setIsCrisisOpen(true)}
+          <Route
+            path="/:lang/substances/:slug"
+            element={
+              <AddictionView
+                currentLang={currentLang}
+                onSelectSubstance={(sub) => navigate(`/${currentLang}/substances/${sub.slug || sub.id}`)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
           />
-        )}
 
-        {activeTab === 'emergency' && (
-          <EmergencyView currentLang={currentLang} />
-        )}
+          {/* Medications & Deep-linked Medication */}
+          <Route
+            path="/:lang/medications"
+            element={
+              <MedicationsView
+                currentLang={currentLang}
+                onSelectMedication={(med) => navigate(`/${currentLang}/medications/${med.id}`)}
+              />
+            }
+          />
+          <Route
+            path="/:lang/medications/:id"
+            element={
+              <MedicationsView
+                currentLang={currentLang}
+                onSelectMedication={(med) => navigate(`/${currentLang}/medications/${med.id}`)}
+              />
+            }
+          />
 
-        {activeTab === 'about' && (
-          <AboutView currentLang={currentLang} />
-        )}
+          {/* Treatments */}
+          <Route path="/:lang/treatments" element={<TreatmentsView currentLang={currentLang} />} />
+
+          {/* Symptoms */}
+          <Route path="/:lang/symptoms" element={<SymptomsView currentLang={currentLang} />} />
+
+          {/* Myths */}
+          <Route path="/:lang/myths" element={<MythsView currentLang={currentLang} />} />
+
+          {/* Caregivers */}
+          <Route path="/:lang/caregivers" element={<CaregiversView currentLang={currentLang} />} />
+
+          {/* Interactive Screeners */}
+          <Route
+            path="/:lang/interactive"
+            element={
+              <InteractiveView
+                currentLang={currentLang}
+                onOpenScreener={() => setIsScreenerOpen(true)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
+          />
+
+          {/* Articles & Deep-linked Article */}
+          <Route path="/:lang/articles" element={<ArticlesView currentLang={currentLang} />} />
+          <Route path="/:lang/articles/:slug" element={<ArticlesView currentLang={currentLang} />} />
+
+          {/* Resources & Helplines */}
+          <Route path="/:lang/resources" element={<ResourcesView currentLang={currentLang} />} />
+
+          {/* Outreach & Printable Flyers */}
+          <Route path="/:lang/outreach" element={<OutreachView currentLang={currentLang} />} />
+
+          {/* Emergency Helplines */}
+          <Route path="/:lang/emergency" element={<EmergencyView currentLang={currentLang} />} />
+
+          {/* About Dr. Raghav Suthar */}
+          <Route path="/:lang/about" element={<AboutView currentLang={currentLang} />} />
+
+          {/* Owner Analytics Portal (Password-protected, noindex) */}
+          <Route path="/:lang/admin" element={<AdminAnalyticsView currentLang={currentLang} />} />
+          <Route path="/admin" element={<Navigate to={`/${currentLang}/admin`} replace />} />
+
+          {/* Fallback for un-prefixed or broken routes */}
+          <Route path="*" element={<Navigate to={`/${getInitialLanguage()}`} replace />} />
+        </Routes>
       </main>
 
       {/* Global Modals */}
@@ -162,9 +330,9 @@ export default function App() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         currentLang={currentLang}
-        onSelectCondition={(item) => setSelectedCondition(item)}
-        onSelectSubstance={(item) => setSelectedSubstance(item)}
-        onSelectMedication={(item) => setSelectedMedication(item)}
+        onSelectCondition={(item) => navigate(`/${currentLang}/conditions/${item.slug}`)}
+        onSelectSubstance={(item) => navigate(`/${currentLang}/substances/${item.slug || item.id}`)}
+        onSelectMedication={(item) => navigate(`/${currentLang}/medications/${item.id}`)}
         onNavigateTab={(tab) => handleTabChange(tab)}
       />
 
@@ -184,25 +352,28 @@ export default function App() {
         }}
       />
 
+      {/* Bidirectionally URL-synced Condition Detail Modal */}
       <ConditionDetailModal
-        condition={selectedCondition}
-        onClose={() => setSelectedCondition(null)}
+        condition={deepLinkedCondition}
+        onClose={() => navigate(`/${currentLang}/conditions`)}
         currentLang={currentLang}
         onOpenCrisis={() => {
-          setSelectedCondition(null);
+          navigate(`/${currentLang}/conditions`);
           setIsCrisisOpen(true);
         }}
       />
 
+      {/* Bidirectionally URL-synced Substance Detail Modal */}
       <SubstanceDetailModal
-        substance={selectedSubstance}
-        onClose={() => setSelectedSubstance(null)}
+        substance={deepLinkedSubstance}
+        onClose={() => navigate(`/${currentLang}/addiction`)}
         currentLang={currentLang}
       />
 
+      {/* Bidirectionally URL-synced Medication Detail Modal */}
       <MedicationDetailModal
-        medication={selectedMedication}
-        onClose={() => setSelectedMedication(null)}
+        medication={deepLinkedMedication}
+        onClose={() => navigate(`/${currentLang}/medications`)}
         currentLang={currentLang}
       />
 
@@ -245,6 +416,12 @@ export default function App() {
           {currentLang === 'en' ? 'Emergency 14416' : currentLang === 'hi' ? 'आपातकालीन 14416' : 'ઇમરજન્સી ૧૪૪૧૬'}
         </span>
       </button>
+
+      {/* Educational Q&A Assistant (Strictly bounded, crisis short-circuiting) */}
+      <EducationalQAAssistant
+        currentLang={currentLang}
+        onOpenCrisis={() => setIsCrisisOpen(true)}
+      />
     </div>
   );
 }

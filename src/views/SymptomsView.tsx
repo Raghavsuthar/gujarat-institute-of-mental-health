@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ShieldCheck } from 'lucide-react';
 import { Language, SymptomEducation } from '../types';
 import { symptomsData } from '../data/symptoms';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
+import { CategoryIllustration } from '../components/visuals/CategoryIllustrations';
+import { mapSymptomToCategory } from '../utils/illustrationMapping';
 
 interface SymptomsViewProps {
   currentLang: Language;
@@ -10,6 +13,19 @@ interface SymptomsViewProps {
 
 export const SymptomsView: React.FC<SymptomsViewProps> = ({ currentLang }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Understanding Psychiatric Symptoms' : currentLang === 'hi' ? 'मानसिक लक्षणों की समझ' : 'માનસિક લક્ષણોની વૈજ્ઞાનિક સમજ',
+      description: currentLang === 'en'
+        ? 'Educational guide to insomnia, panic, intrusive thoughts, fatigue, and when to seek a medical evaluation.'
+        : currentLang === 'hi'
+        ? 'अनिद्रा, घबराहट, नकारात्मक विचारों और थकान की चिकित्सीय समझ।'
+        : 'અનિદ્રા, ચિંતા અને થાક જેવા લક્ષણોની તબીબી સમજ.',
+      path: 'symptoms',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">
@@ -50,6 +66,15 @@ export const SymptomsView: React.FC<SymptomsViewProps> = ({ currentLang }) => {
             key={sym.id}
             className="p-6 rounded-xl border border-stone-200 bg-white space-y-4"
           >
+            {/* Visual Accent */}
+            <div className="h-28 sm:h-32 w-full rounded-lg overflow-hidden border border-stone-200/80 bg-stone-50">
+              <CategoryIllustration
+                category={mapSymptomToCategory(sym.id)}
+                className="w-full h-full object-cover"
+                ariaLabel={sym.symptomName[currentLang]}
+              />
+            </div>
+
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
                 SYMPTOM EDUCATION

@@ -2,27 +2,36 @@
 
 @layer base {
   :root {
-    --bg-canvas: #faf9f5;
+    --bg-canvas: #f6f8f7;
     --bg-surface: #ffffff;
     --text-primary: #1c2430;
     --text-secondary: #475569;
     --text-muted: #64748b;
     --accent-teal: #115e59;
     --accent-teal-hover: #0f4f4a;
-    --accent-subtle: #f0fdfa;
+    --accent-teal-subtle: #f0fbf9;
+    --accent-marigold: #b86b26;
+    --accent-marigold-text: #9a5212;
+    --accent-marigold-subtle: #fdf7ed;
+    --accent-marigold-border: #f5dcb7;
+    --accent-plum: #5e4a72;
+    --accent-plum-text: #4e3c5e;
+    --accent-plum-subtle: #f8f4f9;
+    --accent-plum-border: #e8daed;
     --border-subtle: #e2e8f0;
     --border-card: #e5e7eb;
     --crisis-red: #991b1b;
+    --warning-amber: #b45309;
   }
 
   html {
-    background-color: #faf9f5;
+    background-color: #f6f8f7;
     color: #1c2430;
     font-size: 16px;
   }
 
   body {
-    background-color: #faf9f5;
+    background-color: #f6f8f7;
     color: #1c2430;
     font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Gujarati', system-ui, -apple-system, sans-serif;
     font-size: 1.0625rem; /* ~17px for optimal readability by older adults */

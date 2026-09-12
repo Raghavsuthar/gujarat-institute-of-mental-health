@@ -1,0 +1,8 @@
+# Robots.txt for Dr. Raghav Suthar - Psychiatry Education Platform
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /*/admin
+
+# Sitemaps
+Sitemap: https://dr-raghav-suthar.mentalhealth.in/sitemap.xml

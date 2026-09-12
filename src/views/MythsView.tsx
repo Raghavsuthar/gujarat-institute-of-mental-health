@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { Language, MythFact } from '../types';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp, Download, MessageCircle } from 'lucide-react';
+import { Language, MythFact, ShareCardData } from '../types';
 import { mythsData } from '../data/myths';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
+import { downloadMythCard } from '../utils/mythCardCanvas';
+import { AudioReadAloud } from '../components/AudioReadAloud';
+import { SocialShareBar } from '../components/SocialShareBar';
+import { CategoryIllustration } from '../components/visuals/CategoryIllustrations';
+import { mapMythToCategory } from '../utils/illustrationMapping';
 
 interface MythsViewProps {
   currentLang: Language;
@@ -12,6 +18,19 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Mental Health Myths vs Facts' : currentLang === 'hi' ? 'मानसिक स्वास्थ्य भ्रांतियां बनाम सच' : 'માનસિક સ્વાસ્થ્ય અંધશ્રદ્ધા વિરુદ્ધ સત્ય',
+      description: currentLang === 'en'
+        ? 'Medical reality versus pervasive cultural myths regarding depression, schizophrenia, psychiatric medications, ECT, and addiction.'
+        : currentLang === 'hi'
+        ? 'मानसिक रोगों, मनोचिकित्सीय दवाओं, ईसीटी और नशे की लत से जुड़ी भ्रांतियों का प्रामाणिक वैज्ञानिक सच।'
+        : 'ડિપ્રેશન, દવાઓ અને વ્યસન વિશેની ખોટી માન્યતાઓ સામે તબીબી અને વૈજ્ઞાનિક હકીકતો.',
+      path: 'myths',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   const categories = [
     { id: 'all', label: currentLang === 'en' ? 'All Myths' : currentLang === 'hi' ? 'सभी भ्रांतियां' : 'બધી માન્યતાઓ' },
@@ -72,6 +91,22 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
               className="p-6 rounded-xl border border-stone-200 bg-white"
             >
               <div className="space-y-4">
+                {/* Header Tag with Illustration Accent */}
+                <div className="flex items-center justify-between gap-3 pb-2 border-b border-stone-100">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200">
+                      {item.category}
+                    </span>
+                  </div>
+                  <div className="w-16 h-10 rounded-lg overflow-hidden border border-stone-200/80 shrink-0 bg-stone-50">
+                    <CategoryIllustration
+                      category={mapMythToCategory(item)}
+                      className="w-full h-full object-cover"
+                      ariaLabel={item.category}
+                    />
+                  </div>
+                </div>
+
                 {/* The Myth */}
                 <div className="p-4 rounded-lg bg-stone-50 border border-stone-200">
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 block">
@@ -107,6 +142,54 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
                       {item.explanation[currentLang]}
                     </div>
                   )}
+                </div>
+
+                {/* Card Awareness & Share Utilities */}
+                <div className="pt-3 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <AudioReadAloud
+                      text={`${item.myth[currentLang]}. ${item.fact[currentLang]}. ${item.explanation[currentLang]}`}
+                      currentLang={currentLang}
+                      title={currentLang === 'en' ? 'Myth vs Fact' : currentLang === 'hi' ? 'भ्रम और सत्य' : 'વહેમ અને સત્ય'}
+                    />
+
+                    <button
+                      onClick={() => downloadMythCard(item, currentLang)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold border border-stone-200 transition cursor-pointer min-h-[32px]"
+                      title="Download shareable social card image"
+                    >
+                      <Download className="w-3.5 h-3.5 text-stone-600" />
+                      <span>{currentLang === 'en' ? 'Save Card (PNG)' : currentLang === 'hi' ? 'कार्ड डाउनलोड' : 'કાર્ડ ડાઉનલોડ'}</span>
+                    </button>
+                  </div>
+
+                  <SocialShareBar
+                    title={`Myth vs Fact: "${item.myth[currentLang]}"`}
+                    path="myths"
+                    currentLang={currentLang}
+                    subtitle={item.fact[currentLang]}
+                    variant="compact"
+                    cardData={{
+                      type: 'myth',
+                      kind: 'myth',
+                      title: 'MYTH VS FACT',
+                      category: item.category,
+                      mythText: item.myth[currentLang],
+                      factText: item.fact[currentLang],
+                      explanation: item.explanation[currentLang],
+                      keyPoints: [
+                        `"${item.myth[currentLang]}"`,
+                        item.fact[currentLang],
+                        item.explanation[currentLang],
+                      ],
+                      points: [
+                        `"${item.myth[currentLang]}"`,
+                        item.fact[currentLang],
+                        item.explanation[currentLang],
+                      ],
+                      path: 'myths',
+                    }}
+                  />
                 </div>
               </div>
             </div>

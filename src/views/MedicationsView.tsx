@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pill, ShieldAlert, ArrowRight } from 'lucide-react';
 import { Language, MedicationClass } from '../types';
 import { medicationsData } from '../data/medications';
+import { conditionsData } from '../data/conditions';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
+import { CategoryIllustration, NeurotransmitterSynapseDiagram } from '../components/visuals';
 
 interface MedicationsViewProps {
   currentLang: Language;
@@ -14,6 +17,19 @@ export const MedicationsView: React.FC<MedicationsViewProps> = ({
   onSelectMedication,
 }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Psychiatric Medication Classes & Literacy' : currentLang === 'hi' ? 'मनोरोग दवाओं की वैज्ञानिक जानकारी' : 'મનોરોગની દવાઓની માહિતી',
+      description: currentLang === 'en'
+        ? 'Independent educational guide to antidepressants, antipsychotics, mood stabilizers, and anxiolytics in India.'
+        : currentLang === 'hi'
+        ? 'एंटीडिप्रेसेंट, एंटीसाइकोटिक और मूड स्टेबलाइजर दवाओं की निष्पक्ष जानकारी।'
+        : 'એન્ટીડિપ્રેશન, એન્ટીસાયકોટિક અને મૂડ સ્ટેબિલાઇઝર દવાઓ વિશે શૈક્ષણિક માર્ગદર્શન.',
+      path: 'medications',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">
@@ -32,6 +48,21 @@ export const MedicationsView: React.FC<MedicationsViewProps> = ({
             ? 'मानसिक स्वास्थ्य की दवाओं की वैज्ञानिक समझ: वे मस्तिष्क में कैसे कार्य करती हैं, उनके सामान्य दुष्प्रभाव और डॉक्टर की नियमित निगरानी क्यों अनिवार्य है।'
             : 'મનોરોગની દવાઓની વૈજ્ઞાનિક સમજ: તે મગજમાં કેવી રીતે કામ કરે છે, તેની આડઅસરો અને ડૉક્ટરની નિયમિત દેખરેખ શા માટે જરૂરી છે.'}
         </p>
+      </div>
+
+      {/* Visual Education Header Banner */}
+      <div className="w-full rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs bg-white">
+        <CategoryIllustration
+          category="medications"
+          className="w-full h-36 sm:h-44"
+          ariaLabel={
+            currentLang === 'en'
+              ? 'Educational clinical illustration of psychopharmacology, neurochemistry, and receptor modulation'
+              : currentLang === 'hi'
+              ? 'मनोरोग औषध विज्ञान और न्यूरोकेमिस्ट्री का शैक्षिक चित्रण'
+              : 'મનોરોગ દવાઓ અને ન્યુરોકેમિસ્ટ્રીનું શૈક્ષણિક ચિત્ર'
+          }
+        />
       </div>
 
       {/* MANDATORY WARNING BANNER */}
@@ -58,6 +89,27 @@ export const MedicationsView: React.FC<MedicationsViewProps> = ({
         </div>
       </div>
 
+      {/* Interactive Neurotransmitter Synapse Educational Diagram */}
+      <div className="space-y-3">
+        <div className="space-y-1">
+          <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+            {currentLang === 'en'
+              ? 'Mechanism of Action in the Brain'
+              : currentLang === 'hi'
+              ? 'मस्तिष्क में कार्यप्रणाली'
+              : 'મગજમાં કાર્યપદ્ધતિ'}
+          </span>
+          <h2 className="text-xl font-semibold text-[#1c2430]">
+            {currentLang === 'en'
+              ? 'How Psychiatric Medications Act at Neural Synapses'
+              : currentLang === 'hi'
+              ? 'मनोरोग की दवाएं मस्तिष्क की कोशिकाओं में कैसे काम करती हैं'
+              : 'મનોરોગની દવાઓ મગજના કોષો વચ્ચે કેવી રીતે કામ કરે છે'}
+          </h2>
+        </div>
+        <NeurotransmitterSynapseDiagram currentLang={currentLang} />
+      </div>
+
       {/* Medication Classes Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {medicationsData.map((med) => (
@@ -67,13 +119,23 @@ export const MedicationsView: React.FC<MedicationsViewProps> = ({
             className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
           >
             <div className="space-y-2">
-              <span className="text-xs font-medium uppercase tracking-wider text-stone-500">
-                MEDICATION CLASS
-              </span>
-
-              <h2 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
-                {med.name[currentLang]}
-              </h2>
+              <div className="flex items-start justify-between gap-3">
+                <div className="space-y-1 flex-1 min-w-0">
+                  <span className="text-xs font-medium uppercase tracking-wider text-stone-500">
+                    MEDICATION CLASS
+                  </span>
+                  <h2 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
+                    {med.name[currentLang]}
+                  </h2>
+                </div>
+                <div className="w-14 h-11 shrink-0 rounded-lg overflow-hidden border border-teal-200/80 bg-stone-50">
+                  <CategoryIllustration
+                    category="medications"
+                    className="w-full h-full object-cover"
+                    ariaLabel=""
+                  />
+                </div>
+              </div>
 
               <p className="text-xs text-stone-500 font-mono">
                 Examples: {med.commonExamples.slice(0, 4).join(', ')}...
@@ -87,6 +149,32 @@ export const MedicationsView: React.FC<MedicationsViewProps> = ({
                   <strong className="text-[#1c2430] font-semibold">How It Works:</strong> {med.mechanismPlain[currentLang]}
                 </div>
               </div>
+
+              {med.relatedIds && med.relatedIds.length > 0 && (
+                <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                  <span className="text-[11px] font-semibold text-stone-500 uppercase">
+                    {currentLang === 'en' ? 'Indicated for:' : currentLang === 'hi' ? 'उपयोग:' : 'ઉપયોગ:'}
+                  </span>
+                  {med.relatedIds.slice(0, 3).map((relId) => {
+                    const matchedCondition = conditionsData.find(
+                      (c) => c.id === relId || c.slug === relId
+                    );
+                    return (
+                      <span
+                        key={relId}
+                        className="text-[11px] px-2 py-0.5 rounded bg-teal-50 border border-teal-200 text-teal-800 font-medium"
+                      >
+                        {matchedCondition ? matchedCondition.name[currentLang] : relId.replace(/-/g, ' ')}
+                      </span>
+                    );
+                  })}
+                  {med.relatedIds.length > 3 && (
+                    <span className="text-[11px] text-stone-400">
+                      +{med.relatedIds.length - 3} more
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59] min-h-[44px]">

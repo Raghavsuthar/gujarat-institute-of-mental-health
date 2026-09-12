@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Phone, ShieldAlert, Building2 } from 'lucide-react';
 import { Language } from '../types';
 import { officialHelplines, crisisWarningSigns, whatToDoInCrisis, whatNotToDoInCrisis } from '../data/emergency';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
 
 interface EmergencyViewProps {
   currentLang: Language;
@@ -10,6 +11,19 @@ interface EmergencyViewProps {
 
 export const EmergencyView: React.FC<EmergencyViewProps> = ({ currentLang }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Emergency Psychiatric Crisis Helplines (India)' : currentLang === 'hi' ? 'आपातकालीन मानसिक संकट हेल्पलाइन (भारत)' : 'ઇમરજન્સી માનસિક સંકટ સહાય (ભારત)',
+      description: currentLang === 'en'
+        ? '24x7 toll-free crisis support in India: Tele-MANAS (14416), ERSS (112), NIMHANS, and immediate overdose protocols.'
+        : currentLang === 'hi'
+        ? 'भारत की 24 घंटे निःशुल्क संकटकालीन हेल्पलाइन: टेली-मानस (14416), 112 और निमहंस।'
+        : 'ભારતની ૨૪ કલાક વિનામૂલ્યે ઇમરજન્સી હેલ્પલાઇન: ટેલી-માનસ (૧૪૪૧૬), ૧૧૨ અને નિમહાન્સ.',
+      path: 'emergency',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">

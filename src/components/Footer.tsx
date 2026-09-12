@@ -117,9 +117,33 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Col 3: Resources & Tools */}
         <div className="space-y-2">
           <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1c2430]">
-            {currentLang === 'en' ? 'Resources & Self-Help' : currentLang === 'hi' ? 'संसाधन व टूल' : 'સાધનો અને ટૂલ્સ'}
+            {currentLang === 'en' ? 'Resources & Articles' : currentLang === 'hi' ? 'संसाधन व लेख' : 'સાધનો અને લેખો'}
           </h4>
           <ul className="space-y-1 text-xs text-stone-600">
+            <li>
+              <button
+                onClick={() => onTabChange('articles')}
+                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+              >
+                {t.nav.articles}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onTabChange('resources')}
+                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+              >
+                {t.nav.resources}
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onTabChange('outreach')}
+                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+              >
+                {t.nav.outreach}
+              </button>
+            </li>
             <li>
               <button
                 onClick={() => onTabChange('interactive')}
@@ -163,7 +187,7 @@ export const Footer: React.FC<FooterProps> = ({
           </ul>
         </div>
 
-        {/* Col 4: Mandatory Disclaimer & Language */}
+        {/* Col 4: Mandatory Disclaimer, Privacy & Language */}
         <div className="space-y-3">
           <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1c2430] flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-stone-600" />
@@ -175,6 +199,10 @@ export const Footer: React.FC<FooterProps> = ({
               : currentLang === 'hi'
               ? 'यह पोर्टल केवल सार्वजनिक शिक्षा और जागरूकता के लिए है। यह व्यक्तिगत इलाज, निदान या ऑनलाइन प्रिस्क्रिप्शन प्रदान नहीं करता।'
               : 'આ પોર્ટલ ફક્ત જાહેર શિક્ષણ માટે છે. આ કોઈ વ્યક્તિગત નિદાન કે દવાઓનું પ્રિસ્ક્રિપ્શન આપતું નથી.'}
+          </p>
+
+          <p className="text-[11px] text-teal-800 bg-teal-50 p-2 rounded border border-teal-100 leading-normal">
+            🛡️ <strong>Privacy First:</strong> Zero tracking cookies, zero advertising pixels, and no visitor data collection. Your browsing is strictly confidential.
           </p>
 
           <div className="pt-2">

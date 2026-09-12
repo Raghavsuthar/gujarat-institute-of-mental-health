@@ -169,4 +169,144 @@ export const symptomsData: SymptomEducation[] = [
       gu: 'રોજ સવારે એક જ સમયે ઊઠો; સૂવાના ૧ કલાક પહેલાં ફોન મૂકી દો; સાંજે ચા-કોફી ન પીવો.',
     },
   },
+  {
+    id: 'irritability',
+    symptomName: {
+      en: 'Severe Irritability & Explosive Anger Outbursts',
+      hi: 'अत्यधिक चिड़चिड़ापन और गुस्से के अनियंत्रित दौरे',
+      gu: 'અતિશય ચિડચિડાપણું અને ક્રોધના અચાનક વિસ્ફોટ',
+    },
+    plainDescription: {
+      en: 'A constant feeling of being on edge, having a "short fuse", snap reactions to minor frustrations, or verbal/physical outbursts that feel disproportionate and are followed by guilt or exhaustion.',
+      hi: 'छोटी-छोटी बातों पर अचानक भड़क जाना, हर समय झुंझलाहट महसूस होना, और बाद में अपने गुस्से पर गहरा पछतावा होना।',
+      gu: 'નાની નાની વાતોમાં અચાનક પિત્તો ગુમાવવો, આખો દિવસ અકળામણ રહેવી અને ગુસ્સો શાંત થયા પછી ભારે પસ્તાવો થવો.',
+    },
+    possibleCauses: {
+      en: 'Depression (particularly in men and adolescents, where it presents as irritability rather than overt weeping), Bipolar hypomania/mania, Chronic sleep deprivation, Generalized Anxiety, ADHD, PMDD, Borderline traits, or Substance withdrawal.',
+      hi: 'डिप्रेशन (पुरुषों और युवाओं में डिप्रेशन अक्सर रोने के बजाय गुस्से के रूप में दिखता है), बायपोलर, नींद की कमी, एडीएचडी, पीएमडीडी, या नशा छोड़ना।',
+      gu: 'ડિપ્રેશન (પુરુષોમાં ઉદાસી ઘણીવાર ગુસ્સા રૂપે દેખાય છે), બાયપોલર, ઊંઘનો અભાવ, ADHD, PMDD અથવા વ્યસનનો વિડ્રોલ.',
+    },
+    whenToConsult: {
+      en: 'When temper outbursts damage relationships, create risk of workplace dismissal, threaten domestic violence, or leave you feeling frightened of your own emotional control.',
+      hi: 'जब गुस्सा परिवार या नौकरी को नुकसान पहुंचाने लगे, या आपको लगे कि आपका अपने ऊपर कोई काबू नहीं रहा है।',
+      gu: 'જ્યારે ગુસ્સાથી કૌટુંબિક કે વ્યાવસાયિક સંબંધો બગડવા લાગે અને જાત પર કાબૂ ન રહે.',
+    },
+    selfCareSupport: {
+      en: 'The "90-second physiological pause": walk away from the trigger, slow exhalations, splash cold water on your face, and assess whether you are Hungry, Angry, Lonely, or Tired (HALT).',
+      hi: 'गुस्सा आते ही जगह छोड़ दें, चेहरे पर ठंडा पानी छिड़कें, गहरी सांस लें और देखें कि कहीं आप भूखे या थके तो नहीं हैं (HALT नियम)।',
+      gu: 'ગુસ્સો આવે ત્યારે તે જગ્યાએથી ખસી જવું, મોં પર ઠંડુ પાણી છાંટવું, ઊંડા શ્વાસ લેવા અને પૂરતો આરામ લેવો.',
+    },
+  },
+  {
+    id: 'suspiciousness-paranoia',
+    symptomName: {
+      en: 'Suspiciousness & Paranoia (Unshakeable Mistrust)',
+      hi: 'गहरा अविश्वास और वहम (किसी के पीछे पड़े होने या साजिश का डर)',
+      gu: 'વહેમ અને અવિશ્વાસ (કોઈ પાછળ પડ્યું છે કે ષડયંત્ર રચે છે તેવો ભય)',
+    },
+    plainDescription: {
+      en: 'A distressing belief that strangers, neighbours, colleagues, or authorities are observing, following, plotting against, or talking about you behind your back, despite contrary evidence.',
+      hi: 'यह गहरा वहम या डर होना कि लोग, पड़ोसी या सहकर्मी आपके खिलाफ कोई साजिश रच रहे हैं, आपकी बातें रिकॉर्ड कर रहे हैं या आपका मजाक बना रहे हैं।',
+      gu: 'લોકો કે પડોશીઓ પોતાની વિરુદ્ધ કોઈ કાવતરું ઘડે છે, કેમેરાથી નજર રાખે છે કે પીઠ પાછળ વાતો કરે છે તેવો દ્રઢ વહેમ થવો.',
+    },
+    possibleCauses: {
+      en: 'Schizophrenia spectrum illnesses, Delusional Disorder (persecutory type), Severe psychotic depression, Bipolar mania with psychosis, Heavy cannabis or stimulant misuse, or Dementia.',
+      hi: 'सिज़ोफ्रेनिया, डेल्यूजनल डिसऑर्डर, गंभीर डिप्रेशन या मेनिया में सायकोसिस, गांजे या शराब का नशा, या डिमेंशिया।',
+      gu: 'સ્કિઝોફ્રેનિયા, ડેલ્યુઝનલ ડિસઓર્ડર, સાયકોસિસ, ગાંજો કે દારૂનો અતિરેક અથવા ડિમેન્શિયા.',
+    },
+    whenToConsult: {
+      en: 'Urgent medical evaluation is indicated as soon as beliefs begin causing social isolation, hostility toward innocent family members, or defensive behaviors like covering cameras or boarding up windows.',
+      hi: 'जैसे ही यह वहम शुरू हो, तुरंत मनोचिकित्सक को दिखाएं। कभी भी मरीज से बहस न करें बल्कि डॉक्टर की मदद लें।',
+      gu: 'આવા વહેમ શરૂ થતાં જ તાત્કાલિક મનોચિકિત્સકને બતાવવું. દર્દી સાથે દલીલ કરવાને બદલે ડૉક્ટરની સલાહ લેવી.',
+    },
+    selfCareSupport: {
+      en: 'Do not confront or challenge persecutory beliefs aggressively. Provide a calm, predictable, low-stimulus domestic environment and maintain steady, non-threatening communication.',
+      hi: 'मरीज से बहस न करें कि वह गलत सोच रहा है; उसके डर को समझें और प्यार से उसे अस्पताल ले जाएं।',
+      gu: 'દર્દી સાથે વાદવિવાદ ન કરવો પરંતુ પ્રેમપૂર્વક તેને મનોચિકિત્સક પાસે લઈ જવો.',
+    },
+  },
+  {
+    id: 'memory-concentration-difficulties',
+    symptomName: {
+      en: 'Memory & Concentration Difficulties (Brain Fog & Executive Breakdown)',
+      hi: 'ब्रेन फॉग, याददाश्त में कमजोरी और ध्यान का बिखरना',
+      gu: 'બ્રેઇન ફોગ, યાદશક્તિની નબળાઈ અને એકાગ્રતાનો અભાવ',
+    },
+    plainDescription: {
+      en: 'Inability to read a single page without re-reading multiple times, losing train of thought mid-sentence, forgetting routine appointments, or feeling as though thoughts are wading through thick sludge.',
+      hi: 'पढ़ी हुई बात तुरंत भूल जाना, बातचीत के बीच में विषय भूल जाना, किसी काम में मन न लगा पाना और दिमाग सुन्न महसूस होना।',
+      gu: 'વાંચેલું તરત ભૂલી જવું, વાત કરતાં કરતાં અટકી જવું, એકાગ્રતા સાવ તૂટી જવી અને મગજ બહેર મારી જવું.',
+    },
+    possibleCauses: {
+      en: 'Major Depressive "Pseudodementia", High chronic anxiety, Adult ADHD, Hypothyroidism, Vitamin B12 deficiency, Long-COVID cognitive sequelae, Chronic insomnia, or Early neurodegenerative disorders (Mild Cognitive Impairment).',
+      hi: 'डिप्रेशन (जिसमें याददाश्त कमजोर हो जाती है), चिंता, वयस्क एडीएचडी (ADHD), विटामिन B12 की कमी, थायरॉयड, या नींद की कमी।',
+      gu: 'ડિપ્રેશન (જેનાથી યાદશક્તિ નબળી પડે છે), ચિંતા, પુખ્ત વયનું ADHD, વિટામિન B12 ની ઊણપ કે અનિદ્રા.',
+    },
+    whenToConsult: {
+      en: 'When memory loss interferes with workplace tasks, leads to getting lost in familiar surroundings, or is accompanied by changes in personality or mood.',
+      hi: 'जब भूलने की आदत नौकरी में रुकावट बने, जाने-पहचाने रास्तों पर भटकने लगें, या मूड में बदलाव आए।',
+      gu: 'જ્યારે ભૂલવાની ટેવ નોકરીમાં નુકસાન કરે, જાણીતા રસ્તાઓ ભૂલી જવાય કે સ્વભાવ બદલાઈ જાય.',
+    },
+    selfCareSupport: {
+      en: 'Break complex tasks into single 20-minute chunks (Pomodoro method), write everything down in a pocket notebook, eliminate multitasking, and get blood tested for B12 and TSH.',
+      hi: 'एक समय में एक ही काम करें, जरूरी बातें डायरी में लिखें, और डॉक्टर से थायरॉयड व विटामिन B12 की जांच कराएं।',
+      gu: 'એક સમયે એક જ કામ કરો, મહત્વની બાબતો નોંધી રાખો અને વિટામિન B12 તથા થાઇરોઇડની તપાસ કરાવો.',
+    },
+  },
+  {
+    id: 'dissociation',
+    symptomName: {
+      en: 'Dissociation (Depersonalization & Derealization)',
+      hi: 'डिसोसिएशन और खुद से अलगाव (Depersonalization & Derealization)',
+      gu: 'ડિસોસિએશન (પોતાના શરીર કે દુનિયાથી સાવ અજાણ્યા લાગવું)',
+    },
+    plainDescription: {
+      en: 'A terrifying feeling of looking at oneself from the outside, feeling like a robot or an actor in a movie (depersonalization), or feeling that surrounding reality and loved ones are artificial, dream-like, or two-dimensional (derealization).',
+      hi: 'ऐसा महसूस होना जैसे आप अपने शरीर से बाहर निकलकर खुद को देख रहे हैं, आप कोई रोबोट हैं, या आसपास की दुनिया और अपने लोग किसी सपने या फिल्म की तरह नकली लग रहे हैं।',
+      gu: 'પોતાના જ શરીરથી અલગ થઈ ગયા હોઈએ તેવો અનુભવ, આજુબાજુની દુનિયા સાવ બનાવટી કે સપના જેવી લાગવી.',
+    },
+    possibleCauses: {
+      en: 'Severe panic attacks, Post-Traumatic Stress Disorder (PTSD), Acute psychological trauma, Severe sleep deprivation, Cannabis intoxication/panic, or Borderline traits.',
+      hi: 'पैनिक अटैक के दौरान तेज घबराहट, पीटीएसडी (पुराना सदमा), नींद की भारी कमी, या गांजे का नशा।',
+      gu: 'પેનિક એટેક, ભૂતકાળનો માનસિક આઘાત (PTSD), ઊંઘનો ગંભીર અભાવ અથવા ગાંજાની આડઅસર.',
+    },
+    whenToConsult: {
+      en: 'When episodes occur repeatedly, last for days at a time, or cause intense existential panic that you are "going crazy" or "losing your soul".',
+      hi: 'जब यह एहसास बार-बार हो और आपको डर लगने लगे कि आप अपना मानसिक संतुलन खो रहे हैं।',
+      gu: 'જ્યારે આવો અનુભવ વારંવાર થાય અને પાગલ થઈ જવાનો કે નિયંત્રણ ગુમાવવાનો ડર સતાવે.',
+    },
+    selfCareSupport: {
+      en: 'Sensory grounding ("5-4-3-2-1" technique): name 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, and 1 you can taste; hold an ice cube in your palm.',
+      hi: 'ग्राउंडिंग तकनीक (5-4-3-2-1): 5 चीजें देखें, 4 को छुएं, 3 आवाजें सुनें; हथेली में बर्फ का टुकड़ा पकड़ें।',
+      gu: 'ગ્રાઉન્ડિંગ ટેકનિક: આસપાસની ૫ વસ્તુઓ જુઓ, ૪ ને સ્પર્શ કરો, ૩ અવાજ સાંભળો; હાથમાં બરફનો ટુકડો પકડો.',
+    },
+  },
+  {
+    id: 'suicidal-thoughts',
+    symptomName: {
+      en: 'Thoughts of Death & Suicidal Ideation (Educational Overview)',
+      hi: 'मृत्यु के विचार और आत्महत्या की भावनाएं (शैक्षणिक अवलोकन)',
+      gu: 'આત્મહત્યાના વિચારો અને જીવનનો અંત લાવવાની લાગણી (શિક્ષણાત્મક માહિતી)',
+    },
+    plainDescription: {
+      en: 'Thoughts that life is not worth living, wishes not to wake up in the morning, or recurrent thoughts of wanting to end the unbearable emotional pain. IT IS A SYMPTOM OF ILLNESS, NOT A CHARACTER DEFECT OR WEAKNESS.',
+      hi: 'यह महसूस होना कि जिंदगी बोझ बन गई है, सुबह न जागने की इच्छा होना, या असहनीय मानसिक दर्द को खत्म करने के विचार आना। यह किसी बीमारी का एक इलाज योग्य लक्षण है, कोई कमजोरी या पाप नहीं!',
+      gu: 'જીવન જીવવા જેવું નથી લાગવું, સવારે જાગવાની ઈચ્છા ન થવી કે અસહ્ય દર્દમાંથી મુક્તિ મેળવવાના વિચારો આવવા. આ એક બીમારીનું લક્ષણ છે, કોઈ કમજોરી નથી!',
+    },
+    possibleCauses: {
+      en: 'Severe Major Depression, Bipolar mixed episodes, Borderline emotional crises, Severe Substance withdrawal, Schizophrenia command hallucinations, or Overwhelming acute life collapse.',
+      hi: 'गंभीर डिप्रेशन, बायपोलर डिसऑर्डर, पुराना गहरा सदमा, नशे का गंभीर विड्रॉल, या जीवन में अचानक आया भारी संकट।',
+      gu: 'ગંભીર ડિપ્રેશન, બાયપોલર ડિસઓર્ડર, ભારે આઘાત કે જીવનમાં આવેલી અચાનક મોટી મુશ્કેલી.',
+    },
+    whenToConsult: {
+      en: 'IMMEDIATELY. If you or someone you know is having thoughts of suicide, call a crisis helpline right now (Tele-MANAS: 14416 or 1800-891-4416; AASRA: 91-9820466726) or visit the nearest hospital emergency department.',
+      hi: 'तुरंत! यदि आपके या किसी परिचित के मन में ऐसे विचार आ रहे हैं, तो तुरंत राष्ट्रीय हेल्पलाइन 14416 या 1800-891-4416 (Tele-MANAS) पर कॉल करें या नजदीकी अस्पताल जाएं।',
+      gu: 'તાત્કાલિક! જો તમને કે કોઈ સ્વજનને આવા વિચારો આવતા હોય તો તરત જ ટેલી-માનસ હેલ્પલાઇન 14416 અથવા 1800-891-4416 પર કોલ કરો અથવા નજીકની હોસ્પિટલ પહોંચો.',
+    },
+    selfCareSupport: {
+      en: 'Safety first: do not stay alone. Tell a family member or doctor honestly: "I am having overwhelming thoughts of death and I need medical help right now." Remove all potential means of harm.',
+      hi: 'अकेले न रहें। तुरंत किसी परिजन या डॉक्टर को खुलकर बताएं: "मुझे बहुत नकारात्मक विचार आ रहे हैं और मुझे अभी मदद चाहिए।"',
+      gu: 'ક્યારેય એકલા ન રહો. તમારા પરિવારજન કે ડૉક્ટરને સાચેસાચું કહી દો કે મને મદદની જરૂર છે. મદદ હંમેશા ઉપલબ્ધ છે.',
+    },
+  },
 ];

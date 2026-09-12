@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Award, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Language } from '../types';
 import { doctorProfile } from '../data/about';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
+import { DoctorPhotoSlot } from '../components/DoctorPhotoSlot';
 
 interface AboutViewProps {
   currentLang: Language;
@@ -10,6 +12,19 @@ interface AboutViewProps {
 
 export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'About Dr. Raghav Suthar, MD (Psychiatry) & Clinical Ethics' : currentLang === 'hi' ? 'डॉ. राघव सुथार के बारे में एवं मेडिकल एथिक्स' : 'ડૉ. રાઘવ સુથાર વિશે અને તબીબી નૈતિકતા',
+      description: currentLang === 'en'
+        ? 'Consultant Psychiatrist registered under the National Medical Commission (NMC). Evidence-based public health education and ethical practice in India.'
+        : currentLang === 'hi'
+        ? 'राष्ट्रीय चिकित्सा आयोग (NMC) पंजीकृत मनोचिकित्सक डॉ. राघव सुथार का परिचय एवं शैक्षिक उद्देश्य।'
+        : 'કન્સલ્ટન્ટ મનોચિકિત્સક ડૉ. રાઘવ સુથાર વિશે માહિતી.',
+      path: 'about',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">
@@ -32,9 +47,11 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
 
       {/* Main Profile Card */}
       <div className="p-6 sm:p-8 rounded-xl bg-white border border-stone-200 flex flex-col md:flex-row items-start gap-6">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-[#115e59] text-white flex items-center justify-center font-bold text-2xl sm:text-3xl shrink-0">
-          RS
-        </div>
+        <DoctorPhotoSlot
+          currentLang={currentLang}
+          doctorName={doctorProfile.name}
+          qualifications={doctorProfile.qualifications}
+        />
 
         <div className="space-y-4 flex-1">
           <div>

@@ -191,4 +191,156 @@ export const mythsData: MythFact[] = [
       gu: 'સિનેમા અને નાટકોમાં ખોટો ભય ફેલાવાય છે. હકીકતમાં આવા દર્દીઓ પોતે સમાજના અન્યાય અને શોષણનો ભોગ બનતા હોય છે. તેમને ડરની નહીં, હૂંફની જરૂર હોય છે.',
     },
   },
+  {
+    id: 'ect-barbaric',
+    category: 'therapy',
+    myth: {
+      en: 'ECT ("shock therapy") is an archaic, painful torture that damages the brain and erases all memories.',
+      hi: 'ईसीटी ("शॉक थेरेपी") एक दर्दनाक और क्रूर सजा है जिससे दिमाग खराब हो जाता है और सारी याददाश्त चली जाती है।',
+      gu: 'ECT ("શૉક થેરાપી") એક ક્રૂર અને પીડાદાયક સજા છે જેનાથી મગજ બગડી જાય છે અને યાદશક્તિ કાયમ માટે જતી રહે છે.',
+    },
+    fact: {
+      en: 'Modern modified ECT is performed under full general anesthesia with muscle relaxants; it is completely painless, safe, and lifesaving.',
+      hi: 'आधुनिक ईसीटी पूरी बेहोशी (Anesthesia) और मांसपेशियों को शिथिल करके दी जाती है; यह पूरी तरह दर्द-रहित, अत्यंत सुरक्षित और जीवनरक्षक है।',
+      gu: 'આધુનિક ECT સંપૂર્ણ બેભાન કરીને અપાય છે; તે જરાય પીડાદાયક નથી, સંપૂર્ણપણે સુરક્ષિત છે અને ગંભીર દર્દીઓ માટે જીવનદાન સમાન છે.',
+    },
+    explanation: {
+      en: 'In modern clinical psychiatry, modified ECT has an 80%+ response rate in severe treatment-resistant depression, acute catatonia, and suicidal crises. The patient feels zero pain and is asleep throughout. Mild temporary short-term memory blunting resolves within weeks.',
+      hi: 'गंभीर डिप्रेशन और जब मरीज खाना-पीना छोड़ दे, तब ईसीटी सबसे तेज असर करने वाला वैज्ञानिक इलाज है। फिल्मों में दिखाई जाने वाली तड़प पूरी तरह काल्पनिक और झूठी है।',
+      gu: 'જ્યારે કોઈ દવા કામ ન કરતી હોય કે દર્દી ખાવા-પીવાનું બંધ કરી દે, ત્યારે ECT સૌથી ઝડપી અને અકસીર સાબિત થાય છે. ફિલ્મોમાં દેખાડવામાં આવતી ક્રૂરતા સાવ ઉપજાવી કાઢેલી છે.',
+    },
+  },
+  {
+    id: 'adhd-lazy-bad-parenting',
+    category: 'children',
+    myth: {
+      en: 'ADHD is not real; it is just an excuse for poorly disciplined children or lazy, unmotivated adults.',
+      hi: 'एडीएचडी (ADHD) कोई बीमारी नहीं है; यह केवल बच्चों की बदतमीजी, खराब परवरिश या आलसी वयस्कों का बहाना है।',
+      gu: 'ADHD કોઈ રોગ નથી; તે માત્ર બાળકોની તોફાની વૃત્તિ, ખરાબ ઉછેર કે આળસુ લોકોનું બહાનું છે.',
+    },
+    fact: {
+      en: 'ADHD is a well-established, highly heritable neurodevelopmental condition involving dopamine and norepinephrine pathways in executive control networks.',
+      hi: 'एडीएचडी एक वास्तविक न्यूरोडेवलपमेंटल बीमारी है, जिसमें मस्तिष्क के एकाग्रता और नियंत्रण वाले रसायनों (डोपामिन) में असंतुलन होता है।',
+      gu: 'ADHD એ મગજના ધ્યાન અને એકાગ્રતા નિયંત્રિત કરતા રસાયણોમાં અસંતુલનને કારણે થતો વાસ્તવિક જૈવિક રોગ છે.',
+    },
+    explanation: {
+      en: 'Neuroimaging clearly demonstrates structural and functional differences in the prefrontal cortex and basal ganglia of individuals with ADHD. Punishing or shaming someone with ADHD does not fix dopamine signaling; structured behavioral therapy and medications do.',
+      hi: 'बच्चे या वयस्क को डांटने या शर्मिंदा करने से एडीएचडी ठीक नहीं होता। सही थेरेपी और दवाओं से उनकी कार्यक्षमता और एकाग्रता पूरी तरह सामान्य हो सकती है।',
+      gu: 'બાળકને શિક્ષા કરવાથી કે ધમકાવવાથી આ રોગ મટતો નથી. સાયકોલોજિકલ થેરાપી અને યોગ્ય દવાથી દર્દી ઉત્તમ પરિણામ લાવી શકે છે.',
+    },
+  },
+  {
+    id: 'eating-disorders-vanity',
+    category: 'general',
+    myth: {
+      en: 'Eating disorders are just vanity, shallow dieting obsessions, or seeking attention.',
+      hi: 'खानपान के विकार (जैसे एनोरेक्सिया या बुलिमिया) केवल सुंदर दिखने का घमंड, डाइटिंग का शौक या दिखावा हैं।',
+      gu: 'ઈટિંગ ડિસઓર્ડર (ઓછું ખાવું કે ઊલટી કરવી) એ માત્ર સુંદર દેખાવાનો શોખ, ક્રેઝી ડાઇટિંગ કે દેખાડો છે.',
+    },
+    fact: {
+      en: 'Eating disorders are severe, potentially fatal psychiatric illnesses with complex biological and genetic etiologies.',
+      hi: 'खानपान विकार गंभीर और जानलेवा मानसिक बीमारियां हैं जिनकी मृत्यु दर सभी मनोरोगों में सबसे अधिक होती है।',
+      gu: 'ઈટિંગ ડિસઓર્ડર જીવલેણ માનસિક બીમારીઓ છે જેમાં મનોરોગોમાં સૌથી વધુ મૃત્યુદર જોવા મળે છે.',
+    },
+    explanation: {
+      en: 'Anorexia and Bulimia involve severe neurobiological dysregulation of reward, satiety, and anxiety systems. Patients suffer intense cognitive terror around food. Without medical and psychiatric care, cardiac arrest, electrolyte failure, and organ damage can occur.',
+      hi: 'यह कोई मर्जी से की जाने वाली डाइटिंग नहीं है; मरीज के दिमाग में खाने को लेकर गहरा खौफ बैठ जाता है। इसमें दिल का दौरा, इलेक्ट्रोलाइट्स की कमी और अंगों के खराब होने का गंभीर खतरा रहता है।',
+      gu: 'આ સ્વેચ્છાએ કરેલું ડાઇટિંગ નથી; દર્દીના મનમાં વજન વધવાનો અસહ્ય ડર હોય છે. સમયસર સારવાર ન મળે તો હૃદય બંધ પડી જવાનું જોખમ રહે છે.',
+    },
+  },
+  {
+    id: 'ocd-cleanliness',
+    category: 'general',
+    myth: {
+      en: 'OCD is just a quirk about keeping your desk tidy, color-coding notes, and liking cleanliness.',
+      hi: 'ओसीडी (OCD) का मतलब सिर्फ साफ-सफाई रखना, चीजों को तरतीब से लगाना या थोड़ा परफेक्शनिस्ट होना है।',
+      gu: 'OCD એટલે માત્ર ઘર ચોખ્ખું રાખવું, વ્યવસ્થિત રહેવું કે વસ્તુઓ લાઈનમાં ગોઠવવાની સારી ટેવ.',
+    },
+    fact: {
+      en: 'OCD is a profoundly distressing, exhausting anxiety disorder driven by intrusive, terrifying obsessions and compulsive rituals.',
+      hi: 'ओसीडी एक अत्यंत पीड़ादायक मानसिक बीमारी है, जिसमें डरावने और अनचाहे विचार (Obsessions) इंसान को लगातार परेशान करते हैं।',
+      gu: 'OCD એ અત્યંત ત્રાસદાયક માનસિક વિકાર છે જેમાં ડરામણા અને અણગમતા વિચારો દર્દીનું જીવન નરક જેવું બનાવી દે છે.',
+    },
+    explanation: {
+      en: 'Saying "I am so OCD" trivializes an agonizing condition. People with OCD do not enjoy their rituals (such as washing hands until bleeding or checking locks 50 times); they perform them in desperate, exhausting attempts to neutralize intense anxiety.',
+      hi: 'ओसीडी से पीड़ित व्यक्ति साफ-सफाई का आनंद नहीं लेता, बल्कि वह अपने दिमाग में चल रहे भयानक डर (जैसे किसी अपने की मौत या बीमारी) को शांत करने के लिए घंटों हाथ धोता रहता है।',
+      gu: 'OCD નો દર્દી સ્વચ્છતાનો આનંદ નથી માણતો; તે મગજમાં આવતા ભયાનક વહેમને શાંત કરવા કલાકો સુધી હાથ ધોઈને ચામડી પણ છોલી નાખે છે. તેને સહાનુભૂતિની જરૂર હોય છે.',
+    },
+  },
+  {
+    id: 'suicide-talking-encourages',
+    category: 'general',
+    myth: {
+      en: 'Asking someone directly if they are having suicidal thoughts will give them the idea or push them over the edge.',
+      hi: 'किसी दुखी व्यक्ति से सीधे पूछना कि क्या उसके मन में आत्महत्या के विचार आ रहे हैं, उसे आत्महत्या करने के लिए उकसा सकता है।',
+      gu: 'કોઈ નિરાશ વ્યક્તિને આપઘાતના વિચારો આવે છે કે નહીં તેવું પૂછવાથી તેને આપઘાત કરવાનું પ્રોત્સાહન મળે છે.',
+    },
+    fact: {
+      en: 'Asking directly, calmly, and non-judgmentally reduces distress, breaks isolation, and saves lives.',
+      hi: 'खुले दिल और सहानुभूति से सीधे पूछने से व्यक्ति का अकेलापन टूटता है, उसे राहत मिलती है और उसकी जान बचती है।',
+      gu: 'પ્રેમપૂર્વક અને સીધેસીધું પૂછવાથી દર્દીનો બોજ હળવો થાય છે, તેને મદદ મળે છે અને તેનું જીવન બચી શકે છે.',
+    },
+    explanation: {
+      en: 'Extensive global research proves that discussing suicide openly does NOT plant the idea in someone\'s head. In fact, it communicates care, provides immense relief, and opens the door for lifesaving psychiatric intervention.',
+      hi: 'वैज्ञानिक शोध साबित करते हैं कि आत्महत्या के बारे में पूछने से किसी के मन में यह विचार पैदा नहीं होता। बल्कि मरीज को लगता है कि कोई उसकी तकलीफ समझ रहा है और वह मदद स्वीकार करता है।',
+      gu: 'વિશ્વભરના સંશોધનો જણાવે છે કે આપઘાત વિશે સીધું પૂછવાથી કોઈ આવું પગલું નથી ભરતું, પરંતુ દર્દીને લાગે છે કે કોઈ તેનું દર્દ સમજે છે અને તે ડૉક્ટર પાસે જવા તૈયાર થાય છે.',
+    },
+  },
+  {
+    id: 'personality-disorders-untreatable',
+    category: 'therapy',
+    myth: {
+      en: 'People with personality disorders (like Borderline) are manipulative, untreatable, and cannot ever change.',
+      hi: 'पर्सनालिटी डिसऑर्डर (जैसे बॉर्डरलाइन) के मरीज केवल नौटंकी या चालाकी करते हैं और इनका कभी कोई इलाज संभव नहीं है।',
+      gu: 'પર્સનાલિટી ડિસઓર્ડરના દર્દીઓ માત્ર ઢોંગ કરે છે અને તેમનો કોઈ ઈલાજ ક્યારેય શક્ય નથી.',
+    },
+    fact: {
+      en: 'Personality disorders respond robustly to evidence-based specialized psychotherapies like DBT, schema therapy, and MBT.',
+      hi: 'पर्सनालिटी डिसऑर्डर विशेष प्रकार की मनोवैज्ञानिक थेरेपी (जैसे DBT - डायलेक्टिकल बिहेवियर थेरेपी) से पूरी तरह सुधर सकते हैं।',
+      gu: 'પર્સનાલિટી ડિસઓર્ડર ખાસ થેરાપી (જેમ કે DBT) થી સંપૂર્ણપણે સુધરી શકે છે અને દર્દી સ્થિર જીવન જીવી શકે છે.',
+    },
+    explanation: {
+      en: 'Emotional dysregulation stems from a combination of neurobiological vulnerability and early developmental trauma. Longitudinal research shows that over 85% of individuals with Borderline Personality Disorder achieve stable clinical remission with structured psychotherapy.',
+      hi: 'यह कोई जानबूझकर किया गया नाटक नहीं है; यह बचपन के सदमे और भावनाओं को नियंत्रित करने की असमर्थता का परिणाम है। सही थेरेपी से 85% से अधिक मरीज पूरी तरह सामान्य जीवन जीते हैं।',
+      gu: 'આ કોઈ ઈરાદાપૂર્વક કરેલો ઢોંગ નથી પણ બાળપણના આઘાતનું પરિણામ છે. યોગ્ય સાયકોથેરાપીથી ૮૫% થી વધુ દર્દીઓ એકદમ સામાન્ય અને સુખી જીવન જીવી શકે છે.',
+    },
+  },
+  {
+    id: 'antidepressants-change-personality',
+    category: 'medications',
+    myth: {
+      en: 'Antidepressants alter your core identity, turn you into an unfeeling zombie, or destroy your true personality.',
+      hi: 'एंटीडिप्रेसेंट दवाएं आपके असली व्यक्तित्व को बदल देती हैं, सोचने-समझने की शक्ति खत्म कर देती हैं और इंसान को रोबोट जैसा बना देती हैं।',
+      gu: 'એન્ટીડિપ્રેશન દવાઓ તમારા સાચા સ્વભાવને બદલી નાખે છે, લાગણીઓ શૂન્ય કરી દે છે અને વ્યક્તિને રોબોટ જેવો બનાવી દે છે.',
+    },
+    fact: {
+      en: 'Antidepressants treat the neurochemical illness so your true, authentic personality can emerge from the suffocating gloom.',
+      hi: 'दवाएं आपकी असली पहचान को नहीं बदलतीं, बल्कि डिप्रेशन के घने कोहरे को हटाकर आपके स्वाभाविक रूप को बाहर लाती हैं।',
+      gu: 'આ દવાઓ તમારા વ્યક્તિત્વને બદલતી નથી, પરંતુ ડિપ્રેશનના અંધકારને દૂર કરીને તમારા સાચા સ્વભાવને ફરીથી ખીલવે છે.',
+    },
+    explanation: {
+      en: 'Depression itself is what robs people of their vitality, humor, empathy, and passion. Effective psychiatric medication restores balance to neurotransmitters, relieving emotional numbness and allowing patients to feel like themselves again.',
+      hi: 'वास्तव में डिप्रेशन ही इंसान की खुशी, हंसी और संवेदनशीलता को छीन लेता है। दवाएं दिमाग के रसायनों को सामान्य करके व्यक्ति को दोबारा खुशहाल और ऊर्जावान बनाती हैं।',
+      gu: 'હકીકતમાં ડિપ્રેશન જ માણસનો આનંદ, લાગણીઓ અને ઉત્સાહ છીનવી લે છે. દવાઓ મગજને સ્વસ્થ કરીને વ્યક્તિને ફરીથી પોતાના અસલી અંદાજમાં જીવવા સક્ષમ બનાવે છે.',
+    },
+  },
+  {
+    id: 'herbal-natural-always-safer',
+    category: 'medications',
+    myth: {
+      en: 'Ayurvedic, herbal, and natural concoctions have zero side effects and are always safer than psychiatric medicines.',
+      hi: 'जड़ी-बूटियां और देसी पुड़िया 100% सुरक्षित और दुष्प्रभाव-मुक्त होती हैं, जबकि अंग्रेजी दवाएं केवल जहर होती हैं।',
+      gu: 'આયુર્વેદિક કે દેશી દવાઓની કોઈ આડઅસર હોતી નથી અને તે અંગ્રેજી દવાઓ કરતાં હંમેશા સુરક્ષિત હોય છે.',
+    },
+    fact: {
+      en: '"Natural" does not mean safe; unstandardized herbal powders can contain toxic heavy metals and cause severe liver or kidney damage.',
+      hi: '"कुदरती" होने का मतलब सुरक्षित होना नहीं है; अनियंत्रित देशी दवाओं में भारी धातुएं (पारा, सीसा) हो सकती हैं जो लिवर और किडनी खराब कर सकती हैं।',
+      gu: '"કુદરતી" હોવું એટલે હંમેશા સલામત હોવું નહીં; વણચકાસાયેલા દેશી પાવડરમાં ઝેરી રસાયણો હોઈ શકે છે જે લિવર-કિડની બગાડી શકે છે.',
+    },
+    explanation: {
+      en: 'Modern psychiatric medications undergo rigorous multi-phase clinical safety trials with exact milligrams and known safety profiles. Many unregulated "magical brain herbs" contain adulterants or interact dangerously with standard medications. Always disclose all herbal remedies to your treating psychiatrist.',
+      hi: 'मनोरोग की एलोपैथिक दवाएं वर्षों के वैज्ञानिक शोध और तय मात्रा के बाद बनती हैं। कई अप्रमाणित देसी दवाइयों में छुपे हुए स्टेरॉयड या लेड पाए जाते हैं। कोई भी देशी इलाज लेने से पहले अपने डॉक्टर को जरूर बताएं।',
+      gu: 'મનોરોગની માન્ય દવાઓ વર્ષોના વૈજ્ઞાનિક પ્રયોગો અને સચોટ મિલિગ્રામમાં તૈયાર થાય છે. બિનઅધિકૃત દેશી પડીકીઓથી લિવર ફેલ થવાના અનેક કિસ્સા બને છે. કોઈપણ ઘરેલુ નુસખા લેતા પહેલા ડૉક્ટરને અચૂક જણાવો.',
+    },
+  },
 ];

@@ -1,36 +1,81 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronUp, CheckCircle2, ShieldAlert } from 'lucide-react';
-import { Condition, Language } from '../types';
+import { X, ChevronDown, ChevronUp, CheckCircle2, ShieldAlert, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Condition, Language, ShareCardData } from '../types';
 import { translations } from '../data/translations';
+import { SocialShareBar } from './SocialShareBar';
+import { YouTubeEmbed } from './YouTubeEmbed';
+import { AudioReadAloud } from './AudioReadAloud';
+import {
+  CategoryIllustration,
+  NeuralCircuitryIllustration,
+  GrowthPathIllustration,
+  SupportNetworkIllustration,
+  StressResponseDiagram,
+  BreathingPacer,
+} from './visuals';
+import { CategoryBadge } from './CategoryBadge';
+import { getCategoryTheme } from '../data/categoryThemes';
 
 interface ConditionDetailModalProps {
   condition: Condition | null;
   onClose: () => void;
   currentLang: Language;
+  onOpenCrisis?: () => void;
 }
 
 export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
   condition,
   onClose,
   currentLang,
+  onOpenCrisis,
 }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'causes' | 'treatment' | 'recovery' | 'faqs'>('overview');
+  const [activeExampleIndex, setActiveExampleIndex] = useState<number>(0);
 
   if (!condition) return null;
   const t = translations[currentLang];
 
+  const examples = (condition.illustrativeExamples && condition.illustrativeExamples.length > 0)
+    ? condition.illustrativeExamples
+    : condition.illustrativeExample
+    ? [condition.illustrativeExample]
+    : [];
+  const selectedExampleIndex = activeExampleIndex % Math.max(1, examples.length);
+  const currentVignette = examples[selectedExampleIndex] || examples[0];
+
+  const cardData: ShareCardData = {
+    type: 'condition',
+    kind: 'condition',
+    title: condition.name[currentLang],
+    category: condition.category.toUpperCase(),
+    keyPoints: [
+      condition.dailyLifeImpact[currentLang],
+      condition.treatment.psychoeducation[currentLang],
+      condition.recoveryOutlook[currentLang],
+    ],
+    points: [
+      condition.dailyLifeImpact[currentLang],
+      condition.treatment.psychoeducation[currentLang],
+      condition.recoveryOutlook[currentLang],
+    ],
+    path: `conditions/${condition.slug}`,
+  };
+
+  const theme = getCategoryTheme(condition.category);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
+      <div
+        style={{ borderTopColor: theme.hex.accent, borderTopWidth: '4px' }}
+        className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]"
+      >
         {/* Modal Header */}
         <div className="bg-white border-b border-stone-200 p-5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-1.5">
-              <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-                {condition.category.toUpperCase()}
-              </span>
-              <span className="text-xs text-stone-400 font-mono">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <CategoryBadge category={condition.category} currentLang={currentLang} size="sm" />
+              <span className="text-xs text-stone-500 font-mono">
                 {condition.medicalTerms[currentLang]}
               </span>
             </div>
@@ -48,6 +93,15 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           >
             <X className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Category Educational Illustration Top Banner */}
+        <div className="w-full border-b border-stone-200 bg-stone-50 shrink-0">
+          <CategoryIllustration
+            category={condition.category}
+            className="w-full h-32 sm:h-40"
+            ariaLabel={`Educational clinical illustration for ${condition.name[currentLang]}`}
+          />
         </div>
 
         {/* Navigation Tabs within Modal */}
@@ -116,17 +170,188 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
 
         {/* Modal Scrollable Content */}
         <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm">
+          {/* Audio Read-Aloud & Fast Sharing */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-stone-200">
+            <AudioReadAloud
+              text={`${condition.name[currentLang]}. ${condition.overview[currentLang]}`}
+              currentLang={currentLang}
+              title={condition.name[currentLang]}
+            />
+            <SocialShareBar
+              title={condition.name[currentLang]}
+              subtitle={condition.overview[currentLang]}
+              path={`conditions/${condition.slug}`}
+              currentLang={currentLang}
+              variant="compact"
+            />
+          </div>
+
+          {condition.youtubeVideoId && (
+            <div className="my-2">
+              <YouTubeEmbed videoId={condition.youtubeVideoId} title={condition.name[currentLang]} currentLang={currentLang} />
+            </div>
+          )}
+
           {/* TAB 1: OVERVIEW & SYMPTOMS */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
+              {/* Category Educational Illustration */}
+              <div className="rounded-xl overflow-hidden border border-stone-200 bg-white shadow-xs">
+                <CategoryIllustration
+                  category={condition.category}
+                  className="w-full h-36 sm:h-48"
+                  ariaLabel={
+                    currentLang === 'en'
+                      ? `Educational clinical illustration representing ${condition.name[currentLang]}`
+                      : `${condition.name[currentLang]} का शैक्षणिक चिकित्सीय चित्रण`
+                  }
+                />
+              </div>
+
               <div>
                 <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.overview}
                 </h3>
-                <p className="bg-stone-50 p-4 rounded-lg border border-stone-200 text-stone-800">
+                <p className="bg-stone-50 p-4 sm:p-5 rounded-lg border border-stone-200 text-stone-800 leading-relaxed text-sm sm:text-base">
                   {condition.overview[currentLang]}
                 </p>
               </div>
+
+              {/* Distinct "Evidence at a Glance" Callout */}
+              {condition.evidenceHighlights && condition.evidenceHighlights.length > 0 && (
+                <div className="rounded-xl border border-sky-200/90 bg-gradient-to-br from-sky-50/70 via-white to-stone-50 p-4 sm:p-5 shadow-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2.5 border-b border-sky-100">
+                    <span className="text-xs font-bold uppercase tracking-wider text-sky-900 flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-sky-600 inline-block"></span>
+                      {currentLang === 'hi'
+                        ? 'प्रमुख वैज्ञानिक प्रमाण एवं तथ्य (Evidence at a Glance)'
+                        : currentLang === 'gu'
+                        ? 'મુખ્ય વૈજ્ઞાનિક પુરાવા અને તારણો (Evidence at a Glance)'
+                        : 'Evidence at a Glance'}
+                    </span>
+                    <span className="text-[11px] font-semibold text-sky-800 bg-sky-100/80 px-2 py-0.5 rounded">
+                      {currentLang === 'hi'
+                        ? 'प्रमाण-आधारित निष्कर्ष'
+                        : currentLang === 'gu'
+                        ? 'પુરાવા-આધારિત તારણો'
+                        : 'Key Scientific Findings'}
+                    </span>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-2.5">
+                    {condition.evidenceHighlights.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-lg border border-sky-100/90 bg-white/95 shadow-xs flex flex-col justify-between gap-2"
+                      >
+                        <p className="text-xs sm:text-sm text-stone-800 leading-relaxed font-medium">
+                          {item.fact[currentLang]}
+                        </p>
+                        <div className="flex items-center justify-between pt-1.5 border-t border-sky-50 text-[10.5px] text-stone-500">
+                          <span className="font-semibold text-sky-900">Source:</span>
+                          <span className="font-mono text-[10px] text-stone-600 truncate max-w-[190px]" title={item.citationRef}>
+                            {item.citationRef}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Multiple Illustrative Examples Switcher */}
+              {examples.length > 0 && (
+                <div className="rounded-xl border border-teal-200/90 bg-gradient-to-br from-teal-50/80 via-white to-stone-50 p-4 sm:p-5 shadow-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-teal-100">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-teal-600 inline-block"></span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-teal-800">
+                        {currentLang === 'hi'
+                          ? 'उदाहरणात्मक प्रसंग (विविध प्रस्तुतियां)'
+                          : currentLang === 'gu'
+                          ? 'દ્રષ્ટાંતરૂપ ઉદાહરણો (વિવિધ તબક્કા)'
+                          : 'Illustrative Examples (Varied Presentations)'}
+                      </span>
+                    </div>
+
+                    {/* Switcher Controls */}
+                    {examples.length > 1 && (
+                      <div className="flex items-center gap-1 bg-teal-100/70 p-1 rounded-lg">
+                        <button
+                          type="button"
+                          onClick={() => setActiveExampleIndex((prev) => (prev > 0 ? prev - 1 : examples.length - 1))}
+                          className="p-1 rounded text-teal-800 hover:bg-white transition cursor-pointer"
+                          aria-label="Previous example"
+                          title="Previous example"
+                        >
+                          <ChevronLeft className="w-3.5 h-3.5" />
+                        </button>
+                        <div className="flex items-center gap-1">
+                          {examples.map((_, idx) => (
+                            <button
+                              key={idx}
+                              type="button"
+                              onClick={() => setActiveExampleIndex(idx)}
+                              className={`px-2 py-0.5 rounded text-xs font-bold transition cursor-pointer ${
+                                selectedExampleIndex === idx
+                                  ? 'bg-teal-700 text-white shadow-xs'
+                                  : 'text-teal-800 hover:bg-white/80'
+                              }`}
+                            >
+                              {currentLang === 'hi'
+                                ? `प्रसंग ${idx + 1}`
+                                : currentLang === 'gu'
+                                ? `ઉદાહરણ ${idx + 1}`
+                                : `Example ${idx + 1}`}
+                            </button>
+                          ))}
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setActiveExampleIndex((prev) => (prev < examples.length - 1 ? prev + 1 : 0))}
+                          className="p-1 rounded text-teal-800 hover:bg-white transition cursor-pointer"
+                          aria-label="Next example"
+                          title="Next example"
+                        >
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <p className="text-stone-700 text-xs sm:text-sm leading-relaxed whitespace-pre-line italic min-h-[70px]">
+                    "{currentVignette[currentLang] || currentVignette.en}"
+                  </p>
+
+                  <div className="mt-3 pt-2.5 border-t border-teal-100/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-stone-500 font-medium">
+                    <span className="flex items-center gap-1">
+                      <span>ℹ️</span>
+                      <span>
+                        {currentLang === 'hi'
+                          ? 'यह एक काल्पनिक, समझाने के उद्देश्य से बनाया गया उदाहरण है — कोई वास्तविक मरीज नहीं।'
+                          : currentLang === 'gu'
+                          ? 'આ સમજૂતી માટેનું એક કાલ્પનિક ઉદાહરણ છે — કોઈ વાસ્તવિક દર્દી નથી.'
+                          : 'This is a fictional, composite illustrative example — not a real patient.'}
+                      </span>
+                    </span>
+                    {examples.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => setActiveExampleIndex((prev) => (prev + 1) % examples.length)}
+                        className="text-teal-700 hover:text-teal-900 underline font-semibold flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>
+                          {currentLang === 'hi'
+                            ? 'अगला प्रसंग देखें'
+                            : currentLang === 'gu'
+                            ? 'બીજું ઉદાહરણ જુઓ'
+                            : 'Show another presentation'}
+                        </span>
+                        <ArrowRight className="w-3 h-3" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
 
               <div>
                 <h3 className="text-base font-semibold text-[#1c2430] mb-2">
@@ -149,7 +374,7 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 <h3 className="text-base font-semibold text-[#1c2430] mb-2">
                   {t.conditions.impact}
                 </h3>
-                <p className="text-stone-700 text-sm leading-relaxed">
+                <p className="text-stone-700 text-sm leading-relaxed bg-stone-50/50 p-4 rounded-lg border border-stone-200">
                   {condition.dailyLifeImpact[currentLang]}
                 </p>
               </div>
@@ -159,13 +384,35 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* TAB 2: CAUSES & DIAGNOSIS */}
           {activeTab === 'causes' && (
             <div className="space-y-6">
-              <div>
-                <h3 className="text-base font-semibold text-[#1c2430] mb-2">
-                  {t.conditions.causes} (Bio-Psycho-Social Model)
-                </h3>
-                <p className="text-stone-800 text-sm bg-stone-50 p-4 rounded-lg border border-stone-200">
-                  {condition.causes[currentLang]}
-                </p>
+              {/* Causes & Biological Substrate side-by-side */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                <div className="p-4 sm:p-5 rounded-lg border border-stone-200 bg-stone-50 space-y-2">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-700">
+                    {t.conditions.causes} (Bio-Psycho-Social Model)
+                  </h3>
+                  <p className="text-stone-800 text-xs sm:text-sm leading-relaxed">
+                    {condition.causes[currentLang]}
+                  </p>
+                </div>
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-stone-500 block">
+                    {currentLang === 'en'
+                      ? 'Neural Circuitry & Neurobiology'
+                      : currentLang === 'hi'
+                      ? 'न्यूरल सर्किटरी और न्यूरोबायोलॉजी'
+                      : 'ન્યુરલ સર્કિટરી અને ન્યુરોબાયોલોજી'}
+                  </span>
+                  <div className="rounded-xl overflow-hidden border border-stone-200 bg-white">
+                    <NeuralCircuitryIllustration
+                      className="w-full h-36 sm:h-44"
+                      ariaLabel={
+                        currentLang === 'en'
+                          ? 'Scientific diagram showing neural pathways and neurotransmitter activity involved in psychiatric conditions'
+                          : 'मानसिक स्वास्थ्य से जुड़े न्यूरल पाथवे और न्यूरोट्रांसमीटर का वैज्ञानिक आरेख'
+                      }
+                    />
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -182,15 +429,22 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 </ul>
               </div>
 
-              <div className="bg-stone-50 p-4 rounded-lg border border-stone-200 space-y-2">
+              <div className="bg-stone-50 p-4 sm:p-5 rounded-lg border border-stone-200 space-y-3">
                 <h4 className="text-sm font-semibold text-[#1c2430]">
                   How a Psychiatrist Diagnoses (Clinical Evaluation)
                 </h4>
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                   {condition.psychiatricAssessment[currentLang]}
                 </p>
-                <div className="text-xs text-stone-600 border-t border-stone-200 pt-2">
-                  <strong className="text-stone-800">Differential Considerations:</strong> {condition.differentialConsiderations[currentLang]}
+                {condition.diagnosisExplanation && (
+                  <div className="text-xs sm:text-sm text-stone-700 leading-relaxed pt-2.5 border-t border-stone-200">
+                    <strong className="text-stone-800 font-semibold block mb-1">Diagnostic Framework & Assessment Process:</strong>
+                    <span>{condition.diagnosisExplanation[currentLang]}</span>
+                  </div>
+                )}
+                <div className="text-xs text-stone-600 border-t border-stone-200 pt-2.5">
+                  <strong className="text-stone-800 font-semibold">Differential Considerations:</strong>{' '}
+                  <span>{condition.differentialConsiderations[currentLang]}</span>
                 </div>
               </div>
             </div>
@@ -232,18 +486,39 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 </div>
 
                 <div className="p-4 rounded-lg border border-stone-200 bg-white">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-                    Family & Social Support System
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                    {condition.treatment.familySocialInterventions[currentLang]}
-                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                    <div>
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        Family & Social Support System
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {condition.treatment.familySocialInterventions[currentLang]}
+                      </p>
+                    </div>
+                    <div className="rounded-xl overflow-hidden border border-stone-100 bg-stone-50">
+                      <SupportNetworkIllustration
+                        className="w-full h-28 sm:h-32"
+                        ariaLabel={
+                          currentLang === 'en'
+                            ? 'Illustration of collaborative care and community support system'
+                            : 'पारिवारिक और सामाजिक सहायता प्रणाली का चित्रण'
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div className="p-3.5 bg-stone-50 rounded-lg border border-stone-200 text-xs sm:text-sm text-stone-700">
                 <strong className="text-stone-900">Treatment Goals:</strong> {condition.treatmentGoals[currentLang]}
               </div>
+
+              {(condition.category === 'anxiety' || condition.category === 'trauma') && (
+                <div className="space-y-4 pt-2 border-t border-stone-100">
+                  <StressResponseDiagram currentLang={currentLang} />
+                  <BreathingPacer currentLang={currentLang} />
+                </div>
+              )}
             </div>
           )}
 
@@ -257,6 +532,26 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 <p className="bg-[#f0fdfa] p-4 rounded-lg border border-[#ccfbf1] text-stone-800 text-sm leading-relaxed">
                   {condition.recoveryOutlook[currentLang]}
                 </p>
+              </div>
+
+              {/* Holistic Recovery & Support Network Visuals */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+                    {currentLang === 'en' ? 'Recovery Trajectory' : currentLang === 'hi' ? 'सुधार और पुनर्प्राप्ति मार्ग' : 'સુધાર અને પુનઃપ્રાપ્તિ પથ'}
+                  </span>
+                  <div className="rounded-xl overflow-hidden border border-stone-200 bg-white">
+                    <GrowthPathIllustration className="w-full h-32 sm:h-36" />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+                    {currentLang === 'en' ? 'Social & Family Network' : currentLang === 'hi' ? 'पारिवारिक एवं सामाजिक सहयोग' : 'પારિવારિક અને સામાજિક ટેકો'}
+                  </span>
+                  <div className="rounded-xl overflow-hidden border border-stone-200 bg-white">
+                    <SupportNetworkIllustration className="w-full h-32 sm:h-36" />
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -367,6 +662,57 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
               )}
             </div>
           )}
+
+          {/* Related Educational Topics */}
+          {condition.relatedContent && (
+            ((condition.relatedContent.conditionSlugs && condition.relatedContent.conditionSlugs.length > 0) ||
+            (condition.relatedContent.medicationIds && condition.relatedContent.medicationIds.length > 0) ||
+            (condition.relatedContent.treatmentIds && condition.relatedContent.treatmentIds.length > 0)) && (
+              <div className="p-4 bg-teal-50/50 border border-teal-100 rounded-xl space-y-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-teal-800">
+                  {currentLang === 'en' ? 'Related Clinical Topics' : currentLang === 'hi' ? 'संबंधित विषय' : 'સંબંધિત વિષયો'}
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {condition.relatedContent.conditionSlugs?.map((slug, idx) => (
+                    <span
+                      key={`c-${idx}`}
+                      className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-md bg-white border border-teal-200 text-teal-900 font-medium capitalize"
+                    >
+                      <ArrowRight className="w-3 h-3 text-teal-600" />
+                      <span>{slug.replace(/-/g, ' ')}</span>
+                    </span>
+                  ))}
+                  {condition.relatedContent.medicationIds?.map((medId, idx) => (
+                    <span
+                      key={`m-${idx}`}
+                      className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-md bg-white border border-amber-200 text-amber-900 font-medium uppercase"
+                    >
+                      <ArrowRight className="w-3 h-3 text-amber-600" />
+                      <span>{medId}</span>
+                    </span>
+                  ))}
+                  {condition.relatedContent.treatmentIds?.map((tId, idx) => (
+                    <span
+                      key={`t-${idx}`}
+                      className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-md bg-white border border-emerald-200 text-emerald-900 font-medium uppercase"
+                    >
+                      <ArrowRight className="w-3 h-3 text-emerald-600" />
+                      <span>{tId}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          )}
+
+          {/* Social Share Bar with Image Card Generation */}
+          <SocialShareBar
+            title={condition.name[currentLang]}
+            subtitle={condition.overview[currentLang]}
+            path={`conditions/${condition.slug}`}
+            currentLang={currentLang}
+            cardData={cardData}
+          />
 
           {/* Contextual Medical Disclaimer */}
           <div className="p-3.5 bg-stone-50 border border-stone-200 rounded-lg text-xs text-stone-700 leading-relaxed">

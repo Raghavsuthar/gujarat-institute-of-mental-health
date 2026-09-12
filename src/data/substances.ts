@@ -1,6 +1,7 @@
 import { SubstanceInfo } from '../types';
+import { newSubstancesData } from './newSubstances';
 
-export const substancesData: SubstanceInfo[] = [
+const baseSubstancesData: SubstanceInfo[] = [
   {
     id: 'alcohol',
     slug: 'alcohol-use-disorder',
@@ -668,4 +669,9 @@ export const substancesData: SubstanceInfo[] = [
     ],
     lastReviewed: '2026-08',
   },
+];
+
+export const substancesData: SubstanceInfo[] = [
+  ...baseSubstancesData,
+  ...newSubstancesData,
 ];

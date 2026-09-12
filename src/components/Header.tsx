@@ -1,7 +1,8 @@
 import React from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { Language, ActiveTab } from '../types';
-import { translations } from '../data/translations';
+import { translations, siteMetadata } from '../data/translations';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface HeaderProps {
   currentLang: Language;
@@ -32,7 +33,10 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'myths', label: t.nav.myths },
     { id: 'caregivers', label: t.nav.caregivers },
     { id: 'interactive', label: t.nav.interactive },
+    { id: 'articles', label: t.nav.articles },
+    { id: 'resources', label: t.nav.resources },
     { id: 'emergency', label: t.nav.emergency },
+    { id: 'outreach', label: t.nav.outreach },
     { id: 'about', label: t.nav.about },
   ];
 
@@ -44,6 +48,9 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#ffffff] border-b border-stone-200 text-[#1c2430]">
+      {/* Visual Identity Fine Top Accent: Teal to Marigold to Plum */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-[#115e59] via-[#b86b26] to-[#5e4a72]" aria-hidden="true" />
+
       {/* Main Brand & Controls Header */}
       <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
         {/* Brand identity: Clean typography, no heavy visual noise */}
@@ -60,11 +67,11 @@ export const Header: React.FC<HeaderProps> = ({
             </span>
           </div>
           <p className="text-xs sm:text-sm text-stone-600 mt-0.5">
-            {t.subTitle}
+            {siteMetadata.tagline[currentLang]}
           </p>
         </button>
 
-        {/* Action Controls: Search, Language Switcher, Mobile Menu */}
+        {/* Action Controls: Search, PWA Install, Language Switcher, Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Quick Search Button: 44px tap target */}
           <button
@@ -81,6 +88,9 @@ export const Header: React.FC<HeaderProps> = ({
               /
             </kbd>
           </button>
+
+          {/* PWA Install Button */}
+          <PWAInstallButton currentLang={currentLang} variant="button" />
 
           {/* Language Switcher: 44px min tap targets */}
           <div className="flex items-center bg-stone-100 p-0.5 rounded-md border border-stone-200" role="group" aria-label="Language selection">
@@ -129,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Desktop Navigation Bar: Quiet, horizontal, clear text */}
-      <nav className="hidden lg:block border-t border-stone-200 bg-[#faf9f5] px-4" aria-label="Primary Navigation">
+      <nav className="hidden lg:block border-t border-stone-200 bg-[#f6f8f7] px-4" aria-label="Primary Navigation">
         <div className="max-w-4xl mx-auto flex items-center gap-1 overflow-x-auto py-1 text-sm font-medium">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;

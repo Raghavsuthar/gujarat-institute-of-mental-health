@@ -17,7 +17,7 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
   currentLang,
   onOpenCrisis,
 }) => {
-  const [selectedToolId, setSelectedToolId] = useState<'phq9' | 'gad7'>('phq9');
+  const [selectedToolId, setSelectedToolId] = useState<string>('phq9');
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
 
@@ -78,39 +78,29 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
         </div>
 
         {/* Screener Selector Bar */}
-        <div className="bg-stone-50 border-b border-stone-200 px-4 py-2.5 flex items-center justify-between gap-2 shrink-0">
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => {
-                setSelectedToolId('phq9');
-                handleReset();
-              }}
-              className={`px-3.5 py-2 rounded-md text-xs font-semibold transition cursor-pointer min-h-[44px] flex items-center ${
-                selectedToolId === 'phq9'
-                  ? 'bg-[#115e59] text-white'
-                  : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-100'
-              }`}
-            >
-              PHQ-9 (Depression Reflection)
-            </button>
-            <button
-              onClick={() => {
-                setSelectedToolId('gad7');
-                handleReset();
-              }}
-              className={`px-3.5 py-2 rounded-md text-xs font-semibold transition cursor-pointer min-h-[44px] flex items-center ${
-                selectedToolId === 'gad7'
-                  ? 'bg-[#115e59] text-white'
-                  : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-100'
-              }`}
-            >
-              GAD-7 (Anxiety Reflection)
-            </button>
+        <div className="bg-stone-50 border-b border-stone-200 px-4 py-2.5 flex items-center justify-between gap-2 shrink-0 overflow-x-auto">
+          <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+            {screenersData.map((tool) => (
+              <button
+                key={tool.id}
+                onClick={() => {
+                  setSelectedToolId(tool.id);
+                  handleReset();
+                }}
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold transition cursor-pointer min-h-[44px] flex items-center whitespace-nowrap ${
+                  selectedToolId === tool.id
+                    ? 'bg-[#115e59] text-white'
+                    : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-100'
+                }`}
+              >
+                {tool.id.toUpperCase()}: {tool.name[currentLang].split('(')[0].trim()}
+              </button>
+            ))}
           </div>
 
           <button
             onClick={handleReset}
-            className="text-xs text-stone-600 hover:text-stone-900 flex items-center gap-1.5 font-medium cursor-pointer min-h-[44px] px-2"
+            className="text-xs text-stone-600 hover:text-stone-900 flex items-center gap-1.5 font-medium cursor-pointer min-h-[44px] px-2 shrink-0"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Reset</span>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ShieldAlert, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 import { screenersData } from '../data/assessments';
 import { translations } from '../data/translations';
+import { updatePageSEO } from '../utils/seo';
 
 interface InteractiveViewProps {
   currentLang: Language;
@@ -16,6 +17,19 @@ export const InteractiveView: React.FC<InteractiveViewProps> = ({
   onOpenCrisis,
 }) => {
   const t = translations[currentLang];
+
+  useEffect(() => {
+    updatePageSEO({
+      title: currentLang === 'en' ? 'Educational Mental Health Screeners (PHQ-9 & GAD-7)' : currentLang === 'hi' ? 'मानसिक स्वास्थ्य आत्म-अवलोकन टूल (PHQ-9 व GAD-7)' : 'આત્મ-મૂલ્યાંકન પ્રશ્નાવલિ (PHQ-9 અને GAD-7)',
+      description: currentLang === 'en'
+        ? 'Validated depression and anxiety questionnaires (PHQ-9 and GAD-7) for self-reflection and preparing for a doctor consultation.'
+        : currentLang === 'hi'
+        ? 'डिप्रेशन और चिंता के लक्षणों को समझने के लिए प्रमाणित प्रश्नावली।'
+        : 'ડિપ્રેશન અને ચિંતાના લક્ષણોની સમજ માટે પ્રશ્નાવલિ.',
+      path: 'interactive',
+      lang: currentLang,
+    });
+  }, [currentLang]);
 
   return (
     <div className="space-y-8 pb-12">

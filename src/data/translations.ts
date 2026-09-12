@@ -46,6 +46,11 @@ export const translations: Record<
       symptoms: string;
       interactive: string;
       emergency: string;
+      articles: string;
+      resources: string;
+      outreach: string;
+      faqs: string;
+      accessibility: string;
       about: string;
     };
     disclaimer: {
@@ -124,6 +129,11 @@ export const translations: Record<
       symptoms: 'Understanding Symptoms',
       interactive: 'Educational Screeners',
       emergency: 'Emergency Helplines',
+      articles: 'Articles & Guides',
+      resources: 'India Helplines & Resources',
+      outreach: 'Clinic & Outreach Materials',
+      faqs: 'FAQs',
+      accessibility: 'Accessibility',
       about: 'About Dr. Raghav Suthar',
     },
     disclaimer: {
@@ -201,6 +211,11 @@ export const translations: Record<
       symptoms: 'लक्षणों की समझ',
       interactive: 'आत्म-अवलोकन टूल',
       emergency: 'आपातकालीन हेल्पलाइन',
+      articles: 'लेख व मार्गदर्शिका',
+      resources: 'राष्ट्रीय संसाधन व हेल्पलाइन',
+      outreach: 'क्लीनिक व प्रचार सामग्री',
+      faqs: 'अक्सर पूछे जाने वाले सवाल',
+      accessibility: 'सुगमता (Accessibility)',
       about: 'डॉ. राघव सुथार के बारे में',
     },
     disclaimer: {
@@ -278,6 +293,11 @@ export const translations: Record<
       symptoms: 'લક્ષણોની સમજ',
       interactive: 'આત્મ-મૂલ્યાંકન',
       emergency: 'ઇમરજન્સી સહાય',
+      articles: 'લેખો અને માર્ગદર્શિકા',
+      resources: 'હેલ્પલાઇન અને કેન્દ્રો',
+      outreach: 'ક્લિનિક પ્રચાર સાહિત્ય',
+      faqs: 'સામાન્ય પ્રશ્નો (FAQs)',
+      accessibility: 'સુગમતા (Accessibility)',
       about: 'ડૉ. રાઘવ સુથાર વિશે',
     },
     disclaimer: {

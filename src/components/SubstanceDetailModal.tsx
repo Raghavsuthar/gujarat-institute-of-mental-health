@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { X, AlertTriangle, ShieldAlert, ChevronDown, ChevronUp } from 'lucide-react';
-import { SubstanceInfo, Language } from '../types';
+import { SubstanceInfo, Language, ShareCardData } from '../types';
 import { translations } from '../data/translations';
+import { SocialShareBar } from './SocialShareBar';
+import { AudioReadAloud } from './AudioReadAloud';
+import { NeuralCircuitryIllustration, GrowthPathIllustration } from './visuals';
 
 interface SubstanceDetailModalProps {
   substance: SubstanceInfo | null;
@@ -19,6 +22,24 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
 
   if (!substance) return null;
   const t = translations[currentLang];
+
+  const cardData: ShareCardData = {
+    type: 'substance',
+    kind: 'substance',
+    title: substance.name[currentLang],
+    category: 'ADDICTION RECOVERY',
+    keyPoints: [
+      substance.whyAddictive[currentLang],
+      substance.brainBodyEffects[currentLang],
+      substance.treatmentApproach[currentLang],
+    ],
+    points: [
+      substance.whyAddictive[currentLang],
+      substance.brainBodyEffects[currentLang],
+      substance.treatmentApproach[currentLang],
+    ],
+    path: `substances/${substance.slug || substance.id}`,
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
@@ -48,6 +69,11 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
           >
             <X className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Visual Header Banner */}
+        <div className="w-full border-b border-stone-200 bg-stone-50 shrink-0">
+          <NeuralCircuitryIllustration className="w-full h-28 sm:h-36" />
         </div>
 
         {/* Navigation Tabs */}
@@ -116,6 +142,22 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
 
         {/* Scrollable Body */}
         <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm">
+          {/* Audio Read-Aloud & Fast Sharing */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-stone-200">
+            <AudioReadAloud
+              text={`${substance.name[currentLang]}. ${substance.whatIsIt[currentLang]}`}
+              currentLang={currentLang}
+              title={substance.name[currentLang]}
+            />
+            <SocialShareBar
+              title={substance.name[currentLang]}
+              subtitle={substance.whatIsIt[currentLang]}
+              path={`substances/${substance.slug || substance.id}`}
+              currentLang={currentLang}
+              variant="compact"
+            />
+          </div>
+
           {/* TAB 1: NEUROBIOLOGY */}
           {activeTab === 'neuro' && (
             <div className="space-y-6">
@@ -144,6 +186,16 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                 <p className="text-stone-700 leading-relaxed">
                   {substance.brainBodyEffects[currentLang]}
                 </p>
+              </div>
+
+              {/* Neural Substrate & Neuroadaptation Illustration */}
+              <div className="space-y-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+                  {currentLang === 'en' ? 'Dopaminergic & Reward Pathway Circuitry' : currentLang === 'hi' ? 'डोपामाइन और रिवॉर्ड सर्किट' : 'ડોપામિન અને રિવોર્ડ સર્કિટ'}
+                </span>
+                <div className="rounded-xl overflow-hidden border border-stone-200 bg-white">
+                  <NeuralCircuitryIllustration className="w-full h-36 sm:h-44" />
+                </div>
               </div>
             </div>
           )}
@@ -183,25 +235,47 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                 <h4 className="text-sm font-semibold text-[#1c2430] mb-1">
                   {t.addiction.withdrawal}
                 </h4>
-                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                  {substance.withdrawalSymptoms[currentLang]}
-                </p>
+                {Array.isArray(substance.withdrawalSymptoms[currentLang]) ? (
+                  <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-stone-700">
+                    {(substance.withdrawalSymptoms[currentLang] as string[]).map((sym, idx) => (
+                      <li key={idx}>{sym}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                    {substance.withdrawalSymptoms[currentLang] as string}
+                  </p>
+                )}
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-white border border-stone-200 rounded-lg">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-                    Medical Complications
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.medicalComplications[currentLang]}</p>
+              {(substance.medicalComplications || substance.psychiatricComplications || substance.healthRisks) && (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {substance.medicalComplications && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        Medical Complications
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.medicalComplications[currentLang]}</p>
+                    </div>
+                  )}
+                  {substance.psychiatricComplications && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        Psychiatric Complications
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.psychiatricComplications[currentLang]}</p>
+                    </div>
+                  )}
+                  {substance.healthRisks && !substance.medicalComplications && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg sm:col-span-2">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        Health Risks & Complications
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.healthRisks[currentLang]}</p>
+                    </div>
+                  )}
                 </div>
-                <div className="p-4 bg-white border border-stone-200 rounded-lg">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-                    Psychiatric Complications
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.psychiatricComplications[currentLang]}</p>
-                </div>
-              </div>
+              )}
             </div>
           )}
 
@@ -217,42 +291,74 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                 </p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-white border border-stone-200 rounded-lg">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-                    Psychotherapy (Motivational Interviewing & CBT)
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                    {substance.psychotherapyModalities[currentLang]}
-                  </p>
-                </div>
+              {(substance.psychotherapyModalities || substance.medicationAssistedTreatment) && (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {substance.psychotherapyModalities && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        Psychotherapy (Motivational Interviewing & CBT)
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {substance.psychotherapyModalities[currentLang]}
+                      </p>
+                    </div>
+                  )}
 
-                <div className="p-4 bg-white border border-stone-200 rounded-lg">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-                    Medication-Assisted Treatment (MAT)
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                    {substance.medicationAssistedTreatment[currentLang]}
-                  </p>
+                  {substance.medicationAssistedTreatment && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        Medication-Assisted Treatment (MAT)
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {substance.medicationAssistedTreatment[currentLang]}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              </div>
+              )}
 
-              <div className="p-4 bg-stone-50 border border-stone-200 rounded-lg space-y-3">
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">
-                    Understanding Detoxification Safely
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                    {substance.detoxificationConcepts[currentLang]}
-                  </p>
+              {(substance.detoxificationConcepts || substance.relapsePrevention || substance.harmReduction || substance.relapseTriggers) && (
+                <div className="p-4 bg-stone-50 border border-stone-200 rounded-lg space-y-3">
+                  {substance.detoxificationConcepts && (
+                    <div>
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">
+                        Understanding Detoxification Safely
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {substance.detoxificationConcepts[currentLang]}
+                      </p>
+                    </div>
+                  )}
+                  {(substance.relapsePrevention || substance.harmReduction) && (
+                    <div className="pt-2 border-t border-stone-200">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">
+                        Relapse Prevention & Harm Reduction
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {[substance.relapsePrevention?.[currentLang], substance.harmReduction?.[currentLang]].filter(Boolean).join(' • ')}
+                      </p>
+                    </div>
+                  )}
+                  {substance.relapseTriggers && (
+                    <div className="pt-2 border-t border-stone-200">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">
+                        Common Relapse Triggers
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                        {substance.relapseTriggers[currentLang]}
+                      </p>
+                    </div>
+                  )}
                 </div>
-                <div className="pt-2 border-t border-stone-200">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">
-                    Relapse Prevention & Harm Reduction
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                    {substance.relapsePrevention[currentLang]} • {substance.harmReduction[currentLang]}
-                  </p>
+              )}
+
+              {/* De-addiction Recovery Trajectory Illustration */}
+              <div className="space-y-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
+                  {currentLang === 'en' ? 'Sustained Sobriety & Brain Recovery Journey' : currentLang === 'hi' ? 'दीर्घकालिक नशा मुक्ति व स्वास्थ्य सुधार' : 'નશામુક્તિ અને મગજના સુધારની યાત્રા'}
+                </span>
+                <div className="rounded-xl overflow-hidden border border-stone-200 bg-white">
+                  <GrowthPathIllustration className="w-full h-36 sm:h-44" />
                 </div>
               </div>
             </div>
@@ -267,7 +373,7 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                   <span>{t.addiction.overdose}</span>
                 </div>
                 <p className="text-sm font-semibold text-stone-900 mb-3 leading-relaxed">
-                  {substance.overdoseWarningSigns[currentLang]}
+                  {substance.overdoseWarningSigns?.[currentLang] || (currentLang === 'en' ? 'Acute intoxication, loss of consciousness, shallow breathing, bluish lips, or sudden seizures are life-threatening medical emergencies.' : currentLang === 'hi' ? 'बेहोशी, सांस धीमी होना, होंठ नीले पड़ना या दौरे पड़ना जानलेवा आपात स्थिति है।' : 'બેભાન અવસ્થા, શ્વાસ ધીમો પડવો કે આંચકી આવવી એ જોખમી ઇમરજન્સી છે.')}
                 </p>
 
                 <div className="p-4 bg-white rounded-lg border border-[#fecaca] space-y-2">
@@ -275,7 +381,7 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                     Immediate Life-Saving Emergency First-Aid Advice:
                   </h4>
                   <p className="text-xs sm:text-sm text-stone-800 leading-relaxed font-medium">
-                    {substance.emergencyAdvice[currentLang]}
+                    {substance.emergencyAdvice?.[currentLang] || (currentLang === 'en' ? 'Place the person in the recovery position on their side. Ensure clear airway. Do NOT induce vomiting or give oral fluids. Call national emergency 112 immediately.' : currentLang === 'hi' ? 'मरीज को एक करवट (Recovery Position) में लिटाएं ताकि सांस की नली खुली रहे। कुछ खिलाने या उल्टी कराने की कोशिश न करें और तुरंत 112 पर कॉल करें।' : 'દર્દીને પડખે સુવડાવો. મોં સાફ રાખો અને ૧૧૨ પર તાત્કાલિક કૉલ કરો.')}
                   </p>
                 </div>
 
@@ -294,7 +400,7 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
           {/* TAB 5: FAQS & MYTHS */}
           {activeTab === 'faqs' && (
             <div className="space-y-6">
-              {substance.mythsVsFacts.length > 0 && (
+              {(substance.mythsVsFacts && substance.mythsVsFacts.length > 0) && (
                 <div>
                   <h3 className="text-base font-semibold text-[#1c2430] mb-3">
                     {t.common.myths}
@@ -320,34 +426,45 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                 </div>
               )}
 
-              <div>
-                <h3 className="text-base font-semibold text-[#1c2430] mb-3">
-                  {t.common.faqs}
-                </h3>
-                <div className="space-y-2">
-                  {substance.faqs.map((faq, idx) => {
-                    const isOpen = openFaqIndex === idx;
-                    return (
-                      <div key={idx} className="rounded-lg border border-stone-200 bg-white overflow-hidden transition">
-                        <button
-                          onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                          className="w-full text-left p-3.5 flex items-center justify-between gap-3 text-[#1c2430] font-semibold text-xs sm:text-sm hover:bg-stone-50 transition cursor-pointer min-h-[44px]"
-                        >
-                          <span>{faq.question[currentLang]}</span>
-                          {isOpen ? <ChevronUp className="w-4 h-4 text-stone-400 shrink-0" /> : <ChevronDown className="w-4 h-4 text-stone-400 shrink-0" />}
-                        </button>
-                        {isOpen && (
-                          <div className="px-3.5 pb-3.5 text-xs sm:text-sm text-stone-600 border-t border-stone-100 pt-2 leading-relaxed bg-stone-50">
-                            {faq.answer[currentLang]}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+              {(substance.faqs && substance.faqs.length > 0) && (
+                <div>
+                  <h3 className="text-base font-semibold text-[#1c2430] mb-3">
+                    {t.common.faqs}
+                  </h3>
+                  <div className="space-y-2">
+                    {substance.faqs.map((faq, idx) => {
+                      const isOpen = openFaqIndex === idx;
+                      return (
+                        <div key={idx} className="rounded-lg border border-stone-200 bg-white overflow-hidden transition">
+                          <button
+                            onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                            className="w-full text-left p-3.5 flex items-center justify-between gap-3 text-[#1c2430] font-semibold text-xs sm:text-sm hover:bg-stone-50 transition cursor-pointer min-h-[44px]"
+                          >
+                            <span>{faq.question[currentLang]}</span>
+                            {isOpen ? <ChevronUp className="w-4 h-4 text-stone-400 shrink-0" /> : <ChevronDown className="w-4 h-4 text-stone-400 shrink-0" />}
+                          </button>
+                          {isOpen && (
+                            <div className="px-3.5 pb-3.5 text-xs sm:text-sm text-stone-600 border-t border-stone-100 pt-2 leading-relaxed bg-stone-50">
+                              {faq.answer[currentLang]}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
+
+          {/* Social Share Bar with Image Card */}
+          <SocialShareBar
+            title={substance.name[currentLang]}
+            subtitle={substance.whatIsIt[currentLang]}
+            path={`substances/${substance.slug || substance.id}`}
+            currentLang={currentLang}
+            cardData={cardData}
+          />
         </div>
 
         {/* Modal Footer */}
