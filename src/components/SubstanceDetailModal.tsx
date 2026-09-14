@@ -276,6 +276,27 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
                   )}
                 </div>
               )}
+
+              {(substance.assessmentOverview || substance.familyImpact) && (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {substance.assessmentOverview && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        {currentLang === 'en' ? 'Clinical Assessment & Diagnostics' : currentLang === 'hi' ? 'नैदानिक परीक्षण व जांच' : 'ક્લિનિકલ મૂલ્યાંકન અને તપાસ'}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.assessmentOverview[currentLang]}</p>
+                    </div>
+                  )}
+                  {substance.familyImpact && (
+                    <div className="p-4 bg-white border border-stone-200 rounded-lg">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
+                        {currentLang === 'en' ? 'Impact on Family & Caregivers' : currentLang === 'hi' ? 'परिवार व परिजनों पर प्रभाव' : 'પરિવાર અને સ્વજનો પર અસર'}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">{substance.familyImpact[currentLang]}</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           )}
 

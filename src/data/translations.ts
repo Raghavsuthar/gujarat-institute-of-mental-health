@@ -38,6 +38,8 @@ export const translations: Record<
     nav: {
       home: string;
       conditions: string;
+      childPsychiatry: string;
+      womensMentalHealth: string;
       addiction: string;
       medications: string;
       treatments: string;
@@ -95,6 +97,23 @@ export const translations: Record<
       treatments: string;
       whenToSeekHelp: string;
     };
+    childPsychiatry: {
+      title: string;
+      subtitle: string;
+      audienceNoticeTitle: string;
+      audienceNoticeText: string;
+      typicalVsRedFlagsTitle: string;
+      commonSignsTitle: string;
+      assessmentTitle: string;
+      treatmentTitle: string;
+      schoolHomeImpactTitle: string;
+      parentGuidanceTitle: string;
+      vignettesTitle: string;
+      mythsTitle: string;
+      faqsTitle: string;
+      referencesTitle: string;
+      whenToSeekHelpTitle: string;
+    };
     addiction: {
       title: string;
       overdose: string;
@@ -121,6 +140,8 @@ export const translations: Record<
     nav: {
       home: 'Home',
       conditions: 'Conditions',
+      childPsychiatry: 'Child & Adolescent',
+      womensMentalHealth: "Women's Mental Health",
       addiction: 'Addiction & De-Addiction',
       medications: 'Medication Info',
       treatments: 'Therapies & Treatment',
@@ -178,6 +199,23 @@ export const translations: Record<
       treatments: 'Multidisciplinary Treatment',
       whenToSeekHelp: 'When to Consult a Psychiatrist',
     },
+    childPsychiatry: {
+      title: 'Child & Adolescent Mental Health',
+      subtitle: 'Clinical and developmental guidance for parents, caregivers, educators, and school counselors.',
+      audienceNoticeTitle: 'Clinical Guidance for Parents, Caregivers & Teachers',
+      audienceNoticeText: 'This section is written specifically for parents, caregivers, teachers, and school counselors to recognize patterns, differentiate expected developmental variations from clinical distress, and understand when and how to seek an in-person evaluation with a qualified child and adolescent psychiatrist. It is not intended for self-diagnosis or labeling a child.',
+      typicalVsRedFlagsTitle: 'Normal Development vs. When to Seek Evaluation',
+      commonSignsTitle: 'Observable Behavioral & Emotional Signs',
+      assessmentTitle: 'Comprehensive Child Psychiatric Evaluation',
+      treatmentTitle: 'Multidisciplinary Treatment & Support',
+      schoolHomeImpactTitle: 'Impact at School & Home Routines',
+      parentGuidanceTitle: 'Supportive Parent & Caregiver Strategies',
+      vignettesTitle: 'Observational Case Vignettes',
+      mythsTitle: 'Myths vs. Clinical Facts',
+      faqsTitle: 'Frequently Asked Questions',
+      referencesTitle: 'Clinical Guidelines & Evidence Base',
+      whenToSeekHelpTitle: 'When to Consult a Child Psychiatrist',
+    },
     addiction: {
       title: 'De-Addiction Medicine',
       overdose: 'Acute Overdose Warning & Emergency Protocol',
@@ -203,6 +241,8 @@ export const translations: Record<
     nav: {
       home: 'होम',
       conditions: 'मानसिक विकार',
+      childPsychiatry: 'बाल व किशोर मानसिक स्वास्थ्य',
+      womensMentalHealth: 'महिला मानसिक स्वास्थ्य',
       addiction: 'नशा व व्यसन मुक्ति',
       medications: 'दवाओं की जानकारी',
       treatments: 'उपचार व थेरेपी',
@@ -260,6 +300,23 @@ export const translations: Record<
       treatments: 'वैज्ञानिक उपचार पद्धतियां',
       whenToSeekHelp: 'डॉक्टर से कब मिलें',
     },
+    childPsychiatry: {
+      title: 'बाल एवं किशोर मानसिक स्वास्थ्य',
+      subtitle: 'माता-पिता, अभिभावकों, शिक्षकों और स्कूल काउंसलर्स के लिए प्रमाण-आधारित विकासात्मक व मनोरोग मार्गदर्शिका।',
+      audienceNoticeTitle: 'माता-पिता, शिक्षकों व देखभालकर्ताओं के लिए आवश्यक सूचना',
+      audienceNoticeText: 'यह अनुभाग विशेष रूप से माता-पिता, शिक्षकों और देखभालकर्ताओं के लिए तैयार किया गया है ताकि वे बच्चों में व्यवहार संबंधी बदलावों को समझ सकें, सामान्य विकास और वास्तविक मानसिक संकट में अंतर जान सकें, और समझें कि कब बाल मनोचिकित्सक से परामर्श लेना चाहिए। यह बच्चों पर कोई लेबल लगाने या डॉक्टर के व्यक्तिगत मूल्यांकन का विकल्प नहीं है।',
+      typicalVsRedFlagsTitle: 'सामान्य विकास बनाम कब विशेषज्ञ सलाह लें',
+      commonSignsTitle: 'प्रमुख अवलोकन योग्य संकेत',
+      assessmentTitle: 'व्यापक मनोरोग व विकासात्मक मूल्यांकन',
+      treatmentTitle: 'बहु-विषयी उपचार एवं सहायता',
+      schoolHomeImpactTitle: 'स्कूल व घरेलू जीवन पर प्रभाव',
+      parentGuidanceTitle: 'माता-पिता व शिक्षकों के लिए व्यावहारिक सुझाव',
+      vignettesTitle: 'अवलोकन आधारित वास्तविक परिस्थितियां (केस उदाहरण)',
+      mythsTitle: 'भ्रांतियां बनाम चिकित्सीय सच',
+      faqsTitle: 'अक्सर पूछे जाने वाले सवाल',
+      referencesTitle: 'वैज्ञानिक संदर्भ एवं दिशानिर्देश',
+      whenToSeekHelpTitle: 'डॉक्टर से कब परामर्श करें',
+    },
     addiction: {
       title: 'नशा मुक्ति चिकित्सा',
       overdose: 'ओवरडोज चेतावनी व आपातकालीन प्रोटोकॉल',
@@ -285,6 +342,8 @@ export const translations: Record<
     nav: {
       home: 'હોમ',
       conditions: 'માનસિક સ્થિતિઓ',
+      childPsychiatry: 'બાળ અને કિશોર માનસિક સ્વાસ્થ્ય',
+      womensMentalHealth: 'મહિલા માનસિક સ્વાસ્થ્ય',
       addiction: 'વ્યસન મુક્તિ',
       medications: 'દવાઓની માહિતી',
       treatments: 'સારવાર અને થેરાપી',
@@ -341,6 +400,23 @@ export const translations: Record<
       neurobiology: 'જૈવિક કારણો અને મગજની રચના',
       treatments: 'વૈજ્ઞાનિક સારવાર',
       whenToSeekHelp: 'ડૉક્ટરની સલાહ ક્યારે લેવી',
+    },
+    childPsychiatry: {
+      title: 'બાળ અને કિશોર માનસિક સ્વાસ્થ્ય',
+      subtitle: 'માતા-પિતા, વાલીઓ, શિક્ષકો અને સ્કૂલ કાઉન્સેલર્સ માટે પુરાવા-આધારિત વિકાસલક્ષી અને મનોચિકિત્સા માર્ગદર્શન.',
+      audienceNoticeTitle: 'માતા-પિતા, શિક્ષકો અને વાલીઓ માટે ખાસ સૂચના',
+      audienceNoticeText: 'આ વિભાગ ખાસ કરીને માતા-પિતા, શિક્ષકો અને પરિવારજનો માટે તૈયાર કરાયો છે જેથી તેઓ બાળકના વર્તનમાં ફેરફારોને સમજી શકે, સામાન્ય વિકાસ અને તબીબી મુશ્કેલી વચ્ચેનો ભેદ પારખી શકે, અને ક્યારે બાળ મનોચિકિત્સક પાસે જવું તે જાણી શકે. આ બાળકો પર લેબલ લગાવવા કે જાતે નિદાન કરવા માટે નથી.',
+      typicalVsRedFlagsTitle: 'સામાન્ય વિકાસ વિરુદ્ધ ક્યારે તપાસ કરાવવી',
+      commonSignsTitle: 'ધ્યાનમાં આવતા મુખ્ય સંકેતો',
+      assessmentTitle: 'સર્વગ્રાહી તબીબી અને વિકાસલક્ષી તપાસ',
+      treatmentTitle: 'બહુ-શાખાકીય સારવાર અને સહાય',
+      schoolHomeImpactTitle: 'શાળા અને ઘરના જીવન પર અસર',
+      parentGuidanceTitle: 'માતા-પિતા અને શિક્ષકો માટે વ્યવહારુ માર્ગદર્શન',
+      vignettesTitle: 'અવલોકન આધારિત કેસ ઉદાહરણો',
+      mythsTitle: 'માન્યતાઓ સામે તબીબી સત્ય',
+      faqsTitle: 'વારંવાર પૂછાતા પ્રશ્નો',
+      referencesTitle: 'વૈજ્ઞાનિક સંદર્ભો અને માર્ગદર્શિકા',
+      whenToSeekHelpTitle: 'ડૉક્ટરની સલાહ ક્યારે લેવી',
     },
     addiction: {
       title: 'વ્યસન મુક્તિ માર્ગદર્શન',

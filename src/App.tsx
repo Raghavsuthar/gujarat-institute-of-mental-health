@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Routes,
   Route,
@@ -7,13 +7,15 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
-import { Phone } from 'lucide-react';
+import { Phone, Info, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Language,
   ActiveTab,
   Condition,
   SubstanceInfo,
   MedicationClass,
+  WomensMentalHealthTopic,
 } from './types';
 import { Header } from './components/Header';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
@@ -25,10 +27,14 @@ import { ScreenerModal } from './components/ScreenerModal';
 import { ConditionDetailModal } from './components/ConditionDetailModal';
 import { SubstanceDetailModal } from './components/SubstanceDetailModal';
 import { MedicationDetailModal } from './components/MedicationDetailModal';
+import { ChildPsychiatryModal } from './components/ChildPsychiatryModal';
+import { WomensMentalHealthModal } from './components/WomensMentalHealthModal';
 
 // Views
 import { HomeView } from './views/HomeView';
 import { ConditionsView } from './views/ConditionsView';
+import { ChildPsychiatryView } from './views/ChildPsychiatryView';
+import { WomensMentalHealthView } from './views/WomensMentalHealthView';
 import { AddictionView } from './views/AddictionView';
 import { MedicationsView } from './views/MedicationsView';
 import { TreatmentsView } from './views/TreatmentsView';
@@ -48,6 +54,8 @@ import { EducationalQAAssistant } from './components/EducationalQAAssistant';
 import { conditionsData } from './data/conditions';
 import { substancesData } from './data/substances';
 import { medicationsData } from './data/medications';
+import { childAdolescentTopics } from './data/childAdolescent';
+import { womensMentalHealthTopics } from './data/womensMentalHealth';
 import { recordPageView } from './utils/analytics';
 
 const VALID_LANGS: Language[] = ['en', 'hi', 'gu'];
@@ -91,6 +99,8 @@ export default function App() {
   const activeTab: ActiveTab = useMemo(() => {
     const section = pathParts[1] || 'home';
     if (section === 'conditions') return 'conditions';
+    if (section === 'child-psychiatry') return 'child-psychiatry';
+    if (section === 'womens-mental-health') return 'womens-mental-health';
     if (section === 'addiction' || section === 'substances') return 'addiction';
     if (section === 'medications') return 'medications';
     if (section === 'treatments') return 'treatments';
@@ -111,8 +121,59 @@ export default function App() {
   const [isCrisisOpen, setIsCrisisOpen] = useState(false);
   const [isScreenerOpen, setIsScreenerOpen] = useState(false);
 
+  // Toast state for #floating-emergency-icon when already on emergency route
+  const [showEmergencyToast, setShowEmergencyToast] = useState(false);
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Check if user is currently on the emergency route
+  const isEmergencyRoute = useMemo(() => {
+    const normalized = location.pathname.toLowerCase();
+    return (
+      activeTab === 'emergency' ||
+      pathParts[1] === 'emergency' ||
+      normalized.endsWith('/emergency') ||
+      normalized.includes('/emergency/')
+    );
+  }, [activeTab, pathParts, location.pathname]);
+
+  // Clean up toast timer on unmount or route change
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isEmergencyRoute) {
+      setShowEmergencyToast(false);
+    }
+  }, [isEmergencyRoute]);
+
+  const handleFloatingEmergencyClick = () => {
+    if (isEmergencyRoute) {
+      // User is already in the emergency route:
+      // Disable modal open action, scroll page to top, and show toast notification
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setShowEmergencyToast(true);
+
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+      }
+      toastTimeoutRef.current = setTimeout(() => {
+        setShowEmergencyToast(false);
+      }, 4000);
+      return;
+    }
+
+    setIsCrisisOpen(true);
+  };
+
   // Deep linking modal items derived from route params
   const conditionSlug = pathParts[1] === 'conditions' && pathParts[2] ? pathParts[2] : null;
+  const childTopicSlug = pathParts[1] === 'child-psychiatry' && pathParts[2] ? pathParts[2] : null;
+  const womensTopicSlug = pathParts[1] === 'womens-mental-health' && pathParts[2] ? pathParts[2] : null;
   const substanceSlug = pathParts[1] === 'substances' && pathParts[2] ? pathParts[2] : null;
   const medicationId = pathParts[1] === 'medications' && pathParts[2] ? pathParts[2] : null;
 
@@ -122,6 +183,20 @@ export default function App() {
       (c) => c.slug === conditionSlug || c.id === conditionSlug
     ) || null;
   }, [conditionSlug]);
+
+  const deepLinkedChildTopic = useMemo(() => {
+    if (!childTopicSlug) return null;
+    return childAdolescentTopics.find(
+      (t) => t.slug === childTopicSlug || t.id === childTopicSlug
+    ) || null;
+  }, [childTopicSlug]);
+
+  const deepLinkedWomensTopic = useMemo(() => {
+    if (!womensTopicSlug) return null;
+    return womensMentalHealthTopics.find(
+      (t) => t.slug === womensTopicSlug || t.id === womensTopicSlug
+    ) || null;
+  }, [womensTopicSlug]);
 
   const deepLinkedSubstance = useMemo(() => {
     if (!substanceSlug) return null;
@@ -234,6 +309,50 @@ export default function App() {
             }
           />
 
+          {/* Child & Adolescent Mental Health */}
+          <Route
+            path="/:lang/child-psychiatry"
+            element={
+              <ChildPsychiatryView
+                currentLang={currentLang}
+                onSelectTopic={(topic) => navigate(`/${currentLang}/child-psychiatry/${topic.slug || topic.id}`)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
+          />
+          <Route
+            path="/:lang/child-psychiatry/:slug"
+            element={
+              <ChildPsychiatryView
+                currentLang={currentLang}
+                onSelectTopic={(topic) => navigate(`/${currentLang}/child-psychiatry/${topic.slug || topic.id}`)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
+          />
+
+          {/* Women's Mental Health & Deep-linked topic */}
+          <Route
+            path="/:lang/womens-mental-health"
+            element={
+              <WomensMentalHealthView
+                currentLang={currentLang}
+                onSelectTopic={(topic) => navigate(`/${currentLang}/womens-mental-health/${topic.slug || topic.id}`)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
+          />
+          <Route
+            path="/:lang/womens-mental-health/:slug"
+            element={
+              <WomensMentalHealthView
+                currentLang={currentLang}
+                onSelectTopic={(topic) => navigate(`/${currentLang}/womens-mental-health/${topic.slug || topic.id}`)}
+                onOpenCrisis={() => setIsCrisisOpen(true)}
+              />
+            }
+          />
+
           {/* Addiction & Deep-linked Substance */}
           <Route
             path="/:lang/addiction"
@@ -242,6 +361,7 @@ export default function App() {
                 currentLang={currentLang}
                 onSelectSubstance={(sub) => navigate(`/${currentLang}/substances/${sub.slug || sub.id}`)}
                 onOpenCrisis={() => setIsCrisisOpen(true)}
+                onNavigateResources={() => handleTabChange('resources')}
               />
             }
           />
@@ -252,6 +372,7 @@ export default function App() {
                 currentLang={currentLang}
                 onSelectSubstance={(sub) => navigate(`/${currentLang}/substances/${sub.slug || sub.id}`)}
                 onOpenCrisis={() => setIsCrisisOpen(true)}
+                onNavigateResources={() => handleTabChange('resources')}
               />
             }
           />
@@ -333,6 +454,8 @@ export default function App() {
         onSelectCondition={(item) => navigate(`/${currentLang}/conditions/${item.slug}`)}
         onSelectSubstance={(item) => navigate(`/${currentLang}/substances/${item.slug || item.id}`)}
         onSelectMedication={(item) => navigate(`/${currentLang}/medications/${item.id}`)}
+        onSelectChildTopic={(topic) => navigate(`/${currentLang}/child-psychiatry/${topic.slug || topic.id}`)}
+        onSelectWomensTopic={(topic) => navigate(`/${currentLang}/womens-mental-health/${topic.slug || topic.id}`)}
         onNavigateTab={(tab) => handleTabChange(tab)}
       />
 
@@ -363,6 +486,28 @@ export default function App() {
         }}
       />
 
+      {/* Bidirectionally URL-synced Child Psychiatry Detail Modal */}
+      <ChildPsychiatryModal
+        topic={deepLinkedChildTopic}
+        onClose={() => navigate(`/${currentLang}/child-psychiatry`)}
+        currentLang={currentLang}
+        onOpenCrisis={() => {
+          navigate(`/${currentLang}/child-psychiatry`);
+          setIsCrisisOpen(true);
+        }}
+      />
+
+      {/* Bidirectionally URL-synced Women's Mental Health Detail Modal */}
+      <WomensMentalHealthModal
+        topic={deepLinkedWomensTopic}
+        onClose={() => navigate(`/${currentLang}/womens-mental-health`)}
+        currentLang={currentLang}
+        onOpenCrisis={() => {
+          navigate(`/${currentLang}/womens-mental-health`);
+          setIsCrisisOpen(true);
+        }}
+      />
+
       {/* Bidirectionally URL-synced Substance Detail Modal */}
       <SubstanceDetailModal
         substance={deepLinkedSubstance}
@@ -385,10 +530,54 @@ export default function App() {
         onOpenCrisis={() => setIsCrisisOpen(true)}
       />
 
+      {/* Toast Notification when clicking emergency icon while already in Emergency route */}
+      <AnimatePresence>
+        {showEmergencyToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 12, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            role="status"
+            aria-live="polite"
+            className="fixed bottom-20 left-5 z-50 max-w-xs sm:max-w-sm bg-stone-900/95 backdrop-blur-xs text-white p-3.5 rounded-xl shadow-xl border border-stone-700/80 flex items-start gap-3"
+          >
+            <div className="p-1.5 rounded-lg bg-red-900/70 text-red-300 shrink-0 mt-0.5">
+              <Info className="w-4 h-4" />
+            </div>
+            <div className="flex-1 min-w-0 pr-1">
+              <p className="text-xs font-semibold text-stone-100">
+                {currentLang === 'en'
+                  ? 'You are already in the Emergency Crisis Support section'
+                  : currentLang === 'hi'
+                  ? 'आप पहले से ही आपातकालीन संकट सहायता अनुभाग में हैं'
+                  : 'તમે પહેલેથી જ ઇમરજન્સી સંકટ સહાય વિભાગમાં છો'}
+              </p>
+              <p className="text-[11px] text-stone-300 mt-0.5 leading-snug">
+                {currentLang === 'en'
+                  ? 'Scrolled to top. 24x7 toll-free crisis numbers and protocols are listed directly on this page.'
+                  : currentLang === 'hi'
+                  ? 'पृष्ठ ऊपर स्क्रॉल किया गया है। 24x7 टोल-फ्री संकट नंबर व दिशा-निर्देश सीधे इस पृष्ठ पर उपलब्ध हैं।'
+                  : 'પેજ ઉપર સ્ક્રોલ કર્યું છે. ૨૪x૭ વિનામૂલ્યે હેલ્પલાઇન નંબરો અને પ્રોટોકોલ સીધા આ પેજ પર ઉપલબ્ધ છે.'}
+              </p>
+            </div>
+            <button
+              onClick={() => setShowEmergencyToast(false)}
+              className="text-stone-400 hover:text-white p-1 rounded-md transition-colors shrink-0 cursor-pointer"
+              aria-label={
+                currentLang === 'en' ? 'Close notification' : currentLang === 'hi' ? 'सूचना बंद करें' : 'સૂચના બંધ કરો'
+              }
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Floating Emergency Icon (Left Lower Corner) */}
       <button
         id="floating-emergency-icon"
-        onClick={() => setIsCrisisOpen(true)}
+        onClick={handleFloatingEmergencyClick}
         aria-label={
           currentLang === 'en'
             ? 'Emergency Crisis Support - Tele-MANAS 14416 (24x7)'
@@ -397,7 +586,13 @@ export default function App() {
             : 'ઇમરજન્સી સંકટ સહાય - ટેલી-માનસ ૧૪૪૧૬ (૨૪x૭)'
         }
         title={
-          currentLang === 'en'
+          isEmergencyRoute
+            ? currentLang === 'en'
+              ? 'Already on Emergency Support (Scroll to top)'
+              : currentLang === 'hi'
+              ? 'पहले से आपातकालीन सहायता पर (ऊपर स्क्रॉल करें)'
+              : 'પહેલેથી ઇમરજન્સી સહાય પર (ઉપર સ્ક્રોલ કરો)'
+            : currentLang === 'en'
             ? 'Emergency Crisis Support (Tele-MANAS 14416 / 112)'
             : currentLang === 'hi'
             ? 'आपातकालीन संकट सहायता (टेली-मानस 14416 / 112)'

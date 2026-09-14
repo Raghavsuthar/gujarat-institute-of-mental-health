@@ -4,18 +4,20 @@ import { Language, SubstanceInfo } from '../types';
 import { substancesData } from '../data/substances';
 import { translations } from '../data/translations';
 import { updatePageSEO } from '../utils/seo';
-import { NeuralCircuitryIllustration } from '../components/visuals';
+import { NeuralCircuitryIllustration, CravingToolkit } from '../components/visuals';
 
 interface AddictionViewProps {
   currentLang: Language;
   onSelectSubstance: (item: SubstanceInfo) => void;
   onOpenCrisis: () => void;
+  onNavigateResources?: () => void;
 }
 
 export const AddictionView: React.FC<AddictionViewProps> = ({
   currentLang,
   onSelectSubstance,
   onOpenCrisis,
+  onNavigateResources,
 }) => {
   const t = translations[currentLang];
 
@@ -88,6 +90,13 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
           </a>
         </div>
       </div>
+
+      {/* Craving De-Escalation Toolkit (Somatic First-Aid & Urge Management) */}
+      <CravingToolkit
+        currentLang={currentLang}
+        onOpenCrisis={onOpenCrisis}
+        onNavigateResources={onNavigateResources}
+      />
 
       {/* Substances Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

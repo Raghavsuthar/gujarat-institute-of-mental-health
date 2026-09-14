@@ -26,6 +26,8 @@ export const Header: React.FC<HeaderProps> = ({
   const navItems: { id: ActiveTab; label: string }[] = [
     { id: 'home', label: t.nav.home },
     { id: 'conditions', label: t.nav.conditions },
+    { id: 'child-psychiatry', label: t.nav.childPsychiatry },
+    { id: 'womens-mental-health', label: t.nav.womensMentalHealth },
     { id: 'addiction', label: t.nav.addiction },
     { id: 'medications', label: t.nav.medications },
     { id: 'treatments', label: t.nav.treatments },

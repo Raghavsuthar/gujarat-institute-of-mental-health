@@ -1,12 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { Search, X, BookOpen, AlertCircle, Pill, Activity, HelpCircle, HeartPulse, ArrowRight } from 'lucide-react';
-import { Language, Condition, SubstanceInfo, MedicationClass, TherapyModality, MythFact, SymptomEducation } from '../types';
+import { Language, Condition, SubstanceInfo, MedicationClass, TherapyModality, MythFact, SymptomEducation, ChildAdolescentTopic, WomensMentalHealthTopic } from '../types';
 import { conditionsData } from '../data/conditions';
 import { substancesData } from '../data/substances';
 import { medicationsData } from '../data/medications';
 import { treatmentsData } from '../data/treatments';
 import { mythsData } from '../data/myths';
 import { symptomsData } from '../data/symptoms';
+import { childAdolescentTopics } from '../data/childAdolescent';
+import { womensMentalHealthTopics } from '../data/womensMentalHealth';
 import { translations } from '../data/translations';
 
 interface SearchModalProps {
@@ -16,6 +18,8 @@ interface SearchModalProps {
   onSelectCondition: (item: Condition) => void;
   onSelectSubstance: (item: SubstanceInfo) => void;
   onSelectMedication: (item: MedicationClass) => void;
+  onSelectChildTopic?: (item: ChildAdolescentTopic) => void;
+  onSelectWomensTopic?: (item: WomensMentalHealthTopic) => void;
   onSelectTherapy?: (item: TherapyModality) => void;
   onSelectSymptom?: (item: SymptomEducation) => void;
   onNavigateTab?: (tab: any) => void;
@@ -28,6 +32,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   onSelectCondition,
   onSelectSubstance,
   onSelectMedication,
+  onSelectChildTopic,
+  onSelectWomensTopic,
   onSelectTherapy,
   onSelectSymptom,
   onNavigateTab: _onNavigateTab,
@@ -41,7 +47,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
     const matched: Array<{
       id: string;
-      type: 'condition' | 'substance' | 'medication' | 'therapy' | 'myth' | 'symptom';
+      type: 'condition' | 'substance' | 'medication' | 'therapy' | 'myth' | 'symptom' | 'childPsychiatry' | 'womensMentalHealth';
       title: string;
       snippet: string;
       rawItem: any;
@@ -126,6 +132,42 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           title: title,
           snippet: descText.slice(0, 140) + '...',
           rawItem: sym,
+        });
+      }
+    });
+
+    // Search Child & Adolescent Psychiatry Topics
+    childAdolescentTopics.forEach((ct) => {
+      const title = ct.name[currentLang] || ct.name.en;
+      const terms = ct.medicalTerms[currentLang] || '';
+      const overviewText = ct.overview?.[currentLang] || ct.overview?.en || '';
+      const taglineText = ct.tagline?.[currentLang] || ct.tagline?.en || '';
+      const text = `${ct.name.en} ${ct.name.hi} ${ct.name.gu} ${ct.medicalTerms.en} ${ct.medicalTerms.hi} ${ct.medicalTerms.gu} ${overviewText} ${taglineText}`.toLowerCase();
+      if (text.includes(q)) {
+        matched.push({
+          id: `child-${ct.id}`,
+          type: 'childPsychiatry',
+          title: `${title} (${terms})`,
+          snippet: overviewText.slice(0, 140) + '...',
+          rawItem: ct,
+        });
+      }
+    });
+
+    // Search Women's Mental Health Topics
+    womensMentalHealthTopics.forEach((wt) => {
+      const title = wt.name[currentLang] || wt.name.en;
+      const terms = wt.medicalTerms[currentLang] || '';
+      const overviewText = wt.overview?.[currentLang] || wt.overview?.en || '';
+      const taglineText = wt.tagline?.[currentLang] || wt.tagline?.en || '';
+      const text = `${wt.name.en} ${wt.name.hi} ${wt.name.gu} ${wt.medicalTerms.en} ${wt.medicalTerms.hi} ${wt.medicalTerms.gu} ${overviewText} ${taglineText}`.toLowerCase();
+      if (text.includes(q)) {
+        matched.push({
+          id: `women-${wt.id}`,
+          type: 'womensMentalHealth',
+          title: `${title} (${terms})`,
+          snippet: overviewText.slice(0, 140) + '...',
+          rawItem: wt,
         });
       }
     });
@@ -215,6 +257,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               typeLabel = t.nav.treatments;
             } else if (res.type === 'symptom') {
               typeLabel = t.nav.symptoms;
+            } else if (res.type === 'childPsychiatry') {
+              typeLabel = currentLang === 'en' ? 'Child Psychiatry' : currentLang === 'hi' ? 'बाल मनोचिकित्सा' : 'બાળ મનોચિકિત્સા';
+            } else if (res.type === 'womensMentalHealth') {
+              typeLabel = t.nav.womensMentalHealth;
             }
 
             return (
@@ -224,8 +270,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   if (res.type === 'condition') onSelectCondition(res.rawItem);
                   if (res.type === 'substance') onSelectSubstance(res.rawItem);
                   if (res.type === 'medication') onSelectMedication(res.rawItem);
-                  if (res.type === 'therapy') onSelectTherapy(res.rawItem);
-                  if (res.type === 'symptom') onSelectSymptom(res.rawItem);
+                  if (res.type === 'therapy' && onSelectTherapy) onSelectTherapy(res.rawItem);
+                  if (res.type === 'symptom' && onSelectSymptom) onSelectSymptom(res.rawItem);
+                  if (res.type === 'childPsychiatry' && onSelectChildTopic) onSelectChildTopic(res.rawItem);
+                  if (res.type === 'womensMentalHealth' && onSelectWomensTopic) onSelectWomensTopic(res.rawItem);
                   onClose();
                 }}
                 className="pt-2.5 pb-2.5 px-3 hover:bg-stone-50 rounded-lg transition cursor-pointer group flex items-start justify-between gap-3 min-h-[44px]"

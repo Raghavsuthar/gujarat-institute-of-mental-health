@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { ConditionCategory } from '../../types';
 
 interface IllustrationProps {
@@ -83,63 +84,179 @@ export const MoodIllustration: React.FC<IllustrationProps> = ({
 export const AnxietyIllustration: React.FC<IllustrationProps> = ({
   className = 'w-full h-full',
   ariaLabel = 'Calming illustration showing gentle water waves settling into tranquil still water',
-}) => (
-  <svg
-    viewBox="0 0 480 180"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    role="img"
-    aria-label={ariaLabel}
-  >
-    <defs>
-      <linearGradient id="anxietyBg" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#f0fdfa" />
-        <stop offset="100%" stopColor="#ccfbf1" />
-      </linearGradient>
-      <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#0f766e" />
-        <stop offset="50%" stopColor="#14b8a6" />
-        <stop offset="100%" stopColor="#5eead4" />
-      </linearGradient>
-      <linearGradient id="waveGrad2" x1="100%" y1="0%" x2="0%" y2="0%">
-        <stop offset="0%" stopColor="#115e59" />
-        <stop offset="100%" stopColor="#2dd4bf" />
-      </linearGradient>
-    </defs>
-    <rect width="480" height="180" rx="16" fill="url(#anxietyBg)" />
+}) => {
+  const prefersReducedMotion = useReducedMotion();
 
-    {/* Concentric Grounding Droplets */}
-    <ellipse cx="240" cy="70" rx="70" ry="18" stroke="#14b8a6" strokeWidth="1" opacity="0.3" fill="none" />
-    <ellipse cx="240" cy="70" rx="120" ry="30" stroke="#0d9488" strokeWidth="1" opacity="0.2" fill="none" />
-    <ellipse cx="240" cy="70" rx="170" ry="42" stroke="#0f766e" strokeWidth="0.8" opacity="0.15" fill="none" />
+  return (
+    <svg
+      viewBox="0 0 480 180"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      role="img"
+      aria-label={ariaLabel}
+    >
+      <defs>
+        <linearGradient id="anxietyBg" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#f0fdfa" />
+          <stop offset="100%" stopColor="#ccfbf1" />
+        </linearGradient>
+        <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#0f766e" />
+          <stop offset="50%" stopColor="#14b8a6" />
+          <stop offset="100%" stopColor="#5eead4" />
+        </linearGradient>
+        <linearGradient id="waveGrad2" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="#115e59" />
+          <stop offset="100%" stopColor="#2dd4bf" />
+        </linearGradient>
+      </defs>
+      <rect width="480" height="180" rx="16" fill="url(#anxietyBg)" />
 
-    {/* Smooth Grounding Stone */}
-    <ellipse cx="240" cy="70" rx="22" ry="10" fill="#134e4a" opacity="0.85" />
-    <ellipse cx="240" cy="67" rx="16" ry="6" fill="#2dd4bf" opacity="0.6" />
+      {/* Concentric Grounding Droplets */}
+      <motion.ellipse
+        cx="240"
+        cy="70"
+        rx="70"
+        ry="18"
+        stroke="#14b8a6"
+        strokeWidth="1"
+        opacity="0.3"
+        fill="none"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                scale: [0.96, 1.04, 0.96],
+                opacity: [0.2, 0.4, 0.2],
+              }
+        }
+        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ transformOrigin: '240px 70px' }}
+      />
+      <motion.ellipse
+        cx="240"
+        cy="70"
+        rx="120"
+        ry="30"
+        stroke="#0d9488"
+        strokeWidth="1"
+        opacity="0.2"
+        fill="none"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                scale: [0.98, 1.02, 0.98],
+                opacity: [0.15, 0.28, 0.15],
+              }
+        }
+        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+        style={{ transformOrigin: '240px 70px' }}
+      />
+      <ellipse cx="240" cy="70" rx="170" ry="42" stroke="#0f766e" strokeWidth="0.8" opacity="0.15" fill="none" />
 
-    {/* Layered Calming Waves */}
-    <path
-      d="M-20 180 L-20 130 C60 115 120 145 200 130 C280 115 360 140 440 128 C470 124 500 128 500 128 L500 180 Z"
-      fill="url(#waveGrad1)"
-      opacity="0.35"
-    />
-    <path
-      d="M-20 180 L-20 145 C80 135 160 155 240 142 C320 130 400 150 500 140 L500 180 Z"
-      fill="url(#waveGrad2)"
-      opacity="0.65"
-    />
-    <path
-      d="M-20 180 L-20 160 C100 152 200 165 300 156 C400 148 460 158 500 154 L500 180 Z"
-      fill="#0f766e"
-      opacity="0.9"
-    />
+      {/* Smooth Grounding Stone */}
+      <ellipse cx="240" cy="70" rx="22" ry="10" fill="#134e4a" opacity="0.85" />
+      <ellipse cx="240" cy="67" rx="16" ry="6" fill="#2dd4bf" opacity="0.6" />
 
-    {/* Floating Serene Water Lilies / Lotus Petals */}
-    <path d="M120 120 C125 110 135 110 140 120 C135 125 125 125 120 120 Z" fill="#99f6e4" opacity="0.8" />
-    <path d="M350 112 C355 104 365 104 370 112 C365 117 355 117 350 112 Z" fill="#99f6e4" opacity="0.75" />
-  </svg>
-);
+      {/* Layered Calming Waves in Motion */}
+      {/* Wave Layer 1: Background Soft Crest (Targeted Selected Wave Element) */}
+      <motion.path
+        d="M-20 180 L-20 130 C60 115 120 145 200 130 C280 115 360 140 440 128 C470 124 500 128 500 128 L500 180 Z"
+        fill="url(#waveGrad1)"
+        opacity="0.35"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                x: [-14, 14, -14],
+                y: [-2.5, 3, -2.5],
+              }
+        }
+        transition={{
+          duration: 7.2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+
+      {/* Wave Layer 2: Mid-level Flowing Current */}
+      <motion.path
+        d="M-20 180 L-20 145 C80 135 160 155 240 142 C320 130 400 150 500 140 L500 180 Z"
+        fill="url(#waveGrad2)"
+        opacity="0.65"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                x: [12, -12, 12],
+                y: [2, -2.5, 2],
+              }
+        }
+        transition={{
+          duration: 5.8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+
+      {/* Wave Layer 3: Foreground Serene Grounded Baseline Wave */}
+      <motion.path
+        d="M-20 180 L-20 160 C100 152 200 165 300 156 C400 148 460 158 500 154 L500 180 Z"
+        fill="#0f766e"
+        opacity="0.9"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                x: [-8, 8, -8],
+                y: [-1.5, 2, -1.5],
+              }
+        }
+        transition={{
+          duration: 4.6,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+
+      {/* Floating Serene Water Lilies / Lotus Petals Gently Drifting with Waves */}
+      <motion.path
+        d="M120 120 C125 110 135 110 140 120 C135 125 125 125 120 120 Z"
+        fill="#99f6e4"
+        opacity="0.8"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                y: [-2, 3, -2],
+                x: [-3, 3, -3],
+                rotate: [-3, 3, -3],
+              }
+        }
+        transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ transformOrigin: '130px 118px' }}
+      />
+      <motion.path
+        d="M350 112 C355 104 365 104 370 112 C365 117 355 117 350 112 Z"
+        fill="#99f6e4"
+        opacity="0.75"
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : {
+                y: [2, -3, 2],
+                x: [3, -3, 3],
+                rotate: [3, -3, 3],
+              }
+        }
+        transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+        style={{ transformOrigin: '360px 110px' }}
+      />
+    </svg>
+  );
+};
 
 /**
  * OCD: Balanced zen stones with a gently unwinding spiral that resolves into clean harmony.
@@ -697,6 +814,64 @@ export const PerinatalIllustration: React.FC<IllustrationProps> = ({
     <circle cx="248" cy="120" r="10" fill="#f43f5e" opacity="0.8" />
     <circle cx="240" cy="112" r="10" fill="#fda4af" />
     <circle cx="240" cy="118" r="5" fill="#fef08a" />
+  </svg>
+);
+
+/**
+ * Women's Mental Health: A serene life-course archway with blossoming flora, warm protective glow, and biological balance ripples representing female resilience and wellbeing.
+ */
+export const WomensMentalHealthIllustration: React.FC<IllustrationProps> = ({
+  className = 'w-full h-full',
+  ariaLabel = 'Calming illustration showing a supportive archway, blooming lotus, and gentle ripples representing women\'s mental health across the life course',
+}) => (
+  <svg
+    viewBox="0 0 480 180"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    role="img"
+    aria-label={ariaLabel}
+  >
+    <defs>
+      <linearGradient id="wmhBg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#fff1f2" />
+        <stop offset="60%" stopColor="#fdf4ff" />
+        <stop offset="100%" stopColor="#f0fdfa" />
+      </linearGradient>
+      <linearGradient id="wmhLotus" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#f43f5e" />
+        <stop offset="100%" stopColor="#be123c" />
+      </linearGradient>
+    </defs>
+    <rect width="480" height="180" rx="16" fill="url(#wmhBg)" />
+
+    {/* Warm Radiance of Life Course */}
+    <circle cx="240" cy="85" r="55" fill="#fce7f3" opacity="0.6" />
+    <circle cx="240" cy="85" r="75" stroke="#fbcfe8" strokeWidth="1" strokeDasharray="5 7" fill="none" opacity="0.5" />
+    <circle cx="240" cy="85" r="95" stroke="#cbd5e1" strokeWidth="0.8" strokeDasharray="3 5" fill="none" opacity="0.35" />
+
+    {/* Elegant Supportive Arch of Biological Resilience */}
+    <path
+      d="M150 150 C160 70 215 50 240 50 C265 50 320 70 330 150"
+      stroke="#0f766e"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      fill="none"
+    />
+    <path d="M175 105 C165 98 168 88 178 92 Z" fill="#0d9488" />
+    <path d="M305 105 C315 98 312 88 302 92 Z" fill="#0d9488" />
+
+    {/* Blossoming Lotus Centerpiece */}
+    <ellipse cx="240" cy="132" rx="42" ry="14" fill="#fed7aa" opacity="0.6" />
+    <path d="M210 132 C215 152 265 152 270 132 Z" fill="#0f766e" opacity="0.85" />
+    <circle cx="240" cy="116" r="15" fill="#fb7185" />
+    <circle cx="230" cy="118" r="11" fill="url(#wmhLotus)" opacity="0.85" />
+    <circle cx="250" cy="118" r="11" fill="url(#wmhLotus)" opacity="0.85" />
+    <circle cx="240" cy="108" r="11" fill="#fda4af" />
+    <circle cx="240" cy="116" r="5" fill="#fef08a" />
+
+    {/* Grounding Horizon Line */}
+    <path d="M90 155 Q240 148 390 155" stroke="#0d9488" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
   </svg>
 );
 

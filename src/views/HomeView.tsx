@@ -14,7 +14,9 @@ import {
   ShieldCheck,
   FileText,
   BookmarkCheck,
-  Printer
+  Printer,
+  GraduationCap,
+  Heart
 } from 'lucide-react';
 import { Language, ActiveTab, Condition, SubstanceInfo } from '../types';
 import { translations } from '../data/translations';
@@ -214,6 +216,56 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59]">
               <span>{currentLang === 'en' ? 'Browse Conditions' : currentLang === 'hi' ? 'बीमारियां देखें' : 'બીમારીઓ જુઓ'}</span>
+            </div>
+          </div>
+
+          {/* Card: Child & Adolescent Mental Health */}
+          <div
+            onClick={() => onTabChange('child-psychiatry')}
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-sky-500 transition cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 flex items-center justify-center">
+                <GraduationCap className="w-5 h-5" />
+              </div>
+              <h3 className="font-semibold text-base text-[#1c2430]">
+                {t.nav.childPsychiatry}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                {currentLang === 'en'
+                  ? 'Evidence-based guidance for parents & teachers: ADHD, Autism, Exam Anxiety, Learning, Tech Overuse & School Refusal.'
+                  : currentLang === 'hi'
+                  ? 'माता-पिता व शिक्षकों हेतु मार्गदर्शन: एडीएचडी, ऑटिज्म, परीक्षा तनाव, सीखने के विकार और मोबाइल की लत।'
+                  : 'માતા-પિતા અને શિક્ષકો માટે માર્ગદર્શન: ADHD, ઓટિઝમ, પરીક્ષાનો ડર, સ્કૂલ જવાનો ડર અને મોબાઈલની લત.'}
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-sky-700">
+              <span>{currentLang === 'en' ? 'Child Psychiatry Guide' : currentLang === 'hi' ? 'बाल मनोरोग मार्गदर्शिका' : 'બાળ મનોચિકિત્સા માર્ગદર્શિકા'}</span>
+            </div>
+          </div>
+
+          {/* Card: Women's Mental Health */}
+          <div
+            onClick={() => onTabChange('womens-mental-health')}
+            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-rose-500 transition cursor-pointer flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="w-10 h-10 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 flex items-center justify-center">
+                <Heart className="w-5 h-5" />
+              </div>
+              <h3 className="font-semibold text-base text-[#1c2430]">
+                {t.nav.womensMentalHealth}
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                {currentLang === 'en'
+                  ? 'Perinatal depression, postpartum psychosis, PMDD, perimenopause, PCOS, caregiver burden, and gender-informed care.'
+                  : currentLang === 'hi'
+                  ? 'प्रसवोत्तर अवसाद, पीएमडीडी, रजोनिवृत्ति (मेनोपॉज), पीसीओएस और महिलाओं के विशिष्ट मानसिक स्वास्थ्य की समझ।'
+                  : 'ગર્ભાવસ્થા અને પ્રસૂતિ પછીનું ડિપ્રેશન, PMDD, મેનોપોઝ, PCOS અને મહિલા માનસિક સ્વાસ્થ્ય માર્ગદર્શન.'}
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-rose-700">
+              <span>{currentLang === 'en' ? "Women's Health Guide" : currentLang === 'hi' ? 'महिला स्वास्थ्य मार्गदर्शिका' : 'મહિલા સ્વાસ્થ્ય માર્ગદર્શિકા'}</span>
             </div>
           </div>
 

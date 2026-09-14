@@ -7,9 +7,11 @@ export interface LocalizedString {
 }
 
 export interface ReferenceItem {
-  citation: string;
-  source: string;
-  year?: string;
+  id?: string;
+  citation?: string;
+  title?: string;
+  source?: string;
+  year?: string | number;
   url?: string;
 }
 
@@ -145,6 +147,117 @@ export interface SubstanceInfo {
   lastReviewed: string;
   reviewStatus?: ReviewStatus;
   relatedIds?: string[];
+}
+
+export interface DevelopmentVsConcernItem {
+  ageRange: LocalizedString;
+  typicalDevelopment: LocalizedString;
+  redFlagsClinicalConcern: LocalizedString;
+}
+
+export interface ChildAdolescentSignCategory {
+  category: LocalizedString;
+  signs: {
+    en: string[];
+    hi: string[];
+    gu: string[];
+  };
+}
+
+export interface ChildEvidenceHighlight {
+  statistic: string;
+  context: LocalizedString;
+  source: string;
+}
+
+export interface ChildAdolescentTopic {
+  id: string;
+  slug: string;
+  name: LocalizedString;
+  medicalTerms: LocalizedString;
+  tagline: LocalizedString;
+  overview: LocalizedString;
+  typicalDevelopmentVsRedFlags: DevelopmentVsConcernItem[];
+  commonSigns: ChildAdolescentSignCategory[];
+  whenToSeekHelp: LocalizedString;
+  causesAndRiskFactors: LocalizedString;
+  schoolAndHomeImpact: LocalizedString;
+  assessmentOverview: LocalizedString;
+  treatmentApproach: {
+    parentTrainingAndBehavioral: LocalizedString;
+    psychotherapy: LocalizedString;
+    schoolSupportAndAccommodations: LocalizedString;
+    medicationGuidance: LocalizedString;
+  };
+  parentCaregiverGuidance: LocalizedString[];
+  illustrativeExamples: LocalizedString[];
+  evidenceHighlights: ChildEvidenceHighlight[];
+  mythsVsFacts: Array<{
+    myth: LocalizedString;
+    fact: LocalizedString;
+  }>;
+  faqs: FAQItem[];
+  references: ReferenceItem[];
+  relatedIds?: string[];
+  lastReviewed: string;
+  reviewStatus?: ReviewStatus | string;
+}
+
+export interface TypicalVsClinicalConcernItem {
+  situationOrPhase: LocalizedString;
+  typicalVariation: LocalizedString;
+  clinicalConcern: LocalizedString;
+}
+
+export interface WomensSignCategory {
+  category: LocalizedString;
+  signs: {
+    en: string[];
+    hi: string[];
+    gu: string[];
+  };
+}
+
+export interface WomensEvidenceHighlight {
+  statistic: string;
+  context: LocalizedString;
+  source: string;
+}
+
+export type WomensTopicCategory = 'reproductive' | 'perinatal' | 'social-roles';
+
+export interface WomensMentalHealthTopic {
+  id: string;
+  slug: string;
+  category: WomensTopicCategory;
+  name: LocalizedString;
+  medicalTerms: LocalizedString;
+  tagline: LocalizedString;
+  overview: LocalizedString;
+  typicalVariationVsClinicalConcern: TypicalVsClinicalConcernItem[];
+  commonSigns: WomensSignCategory[];
+  whenToSeekHelp: LocalizedString;
+  causesAndRiskFactors: LocalizedString;
+  lifeStageOrContextImpact: LocalizedString;
+  assessmentOverview: LocalizedString;
+  treatmentApproach: {
+    psychotherapy: LocalizedString;
+    medicalAndPharmacological: LocalizedString;
+    lifestyleAndSupportive: LocalizedString;
+    workplaceAndFamilySupport: LocalizedString;
+  };
+  supportiveGuidance: LocalizedString[];
+  illustrativeExamples: LocalizedString[];
+  evidenceHighlights: WomensEvidenceHighlight[];
+  mythsVsFacts: Array<{
+    myth: LocalizedString;
+    fact: LocalizedString;
+  }>;
+  faqs: FAQItem[];
+  references: ReferenceItem[];
+  relatedIds?: string[];
+  lastReviewed: string;
+  reviewStatus?: ReviewStatus | string;
 }
 
 export interface MedicationClass {
@@ -300,6 +413,8 @@ export interface HelplineItem {
 export type ActiveTab =
   | 'home'
   | 'conditions'
+  | 'child-psychiatry'
+  | 'womens-mental-health'
   | 'addiction'
   | 'treatments'
   | 'medications'
@@ -319,7 +434,7 @@ export type ActiveTab =
   | 'admin';
 
 export type ShareCardFormat = 'square' | 'story'; // square: 1080x1080, story: 1080x1920
-export type ShareCardType = 'condition' | 'myth' | 'faq' | 'glossary' | 'screener' | 'substance' | 'medication' | 'article';
+export type ShareCardType = 'condition' | 'myth' | 'faq' | 'glossary' | 'screener' | 'substance' | 'medication' | 'article' | 'child-topic' | 'womens-topic';
 
 export interface ShareCardData {
   type?: ShareCardType;

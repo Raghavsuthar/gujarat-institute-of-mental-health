@@ -8,6 +8,8 @@ import { treatmentsData } from '../src/data/treatments';
 import { symptomsData } from '../src/data/symptoms';
 import { articlesData } from '../src/data/articles';
 import { glossaryData } from '../src/data/glossary';
+import { childAdolescentTopics } from '../src/data/childAdolescent';
+import { womensMentalHealthTopics } from '../src/data/womensMentalHealth';
 
 const DOMAIN = 'https://dr-raghav-suthar.mentalhealth.in';
 const languages = ['en', 'hi', 'gu'];
@@ -16,6 +18,8 @@ const today = new Date().toISOString().split('T')[0];
 const staticPaths = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
   { path: 'conditions', priority: '0.9', changefreq: 'weekly' },
+  { path: 'child-psychiatry', priority: '0.9', changefreq: 'weekly' },
+  { path: 'womens-mental-health', priority: '0.9', changefreq: 'weekly' },
   { path: 'addiction', priority: '0.9', changefreq: 'weekly' },
   { path: 'medications', priority: '0.9', changefreq: 'weekly' },
   { path: 'treatments', priority: '0.8', changefreq: 'monthly' },
@@ -38,6 +42,16 @@ const dynamicPaths: Array<{ path: string; priority: string; changefreq: string }
 // Conditions
 conditionsData.forEach((c) => {
   dynamicPaths.push({ path: `conditions/${c.slug}`, priority: '0.8', changefreq: 'monthly' });
+});
+
+// Child & Adolescent Psychiatry Topics
+childAdolescentTopics.forEach((ct) => {
+  dynamicPaths.push({ path: `child-psychiatry/${ct.slug}`, priority: '0.8', changefreq: 'monthly' });
+});
+
+// Women's Mental Health Topics
+womensMentalHealthTopics.forEach((wt) => {
+  dynamicPaths.push({ path: `womens-mental-health/${wt.slug}`, priority: '0.8', changefreq: 'monthly' });
 });
 
 // Substances
