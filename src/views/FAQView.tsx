@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { HelpCircle, Search, ChevronDown, ChevronUp, Scale, Pill, Brain, HeartHandshake, ShieldCheck } from 'lucide-react';
+import { HelpCircle, Search, ChevronDown, ChevronUp, Scale, Brain, HeartHandshake, ShieldCheck } from 'lucide-react';
 import { Language } from '../types';
 import { faqsData, FAQCategoryItem } from '../data/faqs';
 import { PageFeedback } from '../components/PageFeedback';
@@ -20,7 +20,6 @@ export const FAQView: React.FC<FAQViewProps> = ({ currentLang }) => {
   const categories = [
     { id: 'all', label: { en: 'All Questions', hi: 'सभी प्रश्न', gu: 'બધા પ્રશ્નો' } },
     { id: 'general', label: { en: 'General Psychiatry', hi: 'सामान्य मनोरोग', gu: 'સામાન્ય મનોરોગ' }, icon: Brain },
-    { id: 'medications', label: { en: 'Medications & Safety', hi: 'दवाएं व सुरक्षा', gu: 'દવાઓ અને સુરક્ષા' }, icon: Pill },
     { id: 'addiction', label: { en: 'Addiction & Recovery', hi: 'नशा व सुधार', gu: 'વ્યસન અને સુધારો' }, icon: ShieldCheck },
     { id: 'therapy', label: { en: 'Therapy & Privacy', hi: 'थेरेपी व गोपनीयता', gu: 'થેરાપી અને ગોપનીયતા' }, icon: HeartHandshake },
     { id: 'legal', label: { en: 'Rights & Law in India', hi: 'अधिकार व कानून', gu: 'અધિકાર અને કાયદો' }, icon: Scale },
@@ -33,6 +32,7 @@ export const FAQView: React.FC<FAQViewProps> = ({ currentLang }) => {
   const filteredFaqs = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     return faqsData.filter((item) => {
+      if ((item.category as string) === 'medications') return false;
       const matchCat = selectedCategory === 'all' || item.category === selectedCategory;
       if (!matchCat) return false;
       if (!q) return true;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Sparkles, HeartHandshake, BookOpen, AlertOctagon, Pill, ArrowRight, RotateCcw } from 'lucide-react';
+import { Compass, Sparkles, HeartHandshake, BookOpen, AlertOctagon, ArrowRight, RotateCcw } from 'lucide-react';
 import { Language, ActiveTab } from '../types';
 
 interface StartHereNavigatorProps {
@@ -9,7 +9,7 @@ interface StartHereNavigatorProps {
   onOpenScreener: () => void;
 }
 
-type NavigatorChoice = 'self_distress' | 'worried_about_someone' | 'learning' | 'medication_questions' | 'crisis';
+type NavigatorChoice = 'self_distress' | 'worried_about_someone' | 'learning' | 'crisis';
 
 export const StartHereNavigator: React.FC<StartHereNavigatorProps> = ({
   currentLang,
@@ -49,21 +49,6 @@ export const StartHereNavigator: React.FC<StartHereNavigatorProps> = ({
       },
       icon: HeartHandshake,
       color: 'text-amber-700 bg-amber-50 border-amber-200',
-    },
-    {
-      id: 'medication_questions',
-      title: {
-        en: 'I have questions or fears about psychiatric medications',
-        hi: 'मुझे मनोरोग की दवाओं को लेकर शंकाएं या डर है',
-        gu: 'મને મનોરોગની દવાઓ અંગે શંકા કે ડર છે',
-      },
-      subtitle: {
-        en: 'Safety, non-addictive nature, expected side effects, and monitoring',
-        hi: 'दवाओं की सुरक्षा, साइड इफेक्ट्स और आदत न पड़ने के तथ्य',
-        gu: 'દવાઓની સલામતી, આડઅસરો અને વ્યસન ન થવાની સ્પષ્ટતા',
-      },
-      icon: Pill,
-      color: 'text-blue-700 bg-blue-50 border-blue-200',
     },
     {
       id: 'learning',
@@ -244,37 +229,6 @@ export const StartHereNavigator: React.FC<StartHereNavigatorProps> = ({
                   className="px-4 py-2.5 rounded-xl border border-stone-300 bg-white hover:bg-stone-50 text-stone-800 text-xs font-medium transition cursor-pointer"
                 >
                   {currentLang === 'en' ? 'Debunk Family Misconceptions' : 'पारिवारिक भ्रांतियां व सच'}
-                </button>
-              </div>
-            </div>
-          )}
-
-          {selectedPath === 'medication_questions' && (
-            <div className="space-y-3">
-              <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-blue-950 text-xs sm:text-sm leading-relaxed">
-                <p className="font-semibold text-blue-900 mb-1">
-                  {currentLang === 'en' ? 'Psychiatric Medication Literacy:' : 'दवाओं से जुड़े वैज्ञानिक तथ्य:'}
-                </p>
-                <p>
-                  {currentLang === 'en'
-                    ? 'Antidepressants and mood stabilizers are NOT habit-forming drugs. They take 2-4 weeks to reach biological efficacy. Never start, stop, or change doses without direct medical supervision.'
-                    : 'आधुनिक मनोरोग दवाएं कोई नशा नहीं हैं। वे 2-4 हफ्तों में असर करती हैं। बिना डॉक्टर की सलाह के कभी भी दवा बंद या शुरू न करें।'}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-2">
-                <button
-                  onClick={() => onNavigateTab('medications')}
-                  className="px-4 py-2.5 rounded-xl bg-[#115e59] hover:bg-[#0f4f4b] text-white text-xs font-semibold transition cursor-pointer flex items-center gap-2"
-                >
-                  <span>{currentLang === 'en' ? 'Explore Medications Library' : 'दवाओं की पूरी सूची देखें'}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => onNavigateTab('faqs')}
-                  className="px-4 py-2.5 rounded-xl border border-stone-300 bg-white hover:bg-stone-50 text-stone-800 text-xs font-medium transition cursor-pointer"
-                >
-                  {currentLang === 'en' ? 'Read Medication FAQs' : 'दवाओं से जुड़े सवाल-जवाब'}
                 </button>
               </div>
             </div>

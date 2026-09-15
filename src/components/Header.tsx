@@ -29,7 +29,6 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'child-psychiatry', label: t.nav.childPsychiatry },
     { id: 'womens-mental-health', label: t.nav.womensMentalHealth },
     { id: 'addiction', label: t.nav.addiction },
-    { id: 'medications', label: t.nav.medications },
     { id: 'treatments', label: t.nav.treatments },
     { id: 'symptoms', label: t.nav.symptoms },
     { id: 'myths', label: t.nav.myths },
@@ -54,21 +53,21 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="h-[3px] w-full bg-gradient-to-r from-[#115e59] via-[#b86b26] to-[#5e4a72]" aria-hidden="true" />
 
       {/* Main Brand & Controls Header */}
-      <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+      <div className="max-w-4xl mx-auto px-4 py-2.5 sm:py-4 flex items-center justify-between gap-4">
         {/* Brand identity: Clean typography, no heavy visual noise */}
         <button
           onClick={() => handleNavClick('home')}
-          className="text-left focus:outline-none cursor-pointer py-1"
+          className="text-left focus:outline-none cursor-pointer py-0.5 sm:py-1"
         >
           <div className="flex items-baseline gap-2">
-            <h1 className="text-xl sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
+            <h1 className="text-lg sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
               {t.doctorName}
             </h1>
-            <span className="text-xs text-stone-500 font-medium">
+            <span className="text-[11px] sm:text-xs text-stone-500 font-medium">
               MBBS, MD (Psychiatry)
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-stone-600 mt-0.5">
+          <p className="text-[11px] sm:text-sm text-stone-600 mt-0.5">
             {siteMetadata.tagline[currentLang]}
           </p>
         </button>
@@ -162,16 +161,20 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </nav>
 
-      {/* Mobile Drawer Menu: Large 48px tap targets for elderly accessibility */}
+      {/* Mobile Drawer Menu: Large tap targets with full scrollability in landscape and portrait */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-stone-200 px-4 py-3 space-y-1" role="menu">
+        <div
+          className="lg:hidden bg-white border-t border-stone-200 px-4 py-2 sm:py-3 space-y-1 max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain shadow-inner"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+          role="menu"
+        >
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`w-full text-left px-4 py-3 rounded-md text-base font-medium transition cursor-pointer min-h-[48px] flex items-center ${
+                className={`w-full text-left px-4 py-2.5 sm:py-3 rounded-md text-sm sm:text-base font-medium transition cursor-pointer min-h-[44px] sm:min-h-[48px] flex items-center ${
                   isActive
                     ? 'bg-teal-50 text-[#115e59] font-semibold border-l-4 border-[#115e59]'
                     : 'text-stone-800 hover:bg-stone-50'

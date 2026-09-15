@@ -14,7 +14,6 @@ import {
   ActiveTab,
   Condition,
   SubstanceInfo,
-  MedicationClass,
   WomensMentalHealthTopic,
 } from './types';
 import { Header } from './components/Header';
@@ -26,7 +25,6 @@ import { CrisisModal } from './components/CrisisModal';
 import { ScreenerModal } from './components/ScreenerModal';
 import { ConditionDetailModal } from './components/ConditionDetailModal';
 import { SubstanceDetailModal } from './components/SubstanceDetailModal';
-import { MedicationDetailModal } from './components/MedicationDetailModal';
 import { ChildPsychiatryModal } from './components/ChildPsychiatryModal';
 import { WomensMentalHealthModal } from './components/WomensMentalHealthModal';
 
@@ -36,7 +34,6 @@ import { ConditionsView } from './views/ConditionsView';
 import { ChildPsychiatryView } from './views/ChildPsychiatryView';
 import { WomensMentalHealthView } from './views/WomensMentalHealthView';
 import { AddictionView } from './views/AddictionView';
-import { MedicationsView } from './views/MedicationsView';
 import { TreatmentsView } from './views/TreatmentsView';
 import { MythsView } from './views/MythsView';
 import { SymptomsView } from './views/SymptomsView';
@@ -53,7 +50,6 @@ import { EducationalQAAssistant } from './components/EducationalQAAssistant';
 // Data for deep linking lookups
 import { conditionsData } from './data/conditions';
 import { substancesData } from './data/substances';
-import { medicationsData } from './data/medications';
 import { childAdolescentTopics } from './data/childAdolescent';
 import { womensMentalHealthTopics } from './data/womensMentalHealth';
 import { recordPageView } from './utils/analytics';
@@ -102,7 +98,7 @@ export default function App() {
     if (section === 'child-psychiatry') return 'child-psychiatry';
     if (section === 'womens-mental-health') return 'womens-mental-health';
     if (section === 'addiction' || section === 'substances') return 'addiction';
-    if (section === 'medications') return 'medications';
+    if (section === 'medications') return 'treatments';
     if (section === 'treatments') return 'treatments';
     if (section === 'symptoms') return 'symptoms';
     if (section === 'myths') return 'myths';
@@ -175,7 +171,6 @@ export default function App() {
   const childTopicSlug = pathParts[1] === 'child-psychiatry' && pathParts[2] ? pathParts[2] : null;
   const womensTopicSlug = pathParts[1] === 'womens-mental-health' && pathParts[2] ? pathParts[2] : null;
   const substanceSlug = pathParts[1] === 'substances' && pathParts[2] ? pathParts[2] : null;
-  const medicationId = pathParts[1] === 'medications' && pathParts[2] ? pathParts[2] : null;
 
   const deepLinkedCondition = useMemo(() => {
     if (!conditionSlug) return null;
@@ -205,11 +200,6 @@ export default function App() {
     ) || null;
   }, [substanceSlug]);
 
-  const deepLinkedMedication = useMemo(() => {
-    if (!medicationId) return null;
-    return medicationsData.find((m) => m.id === medicationId) || null;
-  }, [medicationId]);
-
   // Language switcher: replaces the current /:lang prefix while maintaining remaining path
   const handleLanguageChange = (newLang: Language) => {
     try {
@@ -231,6 +221,8 @@ export default function App() {
   const handleTabChange = (tab: ActiveTab) => {
     if (tab === 'home') {
       navigate(`/${currentLang}`);
+    } else if ((tab as string) === 'medications') {
+      navigate(`/${currentLang}/treatments`);
     } else {
       navigate(`/${currentLang}/${tab}`);
     }
@@ -250,7 +242,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f6f8f7] text-[#1c2430] selection:bg-teal-100 selection:text-teal-900">
+    <div className="min-h-screen min-h-[100dvh] w-full flex flex-col bg-[#f6f8f7] text-[#1c2430] selection:bg-teal-100 selection:text-teal-900 overflow-x-hidden">
       {/* Offline Status Warning when disconnected */}
       <OfflineIndicator currentLang={currentLang} />
 
@@ -377,24 +369,14 @@ export default function App() {
             }
           />
 
-          {/* Medications & Deep-linked Medication */}
+          {/* Medications - Redirect to Treatments */}
           <Route
             path="/:lang/medications"
-            element={
-              <MedicationsView
-                currentLang={currentLang}
-                onSelectMedication={(med) => navigate(`/${currentLang}/medications/${med.id}`)}
-              />
-            }
+            element={<Navigate to={`/${currentLang}/treatments`} replace />}
           />
           <Route
             path="/:lang/medications/:id"
-            element={
-              <MedicationsView
-                currentLang={currentLang}
-                onSelectMedication={(med) => navigate(`/${currentLang}/medications/${med.id}`)}
-              />
-            }
+            element={<Navigate to={`/${currentLang}/treatments`} replace />}
           />
 
           {/* Treatments */}
@@ -453,7 +435,6 @@ export default function App() {
         currentLang={currentLang}
         onSelectCondition={(item) => navigate(`/${currentLang}/conditions/${item.slug}`)}
         onSelectSubstance={(item) => navigate(`/${currentLang}/substances/${item.slug || item.id}`)}
-        onSelectMedication={(item) => navigate(`/${currentLang}/medications/${item.id}`)}
         onSelectChildTopic={(topic) => navigate(`/${currentLang}/child-psychiatry/${topic.slug || topic.id}`)}
         onSelectWomensTopic={(topic) => navigate(`/${currentLang}/womens-mental-health/${topic.slug || topic.id}`)}
         onNavigateTab={(tab) => handleTabChange(tab)}
@@ -512,13 +493,6 @@ export default function App() {
       <SubstanceDetailModal
         substance={deepLinkedSubstance}
         onClose={() => navigate(`/${currentLang}/addiction`)}
-        currentLang={currentLang}
-      />
-
-      {/* Bidirectionally URL-synced Medication Detail Modal */}
-      <MedicationDetailModal
-        medication={deepLinkedMedication}
-        onClose={() => navigate(`/${currentLang}/medications`)}
         currentLang={currentLang}
       />
 

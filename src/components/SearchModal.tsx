@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Search, X, BookOpen, AlertCircle, Pill, Activity, HelpCircle, HeartPulse, ArrowRight } from 'lucide-react';
-import { Language, Condition, SubstanceInfo, MedicationClass, TherapyModality, MythFact, SymptomEducation, ChildAdolescentTopic, WomensMentalHealthTopic } from '../types';
+import { Search, X, BookOpen, AlertCircle, Activity, HelpCircle, HeartPulse, ArrowRight } from 'lucide-react';
+import { Language, Condition, SubstanceInfo, TherapyModality, MythFact, SymptomEducation, ChildAdolescentTopic, WomensMentalHealthTopic } from '../types';
 import { conditionsData } from '../data/conditions';
 import { substancesData } from '../data/substances';
-import { medicationsData } from '../data/medications';
 import { treatmentsData } from '../data/treatments';
 import { mythsData } from '../data/myths';
 import { symptomsData } from '../data/symptoms';
@@ -17,7 +16,7 @@ interface SearchModalProps {
   currentLang: Language;
   onSelectCondition: (item: Condition) => void;
   onSelectSubstance: (item: SubstanceInfo) => void;
-  onSelectMedication: (item: MedicationClass) => void;
+  onSelectMedication?: (item: any) => void;
   onSelectChildTopic?: (item: ChildAdolescentTopic) => void;
   onSelectWomensTopic?: (item: WomensMentalHealthTopic) => void;
   onSelectTherapy?: (item: TherapyModality) => void;
@@ -47,7 +46,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
     const matched: Array<{
       id: string;
-      type: 'condition' | 'substance' | 'medication' | 'therapy' | 'myth' | 'symptom' | 'childPsychiatry' | 'womensMentalHealth';
+      type: 'condition' | 'substance' | 'therapy' | 'myth' | 'symptom' | 'childPsychiatry' | 'womensMentalHealth';
       title: string;
       snippet: string;
       rawItem: any;
@@ -83,23 +82,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           title: `${title} (${terms})`,
           snippet: whatIsItText.slice(0, 140) + '...',
           rawItem: s,
-        });
-      }
-    });
-
-    // Search Medications
-    medicationsData.forEach((m) => {
-      const title = m.name[currentLang] || m.name.en;
-      const examples = m.commonExamples.join(', ');
-      const indicationsText = m.indications?.[currentLang] || m.indications?.en || '';
-      const text = `${m.name.en} ${m.name.hi} ${m.name.gu} ${examples} ${indicationsText}`.toLowerCase();
-      if (text.includes(q)) {
-        matched.push({
-          id: `m-${m.id}`,
-          type: 'medication',
-          title: `${title} (${examples})`,
-          snippet: indicationsText.slice(0, 140) + '...',
-          rawItem: m,
         });
       }
     });
@@ -178,10 +160,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4 pt-16 sm:pt-24 overflow-y-auto" role="dialog" aria-modal="true">
-      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-2 sm:p-4 pt-2 sm:pt-6 md:pt-12 overflow-y-auto overscroll-contain modal-scroll-backdrop" role="dialog" aria-modal="true" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-2 sm:my-4 flex flex-col max-h-[96dvh] sm:max-h-[94dvh]">
         {/* Search Header */}
-        <div className="p-4 border-b border-stone-200 flex items-center gap-3">
+        <div className="p-3 sm:p-4 border-b border-stone-200 flex items-center gap-2 sm:gap-3 shrink-0">
           <Search className="w-5 h-5 text-stone-500 shrink-0" />
           <input
             type="text"
@@ -210,19 +192,22 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         </div>
 
         {/* Results Body */}
-        <div className="max-h-[60vh] overflow-y-auto p-3 space-y-2 divide-y divide-stone-100">
+        <div
+          className="flex-1 min-h-0 max-h-[75vh] sm:max-h-[60vh] overflow-y-auto p-3 space-y-2 divide-y divide-stone-100 overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {!query && (
             <div className="py-8 text-center text-stone-500 text-sm">
               <p className="font-medium text-stone-700">
                 {currentLang === 'en'
-                  ? 'Search across conditions, medications, addiction, therapies & symptoms'
+                  ? 'Search across conditions, addiction, therapies & symptoms'
                   : currentLang === 'hi'
-                  ? 'बीमारियों, दवाओं, नशा मुक्ति, थेरेपी और लक्षणों को खोजें'
-                  : 'બીમારીઓ, દવાઓ, વ્યસન મુક્તિ અને લક્ષણો શોધો'}
+                  ? 'बीमारियों, नशा मुक्ति, थेरेपी और लक्षणों को खोजें'
+                  : 'બીમારીઓ, વ્યસન મુક્તિ, થેરાપી અને લક્ષણો શોધો'}
               </p>
               <p className="text-xs text-stone-400 mt-1">
                 {currentLang === 'en'
-                  ? 'Example: "Depression", "CBT", "Alcohol", "Sleep", "SSRIs"'
+                  ? 'Example: "Depression", "CBT", "Alcohol", "Sleep", "Anxiety"'
                   : currentLang === 'hi'
                   ? 'उदाहरण: "डिप्रेशन", "चिंता", "शराब", "नींद", "CBT"'
                   : 'ઉદાહરણ: "ડિપ્રેશન", "ચિંતા", "દારૂ", "ઊંઘ", "CBT"'}
@@ -251,8 +236,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               typeLabel = t.nav.conditions;
             } else if (res.type === 'substance') {
               typeLabel = t.nav.addiction;
-            } else if (res.type === 'medication') {
-              typeLabel = t.nav.medications;
             } else if (res.type === 'therapy') {
               typeLabel = t.nav.treatments;
             } else if (res.type === 'symptom') {
@@ -269,7 +252,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 onClick={() => {
                   if (res.type === 'condition') onSelectCondition(res.rawItem);
                   if (res.type === 'substance') onSelectSubstance(res.rawItem);
-                  if (res.type === 'medication') onSelectMedication(res.rawItem);
                   if (res.type === 'therapy' && onSelectTherapy) onSelectTherapy(res.rawItem);
                   if (res.type === 'symptom' && onSelectSymptom) onSelectSymptom(res.rawItem);
                   if (res.type === 'childPsychiatry' && onSelectChildTopic) onSelectChildTopic(res.rawItem);

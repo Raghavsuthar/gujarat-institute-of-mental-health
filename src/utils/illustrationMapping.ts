@@ -1,14 +1,11 @@
 import { ConditionCategory } from '../types';
 
-export type VisualCategory = ConditionCategory | 'treatments' | 'medications';
+export type VisualCategory = ConditionCategory | 'treatments';
 
 /**
  * Maps a myth item to a relevant visual category illustration.
  */
 export function mapMythToCategory(item: { id: string; category?: string }): VisualCategory {
-  if (item.category === 'medications' || item.id.includes('medication') || item.id.includes('pill')) {
-    return 'medications';
-  }
   if (item.category === 'treatments' || item.id.includes('therapy') || item.id.includes('counseling') || item.id.includes('ect')) {
     return 'treatments';
   }
@@ -53,7 +50,6 @@ export function mapGlossaryToCategory(term: {
   relatedType?: string;
   relatedId?: string;
 }): VisualCategory | null {
-  if (term.relatedType === 'medication') return 'medications';
   if (term.relatedType === 'treatment') return 'treatments';
 
   const targetId = `${term.relatedId || ''} ${term.id}`.toLowerCase();
@@ -133,7 +129,6 @@ export function mapSymptomToCategory(symptomId: string): VisualCategory {
  * Maps an FAQ item to a matching category illustration.
  */
 export function mapFAQToCategory(faq: { id: string; category: string }): VisualCategory {
-  if (faq.category === 'medications') return 'medications';
   if (faq.category === 'therapy') return 'treatments';
   if (faq.category === 'legal') return 'treatments';
   if (faq.category === 'addiction') return 'somatic';
@@ -148,7 +143,6 @@ export function mapArticleToCategory(article: { id: string; category: string; ta
   if (cat.includes('stress') || cat.includes('burnout') || cat.includes('anxiety')) return 'anxiety';
   if (cat.includes('depress') || cat.includes('mood')) return 'mood';
   if (cat.includes('sleep') || cat.includes('insomnia')) return 'sleep';
-  if (cat.includes('medication')) return 'medications';
   if (cat.includes('therapy')) return 'treatments';
   return 'anxiety';
 }

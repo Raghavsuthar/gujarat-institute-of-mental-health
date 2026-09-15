@@ -228,6 +228,11 @@ export const newConditionsBatch2: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['panic-disorder', 'cbt', 'antidepressants'],
+    relatedContent: {
+      conditionSlugs: ['generalized-anxiety-disorder', 'panic-disorder', 'specific-phobia'],
+      medicationIds: ['antidepressants', 'anxiolytics-hypnotics'],
+      treatmentIds: ['cbt', 'act'],
+    },
   },
 
   // 7. Anxiety: Specific Phobia
@@ -454,6 +459,11 @@ export const newConditionsBatch2: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['panic-disorder', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['panic-disorder', 'generalized-anxiety-disorder', 'social-anxiety-disorder'],
+      medicationIds: ['anxiolytics-hypnotics'],
+      treatmentIds: ['erp', 'cbt'],
+    },
   },
 
   // 8. Sleep: Insomnia Disorder
@@ -683,6 +693,11 @@ export const newConditionsBatch2: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['anxiety', 'depression', 'sleep-difficulties'],
+    relatedContent: {
+      conditionSlugs: ['generalized-anxiety-disorder', 'major-depressive-disorder', 'somatic-symptom-disorder'],
+      medicationIds: ['anxiolytics-hypnotics', 'antidepressants'],
+      treatmentIds: ['cbt'],
+    },
   },
 
   // 9. Somatic: Somatic Symptom Disorder
@@ -912,6 +927,11 @@ export const newConditionsBatch2: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['illness-anxiety-disorder', 'cbt', 'antidepressants'],
+    relatedContent: {
+      conditionSlugs: ['illness-anxiety-disorder', 'generalized-anxiety-disorder', 'major-depressive-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'act', 'supportive'],
+    },
   },
 
   // 10. Somatic: Illness Anxiety Disorder
@@ -1141,5 +1161,10 @@ export const newConditionsBatch2: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['somatic-symptom-disorder', 'cbt', 'antidepressants'],
+    relatedContent: {
+      conditionSlugs: ['somatic-symptom-disorder', 'obsessive-compulsive-disorder', 'panic-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'erp', 'act'],
+    },
   },
 ];

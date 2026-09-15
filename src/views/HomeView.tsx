@@ -57,10 +57,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
         ? 'जन मनोरोग शिक्षा पोर्टल'
         : 'જાહેર મનોચિકિત્સા શિક્ષણ પોર્ટલ',
       description: currentLang === 'en'
-        ? 'Evidence-based psychiatric education for patients and families in India. Conditions, medications, treatments, and helplines in English, Hindi, and Gujarati.'
+        ? 'Evidence-based psychiatric education for patients and families in India. Conditions, psychotherapy, treatments, and helplines in English, Hindi, and Gujarati.'
         : currentLang === 'hi'
-        ? 'डॉ. राघव सुथार द्वारा मानसिक स्वास्थ्य, विकार, दवाएं और उपचार पर प्रमाण-आधारित निःशुल्क जानकारी।'
-        : 'ડૉ. રાઘવ સુથાર દ્વારા માનસિક સ્વાસ્થ્ય, દવાઓ અને સારવાર વિશે પુરાવા-આધારિત માહિતી.',
+        ? 'डॉ. राघव सुथार द्वारा मानसिक स्वास्थ्य, विकार, साइकोथेरेपी और उपचार पर प्रमाण-आधारित निःशुल्क जानकारी।'
+        : 'ડૉ. રાઘવ સુથાર દ્વારા માનસિક સ્વાસ્થ્ય, મનોચિકિત્સા અને સારવાર વિશે પુરાવા-આધારિત માહિતી.',
       path: '',
       lang: currentLang,
     });
@@ -291,31 +291,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#9a5212]">
               <span>{currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति मार्गदर्शन' : 'વ્યસન મુક્તિ માર્ગદર્શન'}</span>
-            </div>
-          </div>
-
-          {/* Card 3: Medications */}
-          <div
-            onClick={() => onTabChange('medications')}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#565a9f] transition cursor-pointer flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-10 h-10 rounded-lg bg-[#f2f2fa] text-[#3b3e79] border border-[#d7d8ee] flex items-center justify-center">
-                <Pill className="w-5 h-5" />
-              </div>
-              <h3 className="font-semibold text-base text-[#1c2430]">
-                {t.nav.medications}
-              </h3>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                {currentLang === 'en'
-                  ? 'Antidepressants, Antipsychotics, Mood Stabilizers, and Anxiolytics. Mechanisms, side effects, and strict safety rules.'
-                  : currentLang === 'hi'
-                  ? 'एंटीडिप्रेसेंट्स, एंटीसाइकोटिक्स और मूड स्टेबलाइजर्स कैसे काम करते हैं? दुष्प्रभाव और सुरक्षा नियम।'
-                  : 'દવાઓ કેવી રીતે કામ કરે છે? આડઅસરો, સલામતીના નિયમો અને અંધશ્રદ્ધાનું નિવારણ.'}
-              </p>
-            </div>
-            <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#3b3e79]">
-              <span>{currentLang === 'en' ? 'Medication Facts' : currentLang === 'hi' ? 'दवाओं की जानकारी' : 'દવાઓની માહિતી'}</span>
             </div>
           </div>
 

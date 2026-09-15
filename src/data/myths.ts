@@ -21,25 +21,6 @@ export const mythsData: MythFact[] = [
     },
   },
   {
-    id: 'medication-addiction',
-    category: 'medications',
-    myth: {
-      en: 'All psychiatric medications are addictive sleeping pills that you will have to take for life.',
-      hi: 'मनोरोग की सभी दवाएं नशीली होती हैं जिनकी जीवनभर के लिए लत लग जाती है।',
-      gu: 'મનોરોગની બધી દવાઓ ઊંઘ લાવનારી નશાકારક ગોળીઓ હોય છે જે આખી જિંદગી લેવી પડે છે.',
-    },
-    fact: {
-      en: 'The vast majority of psychiatric medications (such as SSRI antidepressants and mood stabilizers) are non-addictive.',
-      hi: 'अधिकांश मनोरोग दवाएं (जैसे एंटीडिप्रेसेंट्स) बिल्कुल भी नशीली नहीं होती हैं और इनकी कोई लत नहीं लगती।',
-      gu: 'મોટાભાગની માન્ય દવાઓ (જેમ કે એન્ટીડિપ્રેશન દવાઓ) બિલકુલ નશાકારક નથી અને તેની કોઈ આદત પડતી નથી.',
-    },
-    explanation: {
-      en: 'Standard antidepressants and antipsychotics do not produce tolerance or craving. When a treatment course is completed, the psychiatrist tapers the medication gradually and safely. Only certain short-term medications (like benzodiazepines) carry dependence risks, which is why psychiatrists use them selectively and short-term.',
-      hi: 'एंटीडिप्रेसेंट दवाएं मस्तिष्क के रसायनों को सामान्य करती हैं। जब मरीज ठीक हो जाता है, तो डॉक्टर धीरे-धीरे खुराक कम करके दवा बंद कर देते हैं। अपनी मर्जी से दवा बंद न करें।',
-      gu: 'આ દવાઓ મગજના રસાયણોને બેલેન્સ કરે છે. દર્દી સાજો થઈ જાય પછી ડૉક્ટર ધીમે ધીમે ડોઝ ઘટાડીને દવા બંધ કરી દે છે.',
-    },
-  },
-  {
     id: 'schizo-split',
     category: 'general',
     myth: {
@@ -113,25 +94,6 @@ export const mythsData: MythFact[] = [
       en: 'The vast majority of people visiting a psychiatrist are working professionals, students, parents, and everyday individuals seeking help for insomnia, worry, low mood, or life transitions. Seeking help is a mature step toward well-being.',
       hi: 'मनोचिकित्सक के पास आने वाले 80-90% लोग सामान्य नौकरीपेशा, छात्र और गृहणियां होती हैं जो अनिद्रा, घबराहट या तनाव का समाधान चाहती हैं। डॉक्टर से मिलना बुद्धिमानी है।',
       gu: 'મનોચિકિત્સક પાસે આવતા મોટાભાગના લોકો સામાન્ય નોકરીયાત, વિદ્યાર્થીઓ અને ગૃહિણીઓ હોય છે જે ઊંઘ કે ચિંતાની સારવાર લે છે.',
-    },
-  },
-  {
-    id: 'stop-medicines-suddenly',
-    category: 'medications',
-    myth: {
-      en: 'Once you start feeling better, you should immediately stop all psychiatric medications.',
-      hi: 'जैसे ही आपको थोड़ा अच्छा महसूस होने लगे, आपको तुरंत सारी दवाएं बंद कर देनी चाहिए।',
-      gu: 'જેવું તમને સારું લાગવા માંડે કે તરત જ બધી દવાઓ બંધ કરી દેવી જોઈએ.',
-    },
-    fact: {
-      en: 'Stopping psychiatric medications abruptly carries high risks of severe relapse and uncomfortable withdrawal symptoms.',
-      hi: 'दवा अचानक बंद करने से बीमारी के बहुत तेजी से और अधिक गंभीर रूप में वापस लौटने का भारी जोखिम होता है।',
-      gu: 'દવાઓ અચાનક બંધ કરવાથી બીમારી ફરીથી ઉથલો મારવાનું અને ગંભીર લક્ષણો થવાનું ભારે જોખમ રહે છે.',
-    },
-    explanation: {
-      en: 'You feel better precisely because the medication is stabilizing your brain chemistry. Continuing the prescribed maintenance course solidifies recovery and protects against relapse. Tapering must always be planned with your psychiatrist.',
-      hi: 'आपको अच्छा इसलिए लग रहा है क्योंकि दवा अपना काम कर रही है। ठीक होने के बाद भी कुछ समय दवा लेना जरूरी होता है ताकि बीमारी दोबारा न आए। हमेशा डॉक्टर की सलाह से ही दवा घटाएं।',
-      gu: 'તમને સારું એટલા માટે લાગે છે કારણ કે દવા કામ કરી રહી છે. સંપૂર્ણ સાજા થવા માટે ડૉક્ટરે કહેલો કોર્સ પૂરો કરવો જરૂરી છે.',
     },
   },
   {
@@ -303,44 +265,6 @@ export const mythsData: MythFact[] = [
       en: 'Emotional dysregulation stems from a combination of neurobiological vulnerability and early developmental trauma. Longitudinal research shows that over 85% of individuals with Borderline Personality Disorder achieve stable clinical remission with structured psychotherapy.',
       hi: 'यह कोई जानबूझकर किया गया नाटक नहीं है; यह बचपन के सदमे और भावनाओं को नियंत्रित करने की असमर्थता का परिणाम है। सही थेरेपी से 85% से अधिक मरीज पूरी तरह सामान्य जीवन जीते हैं।',
       gu: 'આ કોઈ ઈરાદાપૂર્વક કરેલો ઢોંગ નથી પણ બાળપણના આઘાતનું પરિણામ છે. યોગ્ય સાયકોથેરાપીથી ૮૫% થી વધુ દર્દીઓ એકદમ સામાન્ય અને સુખી જીવન જીવી શકે છે.',
-    },
-  },
-  {
-    id: 'antidepressants-change-personality',
-    category: 'medications',
-    myth: {
-      en: 'Antidepressants alter your core identity, turn you into an unfeeling zombie, or destroy your true personality.',
-      hi: 'एंटीडिप्रेसेंट दवाएं आपके असली व्यक्तित्व को बदल देती हैं, सोचने-समझने की शक्ति खत्म कर देती हैं और इंसान को रोबोट जैसा बना देती हैं।',
-      gu: 'એન્ટીડિપ્રેશન દવાઓ તમારા સાચા સ્વભાવને બદલી નાખે છે, લાગણીઓ શૂન્ય કરી દે છે અને વ્યક્તિને રોબોટ જેવો બનાવી દે છે.',
-    },
-    fact: {
-      en: 'Antidepressants treat the neurochemical illness so your true, authentic personality can emerge from the suffocating gloom.',
-      hi: 'दवाएं आपकी असली पहचान को नहीं बदलतीं, बल्कि डिप्रेशन के घने कोहरे को हटाकर आपके स्वाभाविक रूप को बाहर लाती हैं।',
-      gu: 'આ દવાઓ તમારા વ્યક્તિત્વને બદલતી નથી, પરંતુ ડિપ્રેશનના અંધકારને દૂર કરીને તમારા સાચા સ્વભાવને ફરીથી ખીલવે છે.',
-    },
-    explanation: {
-      en: 'Depression itself is what robs people of their vitality, humor, empathy, and passion. Effective psychiatric medication restores balance to neurotransmitters, relieving emotional numbness and allowing patients to feel like themselves again.',
-      hi: 'वास्तव में डिप्रेशन ही इंसान की खुशी, हंसी और संवेदनशीलता को छीन लेता है। दवाएं दिमाग के रसायनों को सामान्य करके व्यक्ति को दोबारा खुशहाल और ऊर्जावान बनाती हैं।',
-      gu: 'હકીકતમાં ડિપ્રેશન જ માણસનો આનંદ, લાગણીઓ અને ઉત્સાહ છીનવી લે છે. દવાઓ મગજને સ્વસ્થ કરીને વ્યક્તિને ફરીથી પોતાના અસલી અંદાજમાં જીવવા સક્ષમ બનાવે છે.',
-    },
-  },
-  {
-    id: 'herbal-natural-always-safer',
-    category: 'medications',
-    myth: {
-      en: 'Ayurvedic, herbal, and natural concoctions have zero side effects and are always safer than psychiatric medicines.',
-      hi: 'जड़ी-बूटियां और देसी पुड़िया 100% सुरक्षित और दुष्प्रभाव-मुक्त होती हैं, जबकि अंग्रेजी दवाएं केवल जहर होती हैं।',
-      gu: 'આયુર્વેદિક કે દેશી દવાઓની કોઈ આડઅસર હોતી નથી અને તે અંગ્રેજી દવાઓ કરતાં હંમેશા સુરક્ષિત હોય છે.',
-    },
-    fact: {
-      en: '"Natural" does not mean safe; unstandardized herbal powders can contain toxic heavy metals and cause severe liver or kidney damage.',
-      hi: '"कुदरती" होने का मतलब सुरक्षित होना नहीं है; अनियंत्रित देशी दवाओं में भारी धातुएं (पारा, सीसा) हो सकती हैं जो लिवर और किडनी खराब कर सकती हैं।',
-      gu: '"કુદરતી" હોવું એટલે હંમેશા સલામત હોવું નહીં; વણચકાસાયેલા દેશી પાવડરમાં ઝેરી રસાયણો હોઈ શકે છે જે લિવર-કિડની બગાડી શકે છે.',
-    },
-    explanation: {
-      en: 'Modern psychiatric medications undergo rigorous multi-phase clinical safety trials with exact milligrams and known safety profiles. Many unregulated "magical brain herbs" contain adulterants or interact dangerously with standard medications. Always disclose all herbal remedies to your treating psychiatrist.',
-      hi: 'मनोरोग की एलोपैथिक दवाएं वर्षों के वैज्ञानिक शोध और तय मात्रा के बाद बनती हैं। कई अप्रमाणित देसी दवाइयों में छुपे हुए स्टेरॉयड या लेड पाए जाते हैं। कोई भी देशी इलाज लेने से पहले अपने डॉक्टर को जरूर बताएं।',
-      gu: 'મનોરોગની માન્ય દવાઓ વર્ષોના વૈજ્ઞાનિક પ્રયોગો અને સચોટ મિલિગ્રામમાં તૈયાર થાય છે. બિનઅધિકૃત દેશી પડીકીઓથી લિવર ફેલ થવાના અનેક કિસ્સા બને છે. કોઈપણ ઘરેલુ નુસખા લેતા પહેલા ડૉક્ટરને અચૂક જણાવો.',
     },
   },
 ];

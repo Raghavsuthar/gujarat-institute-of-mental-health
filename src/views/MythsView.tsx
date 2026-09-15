@@ -23,10 +23,10 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
     updatePageSEO({
       title: currentLang === 'en' ? 'Mental Health Myths vs Facts' : currentLang === 'hi' ? 'मानसिक स्वास्थ्य भ्रांतियां बनाम सच' : 'માનસિક સ્વાસ્થ્ય અંધશ્રદ્ધા વિરુદ્ધ સત્ય',
       description: currentLang === 'en'
-        ? 'Medical reality versus pervasive cultural myths regarding depression, schizophrenia, psychiatric medications, ECT, and addiction.'
+        ? 'Medical reality versus pervasive cultural myths regarding depression, schizophrenia, ECT, therapy, and addiction.'
         : currentLang === 'hi'
-        ? 'मानसिक रोगों, मनोचिकित्सीय दवाओं, ईसीटी और नशे की लत से जुड़ी भ्रांतियों का प्रामाणिक वैज्ञानिक सच।'
-        : 'ડિપ્રેશન, દવાઓ અને વ્યસન વિશેની ખોટી માન્યતાઓ સામે તબીબી અને વૈજ્ઞાનિક હકીકતો.',
+        ? 'मानसिक रोगों, ईसीटी, थेरेपी और नशे की लत से जुड़ी भ्रांतियों का प्रामाणिक वैज्ञानिक सच।'
+        : 'ડિપ્રેશન, થેરાપી અને વ્યસન વિશેની ખોટી માન્યતાઓ સામે તબીબી અને વૈજ્ઞાનિક હકીકતો.',
       path: 'myths',
       lang: currentLang,
     });
@@ -35,14 +35,13 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
   const categories = [
     { id: 'all', label: currentLang === 'en' ? 'All Myths' : currentLang === 'hi' ? 'सभी भ्रांतियां' : 'બધી માન્યતાઓ' },
     { id: 'general', label: currentLang === 'en' ? 'Stigma & Weakness' : currentLang === 'hi' ? 'मानसिक कमजोरी' : 'મનની નબળાઈ' },
-    { id: 'medications', label: currentLang === 'en' ? 'Medication Myths' : currentLang === 'hi' ? 'दवाओं का सच' : 'દવાઓનું સત્ય' },
     { id: 'addiction', label: currentLang === 'en' ? 'Addiction & Willpower' : currentLang === 'hi' ? 'नशा व इच्छाशक्ति' : 'વ્યસન' },
     { id: 'therapy', label: currentLang === 'en' ? 'Psychotherapy' : currentLang === 'hi' ? 'थेरेपी' : 'થેરાપી' },
     { id: 'children', label: currentLang === 'en' ? 'Child Psychiatry' : currentLang === 'hi' ? 'बच्चों का स्वास्थ्य' : 'બાળકોનું સ્વાસ્થ્ય' },
   ];
 
   const filteredMyths = mythsData.filter(
-    (m) => selectedCategory === 'all' || m.category === selectedCategory
+    (m) => (m.category as string) !== 'medications' && (selectedCategory === 'all' || m.category === selectedCategory)
   );
 
   return (

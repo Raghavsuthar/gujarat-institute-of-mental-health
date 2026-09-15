@@ -28,6 +28,11 @@
     background-color: #f6f8f7;
     color: #1c2430;
     font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
@@ -39,6 +44,27 @@
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Specific landscape mode rules to prevent height locks and scroll freezes */
+  @media screen and (orientation: landscape) and (max-height: 600px) {
+    html, body {
+      height: auto !important;
+      min-height: 100% !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* In landscape on mobile, prevent flex centering from pushing modal tops offscreen */
+    .modal-scroll-backdrop {
+      align-items: flex-start !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 2rem !important;
+    }
   }
 
   /* Headings: disciplined scale, max 3 weights (400, 500, 600) */

@@ -216,7 +216,7 @@ export const GlossaryView: React.FC<GlossaryViewProps> = ({
               </div>
 
               {/* Related link button */}
-              {term.relatedType && term.relatedId && (
+              {term.relatedType && term.relatedId && term.relatedType !== 'medication' && (
                 <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
                   <button
                     onClick={() => {
@@ -226,8 +226,6 @@ export const GlossaryView: React.FC<GlossaryViewProps> = ({
                         } else {
                           onNavigateTab('conditions');
                         }
-                      } else if (term.relatedType === 'medication') {
-                        onNavigateTab('medications');
                       } else if (term.relatedType === 'treatment') {
                         onNavigateTab('treatments');
                       }

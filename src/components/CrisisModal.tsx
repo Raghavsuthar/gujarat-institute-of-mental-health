@@ -15,10 +15,10 @@ export const CrisisModal: React.FC<CrisisModalProps> = ({ isOpen, onClose, curre
   const t = translations[currentLang];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 overflow-y-auto">
-      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl border-2 border-rose-500 overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/75 backdrop-blur-sm p-2 sm:p-4 overflow-y-auto overscroll-contain modal-scroll-backdrop" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl border-2 border-rose-500 overflow-hidden my-2 sm:my-6 flex flex-col max-h-[96dvh] sm:max-h-[94dvh]">
         {/* Urgent Emergency Banner Header */}
-        <div className="bg-rose-900 text-white p-5 flex items-start justify-between">
+        <div className="bg-rose-900 text-white p-3.5 sm:p-5 flex items-start justify-between shrink-0">
           <div className="flex items-start gap-3">
             <div className="p-2.5 rounded-xl bg-rose-800 text-rose-200 border border-rose-700 shrink-0">
               <AlertTriangle className="w-6 h-6 text-amber-300 animate-pulse" />
@@ -52,7 +52,10 @@ export const CrisisModal: React.FC<CrisisModalProps> = ({ isOpen, onClose, curre
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 sm:p-6 max-h-[75vh] overflow-y-auto space-y-6">
+        <div
+          className="p-4 sm:p-6 flex-1 min-h-0 overflow-y-auto space-y-5 sm:space-y-6 overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {/* Official Helplines Cards */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500">

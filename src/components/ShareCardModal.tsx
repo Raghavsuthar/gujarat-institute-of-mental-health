@@ -131,14 +131,15 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 backdrop-blur-xs p-2 sm:p-4 overflow-y-auto overscroll-contain modal-scroll-backdrop"
+      style={{ WebkitOverflowScrolling: 'touch' }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="share-card-title"
     >
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
+      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden my-2 sm:my-6 flex flex-col max-h-[96dvh] sm:max-h-[94dvh]">
         {/* Header */}
-        <div className="bg-stone-50 border-b border-stone-200 px-5 py-4 flex items-center justify-between shrink-0">
+        <div className="bg-stone-50 border-b border-stone-200 px-4 sm:px-5 py-3 sm:py-4 flex items-center justify-between shrink-0">
           <div>
             <div className="flex items-center gap-2">
               <span className="p-1 rounded-md bg-teal-50 text-teal-700">
@@ -162,7 +163,10 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-5 overflow-y-auto space-y-5">
+        <div
+          className="p-4 sm:p-5 flex-1 min-h-0 overflow-y-auto space-y-4 sm:space-y-5 overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {/* Format selector */}
           <div>
             <span className="block text-xs font-semibold text-stone-700 uppercase tracking-wider mb-2">

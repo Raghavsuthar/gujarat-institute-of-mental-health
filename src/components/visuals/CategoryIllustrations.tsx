@@ -991,7 +991,7 @@ export const MedicationsSectionIllustration: React.FC<IllustrationProps> = ({
  * Universal Category Illustration Router Component
  */
 export const CategoryIllustration: React.FC<{
-  category: ConditionCategory | 'treatments' | 'medications';
+  category: ConditionCategory | 'treatments';
   className?: string;
   ariaLabel?: string;
 }> = ({ category, className = 'w-full h-40 sm:h-48', ariaLabel }) => {
@@ -1022,8 +1022,6 @@ export const CategoryIllustration: React.FC<{
       return <PerinatalIllustration className={className} ariaLabel={ariaLabel} />;
     case 'treatments':
       return <TreatmentsSectionIllustration className={className} ariaLabel={ariaLabel} />;
-    case 'medications':
-      return <MedicationsSectionIllustration className={className} ariaLabel={ariaLabel} />;
     default:
       return <MoodIllustration className={className} ariaLabel={ariaLabel} />;
   }

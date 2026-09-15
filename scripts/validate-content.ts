@@ -1,6 +1,5 @@
 import { conditionsData } from '../src/data/conditions';
 import { substancesData } from '../src/data/substances';
-import { medicationsData } from '../src/data/medications';
 import { treatmentsData } from '../src/data/treatments';
 import { symptomsData } from '../src/data/symptoms';
 import { articlesData } from '../src/data/articles';
@@ -45,7 +44,9 @@ conditionsData.forEach((c) => {
   checkLocalizedString(c.treatment.psychoeducation, `condition[${c.slug}].treatment.psychoeducation`);
   checkLocalizedString(c.treatment.lifestyleSupport, `condition[${c.slug}].treatment.lifestyleSupport`);
   checkLocalizedString(c.treatment.psychotherapy, `condition[${c.slug}].treatment.psychotherapy`);
-  checkLocalizedString(c.treatment.medications, `condition[${c.slug}].treatment.medications`);
+  if (c.treatment.medications) {
+    checkLocalizedString(c.treatment.medications, `condition[${c.slug}].treatment.medications`);
+  }
   checkLocalizedString(c.recoveryOutlook, `condition[${c.slug}].recoveryOutlook`);
 });
 
@@ -61,25 +62,7 @@ substancesData.forEach((s) => {
   checkLocalizedString(s.treatmentApproach, `substance[${s.slug}].treatmentApproach`);
 });
 
-// 3. Medications
-console.log(`Checking ${medicationsData.length} psychiatric medication classes...`);
-medicationsData.forEach((m) => {
-  assertNonEmpty(m.id, `medication[${m.id}].id`);
-  checkLocalizedString(m.name, `medication[${m.id}].name`);
-  checkLocalizedString(m.indications, `medication[${m.id}].indications`);
-  checkLocalizedString(m.mechanismPlain, `medication[${m.id}].mechanismPlain`);
-  checkLocalizedString(m.seriousAdverseEffects, `medication[${m.id}].seriousAdverseEffects`);
-  checkLocalizedString(m.commonMisconceptions, `medication[${m.id}].commonMisconceptions`);
-  checkLocalizedString(m.importantPrecautions, `medication[${m.id}].importantPrecautions`);
-  checkLocalizedString(m.whyMonitoringNeeded, `medication[${m.id}].whyMonitoringNeeded`);
-  checkLocalizedString(m.discontinuationGuidance, `medication[${m.id}].discontinuationGuidance`);
-  checkLocalizedString(m.mandatoryWarning, `medication[${m.id}].mandatoryWarning`);
-  if (m.illustrativeExample) {
-    checkLocalizedString(m.illustrativeExample, `medication[${m.id}].illustrativeExample`);
-  }
-});
-
-// 4. Treatments
+// 3. Treatments
 console.log(`Checking ${treatmentsData.length} psychotherapy modalities...`);
 treatmentsData.forEach((t) => {
   assertNonEmpty(t.id, `treatment[${t.id}].id`);

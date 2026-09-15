@@ -221,13 +221,13 @@ export const EducationalQAAssistant: React.FC<EducationalQAAssistantProps> = ({
       {/* Floating Chat Modal / Drawer */}
       {isOpen && (
         <div
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-[420px] max-h-[85vh] bg-white rounded-2xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden"
+          className="fixed bottom-2 right-2 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-16px)] sm:w-[420px] max-h-[96dvh] sm:max-h-[94dvh] bg-white rounded-2xl shadow-2xl border border-stone-200 flex flex-col overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby="qa-assistant-title"
         >
           {/* Header */}
-          <div className="bg-teal-900 text-white px-4 py-3 flex items-center justify-between shrink-0 border-b border-teal-800">
+          <div className="bg-teal-900 text-white px-4 py-2.5 sm:py-3 flex items-center justify-between shrink-0 border-b border-teal-800">
             <div className="flex items-center gap-2">
               <span className="p-1 rounded-md bg-teal-800 text-amber-300">
                 <Sparkles className="w-4 h-4" />
@@ -250,13 +250,16 @@ export const EducationalQAAssistant: React.FC<EducationalQAAssistantProps> = ({
           </div>
 
           {/* Persistent Mandatory Medical Disclaimer */}
-          <div className="bg-amber-50/90 border-b border-amber-200 px-3.5 py-2 flex items-start gap-2 text-[11px] text-amber-900 shrink-0">
+          <div className="bg-amber-50/90 border-b border-amber-200 px-3.5 py-1.5 sm:py-2 flex items-start gap-2 text-[11px] text-amber-900 shrink-0">
             <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
             <p className="leading-tight font-medium">{t.disclaimer}</p>
           </div>
 
           {/* Conversation Body */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3.5 min-h-[260px] max-h-[380px] bg-stone-50/50">
+          <div
+            className="flex-1 p-3 sm:p-4 min-h-0 overflow-y-auto space-y-3.5 bg-stone-50/50 overscroll-contain"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             {messages.length === 0 ? (
               <div className="py-6 px-3 text-center space-y-3">
                 <div className="w-10 h-10 rounded-full bg-teal-50 text-teal-700 flex items-center justify-center mx-auto border border-teal-100">

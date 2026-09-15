@@ -65,24 +65,24 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
   const theme = getCategoryTheme(condition.category);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-2 sm:p-4 overflow-y-auto overscroll-contain modal-scroll-backdrop" role="dialog" aria-modal="true" style={{ WebkitOverflowScrolling: 'touch' }}>
       <div
         style={{ borderTopColor: theme.hex.accent, borderTopWidth: '4px' }}
-        className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]"
+        className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-2 sm:my-6 flex flex-col max-h-[96dvh] sm:max-h-[94dvh]"
       >
         {/* Modal Header */}
-        <div className="bg-white border-b border-stone-200 p-5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
+        <div className="bg-white border-b border-stone-200 p-3.5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-1.5 sm:mb-2">
               <CategoryBadge category={condition.category} currentLang={currentLang} size="sm" />
               <span className="text-xs text-stone-500 font-mono">
                 {condition.medicalTerms[currentLang]}
               </span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
+            <h2 className="text-lg sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
               {condition.name[currentLang]}
             </h2>
-            <p className="text-xs text-stone-500 mt-1">
+            <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5 sm:mt-1">
               {t.common.lastReviewed}: {condition.lastReviewed} • {t.doctorName}
             </p>
           </div>
@@ -95,11 +95,11 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           </button>
         </div>
 
-        {/* Category Educational Illustration Top Banner */}
-        <div className="w-full border-b border-stone-200 bg-stone-50 shrink-0">
+        {/* Category Educational Illustration Top Banner - hidden or compact on short landscape viewports */}
+        <div className="w-full border-b border-stone-200 bg-stone-50 shrink-0 hidden sm:block">
           <CategoryIllustration
             category={condition.category}
-            className="w-full h-32 sm:h-40"
+            className="w-full h-24 sm:h-36 md:h-40"
             ariaLabel={`Educational clinical illustration for ${condition.name[currentLang]}`}
           />
         </div>
@@ -169,7 +169,10 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
         </div>
 
         {/* Modal Scrollable Content */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm">
+        <div
+          className="p-4 sm:p-6 flex-1 min-h-0 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {/* Audio Read-Aloud & Fast Sharing */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-stone-200">
             <AudioReadAloud
@@ -469,15 +472,6 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
 
                 <div className="p-4 rounded-lg border border-stone-200 bg-white">
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
-                    Pharmacotherapy & Medical Management
-                  </h4>
-                  <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                    {condition.treatment.medications[currentLang]}
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-lg border border-stone-200 bg-white">
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-500 mb-1">
                     Lifestyle, Sleep & Psychoeducation
                   </h4>
                   <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
@@ -666,7 +660,6 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* Related Educational Topics */}
           {condition.relatedContent && (
             ((condition.relatedContent.conditionSlugs && condition.relatedContent.conditionSlugs.length > 0) ||
-            (condition.relatedContent.medicationIds && condition.relatedContent.medicationIds.length > 0) ||
             (condition.relatedContent.treatmentIds && condition.relatedContent.treatmentIds.length > 0)) && (
               <div className="p-4 bg-teal-50/50 border border-teal-100 rounded-xl space-y-2">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-teal-800">
@@ -680,15 +673,6 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                     >
                       <ArrowRight className="w-3 h-3 text-teal-600" />
                       <span>{slug.replace(/-/g, ' ')}</span>
-                    </span>
-                  ))}
-                  {condition.relatedContent.medicationIds?.map((medId, idx) => (
-                    <span
-                      key={`m-${idx}`}
-                      className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-md bg-white border border-amber-200 text-amber-900 font-medium uppercase"
-                    >
-                      <ArrowRight className="w-3 h-3 text-amber-600" />
-                      <span>{medId}</span>
                     </span>
                   ))}
                   {condition.relatedContent.treatmentIds?.map((tId, idx) => (

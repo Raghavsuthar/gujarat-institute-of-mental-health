@@ -53,10 +53,10 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
   ) || activeTool.interpretations[0];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-2 sm:p-4 overflow-y-auto overscroll-contain modal-scroll-backdrop" role="dialog" aria-modal="true" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-2 sm:my-6 flex flex-col max-h-[96dvh] sm:max-h-[94dvh]">
         {/* Header */}
-        <div className="bg-white border-b border-stone-200 p-5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
+        <div className="bg-white border-b border-stone-200 p-3.5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
               {currentLang === 'en' ? 'Educational Self-Reflection' : currentLang === 'hi' ? 'शैक्षणिक आत्म-अवलोकन' : 'શૈક્ષણિક આત્મ-મૂલ્યાંકન'}
@@ -116,7 +116,10 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
         </div>
 
         {/* Scrollable Questions or Results */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-5">
+        <div
+          className="p-4 sm:p-6 flex-1 min-h-0 overflow-y-auto space-y-5 overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {!showResults ? (
             <>
               {/* Question list */}

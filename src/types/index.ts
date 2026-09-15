@@ -73,7 +73,7 @@ export interface Condition {
     psychoeducation: LocalizedString;
     lifestyleSupport: LocalizedString;
     psychotherapy: LocalizedString;
-    medications: LocalizedString;
+    medications?: LocalizedString;
     familySocialInterventions: LocalizedString;
   };
   treatmentGoals: LocalizedString;
@@ -260,32 +260,6 @@ export interface WomensMentalHealthTopic {
   reviewStatus?: ReviewStatus | string;
 }
 
-export interface MedicationClass {
-  id: string;
-  name: LocalizedString;
-  commonExamples: string[];
-  indications: LocalizedString;
-  mechanismPlain: LocalizedString;
-  commonSideEffects: {
-    en: string[];
-    hi: string[];
-    gu: string[];
-  };
-  seriousAdverseEffects: LocalizedString;
-  commonMisconceptions: LocalizedString;
-  importantPrecautions: LocalizedString;
-  whyMonitoringNeeded: LocalizedString;
-  discontinuationGuidance?: LocalizedString;
-  mandatoryWarning: LocalizedString;
-  illustrativeExample: LocalizedString;
-  references: ReferenceItem[];
-  lastReviewed: string;
-  reviewStatus?: ReviewStatus;
-  relatedIds?: string[];
-  youtubeVideoId?: string;
-  curatedVideoIds?: string[];
-}
-
 export interface TherapyModality {
   id: string;
   name: LocalizedString;
@@ -309,7 +283,7 @@ export interface MythFact {
   myth: LocalizedString;
   fact: LocalizedString;
   explanation: LocalizedString;
-  category: 'general' | 'medications' | 'addiction' | 'therapy' | 'children';
+  category: 'general' | 'addiction' | 'therapy' | 'children';
 }
 
 export interface CaregiverGuide {
@@ -417,7 +391,6 @@ export type ActiveTab =
   | 'womens-mental-health'
   | 'addiction'
   | 'treatments'
-  | 'medications'
   | 'caregivers'
   | 'myths'
   | 'symptoms'
@@ -434,7 +407,7 @@ export type ActiveTab =
   | 'admin';
 
 export type ShareCardFormat = 'square' | 'story'; // square: 1080x1080, story: 1080x1920
-export type ShareCardType = 'condition' | 'myth' | 'faq' | 'glossary' | 'screener' | 'substance' | 'medication' | 'article' | 'child-topic' | 'womens-topic';
+export type ShareCardType = 'condition' | 'myth' | 'faq' | 'glossary' | 'screener' | 'substance' | 'article' | 'child-topic' | 'womens-topic';
 
 export interface ShareCardData {
   type?: ShareCardType;

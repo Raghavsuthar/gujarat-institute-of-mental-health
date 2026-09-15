@@ -234,6 +234,11 @@ export const newConditionsBatch3: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['depression', 'cbt', 'antidepressants'],
+    relatedContent: {
+      conditionSlugs: ['major-depressive-disorder', 'generalized-anxiety-disorder', 'somatic-symptom-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'behavioral-activation', 'interpersonal-therapy', 'rtms'],
+    },
   },
 
   // 12. Mood: Premenstrual Dysphoric Disorder (PMDD)
@@ -467,6 +472,11 @@ export const newConditionsBatch3: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['depression', 'antidepressants', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['major-depressive-disorder', 'postpartum-depression-and-anxiety', 'generalized-anxiety-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'supportive'],
+    },
   },
 
   // 13. Personality: Personality Disorders Overview
@@ -696,6 +706,11 @@ export const newConditionsBatch3: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['depression', 'bipolar', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['bipolar-disorder', 'major-depressive-disorder', 'post-traumatic-stress-disorder'],
+      medicationIds: ['mood-stabilizers', 'antipsychotics', 'antidepressants'],
+      treatmentIds: ['dbt', 'cbt', 'supportive'],
+    },
   },
 
   // 14. Perinatal: Postpartum Depression and Anxiety
@@ -931,5 +946,10 @@ export const newConditionsBatch3: Condition[] = [
     lastReviewed: '2026-08',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['depression', 'anxiety', 'antidepressants'],
+    relatedContent: {
+      conditionSlugs: ['major-depressive-disorder', 'premenstrual-dysphoric-disorder-pmdd', 'generalized-anxiety-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'interpersonal-therapy', 'behavioral-activation', 'supportive'],
+    },
   },
 ];

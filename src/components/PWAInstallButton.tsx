@@ -115,8 +115,11 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ currentLang,
 
         {/* iOS Modal */}
         {showIOSGuide && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
-            <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl border border-stone-200">
+          <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-2 sm:p-4 overflow-y-auto overscroll-contain backdrop-blur-xs modal-scroll-backdrop" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div
+              className="w-full max-w-sm rounded-2xl bg-white p-4 sm:p-6 shadow-2xl border border-stone-200 my-2 sm:my-6 max-h-[96dvh] sm:max-h-[94dvh] overflow-y-auto overscroll-contain"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-semibold text-stone-900 flex items-center gap-2">
                   <PlusSquare className="w-5 h-5 text-[#0f766e]" />
@@ -175,8 +178,11 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ currentLang,
       )}
 
       {showIOSGuide && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl border border-stone-200">
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 p-2 sm:p-4 overflow-y-auto overscroll-contain backdrop-blur-xs modal-scroll-backdrop" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div
+            className="w-full max-w-sm rounded-2xl bg-white p-4 sm:p-6 shadow-2xl border border-stone-200 my-2 sm:my-6 max-h-[96dvh] sm:max-h-[94dvh] overflow-y-auto overscroll-contain"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-semibold text-stone-900 flex items-center gap-2">
                 <PlusSquare className="w-5 h-5 text-[#0f766e]" />

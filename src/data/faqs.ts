@@ -2,7 +2,7 @@ import { LocalizedString } from '../types';
 
 export interface FAQCategoryItem {
   id: string;
-  category: 'general' | 'medications' | 'addiction' | 'therapy' | 'legal';
+  category: 'general' | 'addiction' | 'therapy' | 'legal';
   question: LocalizedString;
   answer: LocalizedString;
   keyPoints?: {
@@ -43,51 +43,7 @@ export const faqsData: FAQCategoryItem[] = [
     },
   },
 
-  // 2. Medications & Safety
-  {
-    id: 'medication-addiction-fear',
-    category: 'medications',
-    question: {
-      en: 'Are psychiatric medications addictive? Will I become dependent on them forever?',
-      hi: 'क्या मनोरोग की दवाएं नशीली होती हैं? क्या मुझे जीवन भर इनकी लत लग जाएगी?',
-      gu: 'શું મનોરોગની દવાઓ વ્યસનકારક હોય છે? શું આખી જિંદગી તેની ટેવ પડી જશે?',
-    },
-    answer: {
-      en: 'Most modern psychiatric medications—including SSRI and SNRI antidepressants, mood stabilizers, and antipsychotics—are strictly non-habit forming and do NOT cause addiction or drug craving. They work by gently balancing natural brain neurotransmitters over weeks. Only a specific short-term group called benzodiazepines carries risk of tolerance when misused, which is why psychiatrists prescribe them only for brief crisis periods (usually 2-4 weeks) with careful tapering.',
-      hi: 'आधुनिक मनोरोग की अधिकांश दवाएं (जैसे डिप्रेशन की SSRIs या मूड स्टेबलाइजर्स) बिल्कुल भी नशे की लत नहीं डालतीं। वे दिमाग के न्यूरोट्रांसमीटर को संतुलित करती हैं। केवल नींद व घबराहट की कुछ खास दवाएं (बेंजोडायजेपाइन) अधिक समय तक लेने पर आदत डाल सकती हैं, इसलिए डॉक्टर उन्हें केवल 2-3 हफ्ते के लिए ही देते हैं और धीरे-धीरे बंद कराते हैं।',
-      gu: 'આધુનિક દવાઓ (જેમ કે ડિપ્રેશનની SSRI કે મૂડ સ્ટેબિલાઇઝર્સ) કોઈપણ પ્રકારનું વ્યસન પેદા કરતી નથી. તે મગજના રસાયણોને કુદરતી રીતે સંતુલિત કરે છે. માત્ર ઊંઘની અમુક દવાઓ ટૂંકા ગાળા માટે જ અપાય છે અને ડૉક્ટરની દેખરેખમાં સલામત રીતે બંધ કરાવાય છે.',
-    },
-  },
-  {
-    id: 'why-side-effects-first',
-    category: 'medications',
-    question: {
-      en: 'Why do side effects (like mild nausea or drowsiness) appear before positive benefits?',
-      hi: 'दवाओं का फायदा दिखने से पहले शुरुआती दिनों में हल्की सुस्ती या उल्टी जैसा क्यों लगता है?',
-      gu: 'દવાઓનો ફાયદો દેખાય તે પહેલાં શરૂઆતના દિવસોમાં સુસ્તી કે ઉબકા કેમ થાય છે?',
-    },
-    answer: {
-      en: 'Serotonin and other neurotransmitter receptors exist throughout the body, especially in the gastrointestinal tract and brainstem. When medication is initiated, peripheral receptors respond immediately within hours, causing transient nausea or dizziness. In contrast, therapeutic mood and anxiety recovery requires biological neuroplasticity—the gradual growth of new cellular connections (BDNF pathways) in the hippocampus—which takes 2 to 6 weeks. Initial mild side effects typically fade completely within 7 to 14 days.',
-      hi: 'मस्तिष्क के साथ-साथ हमारे पेट और आंतों में भी सेरोटोनिन के रिसेप्टर्स होते हैं। इसलिए दवा शुरू करने पर शुरुआती कुछ दिनों में पेट में भारीपन या हल्की सुस्ती हो सकती है। लेकिन मन और मूड को ठीक करने वाले नए न्यूरोनल कनेक्शन बनने में 2 से 4 सप्ताह का समय लगता है। शुरुआती असर 7-10 दिनों में खुद ब खुद खत्म हो जाता है।',
-      gu: 'આપણા મગજની સાથે પાચનતંત્રમાં પણ સેરોટોનિન હોય છે. તેથી શરૂઆતના ૫-૭ દિવસ હળવી સુસ્તી કે ઉબકા થઈ શકે છે, પરંતુ મૂડ સુધરવા માટે મગજના કોષોને ૨ થી ૪ અઠવાડિયા લાગે છે. આ હળવી આડઅસર થોડા જ દિવસોમાં આપોઆપ જતી રહે છે.',
-    },
-  },
-  {
-    id: 'duration-of-treatment',
-    category: 'medications',
-    question: {
-      en: 'How long must I continue taking medication after I start feeling completely normal?',
-      hi: 'पूरी तरह ठीक महसूस होने के बाद भी दवा कितने समय तक जारी रखनी चाहिए?',
-      gu: 'સંપૂર્ણ સારું થઈ ગયા પછી પણ દવા કેટલો સમય ચાલુ રાખવી પડે?',
-    },
-    answer: {
-      en: 'For a first episode of depression or anxiety, international medical guidelines recommend maintaining the therapeutic dose for 6 to 9 months after achieving full symptom remission to solidify brain recovery and prevent relapses. For recurring episodes, bipolar disorder, or schizophrenia, long-term maintenance is advised just as insulin is for diabetes or antihypertensives for blood pressure.',
-      hi: 'पहली बार डिप्रेशन या घबराहट होने पर, ठीक होने के बाद भी कम से कम 6 से 9 महीने तक दवा जारी रखने की सलाह दी जाती है ताकि बीमारी दोबारा न लौटे। जैसे ब्लड प्रेशर या थायरॉयड में दवा शरीर को सामान्य रखती है, वैसे ही डॉक्टर की सलाह से ही धीरे-धीरे खुराक कम करनी चाहिए, अचानक कभी बंद न करें।',
-      gu: 'પ્રથમ વખત ડિપ્રેશન કે ચિંતા થઈ હોય તો સંપૂર્ણ સાજા થયા પછી પણ ૬ થી ૯ મહિના દવા ચાલુ રાખવી જરૂરી છે જેથી રોગ પાછો ન ઉથલો મારે. અચાનક દવા બંધ કરવાથી વિડ્રોલ કે રોગ પાછો આવવાનું જોખમ રહે છે.',
-    },
-  },
-
-  // 3. Addiction & Recovery
+  // 2. Addiction & Recovery
   {
     id: 'addiction-disease-model',
     category: 'addiction',

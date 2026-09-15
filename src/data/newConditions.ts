@@ -228,6 +228,11 @@ export const newConditionsData: Condition[] = [
     lastReviewed: '2026-09',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['bulimia-nervosa', 'depression', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['bulimia-nervosa', 'binge-eating-disorder', 'obsessive-compulsive-disorder'],
+      medicationIds: ['antipsychotics', 'antidepressants'],
+      treatmentIds: ['family-therapy', 'cbt'],
+    },
   },
 
   // 2. Eating Disorders: Bulimia Nervosa
@@ -457,6 +462,11 @@ export const newConditionsData: Condition[] = [
     lastReviewed: '2026-09',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['anorexia-nervosa', 'binge-eating-disorder', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['anorexia-nervosa', 'binge-eating-disorder', 'major-depressive-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'dbt'],
+    },
   },
 
   // 3. Eating Disorders: Binge Eating Disorder
@@ -686,6 +696,11 @@ export const newConditionsData: Condition[] = [
     lastReviewed: '2026-09',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['bulimia-nervosa', 'depression', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['bulimia-nervosa', 'anorexia-nervosa', 'major-depressive-disorder'],
+      medicationIds: ['stimulant-adhd-medications', 'antidepressants'],
+      treatmentIds: ['cbt', 'dbt'],
+    },
   },
 
   // 4. Neurodevelopmental: ADHD
@@ -915,6 +930,11 @@ export const newConditionsData: Condition[] = [
     lastReviewed: '2026-09',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['autism-spectrum-disorder', 'stimulant-adhd-medications', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['autism-spectrum-disorder-asd', 'generalized-anxiety-disorder', 'major-depressive-disorder'],
+      medicationIds: ['stimulant-adhd-medications'],
+      treatmentIds: ['family-therapy', 'cbt'],
+    },
   },
 
   // 5. Neurodevelopmental: Autism Spectrum Disorder
@@ -1146,5 +1166,10 @@ export const newConditionsData: Condition[] = [
     lastReviewed: '2026-09',
     reviewStatus: { lastReviewed: '2026-08', reviewer: '[VERIFY: Dr. Raghav Suthar]' },
     relatedIds: ['adhd', 'anxiety', 'cbt'],
+    relatedContent: {
+      conditionSlugs: ['attention-deficit-hyperactivity-disorder-adhd', 'social-anxiety-disorder', 'obsessive-compulsive-disorder'],
+      medicationIds: ['stimulant-adhd-medications', 'antipsychotics'],
+      treatmentIds: ['family-therapy', 'supportive'],
+    },
   },
 ];

@@ -268,6 +268,21 @@ const baseConditionsData: Condition[] = [
     // TODO(video): 3-5 min overview on MDD neurobiology, monoaminergic hypothesis, and recovery
     youtubeVideoId: undefined,
     relatedIds: ['cbt', 'behavioral-activation', 'ipt', 'antidepressants', 'anxiety-gad', 'bipolar'],
+    relatedContent: {
+      conditionSlugs: ['persistent-depressive-disorder-dysthymia', 'generalized-anxiety-disorder', 'bipolar-disorder'],
+      medicationIds: ['antidepressants', 'mood-stabilizers', 'medications-for-substance-use-disorders'],
+      treatmentIds: [
+        'cbt',
+        'behavioral-activation',
+        'interpersonal-therapy',
+        'act',
+        'dbt',
+        'supportive',
+        'motivational-interviewing',
+        'ect',
+        'rtms',
+      ],
+    },
   },
   {
     id: 'bipolar',
@@ -524,6 +539,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): Bipolar disorder cycle, mood stabilization, circadian rhythms, and family role
     youtubeVideoId: undefined,
     relatedIds: ['mood-stabilizers', 'antipsychotics', 'family-psychoeducation', 'depression', 'schizophrenia'],
+    relatedContent: {
+      conditionSlugs: ['major-depressive-disorder', 'schizophrenia', 'attention-deficit-hyperactivity-disorder-adhd'],
+      medicationIds: ['mood-stabilizers', 'antipsychotics', 'medications-for-substance-use-disorders'],
+      treatmentIds: ['cbt', 'family-therapy', 'interpersonal-therapy', 'motivational-interviewing', 'ect'],
+    },
   },
   {
     id: 'anxiety-gad',
@@ -783,6 +803,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): GAD autonomic response, worry cycles, and evidence-based psychotherapy/pharmacotherapy
     youtubeVideoId: undefined,
     relatedIds: ['cbt', 'act', 'antidepressants', 'anxiolytics', 'panic-disorder', 'depression'],
+    relatedContent: {
+      conditionSlugs: ['panic-disorder', 'social-anxiety-disorder', 'major-depressive-disorder'],
+      medicationIds: ['antidepressants', 'anxiolytics-hypnotics', 'medications-for-substance-use-disorders'],
+      treatmentIds: ['cbt', 'act', 'motivational-interviewing'],
+    },
   },
   {
     id: 'panic-disorder',
@@ -1046,6 +1071,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): Panic sensations demystified, the hyperventilation loop, and somatic grounding
     youtubeVideoId: undefined,
     relatedIds: ['cbt', 'erp', 'anxiolytics', 'antidepressants', 'anxiety-gad'],
+    relatedContent: {
+      conditionSlugs: ['generalized-anxiety-disorder', 'illness-anxiety-disorder', 'social-anxiety-disorder'],
+      medicationIds: ['antidepressants', 'anxiolytics-hypnotics'],
+      treatmentIds: ['cbt', 'erp'],
+    },
   },
   {
     id: 'ocd',
@@ -1305,6 +1335,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): OCD cycle explained and how Exposure & Response Prevention (ERP) rewires fear circuits
     youtubeVideoId: undefined,
     relatedIds: ['erp', 'cbt', 'antidepressants', 'anxiety-gad'],
+    relatedContent: {
+      conditionSlugs: ['illness-anxiety-disorder', 'generalized-anxiety-disorder', 'major-depressive-disorder'],
+      medicationIds: ['antidepressants', 'antipsychotics'],
+      treatmentIds: ['erp', 'cbt', 'rtms'],
+    },
   },
   {
     id: 'schizophrenia',
@@ -1576,6 +1611,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): Schizophrenia recovery, dopamine pathways, and destigmatizing hallucinations/delusions
     youtubeVideoId: undefined,
     relatedIds: ['antipsychotics', 'family-psychoeducation', 'sst', 'bipolar'],
+    relatedContent: {
+      conditionSlugs: ['bipolar-disorder', 'major-depressive-disorder'],
+      medicationIds: ['antipsychotics', 'mood-stabilizers'],
+      treatmentIds: ['family-therapy', 'supportive', 'ect'],
+    },
   },
   {
     id: 'ptsd',
@@ -1836,6 +1876,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): PTSD trauma loop, amygdala hyperarousal, and trauma-focused therapies (EMDR / PE)
     youtubeVideoId: undefined,
     relatedIds: ['pe-ptsd', 'emdr', 'cbt', 'antidepressants', 'anxiety-gad'],
+    relatedContent: {
+      conditionSlugs: ['major-depressive-disorder', 'generalized-anxiety-disorder', 'panic-disorder'],
+      medicationIds: ['antidepressants'],
+      treatmentIds: ['cbt', 'supportive'],
+    },
   },
   {
     id: 'geriatric-dementia-delirium',
@@ -2090,6 +2135,11 @@ const baseConditionsData: Condition[] = [
     // TODO(video): Geriatric mental health: Delirium vs Dementia distinction and late-life depression
     youtubeVideoId: undefined,
     relatedIds: ['depression', 'family-psychoeducation', 'antipsychotics'],
+    relatedContent: {
+      conditionSlugs: ['major-depressive-disorder', 'persistent-depressive-disorder-dysthymia'],
+      medicationIds: ['antipsychotics', 'antidepressants'],
+      treatmentIds: ['supportive', 'behavioral-activation', 'ect'],
+    },
   },
 ];
 

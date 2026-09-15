@@ -89,14 +89,6 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <button
-                onClick={() => onTabChange('medications')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
-              >
-                {t.nav.medications}
-              </button>
-            </li>
-            <li>
-              <button
                 onClick={() => onTabChange('treatments')}
                 className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
               >

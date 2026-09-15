@@ -3,7 +3,6 @@ import path from 'path';
 
 import { conditionsData } from '../src/data/conditions';
 import { substancesData } from '../src/data/substances';
-import { medicationsData } from '../src/data/medications';
 import { treatmentsData } from '../src/data/treatments';
 import { symptomsData } from '../src/data/symptoms';
 import { articlesData } from '../src/data/articles';
@@ -21,7 +20,6 @@ const staticPaths = [
   { path: 'child-psychiatry', priority: '0.9', changefreq: 'weekly' },
   { path: 'womens-mental-health', priority: '0.9', changefreq: 'weekly' },
   { path: 'addiction', priority: '0.9', changefreq: 'weekly' },
-  { path: 'medications', priority: '0.9', changefreq: 'weekly' },
   { path: 'treatments', priority: '0.8', changefreq: 'monthly' },
   { path: 'symptoms', priority: '0.8', changefreq: 'monthly' },
   { path: 'myths', priority: '0.8', changefreq: 'weekly' },
@@ -57,11 +55,6 @@ womensMentalHealthTopics.forEach((wt) => {
 // Substances
 substancesData.forEach((s) => {
   dynamicPaths.push({ path: `substances/${s.slug}`, priority: '0.8', changefreq: 'monthly' });
-});
-
-// Medications
-medicationsData.forEach((m) => {
-  dynamicPaths.push({ path: `medications/${m.id}`, priority: '0.8', changefreq: 'monthly' });
 });
 
 // Treatments

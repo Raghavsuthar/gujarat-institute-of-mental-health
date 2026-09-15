@@ -44,10 +44,10 @@ export const WomensMentalHealthModal: React.FC<WomensMentalHealthModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true">
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-2 sm:p-4 overflow-y-auto overscroll-contain modal-scroll-backdrop" role="dialog" aria-modal="true" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden my-2 sm:my-6 flex flex-col max-h-[96dvh] sm:max-h-[94dvh]">
         {/* Header */}
-        <div className="bg-white border-b border-stone-200 p-5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
+        <div className="bg-white border-b border-stone-200 p-3.5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-1.5">
               <span className="text-xs font-semibold uppercase tracking-wider text-rose-800 bg-rose-50 px-2 py-0.5 rounded">
@@ -73,9 +73,9 @@ export const WomensMentalHealthModal: React.FC<WomensMentalHealthModalProps> = (
           </button>
         </div>
 
-        {/* Visual Header Banner */}
-        <div className="w-full border-b border-stone-200 bg-rose-50/40 shrink-0">
-          <WomensMentalHealthIllustration className="w-full h-28 sm:h-32" />
+        {/* Visual Header Banner - collapsed in mobile landscape to maximize reading space */}
+        <div className="w-full border-b border-stone-200 bg-rose-50/40 shrink-0 hidden landscape:hidden sm:landscape:block sm:block">
+          <WomensMentalHealthIllustration className="w-full h-24 sm:h-32" />
         </div>
 
         {/* Navigation Tabs */}
@@ -148,7 +148,10 @@ export const WomensMentalHealthModal: React.FC<WomensMentalHealthModalProps> = (
         </div>
 
         {/* Scrollable Body */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm">
+        <div
+          className="p-4 sm:p-6 flex-1 min-h-0 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-sm overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {/* Audio Read-Aloud & Fast Sharing */}
           <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-stone-200">
             <AudioReadAloud
