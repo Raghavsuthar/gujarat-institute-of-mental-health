@@ -114,7 +114,7 @@ export const ShareCardModal: React.FC<ShareCardModalProps> = ({
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             title: data.title,
-            text: `${data.title} - Dr. Raghav Suthar (MD Psychiatry)`,
+            text: `${data.title} - Dr. Raghav Suthar (DNB Psychiatry)`,
             files: [file],
           });
         } else {

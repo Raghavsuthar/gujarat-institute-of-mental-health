@@ -242,7 +242,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen min-h-[100dvh] w-full flex flex-col bg-[#f6f8f7] text-[#1c2430] selection:bg-teal-100 selection:text-teal-900 overflow-x-hidden">
+    <div className="min-h-screen min-h-[100dvh] w-full flex flex-col bg-[#f8fafc] text-slate-900 selection:bg-teal-200 selection:text-teal-950 radial-mesh-glow overflow-x-hidden relative">
       {/* Offline Status Warning when disconnected */}
       <OfflineIndicator currentLang={currentLang} />
 
@@ -260,7 +260,7 @@ export default function App() {
       />
 
       {/* Main Body Content */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <Routes>
           {/* Root redirect to language prefix */}
           <Route path="/" element={<Navigate to={`/${getInitialLanguage()}`} replace />} />
@@ -572,13 +572,13 @@ export default function App() {
             ? 'आपातकालीन संकट सहायता (टेली-मानस 14416 / 112)'
             : 'ઇમરજન્સી સંકટ સહાય (ટેલી-માનસ ૧૪૪૧૬ / ૧૧૨)'
         }
-        className="fixed bottom-5 left-5 z-40 group flex items-center gap-2.5 bg-[#991b1b] hover:bg-[#7f1d1d] text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-lg shadow-red-950/25 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-200 cursor-pointer min-h-[48px] min-w-[48px]"
+        className="fixed bottom-5 left-5 z-40 group flex items-center gap-2.5 bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-700 hover:to-red-800 text-white p-3.5 sm:px-4 sm:py-3 rounded-full shadow-lg shadow-rose-950/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-rose-300 cursor-pointer min-h-[48px] min-w-[48px] border border-rose-400/40"
       >
         <span className="relative flex items-center justify-center">
-          <Phone className="w-5 h-5 text-white" />
+          <Phone className="w-5 h-5 text-white animate-pulse" />
           <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-300"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-300 shadow-xs"></span>
           </span>
         </span>
         <span className="text-xs font-bold tracking-wide hidden sm:inline-block">

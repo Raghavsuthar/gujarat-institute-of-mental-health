@@ -33,7 +33,7 @@ export const MythOfTheDay: React.FC<MythOfTheDayProps> = ({ currentLang, onNavig
       downloading: 'Preparing Card...',
       shareWhatsApp: 'Share to WhatsApp Status',
       viewAll: 'Explore all mental health myths',
-      waText: `*Myth of the Day:*\n❌ Myth: "${todayMyth.myth[currentLang] || todayMyth.myth.en}"\n✅ Fact: ${todayMyth.fact[currentLang] || todayMyth.fact.en}\n\nEvidence-based psychiatry education by Dr. Raghav Suthar (MD Psychiatry):\n${BASE_URL}/${currentLang}/myths`,
+      waText: `*Myth of the Day:*\n❌ Myth: "${todayMyth.myth[currentLang] || todayMyth.myth.en}"\n✅ Fact: ${todayMyth.fact[currentLang] || todayMyth.fact.en}\n\nEvidence-based psychiatry education by Dr. Raghav Suthar (DNB Psychiatry):\n${BASE_URL}/${currentLang}/myths`,
     },
     hi: {
       badge: 'आज का भ्रम और सत्य',
@@ -43,7 +43,7 @@ export const MythOfTheDay: React.FC<MythOfTheDayProps> = ({ currentLang, onNavig
       downloading: 'कार्ड तैयार हो रहा है...',
       shareWhatsApp: 'व्हाट्सएप स्टेटस पर शेयर करें',
       viewAll: 'सभी मानसिक स्वास्थ्य भ्रांतियां देखें',
-      waText: `*आज का भ्रम और सत्य:*\n❌ भ्रम: "${todayMyth.myth[currentLang] || todayMyth.myth.en}"\n✅ सच: ${todayMyth.fact[currentLang] || todayMyth.fact.en}\n\nडॉ. राघव सुथार (MD मनोचिकित्सा):\n${BASE_URL}/${currentLang}/myths`,
+      waText: `*आज का भ्रम और सत्य:*\n❌ भ्रम: "${todayMyth.myth[currentLang] || todayMyth.myth.en}"\n✅ सच: ${todayMyth.fact[currentLang] || todayMyth.fact.en}\n\nडॉ. राघव सुथार (DNB मनोचिकित्सा):\n${BASE_URL}/${currentLang}/myths`,
     },
     gu: {
       badge: 'આજનો વહેમ અને સત્ય',
@@ -53,7 +53,7 @@ export const MythOfTheDay: React.FC<MythOfTheDayProps> = ({ currentLang, onNavig
       downloading: 'કાર્ડ તૈયાર થઈ રહ્યું છે...',
       shareWhatsApp: 'વોટ્સએપ સ્ટેટસ પર શેર કરો',
       viewAll: 'બધી માનસિક ગેરમાન્યતાઓ જુઓ',
-      waText: `*આજનો વહેમ અને સત્ય:*\n❌ વહેમ: "${todayMyth.myth[currentLang] || todayMyth.myth.en}"\n✅ સત્ય: ${todayMyth.fact[currentLang] || todayMyth.fact.en}\n\nડૉ. રાઘવ સુથાર (MD મનોચિકિત્સક):\n${BASE_URL}/${currentLang}/myths`,
+      waText: `*આજનો વહેમ અને સત્ય:*\n❌ વહેમ: "${todayMyth.myth[currentLang] || todayMyth.myth.en}"\n✅ સત્ય: ${todayMyth.fact[currentLang] || todayMyth.fact.en}\n\nડૉ. રાઘવ સુથાર (DNB મનોચિકિત્સક):\n${BASE_URL}/${currentLang}/myths`,
     },
   }[currentLang];
 

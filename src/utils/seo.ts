@@ -55,12 +55,12 @@ export function updatePageSEO({
 
   const cleanPath = path.replace(/^\/+|\/+$/g, '');
   const currentUrl = cleanPath ? `${BASE_URL}/${lang}/${cleanPath}` : `${BASE_URL}/${lang}`;
-  const fullTitle = `${title} | Dr. Raghav Suthar - MD Psychiatry`;
+  const fullTitle = `${title} | Dr. Raghav Suthar - DNB Psychiatry`;
 
   // 1. Title & Description & Robots
   document.title = fullTitle;
   setMetaTag('name', 'description', description);
-  setMetaTag('name', 'author', 'Dr. Raghav Suthar, MBBS, MD (Psychiatry)');
+  setMetaTag('name', 'author', 'Dr. Raghav Suthar, MBBS, DNB (Psychiatry)');
   setMetaTag('name', 'robots', noIndex ? 'noindex, nofollow' : 'index, follow');
 
   // 2. Canonical & Hreflang Alternates
@@ -139,7 +139,7 @@ export function buildMedicalWebPageSchema({
       '@type': 'Physician',
       name: 'Dr. Raghav Suthar',
       medicalSpecialty: 'Psychiatry',
-      description: 'Consultant Psychiatrist (MBBS, MD Psychiatry). NMC Registered Medical Practitioner dedicated to ethical, non-stigmatizing public mental health awareness.',
+      description: 'Consultant Psychiatrist (MBBS, DNB Psychiatry). NMC Registered Medical Practitioner dedicated to ethical, non-stigmatizing public mental health awareness.',
     },
     reviewedBy: {
       '@type': 'Physician',

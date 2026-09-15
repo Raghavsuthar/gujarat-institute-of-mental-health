@@ -15,7 +15,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
 
   useEffect(() => {
     updatePageSEO({
-      title: currentLang === 'en' ? 'About Dr. Raghav Suthar, MD (Psychiatry) & Clinical Ethics' : currentLang === 'hi' ? 'डॉ. राघव सुथार के बारे में एवं मेडिकल एथिक्स' : 'ડૉ. રાઘવ સુથાર વિશે અને તબીબી નૈતિકતા',
+      title: currentLang === 'en' ? 'About Dr. Raghav Suthar, DNB (Psychiatry) & Clinical Ethics' : currentLang === 'hi' ? 'डॉ. राघव सुथार के बारे में एवं मेडिकल एथिक्स' : 'ડૉ. રાઘવ સુથાર વિશે અને તબીબી નૈતિકતા',
       description: currentLang === 'en'
         ? 'Consultant Psychiatrist registered under the National Medical Commission (NMC). Evidence-based public health education and ethical practice in India.'
         : currentLang === 'hi'

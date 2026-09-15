@@ -91,7 +91,7 @@ export function generateShareCardCanvas(data: ShareCardData): HTMLCanvasElement 
   // Doctor attribution & subtitle
   ctx.fillStyle = '#0f766e';
   ctx.font = '700 28px "Plus Jakarta Sans", "Noto Sans Devanagari", "Noto Sans Gujarati", sans-serif';
-  ctx.fillText('DR. RAGHAV SUTHAR · MBBS, MD (PSYCHIATRY)', margin + 40, margin + 65);
+  ctx.fillText('DR. RAGHAV SUTHAR · MBBS, DNB (PSYCHIATRY)', margin + 40, margin + 65);
 
   const subHeader =
     data.sourceLabel ||

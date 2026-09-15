@@ -37,13 +37,13 @@ export const SocialShareBar: React.FC<SocialShareBarProps> = ({
     const briefSub = cleanSub.length > 180 ? `${cleanSub.slice(0, 177)}...` : cleanSub;
 
     if (currentLang === 'hi') {
-      return `*${title}*\n${briefSub ? `\n${briefSub}\n` : ''}\nडॉ. राघव सुथार (MD मनोचिकित्सा) द्वारा प्रामाणिक मानसिक स्वास्थ्य जानकारी:\n🔗 ${url}`;
+      return `*${title}*\n${briefSub ? `\n${briefSub}\n` : ''}\nडॉ. राघव सुथार (DNB मनोचिकित्सा) द्वारा प्रामाणिक मानसिक स्वास्थ्य जानकारी:\n🔗 ${url}`;
     }
     if (currentLang === 'gu') {
-      return `*${title}*\n${briefSub ? `\n${briefSub}\n` : ''}\nડૉ. રાઘવ સુથાર (MD મનોચિકિત્સક) દ્વારા પુરાવા-આધારિત માનસિક આરોગ્ય માર્ગદર્શિકા:\n🔗 ${url}`;
+      return `*${title}*\n${briefSub ? `\n${briefSub}\n` : ''}\nડૉ. રાઘવ સુથાર (DNB મનોચિકિત્સક) દ્વારા પુરાવા-આધારિત માનસિક આરોગ્ય માર્ગદર્શિકા:\n🔗 ${url}`;
     }
     // Default English
-    return `*${title}*\n${briefSub ? `\n${briefSub}\n` : ''}\nEvidence-based psychiatric education by Dr. Raghav Suthar (MD Psychiatry):\n🔗 ${url}`;
+    return `*${title}*\n${briefSub ? `\n${briefSub}\n` : ''}\nEvidence-based psychiatric education by Dr. Raghav Suthar (DNB Psychiatry):\n🔗 ${url}`;
   }, [title, subtitle, currentLang, url]);
 
   const labels = {

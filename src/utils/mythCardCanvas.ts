@@ -79,7 +79,7 @@ export function generateMythCardCanvas(myth: MythFact, lang: Language): HTMLCanv
   // Header Title
   ctx.fillStyle = '#0f766e';
   ctx.font = '700 28px "Plus Jakarta Sans", "Noto Sans Devanagari", "Noto Sans Gujarati", sans-serif';
-  ctx.fillText('DR. RAGHAV SUTHAR · MBBS, MD (PSYCHIATRY)', 90, 110);
+  ctx.fillText('DR. RAGHAV SUTHAR · MBBS, DNB (PSYCHIATRY)', 90, 110);
 
   const headerSub =
     lang === 'en'

@@ -14,7 +14,7 @@ export interface DoctorProfile {
 
 export const doctorProfile: DoctorProfile = {
   name: 'Dr. Raghav Suthar',
-  qualifications: 'MBBS, MD (Psychiatry)',
+  qualifications: 'MBBS, DNB (Psychiatry)',
   title: {
     en: 'Consultant Psychiatrist',
     hi: 'कंसल्टेंट मनोचिकित्सक (Consultant Psychiatrist)',

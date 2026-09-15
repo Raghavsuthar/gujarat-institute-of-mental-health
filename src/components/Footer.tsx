@@ -19,28 +19,33 @@ export const Footer: React.FC<FooterProps> = ({
   const t = translations[currentLang];
 
   return (
-    <footer className="bg-white text-stone-700 border-t border-stone-200 text-sm">
-      {/* Top Crisis Reminder Bar - Quiet, high contrast */}
-      <div className="bg-[#fef2f2] px-4 py-3.5 border-b border-[#fecaca]">
-        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
+    <footer className="bg-white text-slate-700 border-t border-slate-200/80 text-sm">
+      {/* Visual Identity Fine Accent Line */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-[#0d9488] via-[#f59e0b] to-[#7c3aed]" aria-hidden="true" />
+
+      {/* Top Crisis Reminder Bar - High alert, radiant contrast */}
+      <div className="bg-gradient-to-r from-rose-50/90 via-red-50/80 to-rose-50/90 px-4 py-3.5 border-b border-rose-200/70">
+        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <Phone className="w-4 h-4 text-[#991b1b] shrink-0" />
+            <span className="relative flex items-center justify-center shrink-0">
+              <Phone className="w-4 h-4 text-rose-600 animate-pulse" />
+            </span>
             <div>
-              <p className="font-semibold text-[#991b1b] text-sm">
+              <p className="font-bold text-rose-950 text-sm">
                 {currentLang === 'en'
                   ? 'Immediate Crisis Helpline (India)'
                   : currentLang === 'hi'
                   ? 'तत्काल मानसिक स्वास्थ्य हेल्पलाइन (भारत)'
                   : 'તાત્કાલિક માનસિક સ્વાસ્થ્ય હેલ્પલાઇન (ભારત)'}
               </p>
-              <p className="text-stone-700 text-xs mt-0.5">
-                Tele-MANAS: <span className="font-bold text-[#1c2430]">14416</span> | Police & Ambulance: <span className="font-bold text-[#1c2430]">112</span> (24x7 Toll-Free)
+              <p className="text-slate-700 text-xs mt-0.5">
+                Tele-MANAS: <span className="font-bold text-slate-900">14416</span> | Police & Ambulance: <span className="font-bold text-slate-900">112</span> (24x7 Toll-Free)
               </p>
             </div>
           </div>
           <button
             onClick={onOpenCrisis}
-            className="px-4 py-2 rounded-md bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-semibold transition text-xs min-h-[44px] cursor-pointer flex items-center"
+            className="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-700 hover:to-red-800 text-white font-bold transition text-xs min-h-[44px] cursor-pointer flex items-center shadow-2xs"
           >
             {currentLang === 'en' ? 'Open Crisis Guide' : currentLang === 'hi' ? 'आपातकालीन मार्गदर्शिका' : 'ઇમરજન્સી માર્ગદર્શિકા'}
           </button>
@@ -48,33 +53,33 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Main Footer Links & Info */}
-      <div className="max-w-4xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-5xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Col 1: Doctor Profile */}
         <div className="space-y-2 md:col-span-1">
-          <h3 className="text-[#1c2430] font-semibold text-base">{t.doctorName}</h3>
-          <p className="text-xs text-stone-600 font-medium">MBBS, MD (Psychiatry)</p>
-          <p className="text-stone-600 text-xs leading-relaxed mt-2">
+          <h3 className="text-slate-900 font-bold text-base">{t.doctorName}</h3>
+          <p className="text-xs text-teal-800 font-semibold">MBBS, DNB (Psychiatry)</p>
+          <p className="text-slate-600 text-xs leading-relaxed mt-2">
             {currentLang === 'en'
               ? 'Evidence-based, ethical psychiatric public education dedicated to reducing stigma and empowering communities in India.'
               : currentLang === 'hi'
               ? 'प्रमाण-आधारित, नैतिक मानसिक स्वास्थ्य लोक शिक्षण, जिसका उद्देश्य समाज से भ्रांतियों को मिटाना और जागरूकता फैलाना है।'
               : 'પુરાવા-આધારિત, નૈતિક માનસિક શિક્ષણ, જે સમાજમાંથી અંધશ્રદ્ધા દૂર કરવા અને જાગૃતિ લાવવા માટે સમર્પિત છે.'}
           </p>
-          <p className="text-[11px] text-stone-500 font-mono pt-1">
+          <p className="text-[11px] text-slate-500 font-mono pt-1">
             NMC Registered Medical Practitioner
           </p>
         </div>
 
         {/* Col 2: Education Libraries */}
         <div className="space-y-2">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1c2430]">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
             {currentLang === 'en' ? 'Educational Libraries' : currentLang === 'hi' ? 'शैक्षणिक विषय' : 'શૈક્ષણિક વિષયો'}
           </h4>
-          <ul className="space-y-1 text-xs text-stone-600">
+          <ul className="space-y-1 text-xs text-slate-600">
             <li>
               <button
                 onClick={() => onTabChange('conditions')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.conditions}
               </button>
@@ -82,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('addiction')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.addiction}
               </button>
@@ -90,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('treatments')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.treatments}
               </button>
@@ -98,7 +103,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('symptoms')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.symptoms}
               </button>
@@ -108,14 +113,14 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Col 3: Resources & Tools */}
         <div className="space-y-2">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1c2430]">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
             {currentLang === 'en' ? 'Resources & Articles' : currentLang === 'hi' ? 'संसाधन व लेख' : 'સાધનો અને લેખો'}
           </h4>
-          <ul className="space-y-1 text-xs text-stone-600">
+          <ul className="space-y-1 text-xs text-slate-600">
             <li>
               <button
                 onClick={() => onTabChange('articles')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.articles}
               </button>
@@ -123,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('resources')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.resources}
               </button>
@@ -131,7 +136,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('outreach')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.outreach}
               </button>
@@ -139,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('interactive')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.interactive} (PHQ-9 / GAD-7)
               </button>
@@ -147,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('myths')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.myths}
               </button>
@@ -155,7 +160,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('caregivers')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.caregivers}
               </button>
@@ -163,7 +168,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('emergency')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.emergency}
               </button>
@@ -171,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({
             <li>
               <button
                 onClick={() => onTabChange('about')}
-                className="hover:text-[#115e59] py-1 transition cursor-pointer text-left"
+                className="hover:text-teal-700 py-1 transition-colors cursor-pointer text-left font-medium"
               >
                 {t.nav.about}
               </button>
@@ -181,11 +186,11 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Col 4: Mandatory Disclaimer, Privacy & Language */}
         <div className="space-y-3">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#1c2430] flex items-center gap-1.5">
-            <ShieldCheck className="w-4 h-4 text-stone-600" />
+          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-teal-600" />
             <span>{t.disclaimer.title}</span>
           </h4>
-          <p className="text-stone-600 text-xs leading-relaxed">
+          <p className="text-slate-600 text-xs leading-relaxed">
             {currentLang === 'en'
               ? 'This portal is purely for educational purposes and mental health literacy in India. It does not provide individual diagnosis, prescription, or medical advice.'
               : currentLang === 'hi'
@@ -193,33 +198,33 @@ export const Footer: React.FC<FooterProps> = ({
               : 'આ પોર્ટલ ફક્ત જાહેર શિક્ષણ માટે છે. આ કોઈ વ્યક્તિગત નિદાન કે દવાઓનું પ્રિસ્ક્રિપ્શન આપતું નથી.'}
           </p>
 
-          <p className="text-[11px] text-teal-800 bg-teal-50 p-2 rounded border border-teal-100 leading-normal">
+          <p className="text-[11px] text-teal-900 bg-teal-50/90 p-2.5 rounded-lg border border-teal-200/80 leading-normal">
             🛡️ <strong>Privacy First:</strong> Zero tracking cookies, zero advertising pixels, and no visitor data collection. Your browsing is strictly confidential.
           </p>
 
           <div className="pt-2">
-            <span className="text-xs text-stone-600 block mb-1 font-medium">Select Language:</span>
+            <span className="text-xs text-slate-700 block mb-1 font-semibold">Select Language:</span>
             <div className="flex items-center gap-1.5" role="group" aria-label="Footer language selector">
               <button
                 onClick={() => onLanguageChange('en')}
-                className={`px-3 py-1.5 rounded text-xs transition cursor-pointer min-h-[44px] ${
-                  currentLang === 'en' ? 'bg-[#115e59] text-white font-semibold' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
+                  currentLang === 'en' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 English
               </button>
               <button
                 onClick={() => onLanguageChange('hi')}
-                className={`px-3 py-1.5 rounded text-xs transition cursor-pointer min-h-[44px] ${
-                  currentLang === 'hi' ? 'bg-[#115e59] text-white font-semibold' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
+                  currentLang === 'hi' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 हिन्दी
               </button>
               <button
                 onClick={() => onLanguageChange('gu')}
-                className={`px-3 py-1.5 rounded text-xs transition cursor-pointer min-h-[44px] ${
-                  currentLang === 'gu' ? 'bg-[#115e59] text-white font-semibold' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
+                  currentLang === 'gu' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 ગુજરાતી
@@ -230,8 +235,8 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Bottom Copyright & Compliance */}
-      <div className="border-t border-stone-200 px-4 py-4 text-stone-500 text-xs">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div className="border-t border-slate-200/80 px-4 py-4 text-slate-500 text-xs bg-slate-50/50">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>© {new Date().getFullYear()} {t.doctorName}. Public Psychiatry Education Portal. All content evidence-based.</p>
           <p>Complies with National Medical Commission (NMC) Medical Ethics Regulations.</p>
         </div>

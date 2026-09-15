@@ -185,7 +185,7 @@ export const OutreachView: React.FC<OutreachViewProps> = ({ currentLang }) => {
               Dr. Raghav Suthar
             </h2>
             <p className="text-xs sm:text-sm font-semibold text-teal-800 mt-0.5">
-              MBBS, MD (Psychiatry) · NMC Registered Medical Practitioner
+              MBBS, DNB (Psychiatry) · NMC Registered Medical Practitioner
             </p>
             <p className="text-xs text-stone-500 mt-1">
               Public Mental Health Literacy Initiative · English · हिन्दी · ગુજરાતી

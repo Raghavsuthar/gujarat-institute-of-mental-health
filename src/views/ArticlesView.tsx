@@ -73,7 +73,7 @@ export const ArticlesView: React.FC<ArticlesViewProps> = ({
       subtitle: 'In-depth, peer-reviewed educational articles on stress, neurobiology, and evidence-based mental healthcare by Dr. Raghav Suthar.',
       back: 'Back to all articles',
       minRead: 'min read',
-      reviewedBy: 'Reviewed by Dr. Raghav Suthar, MD (Psychiatry)',
+      reviewedBy: 'Reviewed by Dr. Raghav Suthar, DNB (Psychiatry)',
       allCategories: 'All Topics',
       searchPlaceholder: 'Search articles by topic, keyword...',
       noResults: 'No articles found matching your search.',
@@ -85,7 +85,7 @@ export const ArticlesView: React.FC<ArticlesViewProps> = ({
       subtitle: 'डॉ. राघव सुथार द्वारा तनाव, बर्नआउट और मनोचिकित्सा पर प्रामाणिक और विस्तृत लेख।',
       back: 'सभी लेखों पर वापस जाएं',
       minRead: 'मिनट पढ़ने का समय',
-      reviewedBy: 'समीक्षित: डॉ. राघव सुथार, MD (मनोचिकित्सा)',
+      reviewedBy: 'समीक्षित: डॉ. राघव सुथार, DNB (मनोचिकित्सा)',
       allCategories: 'सभी विषय',
       searchPlaceholder: 'शीर्षक या कीवर्ड से खोजें...',
       noResults: 'आपके खोज अनुसार कोई लेख नहीं मिला।',
@@ -97,7 +97,7 @@ export const ArticlesView: React.FC<ArticlesViewProps> = ({
       subtitle: 'ડૉ. રાઘવ સુથાર દ્વારા તણાવ, બર્નઆઉટ અને માનસિક આરોગ્ય પર વિસ્તૃત લેખો.',
       back: 'બધા લેખો પર પાછા જાઓ',
       minRead: 'મિનિટ વાંચન',
-      reviewedBy: 'તબીબી ચકાસણી: ડૉ. રાઘવ સુથાર, MD (મનોચિકિત્સક)',
+      reviewedBy: 'તબીબી ચકાસણી: ડૉ. રાઘવ સુથાર, DNB (મનોચિકિત્સક)',
       allCategories: 'બધા વિષયો',
       searchPlaceholder: 'લેખ શોધો...',
       noResults: 'કોઈ લેખ મળ્યો નથી.',
@@ -133,23 +133,23 @@ export const ArticlesView: React.FC<ArticlesViewProps> = ({
       type: 'article' as const,
       kind: 'article',
       title,
-      subtitle: subtitle || 'Dr. Raghav Suthar (MD Psychiatry)',
+      subtitle: subtitle || 'Dr. Raghav Suthar (DNB Psychiatry)',
       category: currentArticle.category.toUpperCase(),
       keyPoints: [
         summary,
         currentLang === 'hi'
-          ? 'डॉ. राघव सुथार (MD मनोचिकित्सा) द्वारा प्रामाणिक शैक्षणिक लेख'
+          ? 'डॉ. राघव सुथार (DNB मनोचिकित्सा) द्वारा प्रामाणिक शैक्षणिक लेख'
           : currentLang === 'gu'
-          ? 'ડૉ. રાઘવ સુથાર (MD મનોચિકિત્સક) દ્વારા શૈક્ષણિક લેખ'
-          : 'Clinical Educational Guide by Dr. Raghav Suthar, MD (Psychiatry)',
+          ? 'ડૉ. રાઘવ સુથાર (DNB મનોચિકિત્સક) દ્વારા શૈક્ષણિક લેખ'
+          : 'Clinical Educational Guide by Dr. Raghav Suthar, DNB (Psychiatry)',
       ],
       points: [
         summary,
         currentLang === 'hi'
-          ? 'डॉ. राघव सुथार (MD मनोचिकित्सा) द्वारा प्रामाणिक शैक्षणिक लेख'
+          ? 'डॉ. राघव सुथार (DNB मनोचिकित्सा) द्वारा प्रामाणिक शैक्षणिक लेख'
           : currentLang === 'gu'
-          ? 'ડૉ. રાઘવ સુથાર (MD મનોચિકિત્સક) દ્વારા શૈક્ષણિક લેખ'
-          : 'Clinical Educational Guide by Dr. Raghav Suthar, MD (Psychiatry)',
+          ? 'ડૉ. રાઘવ સુથાર (DNB મનોચિકિત્સક) દ્વારા શૈક્ષણિક લેખ'
+          : 'Clinical Educational Guide by Dr. Raghav Suthar, DNB (Psychiatry)',
       ],
       path: `articles/${currentArticle.slug}`,
     };

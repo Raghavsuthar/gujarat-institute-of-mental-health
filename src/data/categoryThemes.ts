@@ -35,11 +35,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'ડિપ્રેશન, બાયપોલર અને મનોદશાના ફેરફારો',
     },
     hex: {
-      accent: '#C4722B', // Dawn Amber-Gold
-      text: '#8C4610',
-      bg: '#FEF8F0',
-      border: '#F4DECA',
-      dot: '#C4722B',
+      accent: '#d97706', // Sunset Gold / Amber
+      text: '#92400e',
+      bg: '#fffbeb',
+      border: '#fde68a',
+      dot: '#d97706',
     },
   },
   anxiety: {
@@ -55,11 +55,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'સામાન્ય ચિંતા, પેનિક એટેક અને ફોબિયા',
     },
     hex: {
-      accent: '#148A7F', // Pacific Teal / Sage
-      text: '#0D5D56',
-      bg: '#F0FBF9',
-      border: '#C6ECE6',
-      dot: '#148A7F',
+      accent: '#0284c7', // Oceanic Azure & Sage
+      text: '#0369a1',
+      bg: '#f0f9ff',
+      border: '#bae6fd',
+      dot: '#0284c7',
     },
   },
   ocd: {
@@ -75,11 +75,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'ન ઇચ્છતા વિચારો અને વારંવાર કરવાની ટેવ',
     },
     hex: {
-      accent: '#486581', // Precision Slate
-      text: '#2E4663',
-      bg: '#F0F4F8',
-      border: '#D9E2EC',
-      dot: '#486581',
+      accent: '#4f46e5', // Lapis Indigo
+      text: '#3730a3',
+      bg: '#eef2ff',
+      border: '#c7d2fe',
+      dot: '#4f46e5',
     },
   },
   psychotic: {
@@ -95,11 +95,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'સિઝોફ્રેનિયા, ભ્રમ અને વાસ્તવિકતાનું વિભાજન',
     },
     hex: {
-      accent: '#565A9F', // Twilight Indigo
-      text: '#3B3E79',
-      bg: '#F2F2FA',
-      border: '#D7D8EE',
-      dot: '#565A9F',
+      accent: '#7c3aed', // Celestial Violet
+      text: '#5b21b6',
+      bg: '#f5f3ff',
+      border: '#ddd6fe',
+      dot: '#7c3aed',
     },
   },
   trauma: {
@@ -115,11 +115,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'ગંભીર માનસિક આઘાત અને તણાવ',
     },
     hex: {
-      accent: '#3D7B52', // Resilience Cedar
-      text: '#225434',
-      bg: '#F0F7F2',
-      border: '#CDE5D5',
-      dot: '#3D7B52',
+      accent: '#059669', // Healing Forest Emerald
+      text: '#065f46',
+      bg: '#ecfdf5',
+      border: '#a7f3d0',
+      dot: '#059669',
     },
   },
   neurodevelopmental: {
@@ -135,11 +135,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'ધ્યાનની ખામી અને ઓટિઝમ સ્પેક્ટ્રમ',
     },
     hex: {
-      accent: '#AC7320', // Vibrant Ochre
-      text: '#764D12',
-      bg: '#FDF8ED',
-      border: '#F5E5C4',
-      dot: '#AC7320',
+      accent: '#ea580c', // Electric Tangerine & Topaz
+      text: '#9a3412',
+      bg: '#fff7ed',
+      border: '#fed7aa',
+      dot: '#ea580c',
     },
   },
   sleep: {
@@ -155,11 +155,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'અનિદ્રા અને ઊંઘના સમયચક્રની વિકૃતિઓ',
     },
     hex: {
-      accent: '#2B6CB0', // Midnight Marine
-      text: '#1B4A75',
-      bg: '#EEF5FA',
-      border: '#CCE0EF',
-      dot: '#2B6CB0',
+      accent: '#2563eb', // Deep Midnight Cobalt
+      text: '#1e40af',
+      bg: '#eff6ff',
+      border: '#bfdbfe',
+      dot: '#2563eb',
     },
   },
   eating: {
@@ -175,11 +175,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'એનોરેક્સિયા, બુલિમિયા અને વધુ ખાવાની ટેવ',
     },
     hex: {
-      accent: '#A24E40', // Rosewood Sienna
-      text: '#77372D',
-      bg: '#FBF3F1',
-      border: '#F0D5D0',
-      dot: '#A24E40',
+      accent: '#e11d48', // Terracotta Coral
+      text: '#9f1239',
+      bg: '#fff1f2',
+      border: '#fecdd3',
+      dot: '#e11d48',
     },
   },
   somatic: {
@@ -195,11 +195,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'શારીરિક દુખાવો અને ગંભીર રોગનો ડર',
     },
     hex: {
-      accent: '#387971', // Eucalyptus Celadon
-      text: '#225852',
-      bg: '#EFF7F6',
-      border: '#CEE5E2',
-      dot: '#387971',
+      accent: '#0d9488', // Calming Eucalyptus Teal
+      text: '#115e59',
+      bg: '#f0fdfa',
+      border: '#99f6e4',
+      dot: '#0d9488',
     },
   },
   geriatric: {
@@ -215,11 +215,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'યાદશક્તિની કમજોરી, ડિમેન્શિયા અને વૃદ્ધાવસ્થા ડિપ્રેશન',
     },
     hex: {
-      accent: '#525F70', // Dignified Slate-Navy
-      text: '#394453',
-      bg: '#F3F5F7',
-      border: '#D8DFE6',
-      dot: '#525F70',
+      accent: '#475569', // Dignified Slate & Copper
+      text: '#1e293b',
+      bg: '#f8fafc',
+      border: '#cbd5e1',
+      dot: '#475569',
     },
   },
   personality: {
@@ -235,11 +235,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'ભાવનાત્મક અસ્થિરતા અને જટિલ સંબંધો',
     },
     hex: {
-      accent: '#734B7F', // Jamun Plum
-      text: '#54335C',
-      bg: '#F8F2F9',
-      border: '#E8D7EC',
-      dot: '#734B7F',
+      accent: '#9333ea', // Royal Orchid / Amethyst
+      text: '#6b21a8',
+      bg: '#faf5ff',
+      border: '#e9d5ff',
+      dot: '#9333ea',
     },
   },
   perinatal: {
@@ -255,11 +255,11 @@ export const CATEGORY_THEMES: Record<ConditionCategory, CategoryTheme> = {
       gu: 'પ્રસૂતિ પછીનું ડિપ્રેશન અને ગર્ભાવસ્થાની ચિંતા',
     },
     hex: {
-      accent: '#8E4770', // Mulberry Flora
-      text: '#683251',
-      bg: '#FAF2F6',
-      border: '#ECCFDF',
-      dot: '#8E4770',
+      accent: '#db2777', // Lotus Rosewood
+      text: '#9d174d',
+      bg: '#fdf2f8',
+      border: '#fbcfe8',
+      dot: '#db2777',
     },
   },
 };

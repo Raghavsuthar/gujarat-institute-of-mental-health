@@ -21,14 +21,14 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
   const label = theme.name[currentLang] || category;
 
   const sizeClasses = {
-    xs: 'text-[11px] px-2 py-0.5 gap-1.5',
-    sm: 'text-xs px-2.5 py-1 gap-1.5',
-    md: 'text-xs sm:text-sm px-3 py-1.5 gap-2',
+    xs: 'text-[11px] px-2.5 py-0.5 gap-1.5 font-medium',
+    sm: 'text-xs px-3 py-1 gap-2 font-semibold',
+    md: 'text-xs sm:text-sm px-3.5 py-1.5 gap-2 font-semibold',
   }[size];
 
   return (
     <span
-      className={`inline-flex items-center font-medium rounded-md whitespace-nowrap transition-colors select-none ${sizeClasses} ${className}`}
+      className={`inline-flex items-center rounded-full whitespace-nowrap transition-all duration-200 select-none shadow-2xs hover:shadow-xs ${sizeClasses} ${className}`}
       style={{
         backgroundColor: theme.hex.bg,
         borderColor: theme.hex.border,
@@ -38,13 +38,18 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({
       }}
     >
       {showDot && (
-        <span
-          className="w-1.5 h-1.5 rounded-full shrink-0"
-          style={{ backgroundColor: theme.hex.dot }}
-          aria-hidden="true"
-        />
+        <span className="relative flex items-center justify-center shrink-0 w-2 h-2" aria-hidden="true">
+          <span
+            className="absolute inline-flex h-full w-full rounded-full opacity-40 animate-ping"
+            style={{ backgroundColor: theme.hex.dot }}
+          />
+          <span
+            className="relative inline-flex rounded-full w-1.5 h-1.5"
+            style={{ backgroundColor: theme.hex.dot }}
+          />
+        </span>
       )}
-      <span>{label}</span>
+      <span className="tracking-tight">{label}</span>
     </span>
   );
 };

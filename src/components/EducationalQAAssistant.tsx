@@ -187,7 +187,7 @@ export const EducationalQAAssistant: React.FC<EducationalQAAssistantProps> = ({
             ? 'यह पोर्टल एक सार्वजनिक मनोचिकित्सा शिक्षा संसाधन है। किसी भी व्यक्तिगत स्वास्थ्य समस्या के लिए कृपया पंजीकृत मनोचिकित्सक से परामर्श लें।'
             : currentLang === 'gu'
             ? 'આ પોર્ટલ જાહેર મનોચિકિત્સા શિક્ષણ સંસાધન છે. વ્યક્તિગત સ્વાસ્થ્ય સમસ્યા માટે કૃપા કરીને યોગ્ય મનોચિકિત્સકની મુલાકાત લો.'
-            : 'This platform provides factual psychiatric education compiled by Dr. Raghav Suthar (MD Psychiatry). For individual diagnosis and treatment, please consult a qualified psychiatrist or medical doctor.';
+            : 'This platform provides factual psychiatric education compiled by Dr. Raghav Suthar (DNB Psychiatry). For individual diagnosis and treatment, please consult a qualified psychiatrist or medical doctor.';
       }
 
       setMessages((prev) => [
@@ -210,11 +210,11 @@ export const EducationalQAAssistant: React.FC<EducationalQAAssistantProps> = ({
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 bg-teal-800 hover:bg-teal-900 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer border border-teal-600/40 text-xs sm:text-sm font-semibold min-h-[44px]"
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 bg-gradient-to-r from-teal-700 via-teal-800 to-indigo-850 hover:from-teal-600 hover:to-indigo-800 text-white rounded-full shadow-lg shadow-teal-950/25 hover:shadow-xl hover:shadow-indigo-900/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 cursor-pointer border border-teal-400/40 text-xs sm:text-sm font-semibold min-h-[44px]"
           aria-label={t.buttonLabel}
         >
-          <Sparkles className="w-4 h-4 text-amber-300" />
-          <span>{t.buttonLabel}</span>
+          <Sparkles className="w-4 h-4 text-amber-300 animate-pulse drop-shadow-xs" />
+          <span className="tracking-tight">{t.buttonLabel}</span>
         </button>
       )}
 

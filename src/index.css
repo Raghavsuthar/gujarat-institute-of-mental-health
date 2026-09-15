@@ -2,31 +2,42 @@
 
 @layer base {
   :root {
-    --bg-canvas: #f6f8f7;
+    --bg-canvas: #f8fafc;
     --bg-surface: #ffffff;
-    --text-primary: #1c2430;
-    --text-secondary: #475569;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
     --text-muted: #64748b;
-    --accent-teal: #115e59;
-    --accent-teal-hover: #0f4f4a;
-    --accent-teal-subtle: #f0fbf9;
-    --accent-marigold: #b86b26;
-    --accent-marigold-text: #9a5212;
-    --accent-marigold-subtle: #fdf7ed;
-    --accent-marigold-border: #f5dcb7;
-    --accent-plum: #5e4a72;
-    --accent-plum-text: #4e3c5e;
-    --accent-plum-subtle: #f8f4f9;
-    --accent-plum-border: #e8daed;
+    /* Nilgiri Emerald / Teal */
+    --accent-teal: #0d9488;
+    --accent-teal-dark: #0f766e;
+    --accent-teal-deep: #042f2e;
+    --accent-teal-subtle: #f0fdfa;
+    --accent-teal-border: #99f6e4;
+    /* Surya Gold / Marigold */
+    --accent-marigold: #f59e0b;
+    --accent-marigold-dark: #d97706;
+    --accent-marigold-deep: #78350f;
+    --accent-marigold-subtle: #fffbeb;
+    --accent-marigold-border: #fde68a;
+    /* Twilight Jamun / Iris */
+    --accent-iris: #8b5cf6;
+    --accent-iris-dark: #6d28d9;
+    --accent-iris-deep: #4c1d95;
+    --accent-iris-subtle: #f5f3ff;
+    --accent-iris-border: #ddd6fe;
+    /* Structural Borders */
     --border-subtle: #e2e8f0;
-    --border-card: #e5e7eb;
-    --crisis-red: #991b1b;
-    --warning-amber: #b45309;
+    --border-card: #cbd5e1;
+    /* Crisis Support */
+    --crisis-red: #e11d48;
+    --crisis-red-dark: #be123c;
+    --crisis-pulse: #fda4af;
+    --warning-amber: #d97706;
   }
 
   html {
-    background-color: #f6f8f7;
-    color: #1c2430;
+    background-color: #f8fafc;
+    color: #0f172a;
     font-size: 16px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -36,8 +47,8 @@
   }
 
   body {
-    background-color: #f6f8f7;
-    color: #1c2430;
+    background-color: #f8fafc;
+    color: #0f172a;
     font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Gujarati', system-ui, -apple-system, sans-serif;
     font-size: 1.0625rem; /* ~17px for optimal readability by older adults */
     line-height: 1.7;
@@ -69,7 +80,7 @@
 
   /* Headings: disciplined scale, max 3 weights (400, 500, 600) */
   h1, h2, h3, h4 {
-    color: #1c2430;
+    color: #0f172a;
     font-weight: 600;
     letter-spacing: -0.015em;
     line-height: 1.3;
@@ -80,11 +91,38 @@
     touch-action: manipulation;
   }
 
-  /* Clear accessible focus rings */
+  /* Clear accessible focus rings with vibrant Nilgiri Teal */
   button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
-    outline: 2px solid #115e59;
+    outline: 2px solid #0d9488;
     outline-offset: 2px;
   }
+}
+
+/* Radiant Ambient Mesh Glow Background Utility */
+.radial-mesh-glow {
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(204, 251, 241, 0.45) 0px, transparent 40%),
+    radial-gradient(at 100% 0%, rgba(254, 243, 199, 0.40) 0px, transparent 40%),
+    radial-gradient(at 100% 100%, rgba(243, 232, 255, 0.35) 0px, transparent 45%),
+    radial-gradient(at 0% 100%, rgba(224, 242, 254, 0.45) 0px, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism Surface for Cards */
+.glass-surface {
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Interactive Card Hover Transition */
+.interactive-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.interactive-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -10px rgba(15, 118, 110, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
 }
 
 /* Reduced motion accessibility */
@@ -94,6 +132,9 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .interactive-card:hover {
+    transform: none !important;
   }
 }
 
