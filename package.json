@@ -2,7 +2,7 @@
   "name": "dr-raghav-suthar-mental-health-portal",
   "private": true,
   "version": "1.0.0",
-  "description": "Evidence-based, trilingual public psychiatry and mental health education platform by Dr. Raghav Suthar (MBBS, MD Psychiatry).",
+  "description": "Evidence-based, trilingual public psychiatry and mental health education platform by Dr. Raghav Suthar (MBBS, DNB Psychiatry).",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",

@@ -106,6 +106,10 @@ for (const item of allPaths) {
 
 xml += `</urlset>\n`;
 
-const sitemapPath = path.resolve('public/sitemap.xml');
+const publicDir = path.resolve('public');
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
+const sitemapPath = path.join(publicDir, 'sitemap.xml');
 fs.writeFileSync(sitemapPath, xml);
 console.log(`Generated sitemap.xml with ${allPaths.length * languages.length} URLs at ${sitemapPath}`);

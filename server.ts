@@ -245,7 +245,7 @@ app.post('/api/qa', async (req, res) => {
             ? 'यह पोर्टल एक सार्वजनिक मनोचिकित्सा शिक्षा संसाधन है। किसी भी व्यक्तिगत चिकित्सा सलाह के लिए कृपया पंजीकृत मनोचिकित्सक से परामर्श लें।'
             : lang === 'gu'
             ? 'આ પોર્ટલ જાહેર મનોચિકિત્સા શિક્ષણ સંસાધન છે. વ્યક્તિગત તબીબી સલાહ માટે મનોચિકિત્સકનો સંપર્ક કરો.'
-            : 'This portal is an educational resource created by Dr. Raghav Suthar (MD Psychiatry). Please consult a qualified doctor or registered psychiatrist for personalized evaluation and care.',
+            : 'This portal is an educational resource created by Dr. Raghav Suthar (DNB Psychiatry). Please consult a qualified doctor or registered psychiatrist for personalized evaluation and care.',
       });
       return;
     }
@@ -254,7 +254,7 @@ app.post('/api/qa', async (req, res) => {
     const ai = new GoogleGenAI({});
 
     const systemInstruction = `You are an educational assistant for Dr. Raghav Suthar's Public Psychiatry Education platform (dr-raghav-suthar.mentalhealth.in).
-Dr. Raghav Suthar is an MBBS, MD (Psychiatry) consultant psychiatrist in India dedicated to destigmatizing mental health and addiction science.
+Dr. Raghav Suthar is an MBBS, DNB (Psychiatry) consultant psychiatrist in India dedicated to destigmatizing mental health and addiction science.
 
 MANDATORY SAFETY AND ETHICAL BOUNDARIES:
 1. STRICTLY EDUCATE, NEVER DIAGNOSE. Do not say "You might have depression" or "Based on what you said, you have ADHD". Say "In clinical psychiatry, these symptoms are often evaluated under..."
