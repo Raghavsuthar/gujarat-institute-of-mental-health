@@ -24,6 +24,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      // GitHub Pages Single Page App routing restoration
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "name": "Dr. Raghav Suthar - Public Psychiatry Education",
+        "description": "Evidence-based, trilingual public psychiatry and mental health education resource in English, Hindi, and Gujarati.",
+        "author": {
+          "@type": "Person",
+          "name": "Dr. Raghav Suthar",
+          "jobTitle": "Consultant Psychiatrist",
+          "alumniOf": "MD Psychiatry, MBBS"
+        },
+        "inLanguage": ["en", "hi", "gu"],
+        "about": [
+          { "@type": "MedicalCondition", "name": "Mental Disorders and Addiction" }
+        ],
+        "audience": {
+          "@type": "PeopleAudience",
+          "audienceType": "General Public, Patients, Families, Caregivers"
+        }
+      }
+    </script>
   </head>
   <body class="bg-[#fafaf9] text-[#1c2430] antialiased font-sans selection:bg-stone-200 selection:text-stone-900">
     <div id="root"></div>

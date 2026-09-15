@@ -53,7 +53,7 @@ function getInitialStore(): AnalyticsStore {
       'interactive/screeners': Math.round(totalViews * 0.10),
       myths: Math.round(totalViews * 0.09),
       'addiction/alcohol': Math.round(totalViews * 0.08),
-      medications: Math.round(totalViews * 0.07),
+      treatments: Math.round(totalViews * 0.07),
       emergency: Math.round(totalViews * 0.05),
       outreach: Math.round(totalViews * 0.05),
     },
