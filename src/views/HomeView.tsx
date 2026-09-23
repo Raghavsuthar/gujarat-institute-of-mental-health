@@ -27,6 +27,7 @@ import { PWAInstallButton } from '../components/PWAInstallButton';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
 import HeroGeometric from '../components/HeroGeometric';
+import { AnnotatedText } from '../components/AnnotatedText';
 
 interface HomeViewProps {
   currentLang: Language;
@@ -190,7 +191,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="space-y-6">
         <div className="space-y-1">
           <h2 className="text-xl sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
-            {currentLang === 'en' ? 'Educational Libraries' : currentLang === 'hi' ? 'शैक्षणिक विषय श्रेणियां' : 'શૈક્ષણિક વિષય શ્રેણીઓ'}
+            <AnnotatedText variant="highlight" color="text-amber-300/70" delay={0.2}>
+              {currentLang === 'en' ? 'Educational Libraries' : currentLang === 'hi' ? 'शैक्षणिक विषय श्रेणियां' : 'શૈક્ષણિક વિષય શ્રેણીઓ'}
+            </AnnotatedText>
           </h2>
           <p className="text-sm text-stone-600">
             {currentLang === 'en'
