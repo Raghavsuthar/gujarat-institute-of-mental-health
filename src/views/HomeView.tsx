@@ -28,6 +28,7 @@ import { CategoryBadge } from '../components/CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
 import HeroGeometric from '../components/HeroGeometric';
 import { AnnotatedText } from '../components/AnnotatedText';
+import { ScrollSplitCard } from '../components/ScrollSplitCard';
 
 interface HomeViewProps {
   currentLang: Language;
@@ -163,6 +164,78 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
         </div>
       </HeroGeometric>
+
+      {/* Scroll journey: one image splits and flips into three portal paths */}
+      <ScrollSplitCard
+        imageSrc="/scroll-split-banner.svg"
+        startHint={
+          currentLang === 'en'
+            ? 'Scroll to explore'
+            : currentLang === 'hi'
+              ? 'जानने के लिए स्क्रॉल करें'
+              : 'જાણવા માટે સ્ક્રોલ કરો'
+        }
+        endText={
+          currentLang === 'en'
+            ? 'Understanding begins here.'
+            : currentLang === 'hi'
+              ? 'समझ यहीं से शुरू होती है।'
+              : 'સમજ અહીંથી શરૂ થાય છે.'
+        }
+        cards={[
+          {
+            title:
+              currentLang === 'en'
+                ? 'Learn the science'
+                : currentLang === 'hi'
+                  ? 'विज्ञान को समझें'
+                  : 'વિજ્ઞાન સમજો',
+            description:
+              currentLang === 'en'
+                ? 'Plain-language guides to conditions, treatments and myths.'
+                : currentLang === 'hi'
+                  ? 'बीमारियों, उपचार और भ्रांतियों की सरल जानकारी।'
+                  : 'બીમારીઓ, સારવાર અને ગેરમાન્યતાઓની સરળ માહિતી.',
+            bgColor: '#0f766e',
+            textColor: '#ffffff',
+            icon: <BookOpen className="w-8 h-8" />,
+          },
+          {
+            title:
+              currentLang === 'en'
+                ? 'Reflect on symptoms'
+                : currentLang === 'hi'
+                  ? 'लक्षणों पर विचार करें'
+                  : 'લક્ષણો પર વિચાર કરો',
+            description:
+              currentLang === 'en'
+                ? 'PHQ-9 and GAD-7 based self-reflection tools.'
+                : currentLang === 'hi'
+                  ? 'PHQ-9 व GAD-7 आधारित आत्म-अवलोकन टूल।'
+                  : 'PHQ-9 અને GAD-7 આધારિત આત્મ-મૂલ્યાંકન ટૂલ.',
+            bgColor: '#b45309',
+            textColor: '#ffffff',
+            icon: <Activity className="w-8 h-8" />,
+          },
+          {
+            title:
+              currentLang === 'en'
+                ? 'Reach verified help'
+                : currentLang === 'hi'
+                  ? 'सही सहायता पाएं'
+                  : 'સાચી સહાય મેળવો',
+            description:
+              currentLang === 'en'
+                ? 'Tele-MANAS 14416 and the verified crisis directory.'
+                : currentLang === 'hi'
+                  ? 'टेली-मानस 14416 व प्रमाणित हेल्पलाइन सूची।'
+                  : 'ટેલી-માનસ ૧૪૪૧૬ અને પ્રમાણિત હેલ્પલાઇન યાદી.',
+            bgColor: '#6d28d9',
+            textColor: '#ffffff',
+            icon: <Phone className="w-8 h-8" />,
+          },
+        ]}
+      />
 
       {/* Core Philosophy Banner */}
       <section className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs hover:shadow-sm transition-all duration-300 space-y-2">
