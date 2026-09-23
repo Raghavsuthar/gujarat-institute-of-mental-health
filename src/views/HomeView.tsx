@@ -26,7 +26,7 @@ import { MythOfTheDay } from '../components/MythOfTheDay';
 import { PWAInstallButton } from '../components/PWAInstallButton';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
-import { PortalHeroVisual } from '../components/visuals';
+import HeroGeometric from '../components/HeroGeometric';
 
 interface HomeViewProps {
   currentLang: Language;
@@ -68,8 +68,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   return (
     <div className="space-y-12 sm:space-y-16 pb-12">
-      {/* Hero Section: The bold, luminous anchor of the portal */}
-      <section className="relative rounded-2xl border border-slate-200/80 bg-gradient-to-br from-teal-50/80 via-white to-amber-50/60 shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden">
+      {/* Hero Section: animated shader backdrop in portal theme */}
+      <HeroGeometric
+        color1="#0d9488"
+        color2="#fef3c7"
+        speed={0.8}
+        className="rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300"
+      >
         {/* Fine Top Accent Line: Nilgiri Teal to Surya Gold to Twilight Iris */}
         <div className="h-[3.5px] w-full bg-gradient-to-r from-[#0d9488] via-[#f59e0b] to-[#7c3aed]" aria-hidden="true" />
 
@@ -96,8 +101,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
 
-          {/* Central Vivid Visual Moment: Dawn Sanctuary Artwork */}
-          <PortalHeroVisual currentLang={currentLang} className="w-full h-40 sm:h-52 md:h-60 rounded-xl overflow-hidden shadow-xs" />
+          {/* Central Vivid Visual Moment: shader canvas is the backdrop (PortalHeroVisual removed to avoid stacking) */}
 
           {/* Immediate Crisis Notice Box: Strictly Reserved Emergency Treatment */}
           <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-rose-50/95 to-red-50/90 border border-rose-200/90 text-rose-950 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
@@ -157,7 +161,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </button>
           </div>
         </div>
-      </section>
+      </HeroGeometric>
 
       {/* Core Philosophy Banner */}
       <section className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs hover:shadow-sm transition-all duration-300 space-y-2">
