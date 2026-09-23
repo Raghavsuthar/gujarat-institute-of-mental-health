@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, BadgeCheck } from 'lucide-react';
 import { Language, ActiveTab } from '../types';
 import { translations, siteMetadata } from '../data/translations';
 import { PWAInstallButton } from './PWAInstallButton';
@@ -59,17 +59,27 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={() => handleNavClick('home')}
           className="text-left focus:outline-none cursor-pointer py-0.5 sm:py-1 group"
         >
-          <div className="flex flex-wrap items-baseline gap-2">
-            <h1 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-teal-700 transition-colors">
-              {t.doctorName}
-            </h1>
-            <span className="text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full bg-teal-50/90 text-teal-800 font-semibold border border-teal-200/80 shadow-2xs tracking-wide">
-              MBBS, DNB (Psychiatry)
+          <div className="flex items-center gap-2.5">
+            <img
+              src="/mindcare-logo.svg"
+              alt="MindCare — Dr. Raghav Suthar"
+              className="h-10 w-auto sm:h-12 shrink-0"
+              width={96}
+              height={24}
+            />
+            <div className="flex flex-col">
+              <span className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-teal-700 transition-colors leading-tight">
+                {t.doctorName}
+              </span>
+              <span className="text-[11px] sm:text-xs text-slate-600 font-normal leading-tight">
+                {siteMetadata.tagline[currentLang]}
+              </span>
+            </div>
+            <span className="hidden md:inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full bg-teal-50/90 text-teal-800 font-semibold border border-teal-200/80 shadow-2xs tracking-wide whitespace-nowrap">
+              <BadgeCheck className="w-3.5 h-3.5 text-teal-600" />
+              {currentLang === 'en' ? 'NMC Registered Specialist' : currentLang === 'hi' ? 'NMC पंजीकृत विशेषज्ञ' : 'NMC નોંધાયેલ નિષ્ણાત'}
             </span>
           </div>
-          <p className="text-[11px] sm:text-sm text-slate-600 mt-0.5 font-normal">
-            {siteMetadata.tagline[currentLang]}
-          </p>
         </button>
 
         {/* Action Controls: Search, PWA Install, Language Switcher, Mobile Menu */}

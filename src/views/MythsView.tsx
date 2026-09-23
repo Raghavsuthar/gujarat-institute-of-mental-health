@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Download, MessageCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, Download, XCircle, CheckCircle2, MoveRight } from 'lucide-react';
 import { Language, MythFact, ShareCardData } from '../types';
 import { mythsData } from '../data/myths';
 import { translations } from '../data/translations';
@@ -106,24 +106,41 @@ export const MythsView: React.FC<MythsViewProps> = ({ currentLang }) => {
                   </div>
                 </div>
 
-                {/* The Myth */}
-                <div className="p-4 rounded-lg bg-stone-50 border border-stone-200">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 block">
-                    COMMON MYTH
-                  </span>
-                  <p className="text-base font-semibold text-[#1c2430] mt-1">
-                    "{item.myth[currentLang]}"
-                  </p>
-                </div>
+                {/* Myth → Fact side-by-side */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1.2fr] gap-3 items-center">
+                  {/* The Myth */}
+                  <div className="p-4 rounded-lg bg-stone-50 border border-stone-200 flex items-start gap-3">
+                    <span className="w-9 h-9 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center shrink-0" aria-hidden="true">
+                      <XCircle className="w-5 h-5" />
+                    </span>
+                    <span>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-rose-700 block">
+                        {currentLang === 'en' ? 'Common Misconception' : currentLang === 'hi' ? 'आम भ्रांति' : 'સામાન્ય ગેરમાન્યતા'}
+                      </span>
+                      <span className="text-base font-semibold text-[#1c2430] mt-1 block">
+                        "{item.myth[currentLang]}"
+                      </span>
+                    </span>
+                  </div>
 
-                {/* The Medical Fact */}
-                <div className="p-4 rounded-lg bg-[#f0fdfa] border border-[#ccfbf1]">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#115e59] block">
-                    MEDICAL FACT
+                  <span className="hidden lg:flex items-center justify-center text-slate-300" aria-hidden="true">
+                    <MoveRight className="w-6 h-6" />
                   </span>
-                  <p className="text-sm sm:text-base font-medium text-stone-900 mt-1">
-                    {item.fact[currentLang]}
-                  </p>
+
+                  {/* The Medical Fact */}
+                  <div className="p-4 rounded-lg bg-[#f0fdfa] border border-[#ccfbf1] shadow-xs flex items-start gap-3">
+                    <span className="w-9 h-9 rounded-full bg-[#0d9488] text-white flex items-center justify-center shrink-0" aria-hidden="true">
+                      <CheckCircle2 className="w-5 h-5" />
+                    </span>
+                    <span>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#115e59] block">
+                        {currentLang === 'en' ? 'Clinical Reality' : currentLang === 'hi' ? 'चिकित्सीय सच' : 'તબીબી સત્ય'}
+                      </span>
+                      <span className="text-sm sm:text-base font-medium text-stone-900 mt-1 block">
+                        {item.fact[currentLang]}
+                      </span>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Scientific Explanation */}

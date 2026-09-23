@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { HeartHandshake, HeartCrack } from 'lucide-react';
 import { Language } from '../types';
 import { caregiversData } from '../data/caregivers';
 import { translations } from '../data/translations';
@@ -81,8 +82,9 @@ export const CaregiversView: React.FC<CaregiversViewProps> = ({ currentLang }) =
             <div className="grid sm:grid-cols-2 gap-4 pt-1">
               {/* Say */}
               <div className="p-4 rounded-lg bg-[#f0fdfa] border border-[#ccfbf1] space-y-2">
-                <span className="text-xs font-semibold text-[#115e59] uppercase tracking-wide block">
-                  {currentLang === 'en' ? 'Helpful Things to Say' : currentLang === 'hi' ? 'क्या कहें (सहानुभूतिपूर्ण)' : 'શું કહેવું (પ્રેમપૂર્વક)'}
+                <span className="flex items-center gap-2 text-sm font-bold text-[#115e59]">
+                  <HeartHandshake className="w-5 h-5 shrink-0" aria-hidden="true" />
+                  {currentLang === 'en' ? 'Helpful Words That Heal' : currentLang === 'hi' ? 'सहायक शब्द जो सुकून दें' : 'સહાયક શબ્દો જે રાહત આપે'}
                 </span>
                 <ul className="space-y-2 text-xs sm:text-sm text-stone-800">
                   {guide.whatToSay[currentLang].map((phrase, i) => (
@@ -96,8 +98,9 @@ export const CaregiversView: React.FC<CaregiversViewProps> = ({ currentLang }) =
 
               {/* Avoid */}
               <div className="p-4 rounded-lg bg-[#fef2f2] border border-[#fecaca] space-y-2">
-                <span className="text-xs font-semibold text-[#991b1b] uppercase tracking-wide block">
-                  {currentLang === 'en' ? 'Phrases That Harm / Invalidate' : currentLang === 'hi' ? 'क्या न कहें (हानिकारक ताने)' : 'શું ન કહેવું (ટોણાં)'}
+                <span className="flex items-center gap-2 text-sm font-bold text-[#991b1b]">
+                  <HeartCrack className="w-5 h-5 shrink-0" aria-hidden="true" />
+                  {currentLang === 'en' ? 'Phrases That Inadvertently Harm' : currentLang === 'hi' ? 'अनजाने में चोट पहुंचाने वाले वाक्य' : 'અજાણતાં દુઃખ પહોંચાડતાં વાક્યો'}
                 </span>
                 <ul className="space-y-2 text-xs sm:text-sm text-stone-800">
                   {guide.whatToAvoid[currentLang].map((phrase, i) => (

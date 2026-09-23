@@ -100,6 +100,43 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <p className="text-slate-700 text-base sm:text-lg leading-relaxed font-normal">
               {t.home.heroDescription}
             </p>
+
+            {/* In-hero search module */}
+            <div className="rounded-2xl bg-white/90 backdrop-blur border border-slate-200/80 shadow-xs p-2 space-y-1.5">
+              <button
+                onClick={onOpenSearch}
+                className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer text-left min-h-[44px]"
+                aria-label={t.search.placeholder}
+              >
+                <Search className="w-5 h-5 text-slate-400 shrink-0" />
+                <span className="flex-1 text-sm text-slate-400 truncate">
+                  {t.search.placeholder}
+                </span>
+                <span className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-gradient-to-r from-[#0d9488] to-[#0f766e] text-white text-xs font-bold shrink-0">
+                  <span>{currentLang === 'en' ? 'Explore' : currentLang === 'hi' ? 'खोजें' : 'શોધો'}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </button>
+              <div className="flex flex-wrap items-center gap-1.5 px-2 pb-1">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  {currentLang === 'en' ? 'Suggested:' : currentLang === 'hi' ? 'सुझाव:' : 'સૂચન:'}
+                </span>
+                {[
+                  { en: 'Tele-MANAS', hi: 'टेली-मानस', gu: 'ટેલી-માનસ' },
+                  { en: 'Depression', hi: 'डिप्रेशन', gu: 'ડિપ્રેશન' },
+                  { en: 'Anxiety', hi: 'चिंता', gu: 'ચિંતા' },
+                  { en: 'Sleep', hi: 'नींद', gu: 'ઊંઘ' },
+                ].map((tag) => (
+                  <button
+                    key={tag.en}
+                    onClick={onOpenSearch}
+                    className="px-2.5 py-1.5 rounded-full bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-teal-800 text-xs font-medium transition-colors cursor-pointer min-h-[36px]"
+                  >
+                    {tag[currentLang]}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Central Vivid Visual Moment: shader canvas is the backdrop (PortalHeroVisual removed to avoid stacking) */}
@@ -554,8 +591,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
       {/* About Dr. Raghav Suthar Snippet */}
       <section className="p-6 sm:p-8 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-start gap-6 hover:shadow-sm transition-shadow">
-        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0d9488] to-[#0f766e] text-white flex items-center justify-center font-bold text-xl shrink-0 border border-teal-300/40 shadow-xs">
-          RS
+        <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 border border-teal-200/70 shadow-xs overflow-hidden">
+          <img src="/mindcare-logo.svg" alt="MindCare logo" className="w-14 h-14 object-contain" width={56} height={56} />
         </div>
         <div className="space-y-2 flex-1">
           <div className="flex flex-wrap items-baseline gap-2">
