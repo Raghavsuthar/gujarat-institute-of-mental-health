@@ -242,7 +242,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen min-h-[100dvh] w-full flex flex-col bg-[#f8fafc] text-slate-900 selection:bg-teal-200 selection:text-teal-950 radial-mesh-glow overflow-x-hidden relative">
+    <div className="min-h-screen min-h-[100dvh] w-full flex flex-col bg-[#FAF9F5] text-slate-900 selection:bg-teal-200 selection:text-teal-950 radial-mesh-glow overflow-x-hidden relative">
       {/* Offline Status Warning when disconnected */}
       <OfflineIndicator currentLang={currentLang} />
 
@@ -260,7 +260,7 @@ export default function App() {
       />
 
       {/* Main Body Content */}
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <Routes>
           {/* Root redirect to language prefix */}
           <Route path="/" element={<Navigate to={`/${getInitialLanguage()}`} replace />} />

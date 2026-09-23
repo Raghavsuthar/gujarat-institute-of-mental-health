@@ -16,7 +16,14 @@ import {
   BookmarkCheck,
   Printer,
   GraduationCap,
-  Heart
+  Heart,
+  BadgeCheck,
+  Globe,
+  Scale,
+  Languages,
+  PhoneCall,
+  Siren,
+  HeartHandshake
 } from 'lucide-react';
 import { Language, ActiveTab, Condition, SubstanceInfo } from '../types';
 import { translations } from '../data/translations';
@@ -82,6 +89,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="p-6 sm:p-10 space-y-6">
           {/* Header Typography & Culturally Grounded Credential Badges */}
           <div className="space-y-3.5 max-w-3xl">
+            <div className="inline-flex flex-wrap items-center gap-2 bg-white/90 backdrop-blur rounded-full pl-2 pr-4 py-1.5 border border-slate-200/80 shadow-xs">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#0d9488] text-white">
+                <BadgeCheck className="w-4 h-4" />
+              </span>
+              <span className="text-xs font-bold text-teal-900">
+                {currentLang === 'en'
+                  ? 'Written & Curated by Dr. Raghav Suthar'
+                  : currentLang === 'hi'
+                    ? 'डॉ. राघव सुथार द्वारा लिखित व संकलित'
+                    : 'ડૉ. રાઘવ સુથાર દ્વારા લિખિત અને સંકલિત'}
+              </span>
+              <span className="text-[11px] font-medium text-slate-500">
+                {currentLang === 'en'
+                  ? 'MBBS, MD Psychiatry · NMC Registered'
+                  : currentLang === 'hi'
+                    ? 'एमबीबीएस, एमडी (मनोरोग) · NMC पंजीकृत'
+                    : 'MBBS, MD · NMC નોંધાયેલ'}
+              </span>
+            </div>
             <div className="flex flex-wrap items-center gap-2.5">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200/80 shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" aria-hidden="true" />
@@ -141,36 +167,98 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           {/* Central Vivid Visual Moment: shader canvas is the backdrop (PortalHeroVisual removed to avoid stacking) */}
 
-          {/* Immediate Crisis Notice Box: Strictly Reserved Emergency Treatment */}
-          <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-rose-50/95 to-red-50/90 border border-rose-200/90 text-rose-950 flex flex-wrap items-center justify-between gap-3 shadow-2xs">
-            <div className="flex items-center gap-2.5 text-sm font-medium">
-              <span className="relative flex items-center justify-center shrink-0">
-                <Phone className="w-4 h-4 text-rose-600 animate-pulse" />
+          {/* Crisis quick-dial drawer */}
+          <div className="rounded-2xl bg-[#ffdad6] p-5 sm:p-6 shadow-xs flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+            <div className="flex items-start gap-3.5 max-w-2xl">
+              <span className="w-12 h-12 rounded-xl bg-[#ba1a1a] text-white flex items-center justify-center shrink-0 shadow-sm" aria-hidden="true">
+                <Siren className="w-6 h-6" />
               </span>
-              <span>
-                {currentLang === 'en'
-                  ? 'In acute emotional distress or crisis? Help is free, confidential, and 24x7.'
-                  : currentLang === 'hi'
-                  ? 'यदि आप या कोई परिजन गंभीर मानसिक संकट में हैं, तो तत्काल 24 घंटे सहायता उपलब्ध है।'
-                  : 'જો તમે કે તમારા સ્વજન ગંભીર માનસિક સંકટમાં હોવ, તો તાત્કાલિક સહાય ઉપલબ્ધ છે.'}
-              </span>
+              <div>
+                <p className="font-bold text-[#93000a] flex items-center gap-2">
+                  {currentLang === 'en'
+                    ? 'Need Urgent Help Right Now?'
+                    : currentLang === 'hi'
+                      ? 'तुरंत मदद चाहिए?'
+                      : 'તાત્કાલિક મદદ જોઈએ છે?'}
+                  <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ba1a1a] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#ba1a1a]" />
+                  </span>
+                </p>
+                <p className="text-sm text-[#93000a]/90 leading-relaxed mt-1">
+                  {currentLang === 'en'
+                    ? 'Calling is 100% free, confidential and anonymous. Reaching out is the first courageous step toward safety.'
+                    : currentLang === 'hi'
+                      ? 'कॉल 100% निःशुल्क और गोपनीय है। मदद मांगना सुरक्षा की ओर पहला साहसिक कदम है।'
+                      : 'કૉલ ૧૦૦% વિનામૂલ્યે અને ગુપ્ત છે. મદદ માંગવી એ સલામતી તરફનું પ્રથમ હિંમતભર્યું પગલું છે.'}
+                </p>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full lg:w-auto lg:min-w-[420px]">
               <a
                 href="tel:14416"
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-rose-600 to-red-700 hover:from-rose-700 hover:to-red-800 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 min-h-[44px]"
+                className="flex items-center justify-between gap-4 bg-white hover:bg-[#93000a] hover:text-white px-4 py-2.5 rounded-xl shadow-sm text-slate-900 transition-colors group min-h-[56px]"
               >
-                <Phone className="w-3.5 h-3.5" />
-                <span>Tele-MANAS: 14416</span>
+                <span className="flex flex-col">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 group-hover:text-white/70">
+                    {currentLang === 'en' ? 'Govt 24/7 Toll-Free' : currentLang === 'hi' ? 'सरकारी 24/7 निःशुल्क' : 'સરકારી 24/7 વિનામૂલ્યે'}
+                  </span>
+                  <span className="font-bold text-[#ba1a1a] group-hover:text-white">
+                    Tele-MANAS · 14416
+                  </span>
+                </span>
+                <PhoneCall className="w-5 h-5 text-[#ba1a1a] group-hover:text-white shrink-0" />
               </a>
-              <button
-                onClick={onOpenCrisis}
-                className="px-3.5 py-2 rounded-lg text-xs font-bold text-rose-900 hover:bg-rose-100/90 border border-rose-200/70 transition-colors min-h-[44px] flex items-center cursor-pointer"
+              <a
+                href="tel:18005990019"
+                className="flex items-center justify-between gap-4 bg-white hover:bg-[#93000a] hover:text-white px-4 py-2.5 rounded-xl shadow-sm text-slate-900 transition-colors group min-h-[56px]"
               >
-                {currentLang === 'en' ? 'All Crisis Numbers & 112' : currentLang === 'hi' ? 'सभी हेल्पलाइन व 112' : 'તમામ હેલ્પલાઇન અને ૧૧૨'}
-              </button>
+                <span className="flex flex-col">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 group-hover:text-white/70">
+                    {currentLang === 'en' ? 'DEPwD Govt of India' : currentLang === 'hi' ? 'भारत सरकार (DEPwD)' : 'ભારત સરકાર (DEPwD)'}
+                  </span>
+                  <span className="font-bold group-hover:text-white">
+                    KIRAN · 1800-599-0019
+                  </span>
+                </span>
+                <Phone className="w-5 h-5 text-teal-700 group-hover:text-white shrink-0" />
+              </a>
+              <a
+                href="tel:112"
+                className="flex items-center justify-between gap-4 bg-white hover:bg-[#93000a] hover:text-white px-4 py-2.5 rounded-xl shadow-sm text-slate-900 transition-colors group min-h-[56px]"
+              >
+                <span className="flex flex-col">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 group-hover:text-white/70">
+                    {currentLang === 'en' ? 'Acute Emergency' : currentLang === 'hi' ? 'गंभीर आपातकाल' : 'ગંભીર ઇમરજન્સી'}
+                  </span>
+                  <span className="font-bold group-hover:text-white">
+                    National SOS · 112
+                  </span>
+                </span>
+                <Siren className="w-5 h-5 text-[#ba1a1a] group-hover:text-white shrink-0" />
+              </a>
+              <a
+                href="tel:+919999666555"
+                className="flex items-center justify-between gap-4 bg-white hover:bg-[#93000a] hover:text-white px-4 py-2.5 rounded-xl shadow-sm text-slate-900 transition-colors group min-h-[56px]"
+              >
+                <span className="flex flex-col">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 group-hover:text-white/70">
+                    {currentLang === 'en' ? 'Crisis Counseling NGO' : currentLang === 'hi' ? 'संकट परामर्श NGO' : 'સંકટ પરામર્શ NGO'}
+                  </span>
+                  <span className="font-bold group-hover:text-white">
+                    Vandrevala · 9999 666 555
+                  </span>
+                </span>
+                <HeartHandshake className="w-5 h-5 text-violet-700 group-hover:text-white shrink-0" />
+              </a>
             </div>
           </div>
+          <button
+            onClick={onOpenCrisis}
+            className="text-xs font-bold text-rose-900 hover:bg-rose-100/90 border border-rose-200/70 rounded-lg px-3.5 py-2 transition-colors min-h-[44px] inline-flex items-center cursor-pointer"
+          >
+            {currentLang === 'en' ? 'More helplines & safety guide →' : currentLang === 'hi' ? 'अन्य हेल्पलाइन व सुरक्षा मार्गदर्शिका →' : 'વધુ હેલ્પલાઇન અને સલામતી માર્ગદર્શિકા →'}
+          </button>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-3 pt-1">
@@ -197,6 +285,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <Search className="w-4 h-4 text-slate-500" />
               <span>{currentLang === 'en' ? 'Search All Topics' : currentLang === 'hi' ? 'विषय खोजें' : 'બધા વિષયો શોધો'}</span>
             </button>
+          </div>
+
+          {/* Trust pillars */}
+          <div className="flex flex-wrap items-center gap-2.5 pt-1">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/80 text-slate-700 text-xs font-semibold border border-slate-200/70 shadow-xs">
+              <Globe className="w-4 h-4 text-teal-600" />
+              {currentLang === 'en' ? '100% Free & Open Access' : currentLang === 'hi' ? '100% निःशुल्क व खुला' : '૧૦૦% વિનામૂલ્યે અને ખુલ્લું'}
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/80 text-slate-700 text-xs font-semibold border border-slate-200/70 shadow-xs">
+              <Scale className="w-4 h-4 text-teal-600" />
+              {currentLang === 'en' ? 'Mental Healthcare Act 2017 Compliant' : currentLang === 'hi' ? 'मानसिक स्वास्थ्य अधिनियम 2017 अनुरूप' : 'માનસિક આરોગ્ય ધારો 2017 અનુરૂપ'}
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/80 text-slate-700 text-xs font-semibold border border-slate-200/70 shadow-xs">
+              <Languages className="w-4 h-4 text-teal-600" />
+              {currentLang === 'en' ? 'English, हिंदी & ગુજરાતી' : currentLang === 'hi' ? 'अंग्रेजी, हिंदी व गुजराती में' : 'અંગ્રેજી, હિંદી અને ગુજરાતીમાં'}
+            </span>
           </div>
         </div>
       </HeroGeometric>
@@ -264,7 +368,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
               <span>{currentLang === 'en' ? 'Browse Conditions' : currentLang === 'hi' ? 'बीमारियां देखें' : 'બીમારીઓ જુઓ'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -290,7 +394,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-700">
               <span>{currentLang === 'en' ? 'Child Psychiatry Guide' : currentLang === 'hi' ? 'बाल मनोरोग मार्गदर्शिका' : 'બાળ મનોચિકિત્સા માર્ગદર્શિકા'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -316,7 +420,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-pink-700">
               <span>{currentLang === 'en' ? "Women's Health Guide" : currentLang === 'hi' ? 'महिला स्वास्थ्य मार्गदर्शिका' : 'મહિલા સ્વાસ્થ્ય માર્ગદર્શિકા'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -342,7 +446,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-700">
               <span>{currentLang === 'en' ? 'De-Addiction Medicine' : currentLang === 'hi' ? 'नशा मुक्ति मार्गदर्शन' : 'વ્યસન મુક્તિ માર્ગદર્શન'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -368,7 +472,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
               <span>{currentLang === 'en' ? 'Explore Therapies' : currentLang === 'hi' ? 'थेरेपी विधियां' : 'થેરાપી પદ્ધતિઓ'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -394,7 +498,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-700">
               <span>{currentLang === 'en' ? 'Bust Mental Health Myths' : currentLang === 'hi' ? 'भ्रांतियां दूर करें' : 'માન્યતાઓ તપાસો'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -420,7 +524,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-700">
               <span>{currentLang === 'en' ? 'Caregiver Guidance' : currentLang === 'hi' ? 'देखभालकर्ताओं की मदद' : 'સંભાળ રાખનાર માટે'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -446,7 +550,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-700">
               <span>{currentLang === 'en' ? 'Read Articles' : currentLang === 'hi' ? 'लेख पढ़ें' : 'લેખો વાંચો'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -472,7 +576,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-700">
               <span>{currentLang === 'en' ? 'Directory of Helplines' : currentLang === 'hi' ? 'हेल्पलाइन देखें' : 'હેલ્પલાઇન જુઓ'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
 
@@ -498,7 +602,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
             <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
               <span>{currentLang === 'en' ? 'Printable Posters' : currentLang === 'hi' ? 'पोस्टर व क्यूआर' : 'પોસ્ટર અને ક્યૂઆર'}</span>
-              <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+              <span className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-4 h-4" /></span>
             </div>
           </div>
         </div>
@@ -578,7 +682,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
                   <span>{currentLang === 'en' ? 'Read Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'માર્ગદર્શિકા વાંચો'}</span>
-                  <ArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+                  <span className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-3.5 h-3.5" /></span>
                 </div>
               </div>
             );

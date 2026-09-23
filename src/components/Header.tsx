@@ -49,11 +49,44 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 text-slate-900 shadow-xs">
+      {/* Crisis triage strip */}
+      <div className="w-full bg-[#ffdad6] px-4 py-1.5">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs font-semibold text-[#93000a]">
+          <span className="inline-flex items-center gap-1.5">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ba1a1a] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ba1a1a]" />
+            </span>
+            {currentLang === 'en'
+              ? 'In crisis or having thoughts of self-harm?'
+              : currentLang === 'hi'
+                ? 'संकट में हैं या खुद को नुकसान के विचार आ रहे हैं?'
+                : 'સંકટમાં છો કે પોતાને નુકસાનના વિચારો આવે છે?'}
+          </span>
+          <span className="inline-flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>
+              {currentLang === 'en' ? 'Tele-MANAS (24/7 Toll-Free):' : currentLang === 'hi' ? 'टेली-मानस (24/7 निःशुल्क):' : 'ટેલી-માનસ (24/7 વિનામૂલ્યે):'}
+              <a href="tel:14416" className="ml-1.5 bg-[#ba1a1a] text-white px-2.5 py-0.5 rounded-full font-bold hover:bg-[#93000a] transition-colors">
+                14416
+              </a>
+            </span>
+            <span>
+              {currentLang === 'en' ? 'Emergency:' : currentLang === 'hi' ? 'आपातकाल:' : 'ઇમરજન્સી:'}
+              <a href="tel:112" className="ml-1 font-bold underline hover:text-[#ba1a1a] transition-colors">
+                112
+              </a>
+            </span>
+            <a href="tel:18005990019" className="hidden sm:inline font-bold underline hover:text-[#ba1a1a] transition-colors">
+              Kiran: 1800-599-0019
+            </a>
+          </span>
+        </div>
+      </div>
       {/* Visual Identity Fine Top Accent: Radiant Emerald to Surya Gold to Twilight Iris */}
       <div className="h-[3.5px] w-full bg-gradient-to-r from-[#0d9488] via-[#f59e0b] to-[#7c3aed] shadow-xs" aria-hidden="true" />
 
       {/* Main Brand & Controls Header */}
-      <div className="max-w-5xl mx-auto px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-4">
         {/* Brand identity */}
         <button
           onClick={() => handleNavClick('home')}
@@ -104,7 +137,7 @@ export const Header: React.FC<HeaderProps> = ({
           <PWAInstallButton currentLang={currentLang} variant="button" />
 
           {/* Language Switcher: 44px min tap targets */}
-          <div className="flex items-center bg-slate-100/90 p-0.5 rounded-lg border border-slate-200" role="group" aria-label="Language selection">
+          <div className="flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200" role="group" aria-label="Language selection">
             <button
               onClick={() => onLanguageChange('en')}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
@@ -151,7 +184,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Desktop Navigation Bar: Horizontal, clear radiant text */}
       <nav className="hidden lg:block border-t border-slate-200/80 bg-slate-50/75 backdrop-blur-xs px-4" aria-label="Primary Navigation">
-        <div className="max-w-5xl mx-auto flex items-center gap-1.5 overflow-x-auto py-1 text-sm font-medium">
+        <div className="max-w-7xl mx-auto flex items-center gap-1.5 overflow-x-auto py-1 text-sm font-medium">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (

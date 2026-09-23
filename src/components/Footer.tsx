@@ -53,7 +53,30 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
 
       {/* Main Footer Links & Info */}
-      <div className="max-w-5xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 pt-10 pb-2 space-y-8">
+      {/* Statutory Medical Education Notice */}
+      <div className="bg-slate-50 p-5 sm:p-6 rounded-xl flex flex-col md:flex-row gap-4 items-start border border-slate-200/70">
+        <span className="flex items-center justify-center p-2.5 bg-[#0d9488] text-white rounded-lg shrink-0" aria-hidden="true">
+          <ShieldCheck className="w-6 h-6" />
+        </span>
+        <div className="space-y-1">
+          <p className="text-sm font-bold text-teal-900">
+            {currentLang === 'en'
+              ? 'Statutory Medical Education Notice'
+              : currentLang === 'hi'
+                ? 'वैधानिक चिकित्सा शिक्षा सूचना'
+                : 'વૈધાનિક તબીબી શિક્ષણ સૂચના'}
+          </p>
+          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            {currentLang === 'en'
+              ? 'Educational Resource Only. MindCare is designed to demystify mental illnesses for Indian patients and caregivers. It does NOT provide individual medical diagnoses, emergency consultations, or drug prescriptions.'
+              : currentLang === 'hi'
+                ? 'केवल शैक्षणिक संसाधन। MindCare भारतीय मरीजों और परिजनों के लिए मानसिक बीमारियों को सरल भाषा में समझाने हेतु है। यह व्यक्तिगत निदान, आपातकालीन परामर्श या दवा का पर्चा प्रदान नहीं करता।'
+                : 'માત્ર શૈક્ષણિક સંસાધન. MindCare ભારતીય દર્દીઓ અને પરિવારો માટે માનસિક બીમારીઓને સરળ ભાષામાં સમજાવવા માટે છે. તે વ્યક્તિગત નિદાન, ઇમરજન્સી પરામર્શ કે દવાનું પ્રિસ્ક્રિપ્શન આપતું નથી.'}
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Col 1: Doctor Profile */}
         <div className="space-y-2 md:col-span-1">
           <h3 className="text-slate-900 font-bold text-base">{t.doctorName}</h3>
@@ -233,10 +256,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
       </div>
+      </div>
 
       {/* Bottom Copyright & Compliance */}
       <div className="border-t border-slate-200/80 px-4 py-4 text-slate-500 text-xs bg-slate-50/50">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>© {new Date().getFullYear()} {t.doctorName}. Public Psychiatry Education Portal. All content evidence-based.</p>
           <p>Complies with National Medical Commission (NMC) Medical Ethics Regulations.</p>
         </div>
