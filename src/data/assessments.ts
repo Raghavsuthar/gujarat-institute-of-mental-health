@@ -1197,4 +1197,103 @@ export const screenersData: ScreenerTool[] = [
       },
     ],
   },
+  {
+    id: 'epds',
+    name: {
+      en: 'Postpartum Mood Reflection (EPDS Educational Tool)',
+      hi: 'प्रसवोत्तर मनोदशा अवलोकन (EPDS शैक्षणिक टूल)',
+      gu: 'પ્રસૂતિ પછીના મૂડનું મૂલ્યાંકન (EPDS શૈક્ષણિક ટૂલ)',
+    },
+    purpose: {
+      en: 'Educational reflection for mothers within the first year after childbirth on mood, anxiety, and bonding difficulties.',
+      hi: 'प्रसव के बाद पहले वर्ष में माताओं के मन, चिंता और जुड़ाव की कठिनाइयों का शैक्षणिक अवलोकन।',
+      gu: 'ડિલિવરી પછીના પ્રથમ વર્ષમાં માતાના મન, ચિંતા અને જોડાણની તકલીફોનું શૈક્ષણિક મૂલ્યાંકન.',
+    },
+    disclaimer: {
+      en: 'This tool is for education only and is NOT a diagnosis. Postpartum depression is a medical emergency when self-harm thoughts occur — contact Tele-MANAS 14416 or 112 immediately.',
+      hi: 'यह केवल शिक्षा के लिए है, निदान नहीं। खुद को नुकसान के विचार आएं तो तुरंत टेली-मानस 14416 या 112 पर संपर्क करें।',
+      gu: 'આ માત્ર શિક્ષણ માટે છે, નિદાન નથી. પોતાને નુકસાનના વિચારો આવે તો તરત ટેલી-માનસ 14416 કે 112 નો સંપર્ક કરો.',
+    },
+    frequencyOptions: [
+      { value: 0, label: { en: 'Never', hi: 'कभी नहीं', gu: 'ક્યારેય નહીં' } },
+      { value: 1, label: { en: 'Sometimes', hi: 'कभी-कभी', gu: 'ક્યારેક' } },
+      { value: 2, label: { en: 'Often', hi: 'अक्सर', gu: 'ઘણીવાર' } },
+      { value: 3, label: { en: 'Almost always', hi: 'लगभग हमेशा', gu: 'લગભગ હંમેશા' } },
+    ],
+    questions: [
+      {
+        id: 1,
+        text: {
+          en: 'I have felt sad, miserable, or unable to feel joy after delivery',
+          hi: 'प्रसव के बाद मैं उदास रही या खुशी महसूस नहीं कर पाई',
+          gu: 'ડિલિવરી પછી હું ઉદાસ રહી કે આનંદ અનુભવી શકી નહીં',
+        },
+      },
+      {
+        id: 2,
+        text: {
+          en: 'I have felt anxious, panicky, or unable to sleep even when the baby sleeps',
+          hi: 'बच्चे के सोने पर भी मुझे घबराहट रही या नींद नहीं आई',
+          gu: 'બાળક સૂતું હોય ત્યારે પણ મને ગભરાટ રહ્યો કે ઊંઘ ન આવી',
+        },
+      },
+      {
+        id: 3,
+        text: {
+          en: 'I have felt disconnected from my baby or felt I am a bad mother',
+          hi: 'मुझे बच्चे से जुड़ाव महसूस नहीं हुआ या लगा मैं खराब माँ हूँ',
+          gu: 'મને બાળક સાથે જોડાણ ન લાગ્યું કે હું ખરાબ માતા છું એવું લાગ્યું',
+        },
+      },
+      {
+        id: 4,
+        text: {
+          en: 'I have had upsetting intrusive thoughts about harm coming to the baby',
+          hi: 'मुझे बच्चे को नुकसान होने के परेशान करने वाले विचार आए',
+          gu: 'મને બાળકને નુકસાન થશે તેવા હેરાન કરતા વિચારો આવ્યા',
+        },
+      },
+      {
+        id: 5,
+        isCrisisQuestion: true,
+        text: {
+          en: 'I have had thoughts of harming myself',
+          hi: 'मुझे खुद को नुकसान पहुंचाने के विचार आए',
+          gu: 'મને પોતાને નુકસાન પહોંચાડવાના વિચારો આવ્યા',
+        },
+      },
+    ],
+    interpretations: [
+      {
+        minScore: 0,
+        maxScore: 4,
+        level: { en: 'Low Concern', hi: 'कम चिंता', gu: 'ઓછી ચિંતા' },
+        description: {
+          en: 'Your responses suggest low current distress. Continue family support and rest.',
+          hi: 'आपके उत्तर कम परेशानी दर्शाते हैं। पारिवारिक सहयोग व आराम जारी रखें।',
+          gu: 'તમારા જવાબો ઓછી તકલીફ દર્શાવે છે. પારિવારિક સાથ ચાલુ રાખો.',
+        },
+        recommendation: {
+          en: 'Protect 4-5 hours of sleep with family help and discuss mood at routine postnatal visits.',
+          hi: 'परिवार की मदद से 4-5 घंटे नींद सुरक्षित करें और नियमित जांच में मन की बात बताएं।',
+          gu: 'પરિવારની મદદથી ૪-૫ કલાક ઊંઘ સુરક્ષિત કરો અને તપાસમાં મનની વાત જણાવો.',
+        },
+      },
+      {
+        minScore: 5,
+        maxScore: 15,
+        level: { en: 'Clinical Review Advised', hi: 'चिकित्सकीय परामर्श आवश्यक', gu: 'તબીબી સલાહ જરૂરી' },
+        description: {
+          en: 'Your responses suggest significant postpartum distress warranting prompt evaluation.',
+          hi: 'आपके उत्तर उल्लेखनीय प्रसवोत्तर परेशानी दर्शाते हैं, तुरंत मूल्यांकन कराएं।',
+          gu: 'તમારા જવાબો નોંધપાત્ર પ્રસૂતિ પછીની તકલીફ દર્શાવે છે, તરત તપાસ કરાવો.',
+        },
+        recommendation: {
+          en: 'Please consult a psychiatrist or obstetrician promptly. If self-harm thoughts occur, call Tele-MANAS 14416 or 112 immediately.',
+          hi: 'कृपया तुरंत मनोचिकित्सक या प्रसूति चिकित्सक से मिलें। खुद को नुकसान के विचार पर 14416 या 112 पर कॉल करें।',
+          gu: 'કૃપા કરીને તરત મનોચિકિત્સકને મળો. પોતાને નુકસાનના વિચારો પર 14416 કે 112 પર કૉલ કરો.',
+        },
+      },
+    ],
+  },
 ];

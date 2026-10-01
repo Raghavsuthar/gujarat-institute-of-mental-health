@@ -1,5 +1,6 @@
 import { SubstanceInfo } from '../types';
 import { newSubstancesData } from './newSubstances';
+import { newSubstancesBatch2 } from './newSubstancesBatch2';
 
 const baseSubstancesData: SubstanceInfo[] = [
   {
@@ -674,4 +675,5 @@ const baseSubstancesData: SubstanceInfo[] = [
 export const substancesData: SubstanceInfo[] = [
   ...baseSubstancesData,
   ...newSubstancesData,
+  ...newSubstancesBatch2,
 ];

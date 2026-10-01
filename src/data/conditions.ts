@@ -2,6 +2,7 @@ import { Condition } from '../types';
 import { newConditionsData } from './newConditions';
 import { newConditionsBatch2 } from './newConditionsBatch2';
 import { newConditionsBatch3 } from './newConditionsBatch3';
+import { newConditionsBatch4 } from './newConditionsBatch4';
 
 const baseConditionsData: Condition[] = [
   {
@@ -2148,4 +2149,5 @@ export const conditionsData: Condition[] = [
   ...newConditionsData,
   ...newConditionsBatch2,
   ...newConditionsBatch3,
+  ...newConditionsBatch4,
 ];

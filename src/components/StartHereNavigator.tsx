@@ -238,8 +238,8 @@ export const StartHereNavigator: React.FC<StartHereNavigatorProps> = ({
             <div className="space-y-3">
               <p className="text-xs text-stone-600 leading-relaxed">
                 {currentLang === 'en'
-                  ? 'Access our structured library covering 20+ conditions, 6 substance classes, evidence-based psychotherapies, and clinical facts.'
-                  : 'हमारी 20+ मानसिक स्थितियां, नशा मुक्ति और थेरेपी की पूरी लाइब्रेरी देखें।'}
+                  ? 'Access our structured library covering 23+ conditions, 10 substance guides, evidence-based psychotherapies, and clinical facts.'
+                  : 'हमारी 23+ मानसिक स्थितियां, नशा मुक्ति और थेरेपी की पूरी लाइब्रेरी देखें।'}
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
                 <button

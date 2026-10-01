@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, Suspense, lazy } from 'react';
 import {
   Routes,
   Route,
@@ -28,23 +28,23 @@ import { SubstanceDetailModal } from './components/SubstanceDetailModal';
 import { ChildPsychiatryModal } from './components/ChildPsychiatryModal';
 import { WomensMentalHealthModal } from './components/WomensMentalHealthModal';
 
-// Views
-import { HomeView } from './views/HomeView';
-import { ConditionsView } from './views/ConditionsView';
-import { ChildPsychiatryView } from './views/ChildPsychiatryView';
-import { WomensMentalHealthView } from './views/WomensMentalHealthView';
-import { AddictionView } from './views/AddictionView';
-import { TreatmentsView } from './views/TreatmentsView';
-import { MythsView } from './views/MythsView';
-import { SymptomsView } from './views/SymptomsView';
-import { CaregiversView } from './views/CaregiversView';
-import { InteractiveView } from './views/InteractiveView';
-import { EmergencyView } from './views/EmergencyView';
-import { ArticlesView } from './views/ArticlesView';
-import { ResourcesView } from './views/ResourcesView';
-import { OutreachView } from './views/OutreachView';
-import { AboutView } from './views/AboutView';
-import { AdminAnalyticsView } from './views/AdminAnalyticsView';
+// Views - Lazy load heavy views for code splitting (named exports mapped to default)
+const HomeView = lazy(() => import('./views/HomeView').then(m => ({ default: m.HomeView })));
+const ConditionsView = lazy(() => import('./views/ConditionsView').then(m => ({ default: m.ConditionsView })));
+const ChildPsychiatryView = lazy(() => import('./views/ChildPsychiatryView').then(m => ({ default: m.ChildPsychiatryView })));
+const WomensMentalHealthView = lazy(() => import('./views/WomensMentalHealthView').then(m => ({ default: m.WomensMentalHealthView })));
+const AddictionView = lazy(() => import('./views/AddictionView').then(m => ({ default: m.AddictionView })));
+const TreatmentsView = lazy(() => import('./views/TreatmentsView').then(m => ({ default: m.TreatmentsView })));
+const MythsView = lazy(() => import('./views/MythsView').then(m => ({ default: m.MythsView })));
+const SymptomsView = lazy(() => import('./views/SymptomsView').then(m => ({ default: m.SymptomsView })));
+const CaregiversView = lazy(() => import('./views/CaregiversView').then(m => ({ default: m.CaregiversView })));
+const InteractiveView = lazy(() => import('./views/InteractiveView').then(m => ({ default: m.InteractiveView })));
+const EmergencyView = lazy(() => import('./views/EmergencyView').then(m => ({ default: m.EmergencyView })));
+const ArticlesView = lazy(() => import('./views/ArticlesView').then(m => ({ default: m.ArticlesView })));
+const ResourcesView = lazy(() => import('./views/ResourcesView').then(m => ({ default: m.ResourcesView })));
+const OutreachView = lazy(() => import('./views/OutreachView').then(m => ({ default: m.OutreachView })));
+const AboutView = lazy(() => import('./views/AboutView').then(m => ({ default: m.AboutView })));
+const AdminAnalyticsView = lazy(() => import('./views/AdminAnalyticsView').then(m => ({ default: m.AdminAnalyticsView })));
 import { EducationalQAAssistant } from './components/EducationalQAAssistant';
 
 // Data for deep linking lookups
@@ -55,6 +55,18 @@ import { womensMentalHealthTopics } from './data/womensMentalHealth';
 import { recordPageView } from './utils/analytics';
 
 const VALID_LANGS: Language[] = ['en', 'hi', 'gu'];
+
+// Skeleton loader for lazy-loaded views
+function PageSkeleton() {
+  return (
+    <div className="flex items-center justify-center min-h-[40vh]" role="status" aria-label="Loading page">
+      <div className="text-center space-y-3">
+        <div className="w-10 h-10 border-3 border-teal-500/30 border-t-teal-500 rounded-full animate-spin mx-auto" />
+        <p className="text-sm text-slate-500">Loading…</p>
+      </div>
+    </div>
+  );
+}
 
 function getInitialLanguage(): Language {
   try {
@@ -261,7 +273,8 @@ export default function App() {
 
       {/* Main Body Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <Routes>
+        <Suspense fallback={<PageSkeleton />}>
+          <Routes>
           {/* Root redirect to language prefix */}
           <Route path="/" element={<Navigate to={`/${getInitialLanguage()}`} replace />} />
 
@@ -426,6 +439,7 @@ export default function App() {
           {/* Fallback for un-prefixed or broken routes */}
           <Route path="*" element={<Navigate to={`/${getInitialLanguage()}`} replace />} />
         </Routes>
+        </Suspense>
       </main>
 
       {/* Global Modals */}
