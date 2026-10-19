@@ -72,7 +72,7 @@ Choose the deployment method that best fits your workflow:
 4. Framework Preset will automatically detect **Vite**.
 5. *(Optional)* Under **Environment Variables**, add:
    - `GEMINI_API_KEY`: Your Google Gemini API key (for the AI Q&A assistant).
-   - `ADMIN_PASSWORD`: Custom password for the community analytics dashboard (default: `drraghav2026`).
+   - `ADMIN_PASSWORD`: Server-only unique secret for the analytics dashboard. Generate at least 32 random characters; never prefix it with `VITE_` or expose it to client code. Without a valid secret, the admin API fails closed.
 6. Click **Deploy**. Your site will be online with a custom HTTPS URL in under 60 seconds!
    - *Note:* The pre-configured `vercel.json` already handles single-page application (SPA) routing for all subpaths.
 
@@ -147,10 +147,17 @@ Open your browser at `http://localhost:3000`.
 | Variable | Description | Required | Default |
 | :--- | :--- | :--- | :--- |
 | `GEMINI_API_KEY` | Google Gemini API key for the educational Q&A assistant | Optional | None (uses local glossary & FAQ fallback if omitted) |
-| `ADMIN_PASSWORD` | Password for the community outreach analytics panel | Optional | `drraghav2026` |
+| `ADMIN_PASSWORD` | Server-only unique secret (32+ characters) for the community analytics panel | Required to enable admin analytics | None (admin API returns 503 until configured) |
 | `PORT` | HTTP port for the Node.js production server | Optional | `3000` |
 
 ---
+
+### Admin/API security notes
+
+- Configure `ADMIN_PASSWORD` only in the hosting provider's server-side environment/secrets settings. Use a unique randomly generated secret of at least 32 characters. Do not use `VITE_ADMIN_PASSWORD` or commit secrets to Git.
+- Admin analytics accepts the secret only as an `Authorization: Bearer ...` header; query-string credentials are rejected to prevent leakage through URLs and logs.
+- Public analytics and educational Q&A endpoints have request-size validation and per-process rate limits. For multi-instance/serverless hosting, also enable provider-level rate limiting/WAF because the built-in limiter is not shared between instances.
+- Rotate any previously used admin key because the old fallback key was present in repository history. Removing it from current source does not erase it from past commits.
 
 ## 🛡️ Medical Disclaimer & Clinical Safety
 

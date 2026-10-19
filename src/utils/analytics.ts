@@ -162,58 +162,16 @@ export function recordEvent(
 }
 
 export async function fetchAggregateAnalytics(password: string): Promise<AggregateAnalyticsSummary> {
-  try {
-    const res = await fetch(`/api/analytics/summary?key=${encodeURIComponent(password)}`, {
-      headers: {
-        Authorization: `Bearer ${password}`,
-      },
-    });
+  const res = await fetch('/api/analytics/summary', {
+    headers: { Authorization: `Bearer ${password}` },
+    cache: 'no-store',
+  });
 
-    if (res.ok) {
-      return await res.json();
-    }
-    if (res.status === 401) {
-      throw new Error('Invalid admin password');
-    }
-  } catch (err: any) {
-    if (err.message === 'Invalid admin password') throw err;
-  }
-
-  // Fallback to local storage aggregation if server is unreachable
-  const local = getStoredData();
-  const topPages = Object.entries(local.byPath)
-    .map(([path, count]) => ({ path, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10);
-
-  const total = local.totalViews || 1;
-  return {
-    totalViews: local.totalViews,
-    byLang: local.byLang,
-    topPages,
-    topReferrers: [{ domain: 'Direct / Local Browser', count: local.totalViews }],
-    deviceBreakdown: {
-      mobile: Math.round(total * 0.7),
-      desktop: Math.round(total * 0.25),
-      tablet: Math.round(total * 0.05),
-    },
-    events: {
-      screenerCompleted: local.events['screener:completed'] || 0,
-      mythCardShared: local.events['share_card:share:myth'] || local.events['myth:share'] || 0,
-      cardShared: local.events['share_card:share'] || 0,
-      qrLanded: local.events['qr:scan'] || 0,
-      pwaInstalled: local.events['pwa:install'] || 0,
-      readAloud: local.events['audio:play'] || 0,
-    },
-    dailyTrend: [
-      {
-        date: new Date().toISOString().split('T')[0],
-        views: local.totalViews,
-        events: Object.values(local.events).reduce((a, b) => a + b, 0),
-      },
-    ],
-    lastUpdated: local.lastVisit,
-  };
+  if (res.ok) return await res.json();
+  if (res.status === 401) throw new Error('Invalid admin password');
+  if (res.status === 503) throw new Error('Admin analytics is not configured. Set a server-side ADMIN_PASSWORD secret of at least 32 characters.');
+  if (res.status === 429) throw new Error('Too many admin attempts. Please wait before trying again.');
+  throw new Error(`Unable to load protected analytics (HTTP ${res.status}).`);
 }
 
 export function getLocalAnalyticsSummary(): AnalyticsData {

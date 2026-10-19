@@ -45,12 +45,6 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
       noIndex: true,
     });
 
-    // Check sessionStorage
-    const savedToken = sessionStorage.getItem('psychedu_admin_token');
-    if (savedToken) {
-      setPassword(savedToken);
-      loadDashboard(savedToken);
-    }
   }, [currentLang]);
 
   const loadDashboard = async (pwd: string) => {
@@ -60,7 +54,6 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
       const data = await fetchAggregateAnalytics(pwd);
       setSummary(data);
       setIsAuthenticated(true);
-      sessionStorage.setItem('psychedu_admin_token', pwd);
     } catch (err: any) {
       setIsAuthenticated(false);
       setErrorMsg(err.message || 'Authentication failed. Please check the admin password.');
@@ -78,7 +71,6 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
   const handleLogout = () => {
     setIsAuthenticated(false);
     setPassword('');
-    sessionStorage.removeItem('psychedu_admin_token');
   };
 
   const handleExportJSON = () => {
@@ -93,7 +85,7 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
   };
 
   const copyEnvGuide = () => {
-    navigator.clipboard.writeText('ADMIN_PASSWORD=your_secure_password_here');
+    navigator.clipboard.writeText('ADMIN_PASSWORD=<generate-a-unique-secret-of-at-least-32-characters>');
     setCopiedEnv(true);
     setTimeout(() => setCopiedEnv(false), 2500);
   };
@@ -134,8 +126,7 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
               required
             />
             <p className="text-[11px] text-stone-400 mt-1.5">
-              Default development key: <code className="font-mono bg-stone-100 px-1 py-0.5 rounded text-stone-700">drraghav2026</code>
-            </p>
+              Requires a server-side ADMIN_PASSWORD secret of at least 32 characters.</p>
           </div>
 
           <button
@@ -460,7 +451,7 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
             </button>
           </div>
           <code className="text-xs font-mono text-teal-300 block bg-stone-900 p-2.5 rounded border border-stone-800 overflow-x-auto">
-            ADMIN_PASSWORD=drraghav2026
+            ADMIN_PASSWORD=<generate-a-unique-secret-of-at-least-32-characters>
           </code>
           <p className="text-[11px] text-stone-400 mt-2">
             Add <code className="text-stone-300 font-mono">ADMIN_PASSWORD</code> to your host settings (Cloud Run, Vercel, Netlify, or <code className="text-stone-300 font-mono">.env</code>) to set a custom secret password.
