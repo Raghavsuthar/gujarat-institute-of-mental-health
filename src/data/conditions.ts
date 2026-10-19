@@ -7,6 +7,7 @@ import { newConditionsBatch4 } from './newConditionsBatch4';
 const baseConditionsData: Condition[] = [
   {
     id: 'depression',
+    youtubeVideoId: 'lQhpetkwWnM',
     slug: 'major-depressive-disorder',
     category: 'mood',
     name: {
@@ -287,6 +288,7 @@ const baseConditionsData: Condition[] = [
   },
   {
     id: 'bipolar',
+    youtubeVideoId: 'GX2RB_LmLUE',
     slug: 'bipolar-disorder',
     category: 'mood',
     name: {
@@ -548,6 +550,7 @@ const baseConditionsData: Condition[] = [
   },
   {
     id: 'anxiety-gad',
+    youtubeVideoId: 'JOKS9Bx8-Sw',
     slug: 'generalized-anxiety-disorder',
     category: 'anxiety',
     name: {
@@ -1344,6 +1347,7 @@ const baseConditionsData: Condition[] = [
   },
   {
     id: 'schizophrenia',
+    youtubeVideoId: 'WS1TXT3cGyw',
     slug: 'schizophrenia',
     category: 'psychotic',
     name: {
