@@ -550,7 +550,7 @@ const baseConditionsData: Condition[] = [
   },
   {
     id: 'anxiety-gad',
-    youtubeVideoId: 'JOKS9Bx8-Sw',
+    youtubeVideoId: 'UjPRVKS4OBg',
     slug: 'generalized-anxiety-disorder',
     category: 'anxiety',
     name: {
