@@ -163,7 +163,7 @@ export function recordEvent(
 
 export async function fetchAggregateAnalytics(password: string): Promise<AggregateAnalyticsSummary> {
   try {
-    const res = await fetch(`/api/analytics/summary?key=${encodeURIComponent(password)}`, {
+    const res = await fetch('/api/analytics/summary', {
       headers: {
         Authorization: `Bearer ${password}`,
       },
