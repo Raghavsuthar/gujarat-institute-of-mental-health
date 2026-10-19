@@ -1,11 +1,50 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import { timingSafeEqual } from 'crypto';
 
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: '16kb' }));
+
+// Per-process rate limiting. Configure shared/provider-level limits for multi-instance deployments.
+function rateLimit(options: { windowMs: number; max: number; message?: string }) {
+  const clients = new Map<string, { count: number; resetAt: number }>();
+  return (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    const now = Date.now();
+    const key = req.ip || req.socket.remoteAddress || 'unknown';
+    let entry = clients.get(key);
+    if (!entry || entry.resetAt <= now) {
+      entry = { count: 0, resetAt: now + options.windowMs };
+      clients.set(key, entry);
+    }
+    entry.count += 1;
+    if (entry.count > options.max) {
+      res.setHeader('Retry-After', String(Math.max(1, Math.ceil((entry.resetAt - now) / 1000))));
+      res.status(429).json({ error: options.message || 'Too many requests. Please try again later.' });
+      return;
+    }
+    if (clients.size > 5000) {
+      for (const [client, value] of clients) if (value.resetAt <= now) clients.delete(client);
+    }
+    next();
+  };
+}
+const analyticsPingLimit = rateLimit({ windowMs: 60_000, max: 60 });
+const adminSummaryLimit = rateLimit({ windowMs: 15 * 60_000, max: 10, message: 'Too many admin attempts. Try again later.' });
+const qaLimit = rateLimit({ windowMs: 60_000, max: 20 });
+
+function hasValidAdminToken(req: express.Request): boolean {
+  const expected = process.env.ADMIN_PASSWORD;
+  if (!expected || expected.length < 32) return false;
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !/^Bearer\s+\S+$/i.test(authHeader)) return false;
+  const supplied = authHeader.replace(/^Bearer\s+/i, '');
+  const suppliedBuffer = Buffer.from(supplied, 'utf8');
+  const expectedBuffer = Buffer.from(expected, 'utf8');
+  return suppliedBuffer.length === expectedBuffer.length && timingSafeEqual(suppliedBuffer, expectedBuffer);
+}
 
 // Security headers - CSP for XSS protection
 app.use((_req, res, next) => {
@@ -139,13 +178,28 @@ app.get('/api/health', (_req, res) => {
 });
 
 // 2. Analytics Ping endpoint
-app.post('/api/analytics/ping', (req, res) => {
+app.post('/api/analytics/ping', analyticsPingLimit, (req, res) => {
   try {
     const payload = req.body || {};
+    if (typeof payload !== 'object' || Array.isArray(payload)) {
+      res.status(400).json({ error: 'Invalid payload' });
+      return;
+    }
+    const allowedLangs = ['en', 'hi', 'gu'];
+    const allowedDevices = ['mobile', 'desktop', 'tablet'];
+    const allowedEvents = ['page_view', 'screener_completed', 'myth_card_shared', 'card_shared', 'qr_landed', 'pwa_installed', 'read_aloud'];
+    if ((payload.lang !== undefined && !allowedLangs.includes(payload.lang)) ||
+        (payload.deviceType !== undefined && !allowedDevices.includes(payload.deviceType)) ||
+        (payload.eventType !== undefined && !allowedEvents.includes(payload.eventType)) ||
+        (payload.path !== undefined && (typeof payload.path !== 'string' || payload.path.length > 200)) ||
+        (payload.referrerDomain !== undefined && (typeof payload.referrerDomain !== 'string' || payload.referrerDomain.length > 100))) {
+      res.status(400).json({ error: 'Invalid payload' });
+      return;
+    }
     const store = loadStore();
 
     const lang = (payload.lang || 'en') as 'en' | 'hi' | 'gu';
-    const rawPath = (payload.path || 'home').replace(/^\/+|\/+$/g, '') || 'home';
+    const rawPath = (payload.path || 'home').replace(/^\/+|\/+$/g, '').replace(/[\u0000-\u001f]/g, '') || 'home';
     const referrer = payload.referrerDomain || 'Direct / QR Poster';
     const device = (payload.deviceType || 'mobile') as 'mobile' | 'desktop' | 'tablet';
     const today = new Date().toISOString().split('T')[0];
@@ -192,17 +246,18 @@ app.post('/api/analytics/ping', (req, res) => {
 });
 
 // 3. Analytics Summary endpoint
-app.get('/api/analytics/summary', (req, res) => {
-  const authHeader = req.headers['authorization'];
-  const keyParam = req.query.key as string | undefined;
-  const adminPassword = process.env.ADMIN_PASSWORD || process.env.VITE_ADMIN_PASSWORD || 'drraghav2026';
-
-  const token = authHeader ? authHeader.replace(/^Bearer\s+/i, '') : keyParam;
-
-  if (!token || token !== adminPassword) {
-    res.status(401).json({ error: 'Unauthorized. Invalid admin password.' });
+app.get('/api/analytics/summary', adminSummaryLimit, (req, res) => {
+  const configuredSecret = process.env.ADMIN_PASSWORD;
+  if (!configuredSecret || configuredSecret.length < 32) {
+    res.status(503).json({ error: 'Admin analytics is not configured. Set a unique ADMIN_PASSWORD secret of at least 32 characters on the server.' });
     return;
   }
+  if (!hasValidAdminToken(req)) {
+    res.setHeader('Cache-Control', 'no-store');
+    res.status(401).json({ error: 'Unauthorized.' });
+    return;
+  }
+  res.setHeader('Cache-Control', 'no-store, private');
 
   const store = loadStore();
 
@@ -230,11 +285,16 @@ app.get('/api/analytics/summary', (req, res) => {
 });
 
 // 4. Educational Q&A Assistant endpoint
-app.post('/api/qa', async (req, res) => {
+app.post('/api/qa', qaLimit, async (req, res) => {
   try {
     const { query, lang = 'en' } = req.body || {};
-    if (!query || typeof query !== 'string') {
-      res.status(400).json({ error: 'Query is required' });
+    if (!query || typeof query !== 'string' || query.length > 2000) {
+      res.status(400).json({ error: 'Query is required and must be no longer than 2000 characters.' });
+      return;
+    }
+
+    if (!['en', 'hi', 'gu'].includes(lang)) {
+      res.status(400).json({ error: 'Unsupported language' });
       return;
     }
 
