@@ -33,7 +33,7 @@ The following IDs were matched to public YouTube results from the named publishe
 |---|---|---|---|
 | Depression | National Institute of Mental Health (NIMH), “Mental Health Minute: Depression” | https://www.youtube.com/watch?v=lQhpetkwWnM | src/data/conditions.ts → depression |
 | Bipolar disorder | National Alliance on Mental Illness (NAMI), “What is Bipolar Disorder” | https://www.youtube.com/watch?v=GX2RB_LmLUE | src/data/conditions.ts → bipolar |
-| Anxiety disorders | American Psychiatric Association (APA), “Anxiety” | https://www.youtube.com/watch?v=JOKS9Bx8-Sw | src/data/conditions.ts → anxiety-gad |
+| Anxiety disorders | National Institute of Mental Health (NIMH), “Mental Health Minute: Anxiety Disorders in Adults” | https://www.youtube.com/watch?v=UjPRVKS4OBg | src/data/conditions.ts → anxiety-gad |
 | Schizophrenia | National Alliance on Mental Illness (NAMI), “What is Schizophrenia” | https://www.youtube.com/watch?v=WS1TXT3cGyw | src/data/conditions.ts → schizophrenia |
 
 The current UI renders the primary youtubeVideoId via YouTubeEmbed.tsx, which uses a click-to-play facade and youtube-nocookie.com. IDs above were verified against publisher/title search results; this is not a guarantee of future playback in every region or embedding context.
@@ -48,7 +48,7 @@ The current UI renders the primary youtubeVideoId via YouTubeEmbed.tsx, which us
 | `bipolar` | Bipolar Disorder | Understanding Bipolar I & II: Manic vs Depressive Phases | ✅ Integrated (NAMI) | `GX2RB_LmLUE` |
 | `dysthymia` | Persistent Depressive Disorder | Chronic Low-Grade Depression (Dysthymia) vs Major Depression | ⏳ Pending | `// TODO(video): PDD overview and long-term psychological scaffolding` |
 | `cyclothymia` | Cyclothymic Disorder | Cyclothymia: Managing Chronic Mood Fluctuations | ⏳ Pending | `// TODO(video): Cyclothymic disorder diagnosis and daily tracking` |
-| `gad` | Generalized Anxiety Disorder | How Chronic Worry Affects the Body & Brain | ✅ Integrated (APA; anxiety disorders overview) | `JOKS9Bx8-Sw` |
+| `gad` | Generalized Anxiety Disorder | How Chronic Worry Affects the Body & Brain | ✅ Integrated (NIMH) | `UjPRVKS4OBg` |
 | `panic` | Panic Disorder & Agoraphobia | Anatomy of a Panic Attack & The Adrenaline Loop | ⏳ Pending | `// TODO(video): Panic sensations demystified and somatic grounding` |
 | `social_anxiety` | Social Anxiety Disorder | Social Anxiety: Cognitive Restructuring & Exposure | ⏳ Pending | `// TODO(video): Social anxiety vs introversion and behavioral exposure` |
 | `specific_phobia` | Specific Phobias | Phobias and Systematic Desensitization | ⏳ Pending | `// TODO(video): Systematic desensitization for specific phobias` |
