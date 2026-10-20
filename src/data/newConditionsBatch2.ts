@@ -6,6 +6,7 @@ export const newConditionsBatch2: Condition[] = [
     id: 'social-anxiety-disorder',
     slug: 'social-anxiety-disorder',
     category: 'anxiety',
+    conditionIcon: 'social-anxiety-disorder',
     name: {
       en: 'Social Anxiety Disorder (Social Phobia)',
       hi: 'सोशल एंग्जायटी डिसऑर्डर (सामाजिक घबराहट / Social Phobia)',
@@ -240,6 +241,7 @@ export const newConditionsBatch2: Condition[] = [
     id: 'specific-phobia',
     slug: 'specific-phobia',
     category: 'anxiety',
+    conditionIcon: 'specific-phobia',
     name: {
       en: 'Specific Phobia',
       hi: 'स्पेसिफिक फोबिया (विशिष्ट भय / Specific Phobia)',
@@ -471,6 +473,7 @@ export const newConditionsBatch2: Condition[] = [
     id: 'insomnia-disorder',
     slug: 'insomnia-disorder',
     category: 'sleep',
+    conditionIcon: 'insomnia-disorder',
     name: {
       en: 'Insomnia Disorder',
       hi: 'अनिद्रा विकार (इंसोम्निया / Insomnia Disorder)',
@@ -705,6 +708,7 @@ export const newConditionsBatch2: Condition[] = [
     id: 'somatic-symptom-disorder',
     slug: 'somatic-symptom-disorder',
     category: 'somatic',
+    conditionIcon: 'somatic-symptom-disorder',
     name: {
       en: 'Somatic Symptom Disorder',
       hi: 'सोमैटिक सिम्पटम डिसऑर्डर (शारीरिक लक्षण विकार / Somatic Symptom Disorder)',
@@ -939,6 +943,7 @@ export const newConditionsBatch2: Condition[] = [
     id: 'illness-anxiety-disorder',
     slug: 'illness-anxiety-disorder',
     category: 'somatic',
+    conditionIcon: 'illness-anxiety-disorder',
     name: {
       en: 'Illness Anxiety Disorder (Hypochondriasis)',
       hi: 'इलनेस एंग्जायटी डिसऑर्डर (हाइपोकॉन्ड्रिएसिस / Illness Anxiety Disorder)',

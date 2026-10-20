@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { AlertCircle, ArrowRight, Phone } from 'lucide-react';
+import { AlertCircle, ArrowRight, Phone, Sparkles } from 'lucide-react';
 import { Language, SubstanceInfo } from '../types';
 import { substancesData } from '../data/substances';
 import { translations } from '../data/translations';
@@ -100,47 +100,131 @@ export const AddictionView: React.FC<AddictionViewProps> = ({
 
       {/* Substances Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {substancesData.map((sub) => (
-          <div
-            key={sub.id}
-            onClick={() => onSelectSubstance(sub)}
-            className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between"
-          >
-            <div className="space-y-2">
-              <div className="flex items-center justify-between gap-2 text-xs text-stone-500">
-                <span className="font-medium uppercase tracking-wider">
-                  SUBSTANCE GUIDE
-                </span>
-                <span className="font-mono text-[11px]">
-                  {sub.medicalTerms[currentLang]}
-                </span>
+        {substancesData.map((sub, index) => {
+          const isSpotlight = index === 0;
+
+          if (isSpotlight) {
+            return (
+              <div
+                key={sub.id}
+                onClick={() => onSelectSubstance(sub)}
+                className="col-span-1 md:col-span-2 p-6 sm:p-7 rounded-2xl border-2 border-teal-600/30 bg-gradient-to-br from-white via-teal-50/25 to-stone-50/70 hover:border-teal-700 transition-all cursor-pointer flex flex-col justify-between shadow-xs hover:shadow-md group"
+              >
+                <div className="space-y-4">
+                  <div className="flex flex-col lg:flex-row items-start justify-between gap-5">
+                    <div className="space-y-2.5 flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-800 text-white shadow-2xs">
+                          <Sparkles className="w-3 h-3 text-teal-200" />
+                          <span>
+                            {currentLang === 'en'
+                              ? 'Primary Substance Profile'
+                              : currentLang === 'hi'
+                              ? 'प्रमुख व्यसन एवं उपचार मार्गदर्शिका'
+                              : 'મુખ્ય વ્યસન મુક્તિ માર્ગદર્શન'}
+                          </span>
+                        </span>
+                        <span className="font-semibold uppercase tracking-wider text-teal-900 text-[11px] bg-teal-100/70 px-2 py-0.5 rounded">
+                          SUBSTANCE GUIDE
+                        </span>
+                        <span className="font-mono text-xs text-stone-500">
+                          {sub.medicalTerms[currentLang]}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#1c2430] group-hover:text-teal-800 transition-colors">
+                        {sub.name[currentLang]}
+                      </h3>
+
+                      <p className="text-sm text-stone-600 leading-relaxed max-w-3xl">
+                        {sub.whatIsIt[currentLang]}
+                      </p>
+
+                      {/* Surfaced Neurobiology & Withdrawal Snapshot */}
+                      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="p-3 bg-white rounded-xl border border-stone-200/80 shadow-2xs space-y-1">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-teal-900 block">
+                            {currentLang === 'en' ? 'Neurobiology & Addiction:' : currentLang === 'hi' ? 'न्यूरोबायोलॉजी और लत:' : 'ન્યુરોબાયોલોજી અને વ્યસન:'}
+                          </span>
+                          <p className="text-xs text-stone-600 leading-relaxed">
+                            {sub.whyAddictive[currentLang]}
+                          </p>
+                        </div>
+
+                        <div className="p-3 bg-amber-50/60 rounded-xl border border-amber-200/80 shadow-2xs space-y-1">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-amber-950 block">
+                            {currentLang === 'en' ? 'Withdrawal Risk & Clinical Caution:' : currentLang === 'hi' ? 'विड्रॉल का खतरा एवं चेतावनी:' : 'વિડ્રોલ જોખમ અને સાવચેતી:'}
+                          </span>
+                          <p className="text-xs text-stone-700 font-medium leading-relaxed">
+                            {sub.withdrawalSymptoms[currentLang]}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Spotlight Visual Accent Banner */}
+                    <div className="w-full sm:w-64 md:w-72 h-36 sm:h-40 shrink-0 rounded-xl overflow-hidden border border-teal-200/80 bg-white shadow-2xs self-center lg:self-start">
+                      <NeuralCircuitryIllustration className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5 pt-3.5 border-t border-stone-200/80 flex items-center justify-between text-xs font-bold text-teal-800 group-hover:text-teal-950 min-h-[44px]">
+                  <span>
+                    {currentLang === 'en'
+                      ? 'Open Complete Medical De-Addiction Guide'
+                      : currentLang === 'hi'
+                      ? 'संपूर्ण चिकित्सकीय नशा मुक्ति मार्गदर्शिका पढ़ें'
+                      : 'સંપૂર્ણ તબીબી વ્યસન મુક્તિ માર્ગદર્શિકા વાંચો'}
+                  </span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div
+              key={sub.id}
+              onClick={() => onSelectSubstance(sub)}
+              className="p-6 rounded-xl border border-stone-200 bg-white hover:border-[#115e59] transition cursor-pointer flex flex-col justify-between group"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-2 text-xs text-stone-500">
+                  <span className="font-medium uppercase tracking-wider">
+                    SUBSTANCE GUIDE
+                  </span>
+                  <span className="font-mono text-[11px]">
+                    {sub.medicalTerms[currentLang]}
+                  </span>
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-[#1c2430] group-hover:text-[#115e59] transition-colors">
+                  {sub.name[currentLang]}
+                </h3>
+
+                <p className="text-sm text-stone-600 leading-relaxed line-clamp-3">
+                  {sub.whatIsIt[currentLang]}
+                </p>
+
+                {/* Highlights */}
+                <div className="mt-4 pt-3 border-t border-stone-100 space-y-1.5 text-xs text-stone-700">
+                  <div>
+                    <strong className="text-[#1c2430] font-semibold">Why Addictive:</strong> {sub.whyAddictive[currentLang].slice(0, 95)}...
+                  </div>
+                  <div>
+                    <strong className="text-[#1c2430] font-semibold">Withdrawal Risk:</strong> {sub.withdrawalSymptoms[currentLang].slice(0, 95)}...
+                  </div>
+                </div>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
-                {sub.name[currentLang]}
-              </h3>
-
-              <p className="text-sm text-stone-600 leading-relaxed line-clamp-3">
-                {sub.whatIsIt[currentLang]}
-              </p>
-
-              {/* Highlights */}
-              <div className="mt-4 pt-3 border-t border-stone-100 space-y-1.5 text-xs text-stone-700">
-                <div>
-                  <strong className="text-[#1c2430] font-semibold">Why Addictive:</strong> {sub.whyAddictive[currentLang].slice(0, 95)}...
-                </div>
-                <div>
-                  <strong className="text-[#1c2430] font-semibold">Withdrawal Risk:</strong> {sub.withdrawalSymptoms[currentLang].slice(0, 95)}...
-                </div>
+              <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59] min-h-[44px]">
+                <span>{currentLang === 'en' ? 'Open De-Addiction Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
-
-            <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59] min-h-[44px]">
-              <span>{currentLang === 'en' ? 'Open De-Addiction Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Understanding the Path to Recovery */}

@@ -6,6 +6,7 @@ export const newConditionsData: Condition[] = [
     id: 'anorexia-nervosa',
     slug: 'anorexia-nervosa',
     category: 'eating',
+    conditionIcon: 'anorexia-nervosa',
     name: {
       en: 'Anorexia Nervosa',
       hi: 'एनोरेक्सिया नर्वोसा (Anorexia Nervosa)',
@@ -240,6 +241,7 @@ export const newConditionsData: Condition[] = [
     id: 'bulimia-nervosa',
     slug: 'bulimia-nervosa',
     category: 'eating',
+    conditionIcon: 'bulimia-nervosa',
     name: {
       en: 'Bulimia Nervosa',
       hi: 'बुलिमिया नर्वोसा (Bulimia Nervosa)',
@@ -474,6 +476,7 @@ export const newConditionsData: Condition[] = [
     id: 'binge-eating-disorder',
     slug: 'binge-eating-disorder',
     category: 'eating',
+    conditionIcon: 'binge-eating-disorder',
     name: {
       en: 'Binge Eating Disorder (BED)',
       hi: 'बिंज ईटिंग डिसऑर्डर (Binge Eating Disorder)',
@@ -708,6 +711,7 @@ export const newConditionsData: Condition[] = [
     id: 'adhd',
     slug: 'attention-deficit-hyperactivity-disorder-adhd',
     category: 'neurodevelopmental',
+    conditionIcon: 'adhd',
     name: {
       en: 'Attention-Deficit / Hyperactivity Disorder (ADHD)',
       hi: 'एडीएचडी (अटेंशन-डेफिसिट / हाइपरएक्टिविटी डिसऑर्डर / ADHD)',
@@ -942,6 +946,7 @@ export const newConditionsData: Condition[] = [
     id: 'autism-spectrum-disorder',
     slug: 'autism-spectrum-disorder-asd',
     category: 'neurodevelopmental',
+    conditionIcon: 'autism-spectrum-disorder',
     name: {
       en: 'Autism Spectrum Disorder (ASD)',
       hi: 'ऑटिज्म स्पेक्ट्रम डिसऑर्डर (ASD)',

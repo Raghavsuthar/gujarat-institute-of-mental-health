@@ -4,6 +4,7 @@ import { Language } from '../types';
 import { caregiversData } from '../data/caregivers';
 import { translations } from '../data/translations';
 import { updatePageSEO } from '../utils/seo';
+import { SupportNetworkIllustration } from '../components/visuals';
 
 interface CaregiversViewProps {
   currentLang: Language;
@@ -42,6 +43,23 @@ export const CaregiversView: React.FC<CaregiversViewProps> = ({ currentLang }) =
             ? 'भारतीय परिवारों की भूमिका मरीज के ठीक होने में सबसे महत्वपूर्ण होती है। घर में तानों और तनाव को कम करने, सही संवाद साधने और अपनी सेहत की रक्षा करने के वैज्ञानिक तरीके।'
             : 'દર્દીને સાજા કરવામાં પરિવારની ભૂમિકા સૌથી મોટી હોય છે. ઘરમાં ક્લેશ ઘટાડવા અને સંભાળ રાખનારની પોતાની તંદુરસ્તી જાળવવાના વ્યવહારુ ઉપાયો.'}
         </p>
+      </div>
+
+      {/* Visual Support Ecosystem Banner */}
+      <div className="rounded-xl border border-stone-200 bg-white overflow-hidden shadow-2xs">
+        <SupportNetworkIllustration
+          className="w-full h-40 sm:h-52"
+          ariaLabel="Clinical diagram of concentric support circles: psychiatric care, psychotherapy, family, and community"
+        />
+        <div className="p-3.5 sm:p-4 bg-stone-50/90 border-t border-stone-200 text-xs text-stone-700">
+          <p className="font-medium leading-relaxed">
+            {currentLang === 'en'
+              ? 'The Collaborative Caregiver Ecosystem: Sustained recovery succeeds when psychiatric treatment, psychotherapeutic insight, compassionate family support, and community acceptance reinforce one another without blame.'
+              : currentLang === 'hi'
+              ? 'सहयोगात्मक देखभाल तंत्र: स्थायी सुधार तभी संभव होता है जब मनोचिकित्सकीय उपचार, काउंसलिंग, परिवार का सहानुभूतिपूर्ण साथ और सामाजिक स्वीकार्यता बिना किसी दोषारोपण के एक-दूसरे को मजबूत करते हैं।'
+              : 'સહિયારી સારસંભાળ વ્યવસ્થા: કાયમી રિકવરી ત્યારે જ શક્ય બને છે જ્યારે તબીબી સારવાર, કાઉન્સેલિંગ, પરિવારનો પ્રેમપૂર્ણ સહયોગ અને સામાજિક સ્વીકૃતિ કોઈ પણ દોષારોપણ વિના એકબીજાને ટેકો આપે.'}
+          </p>
+        </div>
       </div>
 
       {/* Guides List */}

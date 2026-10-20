@@ -6,6 +6,7 @@ export const newConditionsBatch3: Condition[] = [
     id: 'persistent-depressive-disorder',
     slug: 'persistent-depressive-disorder-dysthymia',
     category: 'mood',
+    conditionIcon: 'persistent-depressive-disorder',
     name: {
       en: 'Persistent Depressive Disorder (Dysthymia)',
       hi: 'पर्सिस्टेंट डिप्रेसिव डिसऑर्डर (डिस्टीमिया / Persistent Depressive Disorder)',
@@ -246,6 +247,7 @@ export const newConditionsBatch3: Condition[] = [
     id: 'pmdd',
     slug: 'premenstrual-dysphoric-disorder-pmdd',
     category: 'mood',
+    conditionIcon: 'pmdd',
     name: {
       en: 'Premenstrual Dysphoric Disorder (PMDD)',
       hi: 'प्रीमेंस्ट्रुअल डिस्फोरिक डिसऑर्डर (PMDD)',
@@ -484,6 +486,7 @@ export const newConditionsBatch3: Condition[] = [
     id: 'personality-disorders-overview',
     slug: 'personality-disorders-overview',
     category: 'personality',
+    conditionIcon: 'personality-disorders-overview',
     name: {
       en: 'Personality Disorders: Clinical Overview',
       hi: 'व्यक्तित्व विकार: नैदानिक अवलोकन (Personality Disorders Overview)',
@@ -718,6 +721,7 @@ export const newConditionsBatch3: Condition[] = [
     id: 'postpartum-depression-and-anxiety',
     slug: 'postpartum-depression-and-anxiety',
     category: 'perinatal',
+    conditionIcon: 'postpartum-depression-and-anxiety',
     name: {
       en: 'Perinatal / Postpartum Depression and Anxiety',
       hi: 'प्रसवोत्तर अवसाद और चिंता (पोस्टपार्टम डिप्रेशन / Postpartum Depression & Anxiety)',

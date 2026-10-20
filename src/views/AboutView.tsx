@@ -5,6 +5,7 @@ import { doctorProfile } from '../data/about';
 import { translations } from '../data/translations';
 import { updatePageSEO } from '../utils/seo';
 import { DoctorPhotoSlot } from '../components/DoctorPhotoSlot';
+import { GrowthPathIllustration } from '../components/visuals';
 
 interface AboutViewProps {
   currentLang: Language;
@@ -97,14 +98,20 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
         </div>
       </div>
 
-      {/* Philosophy of Care */}
-      <div className="p-6 sm:p-8 rounded-xl bg-[#f0fdfa] border border-[#ccfbf1] space-y-3">
-        <h2 className="text-base sm:text-lg font-semibold text-[#115e59]">
-          {currentLang === 'en' ? 'Clinical & Public Education Philosophy' : currentLang === 'hi' ? 'चिकित्सीय एवं जन-जागरूकता दृष्टिकोण' : 'તબીબી અને સામાજિક દ્રષ્ટિકોણ'}
-        </h2>
-        <p className="text-xs sm:text-sm text-stone-800 leading-relaxed">
-          {doctorProfile.practicePhilosophy[currentLang]}
-        </p>
+      {/* Philosophy of Care with Growth Path Illustration */}
+      <div className="rounded-xl bg-[#f0fdfa] border border-[#ccfbf1] overflow-hidden shadow-2xs">
+        <GrowthPathIllustration
+          className="w-full h-36 sm:h-44"
+          ariaLabel="Stepping stones toward a peaceful dawn horizon, representing collaborative clinical progress"
+        />
+        <div className="p-6 sm:p-8 space-y-3 border-t border-[#ccfbf1]/80">
+          <h2 className="text-base sm:text-lg font-semibold text-[#115e59]">
+            {currentLang === 'en' ? 'Clinical & Public Education Philosophy' : currentLang === 'hi' ? 'चिकित्सीय एवं जन-जागरूकता दृष्टिकोण' : 'તબીબી અને સામાજિક દ્રષ્ટિકોણ'}
+          </h2>
+          <p className="text-xs sm:text-sm text-stone-800 leading-relaxed">
+            {doctorProfile.practicePhilosophy[currentLang]}
+          </p>
+        </div>
       </div>
 
       {/* Medical Ethics & NMC Compliance Declaration */}

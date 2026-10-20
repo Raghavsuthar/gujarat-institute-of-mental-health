@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronUp, CheckCircle2, ShieldAlert, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronDown, ChevronUp, CheckCircle2, ShieldAlert, ArrowRight, ChevronLeft, ChevronRight, BookOpen, Sparkles, Quote, XCircle } from 'lucide-react';
 import { Condition, Language, ShareCardData } from '../types';
 import { translations } from '../data/translations';
 import { SocialShareBar } from './SocialShareBar';
@@ -7,6 +7,7 @@ import { YouTubeEmbed } from './YouTubeEmbed';
 import { AudioReadAloud } from './AudioReadAloud';
 import {
   CategoryIllustration,
+  ConditionIcon,
   NeuralCircuitryIllustration,
   GrowthPathIllustration,
   SupportNetworkIllustration,
@@ -72,19 +73,29 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
       >
         {/* Modal Header */}
         <div className="bg-white border-b border-stone-200 p-3.5 sm:p-6 flex items-start justify-between gap-4 shrink-0">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-1.5 sm:mb-2">
-              <CategoryBadge category={condition.category} currentLang={currentLang} size="sm" />
-              <span className="text-xs text-stone-500 font-mono">
-                {condition.medicalTerms[currentLang]}
-              </span>
+          <div className="flex items-start gap-3 sm:gap-4 min-w-0">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-stone-200/90 bg-stone-50/80 p-2 shrink-0 flex items-center justify-center shadow-2xs">
+              <ConditionIcon
+                conditionIcon={condition.conditionIcon}
+                conditionId={condition.id}
+                className="w-full h-full"
+                ariaLabel={condition.name[currentLang]}
+              />
             </div>
-            <h2 className="text-lg sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
-              {condition.name[currentLang]}
-            </h2>
-            <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5 sm:mt-1">
-              {t.common.lastReviewed}: {condition.lastReviewed} • {t.doctorName}
-            </p>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2 mb-1.5 sm:mb-2">
+                <CategoryBadge category={condition.category} currentLang={currentLang} size="sm" />
+                <span className="text-xs text-stone-500 font-mono">
+                  {condition.medicalTerms[currentLang]}
+                </span>
+              </div>
+              <h2 className="text-lg sm:text-2xl font-semibold text-[#1c2430] tracking-tight">
+                {condition.name[currentLang]}
+              </h2>
+              <p className="text-[11px] sm:text-xs text-stone-500 mt-0.5 sm:mt-1">
+                {t.common.lastReviewed}: {condition.lastReviewed} • {t.doctorName}
+              </p>
+            </div>
           </div>
           <button
             onClick={onClose}
@@ -220,38 +231,47 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 </p>
               </div>
 
-              {/* Distinct "Evidence at a Glance" Callout */}
+              {/* Infographic Style: "Evidence at a Glance" */}
               {condition.evidenceHighlights && condition.evidenceHighlights.length > 0 && (
-                <div className="rounded-xl border border-sky-200/90 bg-gradient-to-br from-sky-50/70 via-white to-stone-50 p-4 sm:p-5 shadow-xs">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2.5 border-b border-sky-100">
-                    <span className="text-xs font-bold uppercase tracking-wider text-sky-900 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-sky-600 inline-block"></span>
+                <div className="rounded-2xl border-2 border-sky-200/90 bg-gradient-to-br from-sky-50/60 via-white to-sky-50/30 p-5 sm:p-6 shadow-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-sky-100">
+                    <span className="text-xs font-bold uppercase tracking-wider text-sky-950 flex items-center gap-2">
+                      <span className="p-1 rounded-md bg-sky-600 text-white">
+                        <Sparkles className="w-3.5 h-3.5" />
+                      </span>
                       {currentLang === 'hi'
-                        ? 'प्रमुख वैज्ञानिक प्रमाण एवं तथ्य (Evidence at a Glance)'
+                        ? 'वैज्ञानिक साक्ष्य एवं आंकड़े (Evidence at a Glance)'
                         : currentLang === 'gu'
-                        ? 'મુખ્ય વૈજ્ઞાનિક પુરાવા અને તારણો (Evidence at a Glance)'
-                        : 'Evidence at a Glance'}
+                        ? 'વૈજ્ઞાનિક પુરાવા અને આંકડા (Evidence at a Glance)'
+                        : 'Scientific Evidence at a Glance'}
                     </span>
-                    <span className="text-[11px] font-semibold text-sky-800 bg-sky-100/80 px-2 py-0.5 rounded">
+                    <span className="text-[11px] font-bold text-sky-800 bg-sky-100 px-2.5 py-0.5 rounded-full">
                       {currentLang === 'hi'
-                        ? 'प्रमाण-आधारित निष्कर्ष'
+                        ? 'प्रमाणित शोध'
                         : currentLang === 'gu'
-                        ? 'પુરાવા-આધારિત તારણો'
-                        : 'Key Scientific Findings'}
+                        ? 'પ્રમાણિત સંશોધન'
+                        : 'Peer-Reviewed Clinical Data'}
                     </span>
                   </div>
-                  <div className="grid sm:grid-cols-2 gap-2.5">
+
+                  <div className="grid sm:grid-cols-2 gap-3.5">
                     {condition.evidenceHighlights.map((item, idx) => (
                       <div
                         key={idx}
-                        className="p-3 rounded-lg border border-sky-100/90 bg-white/95 shadow-xs flex flex-col justify-between gap-2"
+                        className="p-4 rounded-xl border border-sky-200/80 bg-white shadow-2xs flex flex-col justify-between gap-3 relative overflow-hidden group hover:border-sky-400 transition"
                       >
-                        <p className="text-xs sm:text-sm text-stone-800 leading-relaxed font-medium">
-                          {item.fact[currentLang]}
-                        </p>
-                        <div className="flex items-center justify-between pt-1.5 border-t border-sky-50 text-[10.5px] text-stone-500">
-                          <span className="font-semibold text-sky-900">Source:</span>
-                          <span className="font-mono text-[10px] text-stone-600 truncate max-w-[190px]" title={item.citationRef}>
+                        <div className="space-y-1.5">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 block">
+                            Key Clinical Finding {idx + 1}
+                          </span>
+                          <p className="text-xs sm:text-sm text-stone-900 leading-relaxed font-semibold">
+                            {item.fact[currentLang]}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-1.5 pt-2 border-t border-sky-100 text-[11px] text-stone-500">
+                          <BookOpen className="w-3 h-3 text-sky-600 shrink-0" />
+                          <span className="font-semibold text-sky-950">Source:</span>
+                          <span className="font-mono text-[10px] text-stone-600 truncate max-w-[200px]" title={item.citationRef}>
                             {item.citationRef}
                           </span>
                         </div>
@@ -261,100 +281,138 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                 </div>
               )}
 
-              {/* Multiple Illustrative Examples Switcher */}
+              {/* Visual Section Divider */}
+              <div className="relative py-1 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-stone-200/80" />
+                </div>
+                <div className="relative bg-white px-3 text-[10px] font-semibold tracking-widest uppercase text-stone-400">
+                  CLINICAL CASE STUDY
+                </div>
+              </div>
+
+              {/* Editorial Style: Illustrative Case Vignette Switcher */}
               {examples.length > 0 && (
-                <div className="rounded-xl border border-teal-200/90 bg-gradient-to-br from-teal-50/80 via-white to-stone-50 p-4 sm:p-5 shadow-xs">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3 pb-2 border-b border-teal-100">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-teal-600 inline-block"></span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-teal-800">
-                        {currentLang === 'hi'
-                          ? 'उदाहरणात्मक प्रसंग (विविध प्रस्तुतियां)'
-                          : currentLang === 'gu'
-                          ? 'દ્રષ્ટાંતરૂપ ઉદાહરણો (વિવિધ તબક્કા)'
-                          : 'Illustrative Examples (Varied Presentations)'}
-                      </span>
+                <div className="rounded-2xl border border-stone-300/80 bg-[#fdfcf9] p-5 sm:p-6 shadow-xs relative overflow-hidden">
+                  {/* Decorative faint background quote watermark */}
+                  <Quote className="absolute right-4 bottom-4 w-28 h-28 text-stone-200/40 pointer-events-none" />
+
+                  <div className="relative z-10">
+                    <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-stone-200/70">
+                      <div className="flex items-center gap-2">
+                        <span className="p-1 rounded-md bg-teal-800 text-white">
+                          <Quote className="w-3.5 h-3.5" />
+                        </span>
+                        <div>
+                          <span className="text-xs font-bold uppercase tracking-wider text-stone-900 block">
+                            {currentLang === 'hi'
+                              ? 'नैदानिक प्रसंग एवं केस विवरण'
+                              : currentLang === 'gu'
+                              ? 'તબીબી દ્રષ્ટાંતરૂપ કેસ વિવરણ'
+                              : 'Clinical Vignette & Case Archetype'}
+                          </span>
+                          <span className="text-[11px] text-stone-500 font-medium">
+                            {currentLang === 'hi'
+                              ? 'विविध लक्षण प्रस्तुतियां'
+                              : currentLang === 'gu'
+                              ? 'વિવિધ લક્ષણોની રજૂઆત'
+                              : 'Varied Clinical Presentations in Practice'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Switcher Controls */}
+                      {examples.length > 1 && (
+                        <div className="flex items-center gap-1 bg-stone-100 p-1 rounded-lg border border-stone-200">
+                          <button
+                            type="button"
+                            onClick={() => setActiveExampleIndex((prev) => (prev > 0 ? prev - 1 : examples.length - 1))}
+                            className="p-1 rounded text-stone-700 hover:bg-white transition cursor-pointer"
+                            aria-label="Previous example"
+                            title="Previous example"
+                          >
+                            <ChevronLeft className="w-3.5 h-3.5" />
+                          </button>
+                          <div className="flex items-center gap-1">
+                            {examples.map((_, idx) => (
+                              <button
+                                key={idx}
+                                type="button"
+                                onClick={() => setActiveExampleIndex(idx)}
+                                className={`px-2 py-0.5 rounded text-xs font-bold transition cursor-pointer ${
+                                  selectedExampleIndex === idx
+                                    ? 'bg-teal-800 text-white shadow-xs'
+                                    : 'text-stone-600 hover:bg-white/80'
+                                }`}
+                              >
+                                {currentLang === 'hi'
+                                  ? `केस ${idx + 1}`
+                                  : currentLang === 'gu'
+                                  ? `કેસ ${idx + 1}`
+                                  : `Case ${idx + 1}`}
+                              </button>
+                            ))}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setActiveExampleIndex((prev) => (prev < examples.length - 1 ? prev + 1 : 0))}
+                            className="p-1 rounded text-stone-700 hover:bg-white transition cursor-pointer"
+                            aria-label="Next example"
+                            title="Next example"
+                          >
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Switcher Controls */}
-                    {examples.length > 1 && (
-                      <div className="flex items-center gap-1 bg-teal-100/70 p-1 rounded-lg">
-                        <button
-                          type="button"
-                          onClick={() => setActiveExampleIndex((prev) => (prev > 0 ? prev - 1 : examples.length - 1))}
-                          className="p-1 rounded text-teal-800 hover:bg-white transition cursor-pointer"
-                          aria-label="Previous example"
-                          title="Previous example"
-                        >
-                          <ChevronLeft className="w-3.5 h-3.5" />
-                        </button>
-                        <div className="flex items-center gap-1">
-                          {examples.map((_, idx) => (
-                            <button
-                              key={idx}
-                              type="button"
-                              onClick={() => setActiveExampleIndex(idx)}
-                              className={`px-2 py-0.5 rounded text-xs font-bold transition cursor-pointer ${
-                                selectedExampleIndex === idx
-                                  ? 'bg-teal-700 text-white shadow-xs'
-                                  : 'text-teal-800 hover:bg-white/80'
-                              }`}
-                            >
-                              {currentLang === 'hi'
-                                ? `प्रसंग ${idx + 1}`
-                                : currentLang === 'gu'
-                                ? `ઉદાહરણ ${idx + 1}`
-                                : `Example ${idx + 1}`}
-                            </button>
-                          ))}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setActiveExampleIndex((prev) => (prev < examples.length - 1 ? prev + 1 : 0))}
-                          className="p-1 rounded text-teal-800 hover:bg-white transition cursor-pointer"
-                          aria-label="Next example"
-                          title="Next example"
-                        >
-                          <ChevronRight className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                    <div className="p-4 sm:p-5 rounded-xl bg-white border border-stone-200/90 shadow-2xs">
+                      <p className="text-stone-800 text-sm sm:text-base leading-relaxed italic">
+                        "{currentVignette[currentLang] || currentVignette.en}"
+                      </p>
+                    </div>
 
-                  <p className="text-stone-700 text-xs sm:text-sm leading-relaxed whitespace-pre-line italic min-h-[70px]">
-                    "{currentVignette[currentLang] || currentVignette.en}"
-                  </p>
-
-                  <div className="mt-3 pt-2.5 border-t border-teal-100/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-stone-500 font-medium">
-                    <span className="flex items-center gap-1">
-                      <span>ℹ️</span>
-                      <span>
-                        {currentLang === 'hi'
-                          ? 'यह एक काल्पनिक, समझाने के उद्देश्य से बनाया गया उदाहरण है — कोई वास्तविक मरीज नहीं।'
-                          : currentLang === 'gu'
-                          ? 'આ સમજૂતી માટેનું એક કાલ્પનિક ઉદાહરણ છે — કોઈ વાસ્તવિક દર્દી નથી.'
-                          : 'This is a fictional, composite illustrative example — not a real patient.'}
-                      </span>
-                    </span>
-                    {examples.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => setActiveExampleIndex((prev) => (prev + 1) % examples.length)}
-                        className="text-teal-700 hover:text-teal-900 underline font-semibold flex items-center gap-1 cursor-pointer"
-                      >
+                    <div className="mt-3.5 pt-2.5 border-t border-stone-200/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-stone-500 font-medium">
+                      <span className="flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-teal-600"></span>
                         <span>
                           {currentLang === 'hi'
-                            ? 'अगला प्रसंग देखें'
+                            ? 'यह एक काल्पनिक, चिकित्सीय समझ के लिए बनाया गया केस प्रसंग है।'
                             : currentLang === 'gu'
-                            ? 'બીજું ઉદાહરણ જુઓ'
-                            : 'Show another presentation'}
+                            ? 'આ તબીબી સમજૂતી માટે રચાયેલ એક કાલ્પનિક કેસ છે.'
+                            : 'Fictional composite presentation for educational purposes • All identities protected.'}
                         </span>
-                        <ArrowRight className="w-3 h-3" />
-                      </button>
-                    )}
+                      </span>
+                      {examples.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => setActiveExampleIndex((prev) => (prev + 1) % examples.length)}
+                          className="text-teal-800 hover:text-teal-950 underline font-semibold flex items-center gap-1 cursor-pointer"
+                        >
+                          <span>
+                            {currentLang === 'hi'
+                              ? 'अगला केस देखें'
+                              : currentLang === 'gu'
+                              ? 'બીજો કેસ જુઓ'
+                              : 'Show another clinical case'}
+                          </span>
+                          <ArrowRight className="w-3 h-3" />
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               )}
+
+              {/* Visual Section Divider */}
+              <div className="relative py-1 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-stone-200/80" />
+                </div>
+                <div className="relative bg-white px-3 text-[10px] font-semibold tracking-widest uppercase text-stone-400">
+                  SYMPTOMS & IMPACT
+                </div>
+              </div>
 
               <div>
                 <h3 className="text-base font-semibold text-[#1c2430] mb-2">
@@ -584,29 +642,81 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
             <div className="space-y-6">
               {condition.mythsVsFacts.length > 0 && (
                 <div>
-                  <h3 className="text-base font-semibold text-[#1c2430] mb-3">
-                    {t.common.myths}
-                  </h3>
-                  <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-stone-200">
+                    <h3 className="text-base font-bold text-[#1c2430]">
+                      {t.common.myths}
+                    </h3>
+                    <span className="text-xs font-semibold text-stone-500 uppercase tracking-wider">
+                      {currentLang === 'hi' ? 'तथ्य बनाम भ्रांतियां' : currentLang === 'gu' ? 'હકીકત વિરુદ્ધ ભ્રમ' : 'Comparative Evidence Analysis'}
+                    </span>
+                  </div>
+
+                  <div className="space-y-4">
                     {condition.mythsVsFacts.map((mf, i) => (
-                      <div key={i} className="p-3.5 rounded-lg border border-stone-200 bg-stone-50 space-y-1.5">
-                        <div className="text-xs font-semibold text-stone-700">
-                          <span className="font-semibold uppercase tracking-wider text-[10px] mr-1.5 px-1.5 py-0.5 rounded bg-stone-200 text-stone-700">
-                            Myth
-                          </span>
-                          "{mf.myth[currentLang]}"
-                        </div>
-                        <div className="text-xs font-medium text-stone-800">
-                          <span className="font-semibold uppercase tracking-wider text-[10px] mr-1.5 px-1.5 py-0.5 rounded bg-[#ccfbf1] text-[#115e59]">
-                            Fact
-                          </span>
-                          {mf.fact[currentLang]}
+                      <div
+                        key={i}
+                        className="rounded-xl border border-stone-200 overflow-hidden bg-white shadow-xs"
+                      >
+                        <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-stone-200">
+                          {/* Cultural Myth Block */}
+                          <div className="p-4 sm:p-5 bg-rose-50/40 flex flex-col justify-between gap-3">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-800">
+                                <XCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                                <span>
+                                  {currentLang === 'hi'
+                                    ? 'प्रचलित भ्रांति / मिथक (Myth)'
+                                    : currentLang === 'gu'
+                                    ? 'પ્રચલિત ભ્રમ / અંધશ્રદ્ધા (Myth)'
+                                    : 'Common Cultural Myth'}
+                                </span>
+                              </div>
+                              <p className="text-xs sm:text-sm font-semibold text-stone-900 italic leading-relaxed">
+                                "{mf.myth[currentLang]}"
+                              </p>
+                            </div>
+                            <span className="text-[10.5px] font-semibold text-rose-700 bg-rose-100/60 self-start px-2 py-0.5 rounded">
+                              {currentLang === 'hi' ? 'चिकित्सीय रूप से असत्य' : currentLang === 'gu' ? 'તબીબી રીતે અસત્ય' : 'Medically Inaccurate'}
+                            </span>
+                          </div>
+
+                          {/* Verified Medical Fact Block */}
+                          <div className="p-4 sm:p-5 bg-emerald-50/40 flex flex-col justify-between gap-3">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800">
+                                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                                <span>
+                                  {currentLang === 'hi'
+                                    ? 'वैज्ञानिक सच्चाई एवं प्रमाण (Fact)'
+                                    : currentLang === 'gu'
+                                    ? 'વૈજ્ઞાનિક વાસ્તવિકતા અને પુરાવા (Fact)'
+                                    : 'Clinical Reality & Evidence'}
+                                </span>
+                              </div>
+                              <p className="text-xs sm:text-sm font-medium text-stone-800 leading-relaxed">
+                                {mf.fact[currentLang]}
+                              </p>
+                            </div>
+                            <span className="text-[10.5px] font-semibold text-emerald-800 bg-emerald-100/70 self-start px-2 py-0.5 rounded">
+                              {currentLang === 'hi' ? 'प्रमाणित चिकित्सकीय दृष्टिकोण' : currentLang === 'gu' ? 'તબીબી દ્રષ્ટિકોણ' : 'Evidence-Based Fact'}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
+
+              {/* Section Divider */}
+              <div className="relative py-1 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-stone-200/80" />
+                </div>
+                <div className="relative bg-white px-3 text-[10px] font-semibold tracking-widest uppercase text-stone-400">
+                  FREQUENTLY ASKED QUESTIONS
+                </div>
+              </div>
 
               <div>
                 <h3 className="text-base font-semibold text-[#1c2430] mb-3">

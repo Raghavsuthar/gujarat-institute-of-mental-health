@@ -10,6 +10,7 @@ const baseConditionsData: Condition[] = [
     youtubeVideoId: 'lQhpetkwWnM',
     slug: 'major-depressive-disorder',
     category: 'mood',
+    conditionIcon: 'depression',
     name: {
       en: 'Major Depressive Disorder (Depression)',
       hi: 'मेजर डिप्रेसिव डिसऑर्डर (अवसाद / डिप्रेशन)',
@@ -267,8 +268,6 @@ const baseConditionsData: Condition[] = [
       },
     ],
     lastReviewed: '2026-09',
-    // TODO(video): 3-5 min overview on MDD neurobiology, monoaminergic hypothesis, and recovery
-    youtubeVideoId: undefined,
     relatedIds: ['cbt', 'behavioral-activation', 'ipt', 'antidepressants', 'anxiety-gad', 'bipolar'],
     relatedContent: {
       conditionSlugs: ['persistent-depressive-disorder-dysthymia', 'generalized-anxiety-disorder', 'bipolar-disorder'],
@@ -291,6 +290,7 @@ const baseConditionsData: Condition[] = [
     youtubeVideoId: 'GX2RB_LmLUE',
     slug: 'bipolar-disorder',
     category: 'mood',
+    conditionIcon: 'bipolar',
     name: {
       en: 'Bipolar Disorder',
       hi: 'बायपोलर डिसऑर्डर (Bipolar Disorder)',
@@ -539,8 +539,6 @@ const baseConditionsData: Condition[] = [
       },
     ],
     lastReviewed: '2026-09',
-    // TODO(video): Bipolar disorder cycle, mood stabilization, circadian rhythms, and family role
-    youtubeVideoId: undefined,
     relatedIds: ['mood-stabilizers', 'antipsychotics', 'family-psychoeducation', 'depression', 'schizophrenia'],
     relatedContent: {
       conditionSlugs: ['major-depressive-disorder', 'schizophrenia', 'attention-deficit-hyperactivity-disorder-adhd'],
@@ -553,6 +551,7 @@ const baseConditionsData: Condition[] = [
     youtubeVideoId: 'UjPRVKS4OBg',
     slug: 'generalized-anxiety-disorder',
     category: 'anxiety',
+    conditionIcon: 'anxiety-gad',
     name: {
       en: 'Generalized Anxiety Disorder (GAD)',
       hi: 'सामान्यीकृत चिंता विकार (GAD)',
@@ -804,8 +803,6 @@ const baseConditionsData: Condition[] = [
       },
     ],
     lastReviewed: '2026-09',
-    // TODO(video): GAD autonomic response, worry cycles, and evidence-based psychotherapy/pharmacotherapy
-    youtubeVideoId: undefined,
     relatedIds: ['cbt', 'act', 'antidepressants', 'anxiolytics', 'panic-disorder', 'depression'],
     relatedContent: {
       conditionSlugs: ['panic-disorder', 'social-anxiety-disorder', 'major-depressive-disorder'],
@@ -817,6 +814,7 @@ const baseConditionsData: Condition[] = [
     id: 'panic-disorder',
     slug: 'panic-disorder',
     category: 'anxiety',
+    conditionIcon: 'panic-disorder',
     name: {
       en: 'Panic Disorder & Panic Attacks',
       hi: 'पैनिक डिसऑर्डर और पैनिक अटैक (Panic Disorder)',
@@ -1085,6 +1083,7 @@ const baseConditionsData: Condition[] = [
     id: 'ocd',
     slug: 'obsessive-compulsive-disorder',
     category: 'ocd',
+    conditionIcon: 'ocd',
     name: {
       en: 'Obsessive-Compulsive Disorder (OCD)',
       hi: 'ऑब्सेसिव-कंपल्सिव डिसऑर्डर (OCD)',
@@ -1350,6 +1349,7 @@ const baseConditionsData: Condition[] = [
     youtubeVideoId: 'WS1TXT3cGyw',
     slug: 'schizophrenia',
     category: 'psychotic',
+    conditionIcon: 'schizophrenia',
     name: {
       en: 'Schizophrenia & Psychotic Disorders',
       hi: 'सिज़ोफ्रेनिया और साइकोटिक विकार (Schizophrenia)',
@@ -1613,8 +1613,6 @@ const baseConditionsData: Condition[] = [
       },
     ],
     lastReviewed: '2026-09',
-    // TODO(video): Schizophrenia recovery, dopamine pathways, and destigmatizing hallucinations/delusions
-    youtubeVideoId: undefined,
     relatedIds: ['antipsychotics', 'family-psychoeducation', 'sst', 'bipolar'],
     relatedContent: {
       conditionSlugs: ['bipolar-disorder', 'major-depressive-disorder'],
@@ -1626,6 +1624,7 @@ const baseConditionsData: Condition[] = [
     id: 'ptsd',
     slug: 'post-traumatic-stress-disorder',
     category: 'trauma',
+    conditionIcon: 'ptsd',
     name: {
       en: 'Post-Traumatic Stress Disorder (PTSD)',
       hi: 'पोस्ट-ट्रॉमैटिक स्ट्रेस डिसऑर्डर (PTSD)',
@@ -1891,6 +1890,7 @@ const baseConditionsData: Condition[] = [
     id: 'geriatric-dementia-delirium',
     slug: 'geriatric-psychiatry-dementia-delirium',
     category: 'geriatric',
+    conditionIcon: 'geriatric-dementia-delirium',
     name: {
       en: 'Geriatric Psychiatry: Dementia, Delirium & Late-Life Depression',
       hi: 'वृद्धावस्था मनोरोग: डिमेंशिया, प्रलाप (Delirium) और बुढ़ापे का अवसाद',

@@ -48,6 +48,7 @@ export interface Condition {
   id: string;
   slug: string;
   category: ConditionCategory;
+  conditionIcon?: string; // key into per-condition icon/motif set
   name: LocalizedString;
   medicalTerms: LocalizedString;
   overview: LocalizedString;

@@ -1,10 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, Check } from 'lucide-react';
+import { Search, Check, ArrowRight, Sparkles } from 'lucide-react';
 import { Language, Condition, ConditionCategory } from '../types';
 import { conditionsData } from '../data/conditions';
 import { translations } from '../data/translations';
 import { updatePageSEO } from '../utils/seo';
-import { CategoryIllustration } from '../components/visuals';
+import { CategoryIllustration, ConditionIcon } from '../components/visuals';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
 
@@ -132,14 +132,121 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {filteredConditions.map((cond) => {
+          {filteredConditions.map((cond, index) => {
+            const isSpotlight = index === 0;
             const theme = getCategoryTheme(cond.category);
+
+            if (isSpotlight) {
+              return (
+                <div
+                  key={cond.id}
+                  onClick={() => onSelectCondition(cond)}
+                  style={{ borderTopColor: theme.hex.accent, borderTopWidth: '4px' }}
+                  className="col-span-1 md:col-span-2 p-6 sm:p-7 rounded-2xl border border-teal-200/80 bg-gradient-to-br from-white via-teal-50/20 to-stone-50/70 hover:border-teal-600 transition-all cursor-pointer shadow-xs hover:shadow-md flex flex-col justify-between group"
+                >
+                  <div className="space-y-4">
+                    <div className="flex flex-col lg:flex-row items-start justify-between gap-5">
+                      <div className="space-y-2.5 flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-800 text-white shadow-2xs">
+                            <Sparkles className="w-3 h-3 text-teal-200" />
+                            <span>
+                              {currentLang === 'en'
+                                ? 'Clinical Spotlight'
+                                : currentLang === 'hi'
+                                ? 'प्रमुख क्लिनिकल मार्गदर्शिका'
+                                : 'મુખ્ય ક્લિનિકલ માર્ગદર્શન'}
+                            </span>
+                          </span>
+                          <CategoryBadge category={cond.category} currentLang={currentLang} size="sm" />
+                          <span className="font-mono text-xs text-stone-500">
+                            {cond.medicalTerms[currentLang]}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3 pt-0.5">
+                          <div className="w-11 h-11 rounded-xl border border-stone-200 bg-white p-2 shrink-0 flex items-center justify-center shadow-2xs">
+                            <ConditionIcon
+                              conditionIcon={cond.conditionIcon}
+                              conditionId={cond.id}
+                              className="w-full h-full"
+                              ariaLabel={cond.name[currentLang]}
+                            />
+                          </div>
+                          <h2 className="text-xl sm:text-2xl font-bold text-[#1c2430] group-hover:text-[#0f766e] transition-colors">
+                            {cond.name[currentLang]}
+                          </h2>
+                        </div>
+
+                        <p className="text-sm text-stone-600 leading-relaxed max-w-3xl">
+                          {cond.overview[currentLang]}
+                        </p>
+
+                        {/* Surfaced Evidence Highlight */}
+                        {cond.evidenceHighlights && cond.evidenceHighlights[0] && (
+                          <div className="mt-3 p-3.5 rounded-xl bg-teal-50/80 border border-teal-200/70 text-xs text-teal-950 flex items-start gap-2.5">
+                            <span className="w-2 h-2 rounded-full bg-teal-600 mt-1.5 shrink-0" />
+                            <div className="space-y-0.5 flex-1">
+                              <span className="font-bold text-teal-900 uppercase tracking-wide text-[10.5px] block">
+                                {currentLang === 'hi'
+                                  ? 'वैज्ञानिक शोध प्रमाण (Evidence Highlight)'
+                                  : currentLang === 'gu'
+                                  ? 'મુખ્ય સંશોધન તારણ (Evidence Highlight)'
+                                  : 'Evidence Highlight'}
+                              </span>
+                              <p className="text-stone-800 leading-relaxed font-medium">
+                                {cond.evidenceHighlights[0].fact[currentLang]}
+                              </p>
+                              {cond.evidenceHighlights[0].citationRef && (
+                                <span className="text-[10px] text-stone-500 font-mono block pt-0.5">
+                                  Ref: {cond.evidenceHighlights[0].citationRef}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Larger Spotlight Category Illustration */}
+                      <div className="w-full sm:w-64 md:w-72 h-40 sm:h-44 shrink-0 rounded-xl overflow-hidden border border-stone-200/90 bg-white shadow-2xs self-center lg:self-start">
+                        <CategoryIllustration
+                          category={cond.category}
+                          className="w-full h-full object-cover"
+                          ariaLabel={`Clinical illustration representing ${cond.name[currentLang]}`}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Common Symptoms preview across 3 columns on spotlight */}
+                    <div className="pt-3 border-t border-stone-100">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-stone-600 block mb-2">
+                        {t.conditions.symptoms}:
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                        {(cond.commonSymptoms[currentLang] || cond.commonSymptoms.en || []).slice(0, 3).map((symp, i) => (
+                          <div key={i} className="flex items-start gap-2 text-xs text-stone-700 bg-stone-50/80 p-2.5 rounded-lg border border-stone-100">
+                            <Check className="w-3.5 h-3.5 text-[#0f766e] shrink-0 mt-0.5" />
+                            <span className="line-clamp-2">{symp}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 pt-3.5 border-t border-stone-200/80 flex items-center justify-between text-xs font-bold text-[#0f766e] group-hover:text-[#0d5c56] min-h-[44px]">
+                    <span>{currentLang === 'en' ? 'Open In-Depth Clinical Guide' : currentLang === 'hi' ? 'संपूर्ण क्लिनिकल मार्गदर्शिका पढ़ें' : 'વિગતવાર ક્લિનિકલ માર્ગદર્શન વાંચો'}</span>
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <div
                 key={cond.id}
                 onClick={() => onSelectCondition(cond)}
                 style={{ borderTopColor: theme.hex.accent, borderTopWidth: '3px' }}
-                className="p-6 rounded-xl border border-stone-200 bg-white hover:border-stone-400 transition cursor-pointer flex flex-col justify-between"
+                className="p-6 rounded-xl border border-stone-200 bg-white hover:border-stone-400 transition cursor-pointer flex flex-col justify-between group"
               >
                 <div className="space-y-3">
                   <div className="flex items-start justify-between gap-3">
@@ -150,12 +257,22 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
                           {cond.medicalTerms[currentLang]}
                         </span>
                       </div>
-                      <h2 className="text-lg sm:text-xl font-semibold text-[#1c2430]">
-                        {cond.name[currentLang]}
-                      </h2>
+                      <div className="flex items-start gap-2.5 pt-0.5">
+                        <div className="w-9 h-9 rounded-lg border border-stone-200/90 bg-stone-50 p-1.5 shrink-0 flex items-center justify-center group-hover:bg-teal-50/60 group-hover:border-teal-200 transition-colors shadow-2xs">
+                          <ConditionIcon
+                            conditionIcon={cond.conditionIcon}
+                            conditionId={cond.id}
+                            className="w-full h-full"
+                            ariaLabel={cond.name[currentLang]}
+                          />
+                        </div>
+                        <h2 className="text-base sm:text-lg font-semibold text-[#1c2430] group-hover:text-[#0f766e] transition-colors leading-snug">
+                          {cond.name[currentLang]}
+                        </h2>
+                      </div>
                     </div>
                     {/* Small category illustration accent */}
-                    <div className="w-16 h-12 sm:w-20 sm:h-14 shrink-0 rounded-lg overflow-hidden border border-stone-200/80 bg-stone-50">
+                    <div className="w-14 h-11 sm:w-16 sm:h-12 shrink-0 rounded-lg overflow-hidden border border-stone-200/80 bg-stone-50">
                       <CategoryIllustration
                         category={cond.category}
                         className="w-full h-full object-cover"
@@ -186,6 +303,7 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
 
                 <div className="mt-5 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-[#115e59] min-h-[44px]">
                   <span>{currentLang === 'en' ? 'Open Clinical Guide' : currentLang === 'hi' ? 'पूरी मार्गदर्शिका पढ़ें' : 'સંપૂર્ણ માહિતી વાંચો'}</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             );

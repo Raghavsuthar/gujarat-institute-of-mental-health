@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, AlertCircle, Shield, BookOpen, HeartHandshake, FileText, ChevronDown, ChevronUp, Scale, HelpCircle, CheckCircle2, Heart, ExternalLink } from 'lucide-react';
+import { X, AlertCircle, Shield, BookOpen, HeartHandshake, FileText, ChevronDown, ChevronUp, Scale, HelpCircle, CheckCircle2, Heart, ExternalLink, XCircle, Sparkles } from 'lucide-react';
 import { WomensMentalHealthTopic, Language, ShareCardData } from '../types';
 import { translations } from '../data/translations';
 import { SocialShareBar } from './SocialShareBar';
@@ -480,50 +480,107 @@ export const WomensMentalHealthModal: React.FC<WomensMentalHealthModalProps> = (
           {/* TAB 5: EVIDENCE, MYTHS & FAQS */}
           {activeTab === 'evidence' && (
             <div className="space-y-6">
-              {/* Evidence & Statistics */}
+              {/* Evidence & Statistics Infographic Cards */}
               <div className="space-y-3">
-                <h3 className="text-sm font-semibold text-[#1c2430]">
-                  {currentLang === 'en' ? 'Epidemiology & Research Highlights' : currentLang === 'hi' ? 'शोध, आंकड़े एवं प्रमाण' : 'સંશોધન અને આંકડાકીય હકીકતો'}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex items-center justify-between gap-2 pb-1 border-b border-stone-200">
+                  <h3 className="text-sm font-bold text-[#1c2430] flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-rose-700" />
+                    <span>
+                      {currentLang === 'en' ? 'Epidemiology & Research Highlights' : currentLang === 'hi' ? 'शोध, आंकड़े एवं प्रमाण' : 'સંશોધન અને આંકડાકીય હકીકતો'}
+                    </span>
+                  </h3>
+                  <span className="text-[11px] font-bold text-rose-800 bg-rose-100/70 px-2 py-0.5 rounded">
+                    EVIDENCE
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {topic.evidenceHighlights.map((ev, idx) => (
-                    <div key={idx} className="p-4 rounded-xl border border-stone-200 bg-white space-y-1.5">
-                      <div className="text-lg font-bold text-rose-800 font-mono">
-                        {ev.statistic}
+                    <div
+                      key={idx}
+                      className="p-4 rounded-xl border border-rose-200/80 bg-gradient-to-br from-white to-rose-50/20 shadow-2xs space-y-2 flex flex-col justify-between"
+                    >
+                      <div className="space-y-1">
+                        <div className="text-2xl font-bold text-rose-800 font-mono tracking-tight">
+                          {ev.statistic}
+                        </div>
+                        <p className="text-xs text-stone-700 font-medium leading-relaxed">
+                          {ev.context[currentLang]}
+                        </p>
                       </div>
-                      <p className="text-xs text-stone-700 leading-relaxed">
-                        {ev.context[currentLang]}
-                      </p>
-                      <div className="text-[11px] text-stone-400 font-medium pt-1">
-                        Source: {ev.source}
+                      <div className="text-[10.5px] text-stone-500 font-medium pt-2 border-t border-rose-100 flex items-center gap-1">
+                        <BookOpen className="w-3 h-3 text-rose-600 shrink-0" />
+                        <span className="font-semibold text-stone-600">Source:</span>
+                        <span className="font-mono text-stone-500 truncate">{ev.source}</span>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Myths vs Facts */}
-              <div className="space-y-3 pt-2">
-                <h3 className="text-sm font-semibold text-[#1c2430]">
+              {/* Section Divider */}
+              <div className="relative py-1 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-stone-200/80" />
+                </div>
+                <div className="relative bg-white px-3 text-[10px] font-semibold tracking-widest uppercase text-stone-400">
+                  MYTHS VS SCIENTIFIC REALITY
+                </div>
+              </div>
+
+              {/* Myths vs Facts Comparative Layout */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-bold text-[#1c2430]">
                   {t.common.myths}
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-3.5">
                   {topic.mythsVsFacts.map((mf, idx) => (
-                    <div key={idx} className="rounded-xl border border-stone-200 overflow-hidden bg-white">
-                      <div className="p-3 bg-amber-50/70 border-b border-stone-100 text-xs text-amber-950 font-medium">
-                        <strong className="text-amber-900 font-semibold">
-                          {currentLang === 'en' ? 'Common Myth: ' : currentLang === 'hi' ? 'प्रचलित भ्रांति: ' : 'ખોટી માન્યતા: '}
-                        </strong>
-                        {mf.myth[currentLang].replace(/^Myth:\s*/i, '')}
-                      </div>
-                      <div className="p-3 bg-emerald-50/40 text-xs text-emerald-950 leading-relaxed">
-                        <strong className="text-emerald-900 font-semibold">
-                          {currentLang === 'en' ? 'Medical Fact: ' : currentLang === 'hi' ? 'वैज्ञानिक तथ्य: ' : 'તબીબી હકીકત: '}
-                        </strong>
-                        {mf.fact[currentLang].replace(/^Fact:\s*/i, '')}
+                    <div key={idx} className="rounded-xl border border-stone-200 overflow-hidden bg-white shadow-xs">
+                      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-stone-200">
+                        {/* Myth */}
+                        <div className="p-4 bg-rose-50/40 space-y-2 flex flex-col justify-between">
+                          <div className="space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-800">
+                              <XCircle className="w-3.5 h-3.5 text-rose-600 shrink-0" />
+                              <span>{currentLang === 'en' ? 'Cultural Stigma / Myth' : currentLang === 'hi' ? 'प्रचलित भ्रांति' : 'ખોટી માન્યતા'}</span>
+                            </div>
+                            <p className="text-xs sm:text-sm font-semibold text-stone-900 italic leading-relaxed">
+                              "{mf.myth[currentLang].replace(/^Myth:\s*/i, '')}"
+                            </p>
+                          </div>
+                          <span className="text-[10px] font-semibold text-rose-700 bg-rose-100/60 self-start px-2 py-0.5 rounded">
+                            {currentLang === 'en' ? 'Medically Unfounded' : currentLang === 'hi' ? 'चिकित्सीय रूप से गलत' : 'તબીબી રીતે અસત્ય'}
+                          </span>
+                        </div>
+
+                        {/* Fact */}
+                        <div className="p-4 bg-emerald-50/40 space-y-2 flex flex-col justify-between">
+                          <div className="space-y-1.5">
+                            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                              <span>{currentLang === 'en' ? 'Obstetric / Psychiatric Fact' : currentLang === 'hi' ? 'चिकित्सीय सच्चाई' : 'તબીબી હકીકત'}</span>
+                            </div>
+                            <p className="text-xs sm:text-sm font-medium text-stone-800 leading-relaxed">
+                              {mf.fact[currentLang].replace(/^Fact:\s*/i, '')}
+                            </p>
+                          </div>
+                          <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-100/70 self-start px-2 py-0.5 rounded">
+                            {currentLang === 'en' ? 'Evidence-Based' : currentLang === 'hi' ? 'वैज्ञानिक तथ्य' : 'પુરાવા આધારિત'}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Section Divider */}
+              <div className="relative py-1 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-stone-200/80" />
+                </div>
+                <div className="relative bg-white px-3 text-[10px] font-semibold tracking-widest uppercase text-stone-400">
+                  FREQUENTLY ASKED QUESTIONS
                 </div>
               </div>
 

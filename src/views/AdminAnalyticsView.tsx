@@ -451,7 +451,7 @@ export const AdminAnalyticsView: React.FC<AdminAnalyticsViewProps> = ({ currentL
             </button>
           </div>
           <code className="text-xs font-mono text-teal-300 block bg-stone-900 p-2.5 rounded border border-stone-800 overflow-x-auto">
-            ADMIN_PASSWORD=<generate-a-unique-secret-of-at-least-32-characters>
+            {'ADMIN_PASSWORD=<generate-a-unique-secret-of-at-least-32-characters>'}
           </code>
           <p className="text-[11px] text-stone-400 mt-2">
             Add <code className="text-stone-300 font-mono">ADMIN_PASSWORD</code> to your host settings (Cloud Run, Vercel, Netlify, or <code className="text-stone-300 font-mono">.env</code>) to set a custom secret password.
