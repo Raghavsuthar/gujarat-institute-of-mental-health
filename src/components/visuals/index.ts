@@ -9,5 +9,6 @@ export * from './UrgeSurfingTimer';
 export * from './HALTCheckIn';
 export * from './DelayDistractDecide';
 export * from './SensoryGrounding54321';
+export * from './ConditionHeroVisual';
 export * from './CravingToolkit';
 export * from './ConditionIcons';

@@ -13,6 +13,7 @@ import {
   SupportNetworkIllustration,
   StressResponseDiagram,
   BreathingPacer,
+  ConditionHeroVisual,
 } from './visuals';
 import { CategoryBadge } from './CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
@@ -209,7 +210,10 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
           {/* TAB 1: OVERVIEW & SYMPTOMS */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
-              {/* Category Educational Illustration */}
+              {/* Condition-specific interactive visual */}
+          <ConditionHeroVisual conditionId={condition.id} currentLang={currentLang} />
+
+          {/* Category Educational Illustration */}
               <div className="rounded-xl overflow-hidden border border-stone-200 bg-white shadow-xs">
                 <CategoryIllustration
                   category={condition.category}
