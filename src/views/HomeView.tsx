@@ -33,6 +33,7 @@ import { MythOfTheDay } from '../components/MythOfTheDay';
 import { PWAInstallButton } from '../components/PWAInstallButton';
 import { CategoryBadge } from '../components/CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
+import { ConditionSpotlight } from '../components/ConditionSpotlight';
 import HeroGeometric from '../components/HeroGeometric';
 import { AnnotatedText } from '../components/AnnotatedText';
 
@@ -639,56 +640,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </button>
       </section>
 
-      {/* Featured Psychiatric Conditions Quick Shelf */}
-      <section className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900">
-              {currentLang === 'en' ? 'Frequently Researched Conditions' : currentLang === 'hi' ? 'सामान्य मानसिक विकार' : 'સામાન્ય માનસિક વિકૃતિઓ'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600">
-              {currentLang === 'en' ? 'Evidence-based overviews written for the public' : currentLang === 'hi' ? 'जनता के लिए निष्पक्ष वैज्ञानिक जानकारी' : 'જાહેર જનતા માટે સરળ ભાષામાં માર્ગદર્શન'}
-            </p>
-          </div>
-          <button
-            onClick={() => onTabChange('conditions')}
-            className="text-xs sm:text-sm font-bold text-teal-700 hover:text-teal-900 transition-colors flex items-center gap-1 cursor-pointer min-h-[44px]"
-          >
-            <span>{currentLang === 'en' ? 'View All 8 Guides' : currentLang === 'hi' ? 'सभी 8 देखें' : 'તમામ ૮ જુઓ'}</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {conditionsData.slice(0, 4).map((cond) => {
-            const theme = getCategoryTheme(cond.category);
-            return (
-              <div
-                key={cond.id}
-                onClick={() => onSelectCondition(cond)}
-                style={{ borderTopColor: theme.hex.accent, borderTopWidth: '3.5px' }}
-                className="p-5 rounded-xl border border-slate-200/80 bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300 transition-[transform,box-shadow,border-color] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
-              >
-                <div className="space-y-2.5">
-                  <div>
-                    <CategoryBadge category={cond.category} currentLang={currentLang} size="xs" />
-                  </div>
-                  <h4 className="font-bold text-sm text-slate-900 group-hover:text-teal-800 transition-colors">
-                    {cond.name[currentLang]}
-                  </h4>
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                    {cond.overview[currentLang]}
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
-                  <span>{currentLang === 'en' ? 'Read Guide' : currentLang === 'hi' ? 'मार्गदर्शिका पढ़ें' : 'માર્ગદર્શિકા વાંચો'}</span>
-                  <span className="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-[#0d9488] group-hover:text-white flex items-center justify-center transition-colors"><ArrowRight className="w-3.5 h-3.5" /></span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {/* Eye-catching condition spotlight */}
+      <ConditionSpotlight
+        currentLang={currentLang}
+        conditions={conditionsData}
+        onSelectCondition={onSelectCondition}
+        onTabChange={onTabChange as (tab: 'conditions') => void}
+      />
 
       {/* Install App as Offline PWA Banner */}
       <PWAInstallButton currentLang={currentLang} variant="banner" />
