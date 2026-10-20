@@ -45,6 +45,7 @@ export const CrisisModal: React.FC<CrisisModalProps> = ({ isOpen, onClose, curre
           </div>
           <button
             onClick={onClose}
+            aria-label="Close crisis modal"
             className="p-1.5 rounded-lg text-rose-200 hover:text-white hover:bg-rose-800 transition cursor-pointer"
           >
             <X className="w-6 h-6" />
