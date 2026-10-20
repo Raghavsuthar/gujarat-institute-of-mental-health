@@ -24,17 +24,31 @@ To safeguard patient safety and ensure clinical integrity:
 
 ---
 
+
+### Verified integrations (checked 2026-10-20)
+
+The following IDs were matched to public YouTube results from the named publisher and topic before being added to the condition records. These are general educational resources, not diagnostic tools or individualized medical advice. Video availability, captions, and embedding permissions can change; re-check periodically.
+
+| Condition | Publisher / video | Video URL | Integration |
+|---|---|---|---|
+| Depression | National Institute of Mental Health (NIMH), “Mental Health Minute: Depression” | https://www.youtube.com/watch?v=lQhpetkwWnM | src/data/conditions.ts → depression |
+| Bipolar disorder | National Alliance on Mental Illness (NAMI), “What is Bipolar Disorder” | https://www.youtube.com/watch?v=GX2RB_LmLUE | src/data/conditions.ts → bipolar |
+| Anxiety disorders | National Institute of Mental Health (NIMH), “Mental Health Minute: Anxiety Disorders in Adults” | https://www.youtube.com/watch?v=UjPRVKS4OBg | src/data/conditions.ts → anxiety-gad |
+| Schizophrenia | National Alliance on Mental Illness (NAMI), “What is Schizophrenia” | https://www.youtube.com/watch?v=WS1TXT3cGyw | src/data/conditions.ts → schizophrenia |
+
+The current UI renders the primary youtubeVideoId via YouTubeEmbed.tsx, which uses a click-to-play facade and youtube-nocookie.com. IDs above were verified against publisher/title search results; this is not a guarantee of future playback in every region or embedding context.
+
 ## 📋 Comprehensive Video TODO Checklist
 
 ### 1. Psychiatric Conditions
 
 | Condition ID | Clinical Name | Suggested Video Topic | Status | Target YouTube ID |
 |---|---|---|---|---|
-| `depression` | Major Depressive Disorder | Clinical Depression: Symptoms, Brain Biology & Hope | ⏳ Pending | `// TODO(video): 3-5 min overview on MDD neurobiology and recovery` |
-| `bipolar` | Bipolar Disorder | Understanding Bipolar I & II: Manic vs Depressive Phases | ⏳ Pending | `// TODO(video): Bipolar disorder cycle, mood stabilization, and family role` |
+| `depression` | Major Depressive Disorder | Clinical Depression: Symptoms, Brain Biology & Hope | ✅ Integrated (NIMH) | `lQhpetkwWnM` |
+| `bipolar` | Bipolar Disorder | Understanding Bipolar I & II: Manic vs Depressive Phases | ✅ Integrated (NAMI) | `GX2RB_LmLUE` |
 | `dysthymia` | Persistent Depressive Disorder | Chronic Low-Grade Depression (Dysthymia) vs Major Depression | ⏳ Pending | `// TODO(video): PDD overview and long-term psychological scaffolding` |
 | `cyclothymia` | Cyclothymic Disorder | Cyclothymia: Managing Chronic Mood Fluctuations | ⏳ Pending | `// TODO(video): Cyclothymic disorder diagnosis and daily tracking` |
-| `gad` | Generalized Anxiety Disorder | How Chronic Worry Affects the Body & Brain | ⏳ Pending | `// TODO(video): GAD autonomic response and evidence-based treatment` |
+| `gad` | Generalized Anxiety Disorder | How Chronic Worry Affects the Body & Brain | ✅ Integrated (NIMH) | `UjPRVKS4OBg` |
 | `panic` | Panic Disorder & Agoraphobia | Anatomy of a Panic Attack & The Adrenaline Loop | ⏳ Pending | `// TODO(video): Panic sensations demystified and somatic grounding` |
 | `social_anxiety` | Social Anxiety Disorder | Social Anxiety: Cognitive Restructuring & Exposure | ⏳ Pending | `// TODO(video): Social anxiety vs introversion and behavioral exposure` |
 | `specific_phobia` | Specific Phobias | Phobias and Systematic Desensitization | ⏳ Pending | `// TODO(video): Systematic desensitization for specific phobias` |
@@ -43,7 +57,7 @@ To safeguard patient safety and ensure clinical integrity:
 | `body_dysmorphic` | Body Dysmorphic Disorder | BDD: Perception, Shame, and Evidence-Based Therapy | ⏳ Pending | `// TODO(video): BDD clinical reality vs cosmetic dissatisfaction` |
 | `hoarding` | Hoarding Disorder | Hoarding Disorder: Cognitive Processing & Compassionate Support | ⏳ Pending | `// TODO(video): Hoarding psychology and safety-first family approach` |
 | `trichotillomania` | Trichotillomania (Hair Pulling) | Body-Focused Repetitive Behaviors & Habit Reversal | ⏳ Pending | `// TODO(video): Habit Reversal Training for hair-pulling / skin-picking` |
-| `schizophrenia` | Schizophrenia | Understanding Psychosis, Dopamine, and Antipsychotic Care | ⏳ Pending | `// TODO(video): Schizophrenia recovery, destigmatizing hallucinations/delusions` |
+| `schizophrenia` | Schizophrenia | Understanding Psychosis, Dopamine, and Antipsychotic Care | ✅ Integrated (NAMI) | `WS1TXT3cGyw` |
 | `schizoaffective` | Schizoaffective Disorder | Schizoaffective Disorder: Dual Diagnosis of Mood & Psychosis | ⏳ Pending | `// TODO(video): Schizoaffective management, sleep hygiene, and mood stability` |
 | `delusional` | Delusional Disorder | Fixed Non-Bizarre Beliefs and Compassionate Clinical Engagement | ⏳ Pending | `// TODO(video): Delusional disorder clinical approach and therapeutic alliance` |
 | `ptsd` | Post-Traumatic Stress Disorder | Trauma, The Amygdala, and Trauma-Informed Therapies | ⏳ Pending | `// TODO(video): PTSD trauma loop, hyperarousal, and EMDR/trauma-focused CBT` |
