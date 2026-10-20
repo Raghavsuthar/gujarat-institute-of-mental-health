@@ -43,6 +43,10 @@
     overflow-y: auto;
     min-height: 100%;
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -57,7 +61,7 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     overflow-y: auto;
-    min-height: 100%;
+    min-height: 100dvh;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -118,23 +122,31 @@
 
 /* Interactive Card Hover Transition */
 .interactive-card {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.interactive-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -10px rgba(15, 118, 110, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -10px rgba(15, 118, 110, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+  }
 }
+.interactive-card:active {
+  transform: translateY(0) scale(0.98);
+}
+/* Safe-area insets for notched phones (PWA installed) */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+.safe-x { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+
 
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
   *, ::before, ::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
   }
-  .interactive-card:hover {
-    transform: none !important;
-  }
+  .interactive-card:hover { transform: none !important; }
 }
 

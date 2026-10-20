@@ -264,7 +264,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <button
               onClick={() => onTabChange('conditions')}
-              className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#0d9488] to-[#0f766e] hover:from-[#0f766e] hover:to-[#042f2e] text-white text-sm font-bold shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer min-h-[44px]"
+              className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#0d9488] to-[#0f766e] hover:from-[#0f766e] hover:to-[#042f2e] text-white text-sm font-bold shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer min-h-[44px] active:scale-[0.97]"
             >
               <BookOpen className="w-4 h-4" />
               <span>{t.home.exploreConditions}</span>
@@ -272,7 +272,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
             <button
               onClick={onOpenScreener}
-              className="px-5 py-2.5 rounded-lg bg-white/95 hover:bg-slate-100 text-slate-800 text-sm font-semibold border border-slate-300 shadow-2xs hover:shadow-xs transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer min-h-[44px]"
+              className="px-5 py-2.5 rounded-lg bg-white/95 hover:bg-slate-100 text-slate-800 text-sm font-semibold border border-slate-300 shadow-2xs hover:shadow-xs transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer min-h-[44px] active:scale-[0.97]"
             >
               <Activity className="w-4 h-4 text-teal-600" />
               <span>{currentLang === 'en' ? 'Self-Reflection Tools' : currentLang === 'hi' ? 'आत्म-मूल्यांकन (PHQ-9 / GAD-7)' : 'આત્મ-મૂલ્યાંકન ટૂલ'}</span>
@@ -280,7 +280,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
             <button
               onClick={onOpenSearch}
-              className="px-4 py-2.5 rounded-lg bg-white/95 hover:bg-slate-100 text-slate-700 text-sm font-medium border border-slate-200 shadow-2xs hover:shadow-xs transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer min-h-[44px]"
+              className="px-4 py-2.5 rounded-lg bg-white/95 hover:bg-slate-100 text-slate-700 text-sm font-medium border border-slate-200 shadow-2xs hover:shadow-xs transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer min-h-[44px] active:scale-[0.97]"
             >
               <Search className="w-4 h-4 text-slate-500" />
               <span>{currentLang === 'en' ? 'Search All Topics' : currentLang === 'hi' ? 'विषय खोजें' : 'બધા વિષયો શોધો'}</span>
@@ -349,10 +349,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 1: Conditions */}
           <div
             onClick={() => onTabChange('conditions')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0d9488] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0d9488] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-teal-50 text-teal-700 border border-teal-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-teal-50 text-teal-700 border border-teal-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <Brain className="w-5 h-5 text-[#0d9488]" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-teal-700 transition-colors">
@@ -375,10 +375,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card: Child & Adolescent Mental Health */}
           <div
             onClick={() => onTabChange('child-psychiatry')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0284c7] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0284c7] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-700 border border-sky-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-700 border border-sky-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <GraduationCap className="w-5 h-5 text-sky-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-sky-700 transition-colors">
@@ -401,10 +401,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card: Women's Mental Health */}
           <div
             onClick={() => onTabChange('womens-mental-health')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#db2777] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#db2777] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-pink-50 text-pink-700 border border-pink-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-pink-50 text-pink-700 border border-pink-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <Heart className="w-5 h-5 text-pink-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-pink-700 transition-colors">
@@ -427,10 +427,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 2: Addiction */}
           <div
             onClick={() => onTabChange('addiction')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#ea580c] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#ea580c] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-orange-50 text-orange-800 border border-orange-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-orange-50 text-orange-800 border border-orange-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <AlertCircle className="w-5 h-5 text-orange-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-orange-700 transition-colors">
@@ -453,10 +453,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 4: Treatments */}
           <div
             onClick={() => onTabChange('treatments')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <HeartPulse className="w-5 h-5 text-emerald-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-emerald-700 transition-colors">
@@ -479,10 +479,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 5: Myths */}
           <div
             onClick={() => onTabChange('myths')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#8b5cf6] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#8b5cf6] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-800 border border-purple-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-800 border border-purple-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <HelpCircle className="w-5 h-5 text-purple-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-purple-700 transition-colors">
@@ -505,10 +505,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 6: Caregivers */}
           <div
             onClick={() => onTabChange('caregivers')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#d97706] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#d97706] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <Users className="w-5 h-5 text-amber-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-amber-700 transition-colors">
@@ -531,10 +531,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 7: Clinical Articles */}
           <div
             onClick={() => onTabChange('articles')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#4f46e5] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#4f46e5] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-800 border border-indigo-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-800 border border-indigo-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <FileText className="w-5 h-5 text-indigo-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-indigo-700 transition-colors">
@@ -557,10 +557,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 8: Helplines & Resources */}
           <div
             onClick={() => onTabChange('resources')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#2563eb] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#2563eb] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-800 border border-blue-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-800 border border-blue-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <Phone className="w-5 h-5 text-blue-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-blue-700 transition-colors">
@@ -583,10 +583,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 9: Outreach Materials */}
           <div
             onClick={() => onTabChange('outreach')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
-              <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200/80 flex items-center justify-center shadow-2xs group-hover:scale-105 transition-transform">
+              <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
                 <Printer className="w-5 h-5 text-emerald-600" />
               </div>
               <h3 className="font-bold text-base text-slate-900 group-hover:text-emerald-700 transition-colors">
@@ -667,7 +667,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 key={cond.id}
                 onClick={() => onSelectCondition(cond)}
                 style={{ borderTopColor: theme.hex.accent, borderTopWidth: '3.5px' }}
-                className="p-5 rounded-xl border border-slate-200/80 bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-md hover:-translate-y-1 hover:border-slate-300 transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+                className="p-5 rounded-xl border border-slate-200/80 bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300 transition-[transform,box-shadow,border-color] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
               >
                 <div className="space-y-2.5">
                   <div>

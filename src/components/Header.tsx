@@ -120,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Quick Search Button: 44px tap target */}
           <button
             onClick={onOpenSearch}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 text-sm border border-slate-200 hover:border-teal-400/60 transition cursor-pointer min-h-[44px] shadow-2xs"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 active:scale-[0.97] text-sm border border-slate-200 hover:border-teal-400/60 transition cursor-pointer min-h-[44px] shadow-2xs"
             title={t.search.placeholder}
             aria-label={t.search.placeholder}
           >
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'en'
                   ? 'bg-[#0d9488] text-white shadow-xs font-bold'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
               EN
@@ -153,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'hi'
                   ? 'bg-[#0d9488] text-white shadow-xs font-bold'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
               हिन्दी
@@ -163,7 +163,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'gu'
                   ? 'bg-[#0d9488] text-white shadow-xs font-bold'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
               ગુજરાતી
@@ -194,7 +194,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[44px] flex items-center text-xs sm:text-sm ${
                   isActive
                     ? 'text-teal-900 font-bold bg-white shadow-xs border-b-2 border-[#0d9488]'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
                 }`}
               >
                 {item.label}
@@ -220,7 +220,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className={`w-full text-left px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition cursor-pointer min-h-[44px] sm:min-h-[48px] flex items-center ${
                   isActive
                     ? 'bg-teal-50/90 text-teal-800 font-bold border-l-4 border-[#0d9488] shadow-2xs'
-                    : 'text-slate-800 hover:bg-slate-100/80'
+                    : 'text-slate-800 hover:bg-slate-100/80 active:scale-[0.97]'
                 }`}
                 role="menuitem"
               >
