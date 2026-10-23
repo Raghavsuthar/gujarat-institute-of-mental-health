@@ -213,4 +213,177 @@ export const conditionEvidenceGuides: Record<string, ConditionEvidenceGuide> = {
       gu: 'સુધારો અને સારવારનો પ્રતિભાવ દરેક વ્યક્તિમાં અલગ હોઈ શકે છે. દવામાં ફેરફાર અંગે સારવાર કરતા તબીબ સાથે ચર્ચા કરો.',
     },
   },
+
+  bipolar: {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Bipolar disorder involves episodes of depression and mania or hypomania. Assessment over time helps distinguish it from other causes of mood changes and guides an individual care plan.',
+      hi: 'बाइपोलर डिसऑर्डर में अवसाद और उन्माद या हाइपोमेनिया के दौर हो सकते हैं। समय के साथ मूल्यांकन से अन्य कारणों से अंतर समझने और व्यक्तिगत उपचार योजना बनाने में मदद मिलती है।',
+      gu: 'બાઇપોલર ડિસઓર્ડરમાં ડિપ્રેશન અને મેનિયા અથવા હાઇપોમેનિયાના એપિસોડ થઈ શકે છે. સમયાંતરે મૂલ્યાંકન અન્ય કારણોથી તેને અલગ પાડવામાં અને વ્યક્તિગત સારવાર યોજના બનાવવામાં મદદ કરે છે.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Treatment may include mood-stabilising medication, psychological support, education about early warning signs, and regular sleep and daily routines.',
+          hi: 'उपचार में मूड स्थिर करने वाली दवाएँ, मनोवैज्ञानिक सहायता, शुरुआती चेतावनी संकेतों की जानकारी और नियमित नींद व दिनचर्या शामिल हो सकती है।',
+          gu: 'સારવારમાં મૂડ સ્થિર કરતી દવાઓ, મનોવૈજ્ઞાનિક સહાય, શરૂઆતના ચેતવણી સંકેતો અંગે શિક્ષણ અને નિયમિત ઊંઘ તથા દૈનિક રૂટિનનો સમાવેશ થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'Treatment differs by episode, past response, physical health, pregnancy considerations, and safety needs; there is no single plan for everyone.',
+          hi: 'उपचार वर्तमान दौर, पिछली प्रतिक्रिया, शारीरिक स्वास्थ्य, गर्भावस्था संबंधी पहलुओं और सुरक्षा की जरूरतों के अनुसार बदलता है; सबके लिए एक ही योजना उपयुक्त नहीं होती।',
+          gu: 'સારવાર હાલના એપિસોડ, અગાઉના પ્રતિભાવ, શારીરિક આરોગ્ય, ગર્ભાવસ્થા સંબંધિત બાબતો અને સલામતીની જરૂરિયાત મુજબ બદલાય છે; દરેક માટે એક જ યોજના યોગ્ય નથી.',
+        },
+      },
+      {
+        text: {
+          en: 'Keeping track of mood, sleep, energy, and changes in behaviour can help a person and clinician recognise patterns and discuss a relapse-prevention plan.',
+          hi: 'मूड, नींद, ऊर्जा और व्यवहार में बदलाव दर्ज करने से व्यक्ति और चिकित्सक पैटर्न पहचानकर दोबारा एपिसोड से बचाव की योजना पर चर्चा कर सकते हैं।',
+          gu: 'મૂડ, ઊંઘ, ઊર્જા અને વર્તનમાં થતા ફેરફારો નોંધવાથી વ્યક્તિ અને તબીબ પેટર્ન ઓળખી શકે છે અને ફરી એપિસોડ થતો અટકાવવાની યોજના અંગે ચર્ચા કરી શકે છે.',
+        },
+        limitation: {
+          en: 'Tracking supports but does not replace clinical assessment. Do not start, stop, or alter medication without the prescriber.',
+          hi: 'रिकॉर्ड रखना मददगार है, लेकिन चिकित्सकीय मूल्यांकन का विकल्प नहीं। चिकित्सक की सलाह के बिना दवा शुरू, बंद या परिवर्तित न करें।',
+          gu: 'નોંધ રાખવી મદદરૂપ છે, પરંતુ તે તબીબી મૂલ્યાંકનનો વિકલ્પ નથી. તબીબની સલાહ વિના દવા શરૂ, બંધ કે બદલો નહીં.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Bipolar disorder: assessment and management (CG185)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/cg185', note: 'Clinical guidance on assessment, treatment, and longer-term care.' },
+      { title: 'Bipolar disorder', organization: 'National Institute of Mental Health', url: 'https://www.nimh.nih.gov/health/publications/bipolar-disorder', note: 'Public information on symptoms, diagnosis, and treatment.' },
+    ],
+    reviewedNote: {
+      en: 'This is general education, not a diagnosis or a personal treatment plan. Urgent help is important for severe mood changes, unsafe behaviour, or thoughts of suicide.',
+      hi: 'यह सामान्य शैक्षिक जानकारी है, निदान या व्यक्तिगत उपचार योजना नहीं। गंभीर मूड बदलाव, असुरक्षित व्यवहार या आत्महत्या के विचार आने पर तुरंत सहायता लें।',
+      gu: 'આ સામાન્ય શૈક્ષણિક માહિતી છે, નિદાન કે વ્યક્તિગત સારવાર યોજના નથી. મૂડમાં ગંભીર ફેરફાર, અસુરક્ષિત વર્તન અથવા આત્મહત્યાના વિચારો હોય તો તાત્કાલિક મદદ લો.',
+    },
+  },
+  'panic-disorder': {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Panic disorder involves recurrent unexpected panic attacks and ongoing concern or behaviour changes related to further attacks. Physical symptoms can feel frightening, and new or unusual symptoms may need medical assessment.',
+      hi: 'पैनिक डिसऑर्डर में बार-बार अचानक पैनिक अटैक और आगे अटैक आने की चिंता या व्यवहार में बदलाव शामिल हो सकते हैं। शारीरिक लक्षण डरावने लग सकते हैं; नए या असामान्य लक्षणों का चिकित्सकीय मूल्यांकन जरूरी हो सकता है।',
+      gu: 'પેનિક ડિસઓર્ડરમાં વારંવાર અચાનક પેનિક એટેક અને ફરી એટેક આવશે તેવી ચિંતા અથવા વર્તનમાં ફેરફાર થઈ શકે છે. શારીરિક લક્ષણો ડરામણા લાગી શકે છે; નવા અથવા અસામાન્ય લક્ષણોનું તબીબી મૂલ્યાંકન જરૂરી હોઈ શકે છે.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'CBT is an evidence-based treatment for panic disorder. It can help people understand the panic cycle and gradually change fear-driven responses.',
+          hi: 'CBT पैनिक डिसऑर्डर का प्रमाण-आधारित उपचार है। इससे पैनिक चक्र को समझने और डर से प्रेरित प्रतिक्रियाओं को धीरे-धीरे बदलने में मदद मिल सकती है।',
+          gu: 'CBT પેનિક ડિસઓર્ડર માટે પુરાવા આધારિત સારવાર છે. તે પેનિકના ચક્રને સમજવામાં અને ડરથી પ્રેરિત પ્રતિક્રિયાઓ ધીમે ધીમે બદલવામાં મદદ કરી શકે છે.',
+        },
+        limitation: {
+          en: 'The pace and approach should be tailored to the person; therapy is not a test of willpower.',
+          hi: 'उपचार की गति और तरीका व्यक्ति के अनुसार होना चाहिए; थेरपी इच्छाशक्ति की परीक्षा नहीं है।',
+          gu: 'સારવારની ગતિ અને રીત વ્યક્તિ મુજબ હોવી જોઈએ; થેરાપી ઇચ્છાશક્તિની કસોટી નથી.',
+        },
+      },
+      {
+        text: {
+          en: 'Medication may be considered after discussing likely benefits, adverse effects, and how long treatment may be needed. Regular review supports safe care.',
+          hi: 'संभावित लाभ, दुष्प्रभाव और उपचार की अवधि पर चर्चा के बाद दवा पर विचार किया जा सकता है। नियमित समीक्षा सुरक्षित उपचार में मदद करती है।',
+          gu: 'સંભવિત લાભ, આડઅસર અને સારવાર કેટલો સમય જરૂરી હોઈ શકે તે અંગે ચર્ચા કર્યા પછી દવા અંગે વિચાર કરી શકાય છે. નિયમિત સમીક્ષા સુરક્ષિત સારવારમાં મદદ કરે છે.',
+        },
+        limitation: {
+          en: 'A clinician should assess new chest pain, fainting, or other concerning physical symptoms rather than assuming they are panic.',
+          hi: 'सीने में नया दर्द, बेहोशी या अन्य चिंताजनक शारीरिक लक्षणों को केवल पैनिक मानने के बजाय चिकित्सक से जाँच कराएँ।',
+          gu: 'છાતીમાં નવો દુખાવો, બેભાન થવું અથવા અન્ય ચિંતાજનક શારીરિક લક્ષણોને માત્ર પેનિક માની લેવાને બદલે તબીબ દ્વારા તપાસ કરાવો.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Generalised anxiety disorder and panic disorder in adults (CG113)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/cg113', note: 'Guidance includes recognition and treatment of panic disorder.' },
+      { title: 'Panic disorder', organization: 'National Institute of Mental Health', url: 'https://www.nimh.nih.gov/health/publications/panic-disorder-when-fear-overwhelms', note: 'Public explanation of panic attacks and treatment options.' },
+    ],
+    reviewedNote: {
+      en: 'Educational information only. If symptoms are severe, new, or medically concerning, seek timely professional assessment.',
+      hi: 'यह केवल शैक्षिक जानकारी है। लक्षण गंभीर, नए या चिकित्सकीय रूप से चिंताजनक हों तो समय पर पेशेवर जाँच कराएँ।',
+      gu: 'આ માહિતી માત્ર શૈક્ષણિક હેતુ માટે છે. લક્ષણો ગંભીર, નવા અથવા તબીબી રીતે ચિંતાજનક હોય તો સમયસર વ્યાવસાયિક તપાસ કરાવો.',
+    },
+  },
+  ptsd: {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Post-traumatic stress disorder can develop after traumatic experiences and may affect sleep, mood, memories, and a sense of safety. People respond to trauma differently, and support should be respectful and paced with the person.',
+      hi: 'आघात के बाद पोस्ट-ट्रॉमेटिक स्ट्रेस डिसऑर्डर हो सकता है और इससे नींद, मूड, यादों तथा सुरक्षा की भावना पर असर पड़ सकता है। हर व्यक्ति की प्रतिक्रिया अलग होती है; सहायता सम्मानजनक और व्यक्ति की गति के अनुसार होनी चाहिए।',
+      gu: 'આઘાતજનક અનુભવ પછી પોસ્ટ-ટ્રોમેટિક સ્ટ્રેસ ડિસઓર્ડર થઈ શકે છે અને ઊંઘ, મૂડ, યાદો તથા સુરક્ષાની લાગણી પર અસર પડી શકે છે. દરેક વ્યક્તિની પ્રતિક્રિયા અલગ હોય છે; સહાય સન્માનપૂર્ણ અને વ્યક્તિની ગતિ મુજબ હોવી જોઈએ.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Trauma-focused psychological therapies, including trauma-focused CBT and EMDR in appropriate circumstances, are recommended treatments for PTSD.',
+          hi: 'उपयुक्त परिस्थितियों में ट्रॉमा-फोकस्ड CBT और EMDR सहित आघात-केंद्रित मनोवैज्ञानिक थेरपी PTSD के अनुशंसित उपचार हैं।',
+          gu: 'યોગ્ય પરિસ્થિતિમાં ટ્રોમા-ફોકસ્ડ CBT અને EMDR સહિત આઘાત-કેન્દ્રિત મનોવૈજ્ઞાનિક થેરાપી PTSD માટે ભલામણ કરાયેલ સારવાર છે.',
+        },
+        limitation: {
+          en: 'A trained clinician should discuss suitability, preferences, readiness, and safety; people should not be pressured to describe trauma before they are ready.',
+          hi: 'प्रशिक्षित चिकित्सक को उपयुक्तता, पसंद, तैयारी और सुरक्षा पर चर्चा करनी चाहिए; तैयार होने से पहले किसी पर आघात का विवरण देने का दबाव नहीं होना चाहिए।',
+          gu: 'પ્રશિક્ષિત તબીબે યોગ્યતા, પસંદગી, તૈયારી અને સલામતી અંગે ચર્ચા કરવી જોઈએ; વ્યક્તિ તૈયાર ન હોય ત્યારે આઘાતનું વર્ણન કરવા દબાણ ન કરવું જોઈએ.',
+        },
+      },
+      {
+        text: {
+          en: 'Practical support, treatment of co-occurring difficulties, and follow-up can be part of recovery-focused care.',
+          hi: 'व्यावहारिक सहायता, साथ मौजूद अन्य समस्याओं का उपचार और फॉलो-अप, सुधार-केंद्रित देखभाल का हिस्सा हो सकते हैं।',
+          gu: 'વ્યવહારુ સહાય, સાથે રહેલી અન્ય મુશ્કેલીઓની સારવાર અને ફોલો-અપ સુધારા-કેન્દ્રિત સંભાળનો ભાગ હોઈ શકે છે.',
+        },
+        limitation: {
+          en: 'There is no required timetable for recovery. Treatment should be adapted to the person and their circumstances.',
+          hi: 'सुधार के लिए कोई अनिवार्य समय-सीमा नहीं है। उपचार व्यक्ति और उसकी परिस्थितियों के अनुसार होना चाहिए।',
+          gu: 'સુધારા માટે કોઈ ફરજિયાત સમયમર્યાદા નથી. સારવાર વ્યક્તિ અને તેની પરિસ્થિતિ મુજબ હોવી જોઈએ.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Post-traumatic stress disorder (NG116)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/ng116', note: 'Clinical recommendations for assessment and treatment of PTSD.' },
+      { title: 'Post-traumatic stress disorder', organization: 'National Institute of Mental Health', url: 'https://www.nimh.nih.gov/health/topics/post-traumatic-stress-disorder-ptsd', note: 'Public information on PTSD and available care.' },
+    ],
+    reviewedNote: {
+      en: 'This page is educational and does not replace trauma-informed professional care. Seek urgent help if there is immediate danger or risk of harm.',
+      hi: 'यह पृष्ठ शैक्षिक है और आघात-संवेदनशील पेशेवर देखभाल का विकल्प नहीं है। तत्काल खतरे या नुकसान के जोखिम में तुरंत सहायता लें।',
+      gu: 'આ પાનું શૈક્ષણિક છે અને ટ્રોમા-સંવેદનશીલ વ્યાવસાયિક સંભાળનો વિકલ્પ નથી. તાત્કાલિક જોખમ અથવા નુકસાનની શક્યતા હોય તો તરત મદદ લો.',
+    },
+  },
+  adhd: {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'ADHD is a neurodevelopmental condition that can affect attention, activity level, and impulse control. Assessment considers development, functioning in more than one setting, and other possible explanations for symptoms.',
+      hi: 'ADHD एक न्यूरो-विकासात्मक स्थिति है जो ध्यान, सक्रियता और आवेग नियंत्रण को प्रभावित कर सकती है। मूल्यांकन में विकास का इतिहास, एक से अधिक परिस्थितियों में कामकाज और लक्षणों के अन्य संभावित कारण देखे जाते हैं।',
+      gu: 'ADHD એક ન્યુરો-વિકાસાત્મક સ્થિતિ છે, જે ધ્યાન, સક્રિયતા અને આવેગ નિયંત્રણને અસર કરી શકે છે. મૂલ્યાંકનમાં વિકાસનો ઇતિહાસ, એકથી વધુ પરિસ્થિતિમાં કાર્યક્ષમતા અને લક્ષણોના અન્ય સંભવિત કારણો ધ્યાનમાં લેવાય છે.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Support may combine environmental adjustments, practical strategies, parent or school support for children, and medication when clinically appropriate.',
+          hi: 'सहायता में वातावरण में बदलाव, व्यावहारिक रणनीतियाँ, बच्चों के लिए माता-पिता या स्कूल का सहयोग और उपयुक्त होने पर दवा शामिल हो सकती है।',
+          gu: 'સહાયમાં પર્યાવરણમાં ફેરફાર, વ્યવહારુ રીતો, બાળકો માટે માતા-પિતા અથવા શાળાનો સહકાર અને તબીબી રીતે યોગ્ય હોય ત્યારે દવાનો સમાવેશ થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'The plan depends on age, needs, co-occurring conditions, preferences, and a qualified assessment; not everyone needs the same intervention.',
+          hi: 'योजना उम्र, जरूरतों, साथ मौजूद स्थितियों, पसंद और योग्य मूल्यांकन पर निर्भर करती है; सभी को एक जैसी सहायता की जरूरत नहीं होती।',
+          gu: 'યોજના ઉંમર, જરૂરિયાતો, સાથે રહેલી સ્થિતિઓ, પસંદગી અને યોગ્ય મૂલ્યાંકન પર આધારિત છે; દરેકને એકસરખી સહાયની જરૂર હોતી નથી.',
+        },
+      },
+      {
+        text: {
+          en: 'Clear routines, breaking tasks into manageable steps, reducing avoidable distractions, and positive feedback can support daily functioning.',
+          hi: 'नियमित दिनचर्या, काम को छोटे चरणों में बाँटना, अनावश्यक ध्यान भटकाने वाली चीजें कम करना और सकारात्मक प्रतिक्रिया दैनिक कामकाज में मदद कर सकते हैं।',
+          gu: 'નિયમિત રૂટિન, કામને નાના પગલાંમાં વહેંચવું, ટાળી શકાય તેવા વિક્ષેપો ઘટાડવા અને સકારાત્મક પ્રતિસાદ દૈનિક કાર્યક્ષમતામાં મદદ કરી શકે છે.',
+        },
+        limitation: {
+          en: 'These strategies can help but are not a substitute for assessment when symptoms cause persistent difficulty or distress.',
+          hi: 'ये तरीके मदद कर सकते हैं, लेकिन लगातार कठिनाई या परेशानी होने पर मूल्यांकन का विकल्प नहीं हैं।',
+          gu: 'આ રીતો મદદરૂપ થઈ શકે છે, પરંતુ સતત મુશ્કેલી અથવા તકલીફ હોય ત્યારે મૂલ્યાંકનનો વિકલ્પ નથી.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Attention deficit hyperactivity disorder: diagnosis and management (NG87)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/ng87', note: 'Guidance on ADHD assessment, support, and treatment.' },
+      { title: 'Attention-deficit/hyperactivity disorder (ADHD)', organization: 'Centers for Disease Control and Prevention', url: 'https://www.cdc.gov/adhd/about/index.html', note: 'Public overview of ADHD signs, evaluation, and support.' },
+    ],
+    reviewedNote: {
+      en: 'This is general educational content, not a diagnostic checklist. A qualified professional should assess persistent concerns and discuss appropriate support.',
+      hi: 'यह सामान्य शैक्षिक सामग्री है, निदान की चेकलिस्ट नहीं। लगातार चिंता होने पर योग्य पेशेवर से मूल्यांकन और उचित सहायता पर चर्चा करें।',
+      gu: 'આ સામાન્ય શૈક્ષણિક સામગ્રી છે, નિદાન માટેની ચેકલિસ્ટ નથી. સતત ચિંતા હોય તો લાયક વ્યાવસાયિક દ્વારા મૂલ્યાંકન અને યોગ્ય સહાય અંગે ચર્ચા કરો.',
+    },
+  },
 };
