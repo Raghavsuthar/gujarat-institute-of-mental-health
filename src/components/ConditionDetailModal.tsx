@@ -17,6 +17,7 @@ import {
 } from './visuals';
 import { CategoryBadge } from './CategoryBadge';
 import { getCategoryTheme } from '../data/categoryThemes';
+import { conditionEvidenceGuides } from '../data/conditionEvidenceGuides';
 
 interface ConditionDetailModalProps {
   condition: Condition | null;
@@ -65,6 +66,7 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
   };
 
   const theme = getCategoryTheme(condition.category);
+  const evidenceGuide = conditionEvidenceGuides[condition.id];
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-2 sm:p-4 overflow-y-auto overscroll-contain modal-scroll-backdrop" role="dialog" aria-modal="true" style={{ WebkitOverflowScrolling: 'touch' }}>
@@ -283,6 +285,71 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
                     ))}
                   </div>
                 </div>
+              )}
+
+              {evidenceGuide && (
+                <section
+                  aria-labelledby={`condition-evidence-${condition.id}`}
+                  className="rounded-2xl border border-teal-200 bg-gradient-to-br from-teal-50/70 via-white to-stone-50 p-5 sm:p-6 space-y-4"
+                >
+                  <div className="flex items-start gap-3 border-b border-teal-100 pb-3">
+                    <span className="rounded-lg bg-teal-800 p-2 text-white">
+                      <BookOpen className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <h3 id={`condition-evidence-${condition.id}`} className="text-base sm:text-lg font-bold text-[#1c2430]">
+                        {evidenceGuide.title[currentLang]}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-stone-700">
+                        {evidenceGuide.introduction[currentLang]}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    {evidenceGuide.findings.map((finding, idx) => (
+                      <article key={idx} className="rounded-xl border border-stone-200 bg-white p-4 space-y-2">
+                        <p className="text-sm font-semibold leading-relaxed text-stone-900">
+                          {finding.text[currentLang]}
+                        </p>
+                        <p className="border-l-2 border-amber-400 pl-3 text-xs sm:text-sm leading-relaxed text-stone-600">
+                          <strong>
+                            {currentLang === 'hi' ? 'ध्यान दें: ' : currentLang === 'gu' ? 'ધ્યાનમાં રાખો: ' : 'Important context: '}
+                          </strong>
+                          {finding.limitation[currentLang]}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+
+                  <div>
+                    <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-stone-600">
+                      {currentLang === 'hi' ? 'विश्वसनीय स्रोत और आगे पढ़ें' : currentLang === 'gu' ? 'વિશ્વસનીય સ્ત્રોતો અને વધુ વાંચન' : 'Trusted sources & further reading'}
+                    </h4>
+                    <ul className="space-y-2">
+                      {evidenceGuide.sources.map((source) => (
+                        <li key={source.url} className="rounded-lg border border-stone-200 bg-white p-3">
+                          <a
+                            href={source.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-sm text-teal-800 underline decoration-teal-300 underline-offset-2 hover:text-teal-950"
+                          >
+                            {source.title}
+                            <span className="ml-1 text-xs font-normal text-stone-500">({source.organization})</span>
+                          </a>
+                          <p className="mt-1 text-xs text-stone-600">
+                            {currentLang === 'hi' ? 'बाहरी स्रोत • नई विंडो में खुलेगा' : currentLang === 'gu' ? 'બાહ્ય સ્ત્રોત • નવી વિન્ડોમાં ખુલશે' : 'External source • opens in a new tab'}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <p className="border-t border-teal-100 pt-3 text-xs leading-relaxed text-stone-600">
+                    {evidenceGuide.reviewedNote[currentLang]}
+                  </p>
+                </section>
               )}
 
               {/* Visual Section Divider */}
