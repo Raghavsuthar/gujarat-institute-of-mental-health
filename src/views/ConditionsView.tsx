@@ -63,9 +63,9 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
   }, [selectedCategory, searchQuery, currentLang]);
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="aurora-page space-y-8 pb-12">
       {/* Header section */}
-      <div className="space-y-2">
+      <div className="aurora-page-heading space-y-2">
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-semibold bg-teal-50 text-[#0d5d56] border border-teal-200">
             <span className="w-1.5 h-1.5 rounded-full bg-[#115e59]" aria-hidden="true" />
@@ -198,7 +198,7 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
                     }
                   }}
                   style={{ borderTopColor: theme.hex.accent, borderTopWidth: '4px' }}
-                  className="col-span-1 md:col-span-2 p-6 sm:p-7 rounded-2xl border border-teal-200/80 bg-gradient-to-br from-white via-teal-50/20 to-stone-50/70 hover:border-teal-600 transition-all cursor-pointer shadow-xs hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 flex flex-col justify-between group"
+                  className="interactive-card col-span-1 md:col-span-2 p-6 sm:p-7 rounded-2xl border border-teal-200/80 bg-gradient-to-br from-white via-teal-50/20 to-stone-50/70 hover:border-teal-600 transition-all cursor-pointer shadow-xs hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
                     <div className="flex flex-col lg:flex-row items-start justify-between gap-5">

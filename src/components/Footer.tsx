@@ -19,7 +19,7 @@ export const Footer: React.FC<FooterProps> = ({
   const t = translations[currentLang];
 
   return (
-    <footer className="bg-white text-slate-700 border-t border-slate-200/80 text-sm">
+    <footer className="aurora-footer bg-white text-slate-700 border-t border-slate-200/80 text-sm">
       {/* Visual Identity Fine Accent Line */}
       <div className="h-[2px] w-full bg-gradient-to-r from-[#0d9488] via-[#f59e0b] to-[#7c3aed]" aria-hidden="true" />
 
@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({
       {/* Main Footer Links & Info */}
       <div className="max-w-7xl mx-auto px-4 pt-10 pb-2 space-y-8">
       {/* Statutory Medical Education Notice */}
-      <div className="bg-slate-50 p-5 sm:p-6 rounded-xl flex flex-col md:flex-row gap-4 items-start border border-slate-200/70">
+      <div className="aurora-notice bg-slate-50 p-5 sm:p-6 rounded-xl flex flex-col md:flex-row gap-4 items-start border border-slate-200/70">
         <span className="flex items-center justify-center p-2.5 bg-[#0d9488] text-white rounded-lg shrink-0" aria-hidden="true">
           <ShieldCheck className="w-6 h-6" />
         </span>

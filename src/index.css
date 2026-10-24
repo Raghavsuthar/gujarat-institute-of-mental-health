@@ -249,3 +249,32 @@ header.sticky {
     transition: none !important;
   }
 }
+
+
+/* Calm Aurora — shared components and responsive polish */
+.aurora-header { border-bottom-color: var(--aurora-line); box-shadow: 0 8px 28px rgba(24, 54, 75, 0.055); }
+.aurora-crisis-strip { background: #fff1ef !important; border-bottom: 1px solid rgba(198, 91, 75, 0.18); }
+.aurora-crisis-strip > div { color: #813b35; }
+.aurora-crisis-strip a[href^="tel:"] { text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+.aurora-card { border-radius: var(--aurora-radius-card); box-shadow: 0 5px 18px rgba(24, 54, 75, 0.045); transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .aurora-card:hover { border-color: rgba(8, 127, 140, 0.38); box-shadow: var(--aurora-shadow); transform: translateY(-2px); }
+}
+.aurora-story-panel, .aurora-notice { border-color: var(--aurora-line); box-shadow: 0 8px 24px rgba(24, 54, 75, 0.04); }
+.aurora-crisis-card { border: 1px solid rgba(198, 91, 75, 0.2); background: linear-gradient(125deg, #fff2f0 0%, #fff7f5 58%, #fdf2f8 100%) !important; }
+.aurora-crisis-card > div:first-child > span { box-shadow: 0 6px 16px rgba(129, 59, 53, 0.12); }
+.aurora-page-heading h1 { letter-spacing: -0.035em; line-height: 1.18; text-wrap: balance; }
+.aurora-page-heading p { max-width: 68ch; }
+.aurora-detail-shell { border-radius: 1.5rem; box-shadow: 0 28px 90px rgba(10, 29, 42, 0.22); }
+.aurora-footer { background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%); }
+.aurora-footer .aurora-notice { background: linear-gradient(120deg, #f4fbfa 0%, #f7f7ff 100%); }
+header.sticky nav[aria-label="Primary Navigation"] { scrollbar-width: thin; scrollbar-color: rgba(8, 127, 140, 0.3) transparent; }
+@media (max-width: 640px) {
+  .mindcare-home-hero { border-radius: 1.15rem; box-shadow: 0 14px 32px rgba(24, 54, 75, 0.08); }
+  .mindcare-home-hero h1 { font-size: clamp(1.8rem, 7vw, 2.35rem); line-height: 1.16; text-wrap: balance; }
+  .aurora-detail-shell { border-radius: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora-card, .aurora-story-panel, .aurora-detail-shell { transition: none !important; }
+  .aurora-card:hover { transform: none !important; }
+}
