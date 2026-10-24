@@ -1,4 +1,4 @@
-import type { ApiRequestLike, ApiResponseLike } from './_lib/analytics';
+import type { ApiRequestLike, ApiResponseLike } from '../server/shared/analytics';
 
 export default function handler(req: ApiRequestLike, res: ApiResponseLike) {
   res.setHeader('Cache-Control', 'no-store');
