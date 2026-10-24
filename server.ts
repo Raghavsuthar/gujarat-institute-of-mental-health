@@ -1,50 +1,13 @@
 import express from 'express';
 import path from 'path';
-import fs from 'fs';
-import { timingSafeEqual } from 'crypto';
+import { apiErrorMessage, apiErrorStatus, enforceRateLimit, getAnalyticsSummary, hasValidAdminToken, isCrisisQuery, recordAnalyticsPing } from './server/shared/analytics';
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json({ limit: '16kb' }));
 
-// Per-process rate limiting. Configure shared/provider-level limits for multi-instance deployments.
-function rateLimit(options: { windowMs: number; max: number; message?: string }) {
-  const clients = new Map<string, { count: number; resetAt: number }>();
-  return (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const now = Date.now();
-    const key = req.ip || req.socket.remoteAddress || 'unknown';
-    let entry = clients.get(key);
-    if (!entry || entry.resetAt <= now) {
-      entry = { count: 0, resetAt: now + options.windowMs };
-      clients.set(key, entry);
-    }
-    entry.count += 1;
-    if (entry.count > options.max) {
-      res.setHeader('Retry-After', String(Math.max(1, Math.ceil((entry.resetAt - now) / 1000))));
-      res.status(429).json({ error: options.message || 'Too many requests. Please try again later.' });
-      return;
-    }
-    if (clients.size > 5000) {
-      for (const [client, value] of clients) if (value.resetAt <= now) clients.delete(client);
-    }
-    next();
-  };
-}
-const analyticsPingLimit = rateLimit({ windowMs: 60_000, max: 60 });
-const adminSummaryLimit = rateLimit({ windowMs: 15 * 60_000, max: 10, message: 'Too many admin attempts. Try again later.' });
-const qaLimit = rateLimit({ windowMs: 60_000, max: 20 });
-
-function hasValidAdminToken(req: express.Request): boolean {
-  const expected = process.env.ADMIN_PASSWORD;
-  if (!expected || expected.length < 32) return false;
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !/^Bearer\s+\S+$/i.test(authHeader)) return false;
-  const supplied = authHeader.replace(/^Bearer\s+/i, '');
-  const suppliedBuffer = Buffer.from(supplied, 'utf8');
-  const expectedBuffer = Buffer.from(expected, 'utf8');
-  return suppliedBuffer.length === expectedBuffer.length && timingSafeEqual(suppliedBuffer, expectedBuffer);
-}
+// API handlers use shared Upstash-backed rate limits and storage.
 
 // Security headers - CSP for XSS protection
 app.use((_req, res, next) => {
@@ -63,111 +26,6 @@ app.use((_req, res, next) => {
   next();
 });
 
-// Analytics Data File
-const DATA_FILE = path.resolve(process.cwd(), '.analytics-data.json');
-
-interface AnalyticsStore {
-  totalViews: number;
-  byLang: { en: number; hi: number; gu: number };
-  byPath: Record<string, number>;
-  referrers: Record<string, number>;
-  deviceBreakdown: { mobile: number; desktop: number; tablet: number };
-  events: {
-    screenerCompleted: number;
-    mythCardShared: number;
-    cardShared: number;
-    qrLanded: number;
-    pwaInstalled: number;
-    readAloud: number;
-  };
-  dailyTrend: Array<{ date: string; views: number; events: number }>;
-  lastUpdated: string;
-}
-
-function getInitialStore(): AnalyticsStore {
-  const today = new Date();
-  const dailyTrend: Array<{ date: string; views: number; events: number }> = [];
-
-  for (let i = 29; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(today.getDate() - i);
-    const dateStr = d.toISOString().split('T')[0];
-    const baseViews = 35 + Math.floor(Math.sin(i / 3) * 15) + (i % 7 === 0 ? 25 : 0);
-    const baseEvents = Math.floor(baseViews * 0.35);
-    dailyTrend.push({ date: dateStr, views: baseViews, events: baseEvents });
-  }
-
-  const totalViews = dailyTrend.reduce((acc, curr) => acc + curr.views, 0);
-  const totalEvents = dailyTrend.reduce((acc, curr) => acc + curr.events, 0);
-
-  return {
-    totalViews,
-    byLang: {
-      en: Math.round(totalViews * 0.48),
-      hi: Math.round(totalViews * 0.32),
-      gu: Math.round(totalViews * 0.20),
-    },
-    byPath: {
-      home: Math.round(totalViews * 0.28),
-      'conditions/depression': Math.round(totalViews * 0.16),
-      'conditions/generalized-anxiety': Math.round(totalViews * 0.12),
-      'interactive/screeners': Math.round(totalViews * 0.10),
-      myths: Math.round(totalViews * 0.09),
-      'addiction/alcohol': Math.round(totalViews * 0.08),
-      treatments: Math.round(totalViews * 0.07),
-      emergency: Math.round(totalViews * 0.05),
-      outreach: Math.round(totalViews * 0.05),
-    },
-    referrers: {
-      'Direct / QR Poster': Math.round(totalViews * 0.36),
-      'whatsapp.com': Math.round(totalViews * 0.32),
-      'instagram.com': Math.round(totalViews * 0.16),
-      'google.com': Math.round(totalViews * 0.12),
-      Other: Math.round(totalViews * 0.04),
-    },
-    deviceBreakdown: {
-      mobile: Math.round(totalViews * 0.76),
-      desktop: Math.round(totalViews * 0.20),
-      tablet: Math.round(totalViews * 0.04),
-    },
-    events: {
-      screenerCompleted: Math.round(totalEvents * 0.35),
-      mythCardShared: Math.round(totalEvents * 0.25),
-      cardShared: Math.round(totalEvents * 0.18),
-      qrLanded: Math.round(totalEvents * 0.12),
-      pwaInstalled: 14,
-      readAloud: Math.round(totalEvents * 0.10),
-    },
-    dailyTrend,
-    lastUpdated: new Date().toISOString(),
-  };
-}
-
-function loadStore(): AnalyticsStore {
-  try {
-    if (fs.existsSync(DATA_FILE)) {
-      const raw = fs.readFileSync(DATA_FILE, 'utf-8');
-      return JSON.parse(raw);
-    }
-  } catch (err) {
-    console.error('Error reading analytics store:', err);
-  }
-  const initial = getInitialStore();
-  saveStore(initial);
-  return initial;
-}
-
-function saveStore(store: AnalyticsStore) {
-  try {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(store, null, 2), 'utf-8');
-  } catch (err) {
-    console.error('Error saving analytics store:', err);
-  }
-}
-
-// Crisis regex detector
-const CRISIS_REGEX = /\b(suicide|kill myself|end my life|want to die|hanging|poison|overdose|harm myself|मरना|आत्महत्या|जान देना|खुदकुशी|આત્મહત્યા|જીવ આપવો|મરી જવું)\b/i;
-
 // 1. Health check endpoint
 app.get('/api/health', (_req, res) => {
   res.json({
@@ -177,115 +35,50 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// 2. Analytics Ping endpoint
-app.post('/api/analytics/ping', analyticsPingLimit, (req, res) => {
+// 2. Anonymous aggregate analytics (durable Upstash storage)
+app.post('/api/analytics/ping', async (req, res) => {
   try {
-    const payload = req.body || {};
-    if (typeof payload !== 'object' || Array.isArray(payload)) {
-      res.status(400).json({ error: 'Invalid payload' });
+    if (!(await enforceRateLimit(req, 'analytics-ping', 60, 60, req.ip || req.socket.remoteAddress))) {
+      res.setHeader('Retry-After', '60');
+      res.status(429).json({ error: 'Too many requests. Please try again later.' });
       return;
     }
-    const allowedLangs = ['en', 'hi', 'gu'];
-    const allowedDevices = ['mobile', 'desktop', 'tablet'];
-    const allowedEvents = ['page_view', 'screener_completed', 'myth_card_shared', 'card_shared', 'qr_landed', 'pwa_installed', 'read_aloud'];
-    if ((payload.lang !== undefined && !allowedLangs.includes(payload.lang)) ||
-        (payload.deviceType !== undefined && !allowedDevices.includes(payload.deviceType)) ||
-        (payload.eventType !== undefined && !allowedEvents.includes(payload.eventType)) ||
-        (payload.path !== undefined && (typeof payload.path !== 'string' || payload.path.length > 200)) ||
-        (payload.referrerDomain !== undefined && (typeof payload.referrerDomain !== 'string' || payload.referrerDomain.length > 100))) {
-      res.status(400).json({ error: 'Invalid payload' });
-      return;
-    }
-    const store = loadStore();
-
-    const lang = (payload.lang || 'en') as 'en' | 'hi' | 'gu';
-    const rawPath = (payload.path || 'home').replace(/^\/+|\/+$/g, '').replace(/[\u0000-\u001f]/g, '') || 'home';
-    const referrer = payload.referrerDomain || 'Direct / QR Poster';
-    const device = (payload.deviceType || 'mobile') as 'mobile' | 'desktop' | 'tablet';
-    const today = new Date().toISOString().split('T')[0];
-
-    if (payload.eventType === 'page_view' || !payload.eventType) {
-      store.totalViews += 1;
-      store.byLang[lang] = (store.byLang[lang] || 0) + 1;
-      store.byPath[rawPath] = (store.byPath[rawPath] || 0) + 1;
-      store.referrers[referrer] = (store.referrers[referrer] || 0) + 1;
-      store.deviceBreakdown[device] = (store.deviceBreakdown[device] || 0) + 1;
-
-      let bucket = store.dailyTrend.find((b) => b.date === today);
-      if (!bucket) {
-        bucket = { date: today, views: 0, events: 0 };
-        store.dailyTrend.push(bucket);
-        if (store.dailyTrend.length > 90) store.dailyTrend.shift();
-      }
-      bucket.views += 1;
-    } else {
-      let eventKey: keyof AnalyticsStore['events'] = 'cardShared';
-      if (payload.eventType === 'screener_completed') eventKey = 'screenerCompleted';
-      else if (payload.eventType === 'myth_card_shared') eventKey = 'mythCardShared';
-      else if (payload.eventType === 'qr_landed') eventKey = 'qrLanded';
-      else if (payload.eventType === 'pwa_installed') eventKey = 'pwaInstalled';
-      else if (payload.eventType === 'read_aloud') eventKey = 'readAloud';
-
-      store.events[eventKey] = (store.events[eventKey] || 0) + 1;
-
-      let bucket = store.dailyTrend.find((b) => b.date === today);
-      if (!bucket) {
-        bucket = { date: today, views: 0, events: 0 };
-        store.dailyTrend.push(bucket);
-      }
-      bucket.events += 1;
-    }
-
-    store.lastUpdated = new Date().toISOString();
-    saveStore(store);
-
-    res.json({ ok: true });
-  } catch {
-    res.status(400).json({ error: 'Invalid payload' });
+    await recordAnalyticsPing(req.body);
+    res.setHeader('Cache-Control', 'no-store');
+    res.status(202).json({ ok: true });
+  } catch (error) {
+    const status = apiErrorStatus(error);
+    res.status(status >= 500 ? 503 : status).json({ error: apiErrorMessage(error) });
   }
 });
 
-// 3. Analytics Summary endpoint
-app.get('/api/analytics/summary', adminSummaryLimit, (req, res) => {
+// 3. Protected analytics summary
+app.get('/api/analytics/summary', async (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, private');
   const configuredSecret = process.env.ADMIN_PASSWORD;
   if (!configuredSecret || configuredSecret.length < 32) {
-    res.status(503).json({ error: 'Admin analytics is not configured. Set a unique ADMIN_PASSWORD secret of at least 32 characters on the server.' });
+    res.status(503).json({ error: 'Admin analytics is not configured. Set a unique server-side ADMIN_PASSWORD of at least 32 characters.' });
     return;
   }
-  if (!hasValidAdminToken(req)) {
-    res.setHeader('Cache-Control', 'no-store');
-    res.status(401).json({ error: 'Unauthorized.' });
-    return;
+  try {
+    if (!(await enforceRateLimit(req, 'admin-summary', 10, 900, req.ip || req.socket.remoteAddress))) {
+      res.setHeader('Retry-After', '900');
+      res.status(429).json({ error: 'Too many admin attempts. Try again later.' });
+      return;
+    }
+    if (!hasValidAdminToken(req, configuredSecret)) {
+      res.status(401).json({ error: 'Unauthorized.' });
+      return;
+    }
+    res.status(200).json(await getAnalyticsSummary());
+  } catch (error) {
+    const status = apiErrorStatus(error);
+    res.status(status >= 500 ? 503 : status).json({ error: apiErrorMessage(error) });
   }
-  res.setHeader('Cache-Control', 'no-store, private');
-
-  const store = loadStore();
-
-  const topPages = Object.entries(store.byPath)
-    .map(([pathName, count]) => ({ path: pathName, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10);
-
-  const topReferrers = Object.entries(store.referrers)
-    .map(([domain, count]) => ({ domain, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 10);
-
-  res.json({
-    totalViews: store.totalViews,
-    byLang: store.byLang,
-    topPages,
-    topReferrers,
-    deviceBreakdown: store.deviceBreakdown,
-    events: store.events,
-    dailyTrend: store.dailyTrend.slice(-30),
-    allDailyTrend: store.dailyTrend,
-    lastUpdated: store.lastUpdated,
-  });
 });
 
 // 4. Educational Q&A Assistant endpoint
-app.post('/api/qa', qaLimit, async (req, res) => {
+app.post('/api/qa', async (req, res) => {
   try {
     const { query, lang = 'en' } = req.body || {};
     if (!query || typeof query !== 'string' || query.length > 2000) {
@@ -299,7 +92,7 @@ app.post('/api/qa', qaLimit, async (req, res) => {
     }
 
     // Crisis short-circuiting: NEVER query AI if distress/self-harm language detected!
-    if (CRISIS_REGEX.test(query)) {
+    if (isCrisisQuery(query)) {
       res.json({
         crisis: true,
         message:
@@ -315,6 +108,12 @@ app.post('/api/qa', qaLimit, async (req, res) => {
     }
 
     // Normal Educational Inquiry using Gemini
+    if (!(await enforceRateLimit(req, 'qa', 20, 60, req.ip || req.socket.remoteAddress))) {
+      res.setHeader('Retry-After', '60');
+      res.status(429).json({ error: 'Too many questions. Please wait and try again.' });
+      return;
+    }
+
     if (!process.env.GEMINI_API_KEY) {
       res.json({
         answer:
@@ -330,8 +129,7 @@ app.post('/api/qa', qaLimit, async (req, res) => {
     const { GoogleGenAI } = await import('@google/genai');
     const ai = new GoogleGenAI({});
 
-    const systemInstruction = `You are an educational assistant for Dr. Raghav Suthar's Public Psychiatry Education platform (dr-raghav-suthar.mentalhealth.in).
-Dr. Raghav Suthar is an MBBS, DNB (Psychiatry) consultant psychiatrist in India dedicated to destigmatizing mental health and addiction science.
+    const systemInstruction = `You are an educational assistant for Mindcare, a public mental-health education portal. Do not make claims about the author's credentials or provide individualized clinical care.
 
 MANDATORY SAFETY AND ETHICAL BOUNDARIES:
 1. STRICTLY EDUCATE, NEVER DIAGNOSE. Do not say "You might have depression" or "Based on what you said, you have ADHD". Say "In clinical psychiatry, these symptoms are often evaluated under..."
@@ -355,8 +153,8 @@ MANDATORY SAFETY AND ETHICAL BOUNDARIES:
       answer: response.text || 'Unable to generate educational answer at this time.',
     });
   } catch (err) {
-    console.error('API QA Error:', err);
-    res.status(500).json({ error: 'Failed to process inquiry' });
+    const status = apiErrorStatus(err);
+    res.status(status >= 500 ? 503 : status).json({ error: apiErrorMessage(err) });
   }
 });
 
