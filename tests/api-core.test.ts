@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizePingPayload } from '../api/_lib/analytics';
+import { normalizePingPayload } from '../server/shared/analytics';
 import { isCrisisQuery } from '../src/utils/crisisDetection';
 
 test('crisis detection catches English self-harm phrases before model use', () => {
