@@ -62,6 +62,8 @@ const CRISIS_TERMS = [
   'harm myself',
   'self harm',
   'overdose',
+  'hanging',
+  'poison',
   'poison myself',
   'मरना चाहता',
   'मरना चाहती',
@@ -82,10 +84,18 @@ const CRISIS_TERMS = [
   'aatmahatya',
   'marna chahta',
   'marna chahti',
+  'mujhe marna hai',
+  'jeena nahi chahta',
+  'jeena nahi chahti',
+  'zindagi khatam',
+  'khud ko maar',
   'mar jana chahta',
   'mar jana chahti',
   'jeev aapvo',
   'jiv devu',
+  'jivvu nathi',
+  'marvu che',
+  'potane mari nakhvu',
 ];
 
 export function isCrisisQuery(query: string): boolean {
