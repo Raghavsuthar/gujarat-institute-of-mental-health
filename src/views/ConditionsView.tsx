@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, Check, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, Check, ArrowRight, Sparkles, X } from 'lucide-react';
 import { Language, Condition, ConditionCategory } from '../types';
 import { conditionsData } from '../data/conditions';
 import { translations } from '../data/translations';
@@ -35,13 +35,19 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
   }, [currentLang]);
 
   const categories = [
-    { id: 'all', label: currentLang === 'en' ? 'All Conditions' : currentLang === 'hi' ? 'सभी विषय' : 'બધી બીમારીઓ' },
-    { id: 'mood', label: currentLang === 'en' ? 'Mood Disorders' : currentLang === 'hi' ? 'मूड विकार' : 'મૂડ વિકાર' },
-    { id: 'anxiety', label: currentLang === 'en' ? 'Anxiety & Panic' : currentLang === 'hi' ? 'चिंता व घबराहट' : 'ચિંતા અને ગભરાટ' },
-    { id: 'ocd', label: 'OCD' },
-    { id: 'psychotic', label: currentLang === 'en' ? 'Schizophrenia & Psychosis' : currentLang === 'hi' ? 'सिज़ोफ्रेनिया' : 'સિઝોફ્રેનિયા' },
-    { id: 'trauma', label: 'PTSD / Trauma' },
-    { id: 'geriatric', label: currentLang === 'en' ? 'Geriatric Psychiatry' : currentLang === 'hi' ? 'बुजुर्गों का स्वास्थ्य' : 'વૃદ્ધાવસ્થા' },
+    { id: 'all', label: currentLang === 'en' ? 'All conditions' : currentLang === 'hi' ? 'सभी विषय' : 'બધા વિષયો' },
+    { id: 'mood', label: currentLang === 'en' ? 'Mood disorders' : currentLang === 'hi' ? 'मूड विकार' : 'મૂડના વિકારો' },
+    { id: 'anxiety', label: currentLang === 'en' ? 'Anxiety & panic' : currentLang === 'hi' ? 'चिंता व घबराहट' : 'ચિંતા અને ગભરાટ' },
+    { id: 'ocd', label: currentLang === 'en' ? 'OCD & related' : currentLang === 'hi' ? 'OCD व संबंधित विकार' : 'OCD અને સંબંધિત વિકારો' },
+    { id: 'psychotic', label: currentLang === 'en' ? 'Psychosis' : currentLang === 'hi' ? 'मनोविकृति' : 'મનોવિકૃતિ' },
+    { id: 'trauma', label: currentLang === 'en' ? 'Trauma & PTSD' : currentLang === 'hi' ? 'आघात व PTSD' : 'આઘાત અને PTSD' },
+    { id: 'geriatric', label: currentLang === 'en' ? 'Older adults' : currentLang === 'hi' ? 'बुजुर्गों का मानसिक स्वास्थ्य' : 'વૃદ્ધ વયના લોકો' },
+    { id: 'eating', label: currentLang === 'en' ? 'Eating disorders' : currentLang === 'hi' ? 'खान-पान संबंधी विकार' : 'આહાર સંબંધિત વિકારો' },
+    { id: 'neurodevelopmental', label: currentLang === 'en' ? 'Neurodevelopmental' : currentLang === 'hi' ? 'न्यूरोडेवलपमेंटल विकार' : 'ન્યુરોડેવલપમેન્ટલ વિકારો' },
+    { id: 'sleep', label: currentLang === 'en' ? 'Sleep' : currentLang === 'hi' ? 'नींद संबंधी समस्याएँ' : 'ઊંઘ સંબંધિત સમસ્યાઓ' },
+    { id: 'somatic', label: currentLang === 'en' ? 'Somatic symptoms' : currentLang === 'hi' ? 'शारीरिक लक्षण संबंधी विकार' : 'શારીરિક લક્ષણ સંબંધિત વિકારો' },
+    { id: 'personality', label: currentLang === 'en' ? 'Personality' : currentLang === 'hi' ? 'व्यक्तित्व संबंधी विकार' : 'વ્યક્તિત્વ સંબંધિત વિકારો' },
+    { id: 'perinatal', label: currentLang === 'en' ? 'Pregnancy & after birth' : currentLang === 'hi' ? 'गर्भावस्था व प्रसव के बाद' : 'ગર્ભાવસ્થા અને પ્રસૂતિ પછી' },
   ];
 
   const filteredConditions = useMemo(() => {
@@ -50,7 +56,8 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
       const q = searchQuery.toLowerCase().trim();
       if (!q) return matchesCategory;
 
-      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${c.overview[currentLang]}`.toLowerCase();
+      const symptoms = Object.values(c.commonSymptoms || {}).flat().join(' ');
+      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${c.overview.en} ${c.overview.hi} ${c.overview.gu} ${symptoms}`.toLowerCase();
       return matchesCategory && text.includes(q);
     });
   }, [selectedCategory, searchQuery, currentLang]);
@@ -111,24 +118,46 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
           ))}
         </div>
 
-        {/* Search input */}
-        <div className="relative w-full max-w-md">
-          <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+        {/* Search across names, medical terms, overviews, and common symptoms in all three languages */}
+        <div className="relative w-full max-w-xl">
+          <label htmlFor="condition-search" className="sr-only">
+            {currentLang === 'en' ? 'Search mental health conditions' : currentLang === 'hi' ? 'मानसिक स्वास्थ्य विषय खोजें' : 'માનસિક સ્વાસ્થ્યના વિષયો શોધો'}
+          </label>
+          <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
           <input
-            type="text"
+            id="condition-search"
+            type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={currentLang === 'en' ? 'Filter conditions...' : currentLang === 'hi' ? 'बीमारियां खोजें...' : 'શોધો...'}
-            className="w-full pl-10 pr-3 py-2.5 rounded-md border border-stone-300 bg-white text-sm text-stone-800 placeholder-stone-400 focus:outline-[#115e59] min-h-[44px]"
+            placeholder={currentLang === 'en' ? 'Search by condition, symptom, or medical term…' : currentLang === 'hi' ? 'बीमारी, लक्षण या चिकित्सा शब्द खोजें…' : 'બીમારી, લક્ષણ અથવા તબીબી શબ્દ શોધો…'}
+            autoComplete="off"
+            className="w-full pl-10 pr-12 py-3 rounded-xl border border-stone-300 bg-white text-sm text-stone-800 placeholder-stone-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:border-teal-700 min-h-[48px]"
           />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              aria-label={currentLang === 'en' ? 'Clear search' : currentLang === 'hi' ? 'खोज हटाएँ' : 'શોધ સાફ કરો'}
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-lg text-stone-500 hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700"
+            >
+              <X className="w-4 h-4" aria-hidden="true" />
+            </button>
+          )}
         </div>
+        <p className="text-xs sm:text-sm text-stone-600" aria-live="polite" role="status">
+          {currentLang === 'en'
+            ? `Showing ${filteredConditions.length} of ${conditionsData.length} conditions`
+            : currentLang === 'hi'
+            ? `${conditionsData.length} में से ${filteredConditions.length} विषय दिखाए जा रहे हैं`
+            : `${conditionsData.length} માંથી ${filteredConditions.length} વિષયો બતાવાઈ રહ્યા છે`}
+        </p>
       </div>
 
       {/* Conditions Grid */}
       {filteredConditions.length === 0 ? (
         <div className="p-8 text-center bg-white rounded-xl border border-stone-200 text-stone-600">
           <p className="font-semibold text-stone-800">{t.search.noResults}</p>
-          <p className="text-xs mt-1">Try clearing your search query or choosing another category.</p>
+          <p className="text-xs mt-1">{currentLang === 'en' ? 'Try a different word, clear the search, or choose another category.' : currentLang === 'hi' ? 'कोई दूसरा शब्द खोजें, खोज हटाएँ या दूसरी श्रेणी चुनें।' : 'બીજો શબ્દ શોધો, શોધ સાફ કરો અથવા બીજી શ્રેણી પસંદ કરો.'}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -141,8 +170,17 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
                 <div
                   key={cond.id}
                   onClick={() => onSelectCondition(cond)}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={currentLang === 'en' ? `Open guide: ${cond.name.en}` : currentLang === 'hi' ? `मार्गदर्शिका खोलें: ${cond.name.hi}` : `માર્ગદર્શિકા ખોલો: ${cond.name.gu}`}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      onSelectCondition(cond);
+                    }
+                  }}
                   style={{ borderTopColor: theme.hex.accent, borderTopWidth: '4px' }}
-                  className="col-span-1 md:col-span-2 p-6 sm:p-7 rounded-2xl border border-teal-200/80 bg-gradient-to-br from-white via-teal-50/20 to-stone-50/70 hover:border-teal-600 transition-all cursor-pointer shadow-xs hover:shadow-md flex flex-col justify-between group"
+                  className="col-span-1 md:col-span-2 p-6 sm:p-7 rounded-2xl border border-teal-200/80 bg-gradient-to-br from-white via-teal-50/20 to-stone-50/70 hover:border-teal-600 transition-all cursor-pointer shadow-xs hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
                     <div className="flex flex-col lg:flex-row items-start justify-between gap-5">
@@ -245,8 +283,17 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
               <div
                 key={cond.id}
                 onClick={() => onSelectCondition(cond)}
+                role="button"
+                tabIndex={0}
+                aria-label={currentLang === 'en' ? `Open guide: ${cond.name.en}` : currentLang === 'hi' ? `मार्गदर्शिका खोलें: ${cond.name.hi}` : `માર્ગદર્શિકા ખોલો: ${cond.name.gu}`}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    onSelectCondition(cond);
+                  }
+                }}
                 style={{ borderTopColor: theme.hex.accent, borderTopWidth: '3px' }}
-                className="p-6 rounded-xl border border-stone-200 bg-white hover:border-stone-400 transition cursor-pointer flex flex-col justify-between group"
+                className="p-6 rounded-xl border border-stone-200 bg-white hover:border-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-700 focus-visible:ring-offset-2 transition cursor-pointer flex flex-col justify-between group"
               >
                 <div className="space-y-3">
                   <div className="flex items-start justify-between gap-3">
