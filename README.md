@@ -73,8 +73,10 @@ Choose the deployment method that best fits your workflow:
 5. *(Optional)* Under **Environment Variables**, add:
    - `GEMINI_API_KEY`: Your Google Gemini API key (for the AI Q&A assistant).
    - `ADMIN_PASSWORD`: Server-only unique secret for the analytics dashboard. Generate at least 32 random characters; never prefix it with `VITE_` or expose it to client code. Without a valid secret, the admin API fails closed.
+   - `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`: required server-side credentials for durable aggregate analytics and shared API rate limits. Analytics endpoints return a clear 503 response until these are configured.
+   - `RATE_LIMIT_SALT`: optional server-side random salt for hashing transient rate-limit identifiers.
 6. Click **Deploy**. Your site will be online with a custom HTTPS URL in under 60 seconds!
-   - *Note:* The pre-configured `vercel.json` already handles single-page application (SPA) routing for all subpaths.
+   - *Note:* The `api/` directory contains Vercel Functions for health, analytics, and educational Q&A. `vercel.json` excludes `/api/*` from the SPA fallback. Set all server-only variables in Vercel Project Settings; do not use `VITE_` prefixes for secrets.
 
 ### Option 2: Netlify
 1. Sign in to [Netlify](https://netlify.com) using your GitHub account.
@@ -104,7 +106,8 @@ docker run -p 3000:3000 -e GEMINI_API_KEY="your-api-key" psychedu-portal
 ```
 Pre-configured configuration files:
 - `Dockerfile`: Multi-stage, lightweight Alpine Node.js 22 container.
-- `server.ts`: Express production server with compression, API routing, and static file delivery.
+- `server.ts`: Express production server with API routing and static file delivery.
+- The same Upstash Redis credentials are required for durable analytics and shared rate limits in this deployment too.
 
 ---
 
