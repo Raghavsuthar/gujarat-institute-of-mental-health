@@ -16,12 +16,12 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
 
   useEffect(() => {
     updatePageSEO({
-      title: currentLang === 'en' ? 'About Dr. Raghav Suthar, DNB (Psychiatry) & Clinical Ethics' : currentLang === 'hi' ? 'डॉ. राघव सुथार के बारे में एवं मेडिकल एथिक्स' : 'ડૉ. રાઘવ સુથાર વિશે અને તબીબી નૈતિકતા',
+      title: currentLang === 'en' ? 'About Dr. Raghav Suthar · Psychiatry Education' : currentLang === 'hi' ? 'डॉ. राघव सुथार के बारे में · मनोचिकित्सा शिक्षा' : 'ડૉ. રાઘવ સુથાર વિશે · મનોચિકિત્સા શિક્ષણ',
       description: currentLang === 'en'
-        ? 'Consultant Psychiatrist registered under the National Medical Commission (NMC). Evidence-based public health education and ethical practice in India.'
+        ? 'DNB Psychiatry resident sharing general mental-health education in English, Hindi, and Gujarati.'
         : currentLang === 'hi'
-        ? 'राष्ट्रीय चिकित्सा आयोग (NMC) पंजीकृत मनोचिकित्सक डॉ. राघव सुथार का परिचय एवं शैक्षिक उद्देश्य।'
-        : 'કન્સલ્ટન્ટ મનોચિકિત્સક ડૉ. રાઘવ સુથાર વિશે માહિતી.',
+        ? 'डीएनबी मनोचिकित्सा रेज़िडेंट डॉ. राघव सुथार का परिचय और हिंदी, गुजराती तथा अंग्रेज़ी में मानसिक स्वास्थ्य शिक्षा।'
+        : 'ડી.એન.બી. મનોચિકિત્સા રેસિડેન્ટ ડૉ. રાઘવ સુથાર અને ગુજરાતી, હિન્દી તથા અંગ્રેજીમાં માનસિક સ્વાસ્થ્ય શિક્ષણ વિશે.',
       path: 'about',
       lang: currentLang,
     });
@@ -32,17 +32,17 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
       {/* Header */}
       <div className="space-y-2">
         <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-          {currentLang === 'en' ? 'Professional Profile & Medical Ethics' : currentLang === 'hi' ? 'चिकित्सक परिचय व आचार संहिता' : 'તબીબી પરિચય અને નૈતિકતા'}
+          {currentLang === 'en' ? 'Profile & Educational Scope' : currentLang === 'hi' ? 'परिचय और शैक्षिक उद्देश्य' : 'પરિચય અને શૈક્ષણિક હેતુ'}
         </span>
         <h1 className="text-2xl sm:text-3xl font-semibold text-[#1c2430] tracking-tight">
           {t.nav.about}
         </h1>
         <p className="text-sm sm:text-base text-stone-600 max-w-3xl leading-relaxed">
           {currentLang === 'en'
-            ? 'Meet Dr. Raghav Suthar, Consultant Psychiatrist, and understand the medical ethics, transparency, and clinical standards underpinning this multilingual public health portal.'
+            ? 'Meet Dr. Raghav Suthar, a DNB Psychiatry resident, and learn about the educational purpose and transparency of this multilingual public mental-health resource.'
             : currentLang === 'hi'
-            ? 'कंसल्टेंट मनोचिकित्सक डॉ. राघव सुथार का परिचय और इस लोक स्वास्थ्य पोर्टल के वैज्ञानिक सिद्धांतों व मेडिकल आचार संहिता की जानकारी।'
-            : 'કન્સલ્ટન્ટ મનોચિકિત્સક ડૉ. રાઘવ સુથારનો પરિચય અને આ જાહેર આરોગ્ય પોર્ટલના વૈજ્ઞાનિક મૂલ્યો.'}
+            ? 'डीएनबी मनोचिकित्सा रेज़िडेंट डॉ. राघव सुथार और इस बहुभाषी सार्वजनिक मानसिक स्वास्थ्य शिक्षा संसाधन के उद्देश्य के बारे में जानें।'
+            : 'ડી.એન.બી. મનોચિકિત્સા રેસિડેન્ટ ડૉ. રાઘવ સુથાર અને આ બહુભાષી જાહેર માનસિક સ્વાસ્થ્ય શિક્ષણ સંસાધનના હેતુ વિશે જાણો.'}
         </p>
       </div>
 
@@ -84,7 +84,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
           {/* Special Interests */}
           <div className="pt-3 border-t border-stone-100 space-y-2">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-              Areas of Special Clinical Interest
+              Areas of Interest
             </h3>
             <div className="grid sm:grid-cols-2 gap-2">
               {doctorProfile.specialInterests.map((interest, i) => (
@@ -106,7 +106,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
         />
         <div className="p-6 sm:p-8 space-y-3 border-t border-[#ccfbf1]/80">
           <h2 className="text-base sm:text-lg font-semibold text-[#115e59]">
-            {currentLang === 'en' ? 'Clinical & Public Education Philosophy' : currentLang === 'hi' ? 'चिकित्सीय एवं जन-जागरूकता दृष्टिकोण' : 'તબીબી અને સામાજિક દ્રષ્ટિકોણ'}
+            {currentLang === 'en' ? 'Public Education Approach' : currentLang === 'hi' ? 'जन-शिक्षा का दृष्टिकोण' : 'જાહેર શિક્ષણનો અભિગમ'}
           </h2>
           <p className="text-xs sm:text-sm text-stone-800 leading-relaxed">
             {doctorProfile.practicePhilosophy[currentLang]}
@@ -114,12 +114,12 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
         </div>
       </div>
 
-      {/* Medical Ethics & NMC Compliance Declaration */}
+      {/* Educational scope and transparency */}
       <div className="p-6 sm:p-8 rounded-xl bg-white border border-stone-200 space-y-4">
         <div className="flex items-center gap-2.5">
           <ShieldCheck className="w-5 h-5 text-stone-600" />
           <h2 className="text-base sm:text-lg font-semibold text-[#1c2430]">
-            {currentLang === 'en' ? 'Medical Ethics & NMC Compliance Declaration' : currentLang === 'hi' ? 'चिकित्सीय आचार संहिता एवं NMC अनुपालन' : 'તબીબી નૈતિકતા અને નિયમોનું પાલન'}
+            {currentLang === 'en' ? 'Educational Scope & Transparency' : currentLang === 'hi' ? 'शैक्षिक दायरा और पारदर्शिता' : 'શૈક્ષણિક હેતુ અને પારદર્શિતા'}
           </h2>
         </div>
 
@@ -128,21 +128,21 @@ export const AboutView: React.FC<AboutViewProps> = ({ currentLang }) => {
         </p>
 
         <div className="p-4 bg-stone-50 rounded-lg border border-stone-200 text-xs sm:text-sm text-stone-700 leading-relaxed">
-          <strong className="text-stone-900">Mandatory Notice Regarding Consultations:</strong> {doctorProfile.consultationNotice[currentLang]}
+          <strong className="text-stone-900">Educational Notice:</strong> {doctorProfile.consultationNotice[currentLang]}
         </div>
 
         <div className="pt-3 border-t border-stone-100 grid sm:grid-cols-3 gap-4 text-xs sm:text-sm text-stone-600">
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-4 h-4 text-[#115e59] shrink-0 mt-0.5" />
-            <span>Strict non-diagnostic educational boundary</span>
+            <span>{currentLang === 'hi' ? 'यह संसाधन निदान नहीं करता' : currentLang === 'gu' ? 'આ સંસાધન નિદાન કરતું નથી' : 'Education only; no diagnosis'}</span>
           </div>
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-4 h-4 text-[#115e59] shrink-0 mt-0.5" />
-            <span>Zero sponsored content or commercial pharmaceutical promotion</span>
+            <span>{currentLang === 'hi' ? 'स्रोत और समीक्षा जानकारी जहाँ उपलब्ध हो' : currentLang === 'gu' ? 'જ્યાં ઉપલબ્ધ હોય ત્યાં સ્ત્રોત અને સમીક્ષા માહિતી' : 'Sources and review details where available'}</span>
           </div>
           <div className="flex items-start gap-2">
             <CheckCircle2 className="w-4 h-4 text-[#115e59] shrink-0 mt-0.5" />
-            <span>Regularly audited against latest international psychiatric literature</span>
+            <span>{currentLang === 'hi' ? 'व्यक्तिगत देखभाल के लिए योग्य चिकित्सक से संपर्क करें' : currentLang === 'gu' ? 'વ્યક્તિગત સંભાળ માટે યોગ્ય તબીબી વ્યાવસાયિકનો સંપર્ક કરો' : 'Consult a qualified clinician for individual care'}</span>
           </div>
         </div>
       </div>

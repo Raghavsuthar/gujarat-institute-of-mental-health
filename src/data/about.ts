@@ -14,16 +14,16 @@ export interface DoctorProfile {
 
 export const doctorProfile: DoctorProfile = {
   name: 'Dr. Raghav Suthar',
-  qualifications: 'MBBS, DNB (Psychiatry)',
+  qualifications: 'MBBS · DNB Psychiatry Resident',
   title: {
-    en: 'Consultant Psychiatrist',
-    hi: 'कंसल्टेंट मनोचिकित्सक (Consultant Psychiatrist)',
-    gu: 'કન્સલ્ટન્ટ મનોચિકિત્સક (Consultant Psychiatrist)',
+    en: 'DNB Psychiatry Resident · Public Education',
+    hi: 'डीएनबी मनोचिकित्सा रेज़िडेंट · जन-जागरूकता शिक्षा',
+    gu: 'ડી.એન.બી. મનોચિકિત્સા રેસિડેન્ટ · જાહેર શિક્ષણ',
   },
   registrationDetails: {
-    en: 'Registered Medical Practitioner under the National Medical Commission (NMC) & Gujarat Medical Council (GMC)',
-    hi: 'राष्ट्रीय चिकित्सा आयोग (NMC) एवं गुजरात मेडिकल काउंसिल (GMC) के अंतर्गत पंजीकृत मेडिकल प्रैक्टिशनर',
-    gu: 'નેશનલ મેડિકલ કમિશન (NMC) અને ગુજરાત મેડિકલ કાઉન્સિલ (GMC) હેઠળ નોંધાયેલ નિષ્ણાત તબીબ',
+    en: 'Psychiatry resident. This website provides public education and does not offer consultations.',
+    hi: 'मनोचिकित्सा रेज़िडेंट। यह वेबसाइट जन-शिक्षा के लिए है, परामर्श सेवा नहीं।',
+    gu: 'મનોચિકિત્સા રેસિડેન્ટ. આ વેબસાઇટ જાહેર શિક્ષણ માટે છે, પરામર્શ સેવા નથી.',
   },
   languagesSpoken: ['English', 'हिन्दी (Hindi)', 'ગુજરાતી (Gujarati)'],
   specialInterests: [
@@ -54,9 +54,9 @@ export const doctorProfile: DoctorProfile = {
     },
   ],
   practicePhilosophy: {
-    en: 'Practicing ethical, evidence-based psychiatric medicine rooted in compassionate listening, objective psychoeducation, and scientifically validated treatments. Every person deserves dignity, clarity, and respect on their journey toward mental well-being.',
-    hi: 'सहानुभूतिपूर्ण दृष्टिकोण, वैज्ञानिक प्रमाणों और निष्पक्ष शिक्षा पर आधारित नैतिक चिकित्सा। प्रत्येक व्यक्ति अपनी मानसिक सेहत के सफर में गरिमा, स्पष्टता और सम्मान का हकदार है।',
-    gu: 'વૈજ્ઞાનિક પુરાવા, કરુણાપૂર્ણ સંવાદ અને પ્રામાણિક માર્ગદર્શન પર આધારિત સારવાર. દરેક વ્યક્તિ ગૌરવ અને યોગ્ય સન્માન સાથે સાજી થવાનો અધિકાર ધરાવે છે.',
+    en: 'This project focuses on compassionate, evidence-informed public education and clear explanations of mental health. Every person deserves dignity, clarity, and respect when seeking support.',
+    hi: 'यह परियोजना मानसिक स्वास्थ्य के बारे में सहानुभूतिपूर्ण, प्रमाण-आधारित जन-शिक्षा और स्पष्ट जानकारी पर केंद्रित है। सहायता लेने वाले हर व्यक्ति को गरिमा और सम्मान मिलना चाहिए।',
+    gu: 'આ પ્રોજેક્ટ માનસિક સ્વાસ્થ્ય અંગે સહાનુભૂતિપૂર્ણ, પુરાવા-આધારિત જાહેર શિક્ષણ પર કેન્દ્રિત છે. સહાય મેળવતા દરેક વ્યક્તિને ગૌરવ અને સન્માન મળવું જોઈએ.',
   },
   consultationNotice: {
     en: 'This portal is dedicated exclusively to public psychiatric education and mental health literacy in India. It does not provide personalized medical diagnoses, treatment plans, or online prescriptions. For medical care, please consult a registered medical professional in person.',
@@ -64,8 +64,8 @@ export const doctorProfile: DoctorProfile = {
     gu: 'આ વેબસાઇટ ફક્ત જાહેર માનસિક સ્વાસ્થ્ય શિક્ષણ અને જાગૃતિ માટે બનાવવામાં આવી છે. આના દ્વારા કોઈ અંગત નિદાન કે સારવાર આપવામાં આવતી નથી. વ્યક્તિગત સારવાર માટે નજીકના ડૉક્ટરનો રૂબરૂ સંપર્ક કરો.',
   },
   ethicalCommitment: {
-    en: 'Adheres strictly to the Code of Medical Ethics prescribed by the National Medical Commission (NMC). No promotional guarantees, fake cure claims, or commercial endorsements are made.',
-    hi: 'राष्ट्रीय चिकित्सा आयोग (NMC) की मेडिकल आचार संहिता का पूर्ण पालन। किसी भी प्रकार के चमत्कारिक दावे, गारंटी या भ्रामक प्रचार का सख्त निषेध।',
-    gu: 'નેશનલ મેડિકલ કમિશન (NMC) ની તબીબી આચારસંહિતાનું સંપૂર્ણ પાલન. કોઈ પણ ચમત્કારિક દાવા કે વ્યાવસાયિક જાહેરાતો કરવામાં આવતી નથી.',
+    en: 'This website provides general education, not individual diagnosis or treatment. Source links and review information are shown where available; content should not replace care from a qualified clinician.',
+    hi: 'यह वेबसाइट सामान्य शिक्षा देती है, व्यक्तिगत निदान या उपचार नहीं। जहाँ उपलब्ध हों, वहाँ स्रोत लिंक और समीक्षा जानकारी दी जाती है; यह योग्य चिकित्सक की देखभाल का विकल्प नहीं है।',
+    gu: 'આ વેબસાઇટ સામાન્ય શિક્ષણ આપે છે, વ્યક્તિગત નિદાન કે સારવાર નહીં. જ્યાં ઉપલબ્ધ હોય ત્યાં સ્ત્રોત લિંક્સ અને સમીક્ષા માહિતી આપવામાં આવે છે; આ યોગ્ય તબીબી સંભાળનો વિકલ્પ નથી.',
   },
 };

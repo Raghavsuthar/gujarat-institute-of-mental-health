@@ -196,3 +196,9 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - Added a production-build assertion for route-specific Markdown preload boundaries, the generated trilingual condition index, and crisis/emergency assets in the service-worker precache manifest.
 - This turns source/build assumptions into CI checks; it is not a browser offline simulation, visual check, or Lighthouse measurement.
 - CI results are pending for this branch.
+
+## Profile and structured-data trust correction — 2026-10-24
+
+- Preview HTML inspection revealed structured data labeling the author “Consultant Psychiatrist” and listing “DNB Psychiatry, MBBS” as completed qualifications. The About page also asserted NMC/GMC registration and NMC compliance without verification evidence in this repository.
+- The profile is now described as a DNB Psychiatry resident; unverified registration/compliance claims are removed, and the educational-only scope is explicit in localized copy and metadata.
+- CI and preview verification are pending on this branch. No conclusion is made about the author's registration status; any public registration details should be owner-verified.

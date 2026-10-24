@@ -176,3 +176,12 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - Validate that the compact condition index is non-empty, has localized names and search text, and is included in the service-worker precache manifest.
 - Verify that crisis and emergency code/content chunks are emitted and represented in the precache manifest, supporting—but not proving—offline availability.
 - These checks are artifact-level safeguards. They do not replace browser offline tests, keyboard/axe checks, or Lighthouse measurement.
+
+## 2026-10-24 — Correct public author profile claims
+
+**Status:** Implemented on `improve/profile-accuracy-final`; CI pending.
+
+- Preview HTML exposed JSON-LD describing the author as a “Consultant Psychiatrist” and listing DNB Psychiatry as completed, while project context identifies the author as a DNB Psychiatry resident.
+- The About page asserted NMC/GMC registration and NMC-compliance claims without verification evidence in the repository. The updated profile uses the resident role and clear educational-only scope.
+- Package description and structured metadata no longer imply that the DNB qualification is completed.
+- This is a factuality/trust correction. It does not verify the author's registration status or provide clinical/legal certification.
