@@ -2,7 +2,7 @@
 
 ## 2026-10-24 — Production API runtime and analytics storage
 
-**Status:** Proposed in PR `improve/p0-api-security`; do not treat as production-active until deployment and environment configuration are verified.
+**Implementation status:** Merged in PR #13. **Production acceptance status:** still pending until environment configuration and live API/storage checks are verified.
 
 ### Decision
 
@@ -72,7 +72,7 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 
 ## 2026-10-24 — Phase 3 Calm Aurora visual system
 
-**Status:** Proposed in PR `improve/phase-3-visual-redesign`; merge only after CI and visual review.
+**Status:** Merged in PR #15. Visual/browser acceptance remains unverified because no interactive preview review was available.
 
 ### Decision
 - Extend the existing Calm Aurora tokens instead of introducing a second CSS framework, remote fonts, or new image dependencies.
@@ -89,7 +89,7 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 
 ## 2026-10-24 — Phase 3 accessibility and trust-copy follow-up
 
-**Status:** Proposed in PR `improve/phase-3-accessibility-polish`.
+**Status:** Merged in PR #16. Browser keyboard/screen-reader verification remains pending.
 
 - Add programmatic state to language controls and active navigation, and link the mobile menu button to its panel for assistive technology.
 - Remove persistent footer crisis-icon pulsing; crisis information should be prominent without a perpetual animation.
@@ -100,7 +100,7 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 
 ## 2026-10-24 — Phase 4 lazy deep-link dataset loading
 
-**Status:** Proposed in PR `improve/phase-4-defer-content-data`.
+**Status:** Merged in PR #17. Runtime route checks and Lighthouse measurement remain pending.
 
 - Keep route components and their current schemas unchanged.
 - Remove eager dataset imports from `src/App.tsx`; load the relevant content module only when its URL contains a detail slug. Cancel stale effect results when the slug changes and fail closed to a null detail if the module fails to load.
@@ -117,9 +117,14 @@ The Phase 4 build confirms code splitting: the previous 3,437.90 kB `index` chun
 
 ## 2026-10-24 — Keep home spotlights independent from the full condition library
 
-**Status:** Proposed in PR `improve/phase-4-lightweight-home-spotlights`.
+**Status:** Merged in PR #18. Confirm spotlight rendering and detail-link behavior in the preview.
 
 - Use a small presentation-only localized dataset for the four home spotlight cards instead of importing all of `src/data/conditions.ts` into `HomeView`.
 - Keep summaries generic and non-clinical; the condition library remains the source for full educational content. The spotlight click only requires the matching slug to navigate to the detail route.
 - Correct the stale ADHD spotlight ID to `adhd`, matching the existing condition record.
 - Acceptance requires TypeScript/build success and inspection of emitted chunks. Confirm that home spotlights render and that all four links resolve in the preview before considering the optimization complete.
+
+
+## Status reconciliation — 2026-10-24
+
+Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish), and #17–#18 (bundle splitting/home spotlight isolation) are merged. Merge status does not equal production acceptance: Phase 2 still needs environment setup and live API/storage tests; Phase 3 still needs browser accessibility/visual review; Phase 4 still needs runtime route checks, Lighthouse measurement, and further review of the remaining large conditions chunk.

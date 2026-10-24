@@ -124,14 +124,14 @@ These limitations are explicit to avoid confusing source review with runtime ver
 
 ## Phase 3 visual redesign update — 2026-10-24
 
-A Calm Aurora styling pass is proposed in `improve/phase-3-visual-redesign`. It applies shared tokens and restrained responsive styles to the header, crisis strip, home hero support panels, library tiles, condition listing cards, condition/substance detail shells, and footer notice. It also removes the unsupported “NMC Registered Specialist” badge wording in favor of a public-education descriptor.
+The Calm Aurora styling pass was merged from PR #15 (`improve/phase-3-visual-redesign`). It applies shared tokens and restrained responsive styles to the header, crisis strip, home hero support panels, library tiles, condition listing cards, condition/substance detail shells, and footer notice. It also removes the unsupported “NMC Registered Specialist” badge wording in favor of a public-education descriptor.
 
 This is a source-level change, not proof of visual acceptance. Screenshots at 360/390/768/1280/1536 px, English/Hindi/Gujarati font rendering, light/dark system behavior, reduced-motion behavior, keyboard checks, axe, and Lighthouse remain **[UNVERIFIED]** until executed against a deployed preview. No performance score or visual regression pass is claimed here.
 
 
 ## Phase 3 follow-up — 2026-10-24
 
-- Follow-up polish in `improve/phase-3-accessibility-polish`: mark the active navigation item with `aria-current`, connect the mobile-menu trigger to its controlled navigation panel, and expose selected language buttons with `aria-pressed`.
+- Follow-up polish merged from PR #16 (`improve/phase-3-accessibility-polish`): mark the active navigation item with `aria-current`, connect the mobile-menu trigger to its controlled navigation panel, and expose selected language buttons with `aria-pressed`.
 - Removed a persistent pulse animation from the footer crisis icon to keep urgent content calm and reduce unnecessary motion.
 - Corrected footer profile wording to a localized “Psychiatry resident · Public education” descriptor and removed the unsupported NMC-registration claim.
 - Replaced the absolute “zero visitor data collection / strictly confidential” statement with a more qualified, trilingual privacy note that warns users not to enter identifying details into Q&A. This is copy-level risk reduction, not a substitute for a full privacy-policy and data-flow review.
@@ -141,7 +141,7 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 ## Phase 4 baseline and first optimization — 2026-10-24
 
 - Recorded CI build baseline from Phase 2: Vite reported a main JavaScript chunk around 3.43 MB uncompressed / 959 KB gzip, with a chunk-size warning above 600 kB. This is build output, not a Lighthouse measurement.
-- In `improve/phase-4-defer-content-data`, remove four eager dataset imports from the application entry and load the matching content module asynchronously only when a condition, child-psychiatry, women's mental-health, or substance detail slug exists.
+- Merged in PR #17 (`improve/phase-4-defer-content-data`): remove four eager dataset imports from the application entry and load the matching content module asynchronously only when a condition, child-psychiatry, women's mental-health, or substance detail slug exists.
 - This is a candidate bundle-splitting optimization. Actual before/after chunk sizes, deep-link loading behavior, and route regression checks must be confirmed from CI and preview before acceptance.
 - No Lighthouse or runtime performance score is claimed.
 
@@ -157,6 +157,12 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 ## Phase 4 follow-up — lightweight home-page spotlights — 2026-10-24
 
 - The home view previously imported the full 531 KB source file `src/data/conditions.ts` solely to provide four featured cards to `ConditionSpotlight`; CI emitted a 1,304.25 kB minified `conditions-*` chunk.
-- Added a compact localized `src/data/conditionSpotlight.ts` with only four cards' IDs, slugs, categories, names, and short generic summaries. The full clinical dataset remains owned by the conditions library/detail flow.
+- Merged in PR #18: added a compact localized `src/data/conditionSpotlight.ts` with only four cards' IDs, slugs, categories, names, and short generic summaries. The full clinical dataset remains owned by the conditions library/detail flow.
 - Corrected the spotlight ADHD identifier from `adhd_adult` to the existing data ID `adhd` and aligned its slug with the record in `newConditions.ts`.
 - This should keep the large conditions dataset off the home route's import graph. Confirm emitted chunks and preview behavior in CI; no Lighthouse or runtime route test is claimed.
+
+
+## Repository state sync — 2026-10-24
+
+- Updated the audit's phase 3/4 notes to distinguish merged changes from outstanding runtime verification. PRs #15–#18 are merged; browser interaction and Lighthouse results remain unverified.
+- Phase 2 code was merged in PR #13, but production acceptance is still blocked on server-side environment configuration and live API/Redis verification.
