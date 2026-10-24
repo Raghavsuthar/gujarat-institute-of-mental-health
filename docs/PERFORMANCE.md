@@ -36,3 +36,11 @@ No Lighthouse scores, Core Web Vitals, real initial network transfer, offline br
 - `/sw.js` returned HTTP 200 and its content includes `conditions-index.json`, confirming the index is in the generated service-worker precache manifest.
 - The HTML entry preloads React/UI vendor chunks but does not preload the condition data chunk. This is consistent with the intended route-level separation; it is not a browser network trace.
 - Manual browser rendering, language interaction, offline-mode behavior, Lighthouse, and axe remain unverified.
+
+
+## Phase 4 follow-up — verify route-specific Markdown loading
+
+- Prior CI emitted `vendor-ui` at **254.36 kB minified / 76.94 kB gzip**.
+- Splitting Lucide icons, Motion, and React Markdown into separate manual chunks emitted a `vendor-markdown` chunk at **119.02 kB minified / 36.85 kB gzip**, but the preview HTML still preloaded it from the home page. The attempted split therefore failed its main acceptance criterion.
+- The branch now removes the forced `vendor-markdown` chunk and relies on Rollup's route-level dynamic-import graph for Markdown. Check the new CI output and preview HTML before accepting this optimization.
+- Browser network traces, actual initial transfer, and Lighthouse remain unverified.

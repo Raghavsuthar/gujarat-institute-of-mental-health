@@ -157,3 +157,13 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - The current preview returns HTTP 200 JSON for `/api/health`, but HTTP 500 `FUNCTION_INVOCATION_FAILED` plain text for GET requests to `/api/analytics/summary`, `/api/analytics/ping`, and `/api/qa`.
 - The project environment listing shows only `GEMINI_API_KEY` and `APP_URL`; Redis REST credentials and the admin password are not configured. However, the observed generic invocation failures are not the intended JSON 503 response, so missing configuration alone is not assumed to be the complete cause.
 - Runtime logs could not be read because the Vercel integration returned 403. Keep this unresolved until logs are accessible and the routes return documented JSON responses. Never paste secret values into chat or source control.
+
+
+## 2026-10-24 — Avoid forcing Markdown into an eagerly preloaded vendor chunk
+
+**Status:** Corrected on `improve/phase-4-vendor-chunks` after preview HTML inspection.
+
+- The prior build grouped `lucide-react`, `motion`, and `react-markdown` into `vendor-ui` (254.36 kB minified / 76.94 kB gzip).
+- A first attempt to split all three packages emitted `vendor-markdown` at 119.02 kB minified / 36.85 kB gzip, but the deployed preview HTML still contained a `modulepreload` for that chunk. This means the attempted split did **not** keep Markdown off the initial preload graph.
+- Removed the forced `vendor-markdown` manual chunk and let Rollup retain route-specific dynamic-import boundaries. Keep separate icon and Motion chunks only if CI/preview output confirms they are useful.
+- Acceptance requires a new CI build and preview HTML check confirming that no Markdown-specific chunk is preloaded on the home route. No Lighthouse or real network savings are claimed.

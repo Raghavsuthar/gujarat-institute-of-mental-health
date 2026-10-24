@@ -73,7 +73,8 @@ export default defineConfig(() => {
           assetFileNames: 'assets/[name]-[hash].[ext]',
           manualChunks: {
             'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-            'vendor-ui': ['lucide-react', 'motion', 'react-markdown'],
+            'vendor-icons': ['lucide-react'],
+            'vendor-motion': ['motion'],
             'vendor-utils': ['qrcode'],
           },
         },
