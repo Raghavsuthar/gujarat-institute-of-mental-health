@@ -202,3 +202,9 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - Preview HTML inspection revealed structured data labeling the author “Consultant Psychiatrist” and listing “DNB Psychiatry, MBBS” as completed qualifications. The About page also asserted NMC/GMC registration and NMC compliance without verification evidence in this repository.
 - The profile is now described as a DNB Psychiatry resident; unverified registration/compliance claims are removed, and the educational-only scope is explicit in localized copy and metadata.
 - CI and preview verification are pending on this branch. No conclusion is made about the author's registration status; any public registration details should be owner-verified.
+
+## Phase 5 content coverage — 2026-10-24
+
+- Added evidence-guide coverage for the ten existing conditions that previously lacked a dedicated guide, completing the 23-condition guide map.
+- Added `docs/CONTENT_REVIEW.md` and `docs/CHANGELOG-content.md`, plus a test that checks condition coverage, trilingual fields, HTTPS source URLs, and source metadata.
+- Public guidance and source pages were checked during authoring. No independent clinician sign-off or browser-level review of rendered evidence cards is claimed; the review register lists these as pending.

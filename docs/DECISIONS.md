@@ -185,3 +185,12 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - The About page asserted NMC/GMC registration and NMC-compliance claims without verification evidence in the repository. The updated profile uses the resident role and clear educational-only scope.
 - Package description and structured metadata no longer imply that the DNB qualification is completed.
 - This is a factuality/trust correction. It does not verify the author's registration status or provide clinical/legal certification.
+
+## 2026-10-24 — Add evidence summaries for remaining condition guides
+
+**Status:** Implemented on `improve/phase-5-evidence-guides-final`; CI pending.
+
+- Added public-facing English/Hindi/Gujarati evidence summaries for social anxiety, specific phobia, insomnia, somatic symptom disorder, illness anxiety, persistent depressive disorder, PMDD, personality disorders, postpartum depression/anxiety, and BDD.
+- Each summary includes source metadata, limitations, and non-diagnostic language. The personality-disorder summary explicitly limits the cited NICE CG78 recommendations to borderline personality disorder.
+- Added content-review and changelog records plus automated coverage/localization/source-metadata checks.
+- Automated validation cannot replace clinician sign-off, expert translation review, or browser verification.
