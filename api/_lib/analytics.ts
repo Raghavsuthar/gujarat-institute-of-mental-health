@@ -118,10 +118,10 @@ export function normalizePingPayload(input: unknown): NormalizedAnalyticsPayload
   const rawReferrer = typeof payload.referrerDomain === 'string' ? payload.referrerDomain : 'Direct / QR Poster';
   const containsControlChars = /[\u0000-\u001f\u007f]/.test(rawReferrer);
   const cleanedReferrer = rawReferrer.replace(/[\u0000-\u001f\u007f]/g, '').trim();
-  let referrerDomain = containsControlChars ? 'Other' : cleanedReferrer;
-  if (['Direct / QR Poster', 'QR Poster Scan', 'Internal Navigation', 'Other'].includes(cleanedReferrer)) {
+  let referrerDomain = 'Other';
+  if (!containsControlChars && ['Direct / QR Poster', 'QR Poster Scan', 'Internal Navigation', 'Other'].includes(cleanedReferrer)) {
     referrerDomain = cleanedReferrer;
-  } else {
+  } else if (!containsControlChars) {
     const hostname = cleanedReferrer.toLowerCase().replace(/^www\./, '');
     referrerDomain = /^[a-z0-9.-]{1,100}$/.test(hostname) && hostname.includes('.') && !hostname.startsWith('.') && !hostname.endsWith('.')
       ? hostname
