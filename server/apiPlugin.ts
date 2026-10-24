@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Plugin } from 'vite';
 
-const DATA_FILE = path.resolve('.analytics-data.json');
+const DATA_FILE = path.resolve('.analytics-data-dev.json');
 
 interface AnalyticsStore {
   totalViews: number;
