@@ -6,7 +6,7 @@ import {
   hasValidAdminToken,
   type ApiRequestLike,
   type ApiResponseLike,
-} from '../_lib/analytics';
+} from '../../server/shared/analytics';
 
 export default async function handler(req: ApiRequestLike, res: ApiResponseLike) {
   res.setHeader('Cache-Control', 'no-store, private');
