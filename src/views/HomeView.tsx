@@ -652,30 +652,30 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <PWAInstallButton currentLang={currentLang} variant="banner" />
 
       {/* About Dr. Raghav Suthar Snippet */}
-      <section className="p-6 sm:p-8 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-start gap-6 hover:shadow-sm transition-shadow">
+      <section className="aurora-story-panel p-6 sm:p-8 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-start gap-6 transition-shadow">
         <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 border border-teal-200/70 shadow-xs overflow-hidden">
           <img src="/mindcare-logo.svg" alt="MindCare logo" className="w-14 h-14 object-contain" width={56} height={56} />
         </div>
         <div className="space-y-2 flex-1">
           <div className="flex flex-wrap items-baseline gap-2">
             <h3 className="text-lg sm:text-xl font-bold text-slate-900">{t.doctorName}</h3>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 font-semibold border border-teal-200/70 shadow-2xs">
-              MBBS, DNB (Psychiatry)
+            <span className="text-xs px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 font-semibold border border-teal-200/70">
+              {currentLang === 'en' ? 'DNB Psychiatry resident' : currentLang === 'hi' ? 'डीएनबी मनोचिकित्सा रेज़िडेंट' : 'ડી.એન.બી. મનોચિકિત્સા રેસિડેન્ટ'}
             </span>
           </div>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
             {currentLang === 'en'
-              ? 'Consultant Psychiatrist registered under the National Medical Commission (NMC). This public education portal is maintained to provide scientifically validated, destigmatizing psychiatric information in English, Hindi, and Gujarati.'
+              ? 'This portal shares general mental-health education in English, Hindi, and Gujarati. It does not provide personal diagnoses, consultations, or prescriptions.'
               : currentLang === 'hi'
-              ? 'राष्ट्रीय चिकित्सा आयोग (NMC) के अंतर्गत पंजीकृत कंसल्टेंट मनोचिकित्सक। यह पोर्टल अंग्रेजी, हिन्दी और गुजराती में प्रमाण-आधारित मानसिक स्वास्थ्य ज्ञान प्रदान करने के लिए समर्पित है।'
-              : 'નેશનલ મેડિકલ કમિશન (NMC) હેઠળ નોંધાયેલ કન્સલ્ટન્ટ મનોચિકિત્સક. આ પોર્ટલ અંગ્રેજી, હિન્દી અને ગુજરાતીમાં પુરાવા-આધારિત જ્ઞાન પૂરું પાડે છે.'}
+              ? 'यह पोर्टल अंग्रेज़ी, हिंदी और गुजराती में सामान्य मानसिक स्वास्थ्य शिक्षा प्रदान करता है। यह व्यक्तिगत निदान, परामर्श या दवा के पर्चे नहीं देता।'
+              : 'આ પોર્ટલ અંગ્રેજી, હિન્દી અને ગુજરાતીમાં સામાન્ય માનસિક સ્વાસ્થ્ય શિક્ષણ આપે છે. તે વ્યક્તિગત નિદાન, પરામર્શ કે દવાનું પ્રિસ્ક્રિપ્શન આપતું નથી.'}
           </p>
           <div className="pt-2">
             <button
               onClick={() => onTabChange('about')}
               className="text-xs font-semibold text-[#115e59] hover:underline cursor-pointer min-h-[44px] flex items-center"
             >
-              {currentLang === 'en' ? 'Read Full Professional Profile & Ethics Compliance' : currentLang === 'hi' ? 'पूरा प्रोफाइल व आचार संहिता देखें' : 'સંપૂર્ણ પ્રોફાઇલ જુઓ'}
+              {currentLang === 'en' ? 'Read About Mindcare and its educational scope' : currentLang === 'hi' ? 'Mindcare और इसके शैक्षिक उद्देश्य के बारे में पढ़ें' : 'Mindcare અને તેના શૈક્ષણિક હેતુ વિશે વાંચો'}
             </button>
           </div>
         </div>
