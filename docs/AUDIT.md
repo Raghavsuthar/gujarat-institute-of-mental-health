@@ -166,3 +166,27 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 
 - Updated the audit's phase 3/4 notes to distinguish merged changes from outstanding runtime verification. PRs #15–#18 are merged; browser interaction and Lighthouse results remain unverified.
 - Phase 2 code was merged in PR #13, but production acceptance is still blocked on server-side environment configuration and live API/Redis verification.
+
+
+## Phase 4 follow-up — condition library index isolation (PR pending)
+
+- The full condition dataset remains a separate 1,304.25 kB minified chunk (372.64 kB gzip) in the prior CI build. The Conditions library imported it for card rendering and search, so visiting the library required the full data chunk.
+- The current branch generates `public/data/conditions-index.json` with compact localized card metadata and searchable overview/symptom text. The view fetches this index, leaving long-form condition detail content to the existing detail/deep-link path.
+- CI run #97 passed validation, TypeScript, API tests, and production build. It measured the generated index at 276,772 bytes (57,282 bytes gzip); the separate condition detail chunk remains 1,304.25 kB (372.64 kB gzip) in build output but is no longer statically imported by the Conditions view. This confirms the source/build structure, not route network transfer. Preview, offline, Lighthouse, and runtime checks remain pending.
+
+
+## Preview HTTP verification — Phase 4 (deployment built from commit b867041)
+
+- `/data/conditions-index.json` returned HTTP 200 with `application/json`, 23 records, localized `en`/`hi`/`gu` names, searchable text, and no long illustrative-vignette field.
+- A direct condition deep-link URL returned HTTP 200 with the SPA HTML shell. This verifies the rewrite response only, not client-side rendering or route navigation.
+- `/sw.js` returned HTTP 200 and its content includes `conditions-index.json`, confirming the index is in the generated service-worker precache manifest.
+- The HTML entry preloads React/UI vendor chunks but does not preload the condition data chunk. This is consistent with the intended route-level separation; it is not a browser network trace.
+- Manual browser rendering, language interaction, offline-mode behavior, Lighthouse, and axe remain unverified.
+
+
+## New P0 runtime finding — preview API probes (2026-10-24)
+
+- On the READY preview deployment `mindcare-kbn00t1di-raghavsuthars-projects.vercel.app`, `GET /api/health` returned HTTP 200 JSON.
+- `GET /api/analytics/summary`, `GET /api/analytics/ping`, and `GET /api/qa` returned HTTP 500 with Vercel `FUNCTION_INVOCATION_FAILED` plain-text responses, rather than the handlers' expected JSON status responses. These are not accepted as passing API checks.
+- The Vercel project environment listing (without decrypting values) contains only `GEMINI_API_KEY` and `APP_URL`; no preview-branch variables are configured, and `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, and `ADMIN_PASSWORD` are absent from the listed project environment.
+- Runtime error/log access returned HTTP 403 through the connected Vercel integration, so the function invocation root cause is not verified. Do not guess at a code fix or claim Phase 2 production acceptance. Next: restore authorized runtime-log access, diagnose the shared-helper invocation failure, provision the required server-side configuration without sharing secrets in chat, and retest JSON/status behavior.

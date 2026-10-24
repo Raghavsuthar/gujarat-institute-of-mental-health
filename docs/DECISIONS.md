@@ -128,3 +128,32 @@ The Phase 4 build confirms code splitting: the previous 3,437.90 kB `index` chun
 ## Status reconciliation — 2026-10-24
 
 Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish), and #17–#18 (bundle splitting/home spotlight isolation) are merged. Merge status does not equal production acceptance: Phase 2 still needs environment setup and live API/storage tests; Phase 3 still needs browser accessibility/visual review; Phase 4 still needs runtime route checks, Lighthouse measurement, and further review of the remaining large conditions chunk.
+
+
+## 2026-10-24 — Serve a compact condition-library index
+
+**Status:** Implemented on `improve/phase-4-performance-pwa`; CI run #97 passed. Preview acceptance is pending.
+
+- The Conditions library now fetches a generated JSON index rather than importing the full condition dataset for its card list.
+- `scripts/generate-condition-index.ts` derives localized card fields and full overview/symptom search text from the canonical `conditionsData`. The build and `predev` hook generate the file so the development server and production build use the same schema.
+- The index keeps only short display excerpts, a compact evidence highlight, and the search corpus. Long illustrative vignettes, treatment plans, FAQs, and other detail fields remain in the full condition dataset.
+- This is a source-level payload reduction strategy, not yet a measured Lighthouse improvement. CI must confirm that the generator and type-check/build succeed; preview testing must confirm category counts, search, language rendering, and deep links.
+
+
+## 2026-10-24 — Phase 4 preview HTTP checks
+
+**Status:** HTTP-level checks passed on the READY preview deployment built from commit `b867041`; browser acceptance remains pending.
+
+- The generated index endpoint returned JSON 200 with 23 trilingual records and omitted long-form vignette fields.
+- A direct condition deep link returned the SPA shell with 200.
+- The generated service worker includes the condition index in its precache manifest, and the initial HTML does not preload the condition data chunk.
+- These checks confirm deployment assets and HTTP responses, not client-side rendering, search interaction, offline operation, or Lighthouse metrics.
+
+
+## 2026-10-24 — Phase 2 preview API failure re-observed
+
+**Status:** Open P0 blocker; runtime cause not diagnosed.
+
+- The current preview returns HTTP 200 JSON for `/api/health`, but HTTP 500 `FUNCTION_INVOCATION_FAILED` plain text for GET requests to `/api/analytics/summary`, `/api/analytics/ping`, and `/api/qa`.
+- The project environment listing shows only `GEMINI_API_KEY` and `APP_URL`; Redis REST credentials and the admin password are not configured. However, the observed generic invocation failures are not the intended JSON 503 response, so missing configuration alone is not assumed to be the complete cause.
+- Runtime logs could not be read because the Vercel integration returned 403. Keep this unresolved until logs are accessible and the routes return documented JSON responses. Never paste secret values into chat or source control.

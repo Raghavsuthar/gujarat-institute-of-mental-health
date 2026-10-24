@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, Check, ArrowRight, Sparkles, X } from 'lucide-react';
 import { Language, Condition, ConditionCategory } from '../types';
-import { conditionsData } from '../data/conditions';
+
+type ConditionCardSummary = Pick<Condition, 'id' | 'slug' | 'category' | 'conditionIcon' | 'name' | 'medicalTerms' | 'commonSymptoms' | 'overview' | 'evidenceHighlights'> & { searchText: string };
 import { translations } from '../data/translations';
 import { updatePageSEO } from '../utils/seo';
 import { CategoryIllustration, ConditionIcon } from '../components/visuals';
@@ -10,7 +11,7 @@ import { getCategoryTheme } from '../data/categoryThemes';
 
 interface ConditionsViewProps {
   currentLang: Language;
-  onSelectCondition: (item: Condition) => void;
+  onSelectCondition: (item: Pick<Condition, 'slug'>) => void;
 }
 
 export const ConditionsView: React.FC<ConditionsViewProps> = ({
@@ -19,7 +20,30 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [conditionCards, setConditionCards] = useState<ConditionCardSummary[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const t = translations[currentLang];
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/data/conditions-index.json', { headers: { Accept: 'application/json' } })
+      .then((response) => {
+        if (!response.ok) throw new Error('Condition index request failed');
+        return response.json() as Promise<ConditionCardSummary[]>;
+      })
+      .then((data) => {
+        if (!Array.isArray(data)) throw new Error('Condition index has an invalid shape');
+        if (!cancelled) setConditionCards(data);
+      })
+      .catch(() => {
+        if (!cancelled) setLoadError(true);
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     updatePageSEO({
@@ -51,16 +75,16 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
   ];
 
   const filteredConditions = useMemo(() => {
-    return conditionsData.filter((c) => {
+    return conditionCards.filter((c) => {
       const matchesCategory = selectedCategory === 'all' || c.category === selectedCategory;
       const q = searchQuery.toLowerCase().trim();
       if (!q) return matchesCategory;
 
       const symptoms = Object.values(c.commonSymptoms || {}).flat().join(' ');
-      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${c.overview.en} ${c.overview.hi} ${c.overview.gu} ${symptoms}`.toLowerCase();
+      const text = `${c.name.en} ${c.name.hi} ${c.name.gu} ${c.medicalTerms.en} ${c.medicalTerms.hi} ${c.medicalTerms.gu} ${c.searchText} ${symptoms}`.toLowerCase();
       return matchesCategory && text.includes(q);
     });
-  }, [selectedCategory, searchQuery, currentLang]);
+  }, [conditionCards, selectedCategory, searchQuery]);
 
   return (
     <div className="aurora-page space-y-8 pb-12">
@@ -84,6 +108,9 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
         </p>
       </div>
 
+      {isLoading && <p className="text-sm text-stone-600" role="status">{currentLang === 'en' ? 'Loading condition guides…' : currentLang === 'hi' ? 'विषय लोड हो रहे हैं…' : 'વિષયોની માહિતી લોડ થઈ રહી છે…'}</p>}
+      {loadError && <p className="text-sm text-rose-700 rounded-xl border border-rose-200 bg-rose-50 p-4" role="alert">{currentLang === 'en' ? 'The condition library could not load. Please refresh the page to try again.' : currentLang === 'hi' ? 'विषय लाइब्रेरी लोड नहीं हो सकी। फिर से प्रयास करने के लिए पेज रीफ़्रेश करें।' : 'વિષયોની લાઇબ્રેરી લોડ થઈ શકી નથી. ફરી પ્રયાસ કરવા પેજ રિફ્રેશ કરો.'}</p>}
+
       {/* Dynamic Category Visual Education Banner */}
       <div className="w-full rounded-2xl overflow-hidden border border-stone-200/80 shadow-xs bg-white">
         <CategoryIllustration
@@ -105,8 +132,8 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
         <div className="flex items-center gap-2 overflow-x-auto pb-1" role="group" aria-label="Category filters">
           {categories.map((cat) => {
             const categoryCount = cat.id === 'all'
-              ? conditionsData.length
-              : conditionsData.filter((condition) => condition.category === cat.id).length;
+              ? conditionCards.length
+              : conditionCards.filter((condition) => condition.category === cat.id).length;
 
             return (
               <button
@@ -164,15 +191,15 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
         </div>
         <p className="text-xs sm:text-sm text-stone-600" aria-live="polite" role="status">
           {currentLang === 'en'
-            ? `Showing ${filteredConditions.length} of ${conditionsData.length} conditions`
+            ? `Showing ${filteredConditions.length} of ${conditionCards.length} conditions`
             : currentLang === 'hi'
-            ? `${conditionsData.length} में से ${filteredConditions.length} विषय दिखाए जा रहे हैं`
-            : `${conditionsData.length} માંથી ${filteredConditions.length} વિષયો બતાવાઈ રહ્યા છે`}
+            ? `${conditionCards.length} में से ${filteredConditions.length} विषय दिखाए जा रहे हैं`
+            : `${conditionCards.length} માંથી ${filteredConditions.length} વિષયો બતાવાઈ રહ્યા છે`}
         </p>
       </div>
 
       {/* Conditions Grid */}
-      {filteredConditions.length === 0 ? (
+      {isLoading || loadError ? null : filteredConditions.length === 0 ? (
         <div className="p-8 text-center bg-white rounded-xl border border-stone-200 text-stone-600">
           <p className="font-semibold text-stone-800">{t.search.noResults}</p>
           <p className="text-xs mt-1">{currentLang === 'en' ? 'Try a different word, clear the search, or choose another category.' : currentLang === 'hi' ? 'कोई दूसरा शब्द खोजें, खोज हटाएँ या दूसरी श्रेणी चुनें।' : 'બીજો શબ્દ શોધો, શોધ સાફ કરો અથવા બીજી શ્રેણી પસંદ કરો.'}</p>
