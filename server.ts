@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { ApiError, apiErrorMessage, apiErrorStatus, enforceRateLimit, getAnalyticsSummary, hasValidAdminToken, isCrisisQuery, recordAnalyticsPing } from './api/_lib/analytics';
+import { apiErrorMessage, apiErrorStatus, enforceRateLimit, getAnalyticsSummary, hasValidAdminToken, isCrisisQuery, recordAnalyticsPing } from './api/_lib/analytics';
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
@@ -154,8 +154,8 @@ MANDATORY SAFETY AND ETHICAL BOUNDARIES:
       answer: response.text || 'Unable to generate educational answer at this time.',
     });
   } catch (err) {
-    console.error('API QA Error:', err);
-    res.status(500).json({ error: 'Failed to process inquiry' });
+    const status = apiErrorStatus(err);
+    res.status(status >= 500 ? 503 : status).json({ error: apiErrorMessage(err) });
   }
 });
 
