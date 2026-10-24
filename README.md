@@ -70,7 +70,7 @@ Choose the deployment method that best fits your workflow:
 2. Click **"Add New..."** > **"Project"**.
 3. Select your GitHub repository from the list.
 4. Framework Preset will automatically detect **Vite**.
-5. *(Optional)* Under **Environment Variables**, add:
+5. Under **Environment Variables**, configure the following server-side values for the API features:
    - `GEMINI_API_KEY`: Your Google Gemini API key (for the AI Q&A assistant).
    - `ADMIN_PASSWORD`: Server-only unique secret for the analytics dashboard. Generate at least 32 random characters; never prefix it with `VITE_` or expose it to client code. Without a valid secret, the admin API fails closed.
    - `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`: required server-side credentials for durable aggregate analytics and shared API rate limits. Analytics endpoints return a clear 503 response until these are configured.
