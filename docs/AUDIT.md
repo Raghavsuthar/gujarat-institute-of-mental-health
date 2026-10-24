@@ -127,3 +127,12 @@ These limitations are explicit to avoid confusing source review with runtime ver
 A Calm Aurora styling pass is proposed in `improve/phase-3-visual-redesign`. It applies shared tokens and restrained responsive styles to the header, crisis strip, home hero support panels, library tiles, condition listing cards, condition/substance detail shells, and footer notice. It also removes the unsupported “NMC Registered Specialist” badge wording in favor of a public-education descriptor.
 
 This is a source-level change, not proof of visual acceptance. Screenshots at 360/390/768/1280/1536 px, English/Hindi/Gujarati font rendering, light/dark system behavior, reduced-motion behavior, keyboard checks, axe, and Lighthouse remain **[UNVERIFIED]** until executed against a deployed preview. No performance score or visual regression pass is claimed here.
+
+
+## Phase 3 follow-up — 2026-10-24
+
+- Follow-up polish in `improve/phase-3-accessibility-polish`: mark the active navigation item with `aria-current`, connect the mobile-menu trigger to its controlled navigation panel, and expose selected language buttons with `aria-pressed`.
+- Removed a persistent pulse animation from the footer crisis icon to keep urgent content calm and reduce unnecessary motion.
+- Corrected footer profile wording to a localized “Psychiatry resident · Public education” descriptor and removed the unsupported NMC-registration claim.
+- Replaced the absolute “zero visitor data collection / strictly confidential” statement with a more qualified, trilingual privacy note that warns users not to enter identifying details into Q&A. This is copy-level risk reduction, not a substitute for a full privacy-policy and data-flow review.
+- Source-level review only; browser/axe/mobile keyboard verification remains **[UNVERIFIED]** until a preview can be interacted with using suitable tooling.

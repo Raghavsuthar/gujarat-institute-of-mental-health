@@ -85,3 +85,14 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 - CI is the source of truth for TypeScript, content validation, unit tests, and production build.
 - No browser screenshots, cross-width visual comparison, axe scan, or Lighthouse measurement is claimed until those tools actually run against the preview.
 - Manual clinical review of the copy and verification of all displayed helplines remain separate sign-off items.
+
+
+## 2026-10-24 — Phase 3 accessibility and trust-copy follow-up
+
+**Status:** Proposed in PR `improve/phase-3-accessibility-polish`.
+
+- Add programmatic state to language controls and active navigation, and link the mobile menu button to its panel for assistive technology.
+- Remove persistent footer crisis-icon pulsing; crisis information should be prominent without a perpetual animation.
+- Avoid unsupported professional-registration claims in the footer. Use the descriptive, localized public-education role instead.
+- Avoid absolute privacy guarantees that conflict with aggregate analytics. Tell visitors that aggregate page-view analytics may be sent when enabled and not to submit identifying details to the Q&A tool.
+- These source changes do not establish runtime accessibility, analytics behavior, or legal privacy-policy compliance; verify separately.

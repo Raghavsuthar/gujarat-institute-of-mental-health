@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <span className="relative flex items-center justify-center shrink-0">
-              <Phone className="w-4 h-4 text-rose-600 animate-pulse" />
+              <Phone className="w-4 h-4 text-rose-600" />
             </span>
             <div>
               <p className="font-bold text-rose-950 text-sm">
@@ -80,16 +80,13 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Col 1: Doctor Profile */}
         <div className="space-y-2 md:col-span-1">
           <h3 className="text-slate-900 font-bold text-base">{t.doctorName}</h3>
-          <p className="text-xs text-teal-800 font-semibold">MBBS, DNB (Psychiatry)</p>
+          <p className="text-xs text-teal-800 font-semibold">{currentLang === 'en' ? 'Psychiatry resident · Public education' : currentLang === 'hi' ? 'मनोचिकित्सा रेज़िडेंट · जन-जागरूकता' : 'મનોચિકિત્સા રેસિડેન્ટ · જાહેર શિક્ષણ'}</p>
           <p className="text-slate-600 text-xs leading-relaxed mt-2">
             {currentLang === 'en'
               ? 'Evidence-based, ethical psychiatric public education dedicated to reducing stigma and empowering communities in India.'
               : currentLang === 'hi'
               ? 'प्रमाण-आधारित, नैतिक मानसिक स्वास्थ्य लोक शिक्षण, जिसका उद्देश्य समाज से भ्रांतियों को मिटाना और जागरूकता फैलाना है।'
               : 'પુરાવા-આધારિત, નૈતિક માનસિક શિક્ષણ, જે સમાજમાંથી અંધશ્રદ્ધા દૂર કરવા અને જાગૃતિ લાવવા માટે સમર્પિત છે.'}
-          </p>
-          <p className="text-[11px] text-slate-500 font-mono pt-1">
-            NMC Registered Medical Practitioner
           </p>
         </div>
 
@@ -222,7 +219,12 @@ export const Footer: React.FC<FooterProps> = ({
           </p>
 
           <p className="text-[11px] text-teal-900 bg-teal-50/90 p-2.5 rounded-lg border border-teal-200/80 leading-normal">
-            🛡️ <strong>Privacy First:</strong> Zero tracking cookies, zero advertising pixels, and no visitor data collection. Your browsing is strictly confidential.
+            🛡️ <strong>{currentLang === 'en' ? 'Privacy note:' : currentLang === 'hi' ? 'गोपनीयता सूचना:' : 'ગોપનીયતા નોંધ:'}</strong>{' '}
+            {currentLang === 'en'
+              ? 'Aggregate page-view analytics may be sent when enabled. Do not enter names, contact details, or other identifying information in the educational Q&A tool.'
+              : currentLang === 'hi'
+                ? 'सक्षम होने पर समेकित पेज-व्यू विश्लेषण भेजा जा सकता है। शैक्षणिक प्रश्नोत्तर टूल में नाम, संपर्क विवरण या पहचान बताने वाली जानकारी न लिखें।'
+                : 'સક્ષમ હોય ત્યારે પેજ-વ્યૂના એકત્રિત આંકડા મોકલાઈ શકે છે. શૈક્ષણિક પ્રશ્નોત્તરીમાં નામ, સંપર્ક વિગતો અથવા ઓળખ દર્શાવતી માહિતી દાખલ ન કરો.'}
           </p>
 
           <div className="pt-2">
@@ -230,6 +232,7 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-1.5" role="group" aria-label="Footer language selector">
               <button
                 onClick={() => onLanguageChange('en')}
+                aria-pressed={currentLang === 'en'}
                 className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
                   currentLang === 'en' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
@@ -238,6 +241,7 @@ export const Footer: React.FC<FooterProps> = ({
               </button>
               <button
                 onClick={() => onLanguageChange('hi')}
+                aria-pressed={currentLang === 'hi'}
                 className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
                   currentLang === 'hi' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
@@ -246,6 +250,7 @@ export const Footer: React.FC<FooterProps> = ({
               </button>
               <button
                 onClick={() => onLanguageChange('gu')}
+                aria-pressed={currentLang === 'gu'}
                 className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
                   currentLang === 'gu' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}

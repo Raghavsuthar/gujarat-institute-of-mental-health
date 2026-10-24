@@ -139,6 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200" role="group" aria-label="Language selection">
             <button
               onClick={() => onLanguageChange('en')}
+              aria-pressed={currentLang === 'en'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'en'
                   ? 'bg-[#0d9488] text-white shadow-xs font-bold'
@@ -149,6 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
             <button
               onClick={() => onLanguageChange('hi')}
+              aria-pressed={currentLang === 'hi'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'hi'
                   ? 'bg-[#0d9488] text-white shadow-xs font-bold'
@@ -159,6 +161,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
             <button
               onClick={() => onLanguageChange('gu')}
+              aria-pressed={currentLang === 'gu'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'gu'
                   ? 'bg-[#0d9488] text-white shadow-xs font-bold'
@@ -172,6 +175,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-controls="mobile-primary-navigation"
             className="lg:hidden p-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center shadow-2xs"
             aria-label="Toggle Navigation Menu"
             aria-expanded={mobileMenuOpen}
@@ -190,6 +194,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
+                aria-current={isActive ? 'page' : undefined}
                 className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[44px] flex items-center text-xs sm:text-sm ${
                   isActive
                     ? 'text-teal-900 font-bold bg-white shadow-xs border-b-2 border-[#0d9488]'
@@ -206,6 +211,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile Drawer Menu: Large tap targets with full scrollability in landscape and portrait */}
       {mobileMenuOpen && (
         <div
+          id="mobile-primary-navigation"
           className="lg:hidden bg-white/98 backdrop-blur-lg border-t border-slate-200 px-4 py-2 sm:py-3 space-y-1 max-h-[calc(100dvh-3.5rem)] sm:max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain shadow-xl"
           style={{ WebkitOverflowScrolling: 'touch' }}
           role="menu"
@@ -216,6 +222,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
+                aria-current={isActive ? 'page' : undefined}
                 className={`w-full text-left px-4 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition cursor-pointer min-h-[44px] sm:min-h-[48px] flex items-center ${
                   isActive
                     ? 'bg-teal-50/90 text-teal-800 font-bold border-l-4 border-[#0d9488] shadow-2xs'
