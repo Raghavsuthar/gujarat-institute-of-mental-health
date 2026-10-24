@@ -11,6 +11,8 @@ test('crisis detection catches Hindi, Gujarati, and common transliterations', ()
   assert.equal(isCrisisQuery('मुझे आत्महत्या के विचार आ रहे हैं'), true);
   assert.equal(isCrisisQuery('મને આત્મહત્યા વિશે વિચારો આવે છે'), true);
   assert.equal(isCrisisQuery('mujhe khudkushi ke vichar aa rahe hain'), true);
+  assert.equal(isCrisisQuery('mujhe marna hai'), true);
+  assert.equal(isCrisisQuery('મારે જીવવું નથી'), true);
 });
 
 test('ordinary educational questions are not classified as crisis queries', () => {
