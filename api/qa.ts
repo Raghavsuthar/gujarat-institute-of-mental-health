@@ -5,7 +5,7 @@ import {
   isCrisisQuery,
   type ApiRequestLike,
   type ApiResponseLike,
-} from './_lib/analytics';
+} from '../server/shared/analytics';
 
 const fallbackAnswers = {
   en: 'This portal is an educational resource. For personal medical advice, please consult a registered psychiatrist or qualified doctor.',
