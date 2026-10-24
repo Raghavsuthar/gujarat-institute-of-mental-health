@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { apiErrorMessage, apiErrorStatus, enforceRateLimit, getAnalyticsSummary, hasValidAdminToken, isCrisisQuery, recordAnalyticsPing } from './api/_lib/analytics';
+import { apiErrorMessage, apiErrorStatus, enforceRateLimit, getAnalyticsSummary, hasValidAdminToken, isCrisisQuery, recordAnalyticsPing } from './server/shared/analytics';
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
