@@ -120,3 +120,10 @@ These limitations are explicit to avoid confusing source review with runtime ver
 - Applied the new hero identity class to the home page and documented token intent/accessibility in `docs/DESIGN_SYSTEM.md`.
 - Replaced the home-page author badge's unsupported “MBBS, MD Psychiatry · NMC Registered” claim with “Psychiatry resident · Public education” (localized in English, Hindi, and Gujarati).
 - Source-level review only at this point. No screenshots, axe scan, Lighthouse run, or live preview interaction is claimed until CI/preview/browser evidence is available.
+
+
+## Phase 3 visual redesign update — 2026-10-24
+
+A Calm Aurora styling pass is proposed in `improve/phase-3-visual-redesign`. It applies shared tokens and restrained responsive styles to the header, crisis strip, home hero support panels, library tiles, condition listing cards, condition/substance detail shells, and footer notice. It also removes the unsupported “NMC Registered Specialist” badge wording in favor of a public-education descriptor.
+
+This is a source-level change, not proof of visual acceptance. Screenshots at 360/390/768/1280/1536 px, English/Hindi/Gujarati font rendering, light/dark system behavior, reduced-motion behavior, keyboard checks, axe, and Lighthouse remain **[UNVERIFIED]** until executed against a deployed preview. No performance score or visual regression pass is claimed here.

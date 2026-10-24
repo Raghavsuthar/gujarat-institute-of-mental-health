@@ -169,7 +169,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Central Vivid Visual Moment: shader canvas is the backdrop (PortalHeroVisual removed to avoid stacking) */}
 
           {/* Crisis quick-dial drawer */}
-          <div className="rounded-2xl bg-[#ffdad6] p-5 sm:p-6 shadow-xs flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
+          <div className="aurora-crisis-card rounded-2xl bg-[#ffdad6] p-5 sm:p-6 shadow-xs flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
             <div className="flex items-start gap-3.5 max-w-2xl">
               <span className="w-12 h-12 rounded-xl bg-[#ba1a1a] text-white flex items-center justify-center shrink-0 shadow-sm" aria-hidden="true">
                 <Siren className="w-6 h-6" />
@@ -307,7 +307,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </HeroGeometric>
 
       {/* Core Philosophy Banner */}
-      <section className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs hover:shadow-sm transition-all duration-300 space-y-2">
+      <section className="aurora-story-panel p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-xs hover:shadow-sm transition-all duration-300 space-y-2">
         <div className="flex items-start gap-3.5">
           <div className="w-9 h-9 rounded-lg bg-teal-50 text-teal-700 border border-teal-200 flex items-center justify-center shrink-0 mt-0.5">
             <ShieldCheck className="w-5 h-5 text-teal-700" />
@@ -350,7 +350,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 1: Conditions */}
           <div
             onClick={() => onTabChange('conditions')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0d9488] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0d9488] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-teal-50 text-teal-700 border border-teal-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -376,7 +376,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card: Child & Adolescent Mental Health */}
           <div
             onClick={() => onTabChange('child-psychiatry')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0284c7] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#0284c7] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-sky-50 text-sky-700 border border-sky-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -402,7 +402,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card: Women's Mental Health */}
           <div
             onClick={() => onTabChange('womens-mental-health')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#db2777] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#db2777] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-pink-50 text-pink-700 border border-pink-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -428,7 +428,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 2: Addiction */}
           <div
             onClick={() => onTabChange('addiction')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#ea580c] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#ea580c] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-orange-50 text-orange-800 border border-orange-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -454,7 +454,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 4: Treatments */}
           <div
             onClick={() => onTabChange('treatments')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -480,7 +480,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 5: Myths */}
           <div
             onClick={() => onTabChange('myths')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#8b5cf6] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#8b5cf6] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-purple-50 text-purple-800 border border-purple-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -506,7 +506,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 6: Caregivers */}
           <div
             onClick={() => onTabChange('caregivers')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#d97706] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#d97706] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -532,7 +532,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 7: Clinical Articles */}
           <div
             onClick={() => onTabChange('articles')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#4f46e5] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#4f46e5] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-800 border border-indigo-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -558,7 +558,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 8: Helplines & Resources */}
           <div
             onClick={() => onTabChange('resources')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#2563eb] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#2563eb] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-800 border border-blue-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">
@@ -584,7 +584,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Card 9: Outreach Materials */}
           <div
             onClick={() => onTabChange('outreach')}
-            className="p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
+            className="aurora-card p-6 rounded-xl border border-slate-200/90 border-t-[3.5px] border-t-[#059669] bg-white/95 backdrop-blur-md shadow-2xs hover:shadow-lg hover:-translate-y-0.5 transition-[transform,box-shadow] duration-200 ease-out cursor-pointer flex flex-col justify-between group active:scale-[0.98]"
           >
             <div className="space-y-3">
               <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200/80 flex items-center justify-center shadow-2xs group-hover:scale-[1.03] transition-transform duration-200 ease-out">

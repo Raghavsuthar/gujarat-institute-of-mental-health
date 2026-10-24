@@ -48,13 +48,12 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 text-slate-900 shadow-xs">
+    <header className="aurora-header sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 text-slate-900 shadow-xs">
       {/* Crisis triage strip */}
-      <div className="w-full bg-[#ffdad6] px-4 py-1.5">
+      <div className="aurora-crisis-strip w-full bg-[#ffdad6] px-4 py-1.5">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs font-semibold text-[#93000a]">
           <span className="inline-flex items-center gap-1.5">
             <span className="relative flex h-2 w-2" aria-hidden="true">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ba1a1a] opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ba1a1a]" />
             </span>
             {currentLang === 'en'
@@ -110,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <span className="hidden md:inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full bg-teal-50/90 text-teal-800 font-semibold border border-teal-200/80 shadow-2xs tracking-wide whitespace-nowrap">
               <BadgeCheck className="w-3.5 h-3.5 text-teal-600" />
-              {currentLang === 'en' ? 'NMC Registered Specialist' : currentLang === 'hi' ? 'NMC पंजीकृत विशेषज्ञ' : 'NMC નોંધાયેલ નિષ્ણાત'}
+              {currentLang === 'en' ? 'Public Mental Health Education' : currentLang === 'hi' ? 'जन मानसिक स्वास्थ्य शिक्षा' : 'જાહેર માનસિક સ્વાસ્થ્ય શિક્ષણ'}
             </span>
           </div>
         </button>

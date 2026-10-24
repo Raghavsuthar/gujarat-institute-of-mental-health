@@ -68,3 +68,20 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 **Decision:** Do not run `npm audit fix --force` or blindly upgrade major versions. Prepare a dedicated dependency-remediation PR using compatible fixes, then run content validation, typecheck, unit tests, production build, and a fresh `npm audit`. Review whether the Vite advisories affect production-only deployment or development tooling separately; do not dismiss them solely because some apply to the dev server.
 
 **Build baseline:** CI run #72 passed content validation, TypeScript checks, API safety tests, and production build. Vite reported a main JS chunk of approximately 3.43 MB uncompressed / 959 KB gzip, plus a warning that a chunk exceeds 600 kB. This is a Phase 4 performance target, not a failed build.
+
+
+## 2026-10-24 — Phase 3 Calm Aurora visual system
+
+**Status:** Proposed in PR `improve/phase-3-visual-redesign`; merge only after CI and visual review.
+
+### Decision
+- Extend the existing Calm Aurora tokens instead of introducing a second CSS framework, remote fonts, or new image dependencies.
+- Apply the shared visual language to the sticky header/crisis strip, home storytelling and library tiles, condition listing cards, condition/substance detail shells, and footer notice.
+- Replace the unsupported “NMC Registered Specialist” badge with a descriptive public-education label; this is not a credential claim.
+- Keep crisis access links visible and preserve their phone targets; reduce persistent pulsing decoration to avoid unnecessary motion.
+- Use CSS-only decoration, transform/opacity transitions, and reduced-motion overrides to avoid added network requests and layout shifts.
+
+### Verification limits
+- CI is the source of truth for TypeScript, content validation, unit tests, and production build.
+- No browser screenshots, cross-width visual comparison, axe scan, or Lighthouse measurement is claimed until those tools actually run against the preview.
+- Manual clinical review of the copy and verification of all displayed helplines remain separate sign-off items.
