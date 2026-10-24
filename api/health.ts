@@ -1,7 +1,12 @@
 import type { ApiRequestLike, ApiResponseLike } from './_lib/analytics';
 
-export default function handler(_req: ApiRequestLike, res: ApiResponseLike) {
+export default function handler(req: ApiRequestLike, res: ApiResponseLike) {
   res.setHeader('Cache-Control', 'no-store');
+  if (req.method && req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    res.status(405).json({ error: 'Method not allowed.' });
+    return;
+  }
   res.status(200).json({
     status: 'ok',
     service: 'Mindcare public psychiatry education portal',
