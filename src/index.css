@@ -150,3 +150,103 @@
   .interactive-card:hover { transform: none !important; }
 }
 
+
+
+/* Calm Aurora design system — Phase 3 */
+@layer base {
+  :root {
+    color-scheme: light;
+    --aurora-canvas: #f6f8fb;
+    --aurora-surface: rgba(255, 255, 255, 0.94);
+    --aurora-ink: #142b3b;
+    --aurora-muted: #536879;
+    --aurora-teal: #087f8c;
+    --aurora-teal-deep: #075e68;
+    --aurora-indigo: #4f46a5;
+    --aurora-lilac: #eeebff;
+    --aurora-coral: #c65b4b;
+    --aurora-line: rgba(74, 104, 126, 0.18);
+    --aurora-shadow: 0 14px 38px rgba(24, 54, 75, 0.08);
+    --aurora-radius-card: 1.25rem;
+  }
+
+  html {
+    background: var(--aurora-canvas);
+    color: var(--aurora-ink);
+  }
+
+  body {
+    background-color: var(--aurora-canvas);
+    background-image:
+      radial-gradient(ellipse at 8% 0%, rgba(160, 230, 222, 0.24), transparent 34rem),
+      radial-gradient(ellipse at 96% 12%, rgba(207, 201, 255, 0.22), transparent 32rem),
+      linear-gradient(180deg, #f8fbfc 0%, #f6f8fb 48%, #f8f9fc 100%);
+    color: var(--aurora-ink);
+  }
+
+  ::selection {
+    color: #073b43;
+    background: rgba(139, 221, 211, 0.55);
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline-color: var(--aurora-teal);
+    outline-offset: 3px;
+  }
+}
+
+/* Shared surfaces: keep the new visual language subtle and performant. */
+header.sticky {
+  background-color: rgba(250, 252, 253, 0.94);
+  border-bottom-color: var(--aurora-line);
+  box-shadow: 0 5px 24px rgba(24, 54, 75, 0.045);
+}
+
+.glass-surface {
+  background: var(--aurora-surface);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 12px 32px rgba(24, 54, 75, 0.055);
+}
+
+.interactive-card {
+  border-color: var(--aurora-line);
+  border-radius: var(--aurora-radius-card);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    box-shadow: var(--aurora-shadow);
+  }
+}
+
+/* Home hero visual identity */
+.mindcare-home-hero {
+  position: relative;
+  isolation: isolate;
+  border-color: rgba(86, 131, 147, 0.22);
+  box-shadow: 0 22px 56px rgba(24, 54, 75, 0.09);
+}
+
+.mindcare-home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(154, 232, 222, 0.24), transparent 55%),
+    radial-gradient(ellipse at 94% 12%, rgba(205, 197, 255, 0.22), transparent 48%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mindcare-home-hero,
+  .glass-surface,
+  .interactive-card {
+    scroll-behavior: auto;
+    transition: none !important;
+  }
+}
