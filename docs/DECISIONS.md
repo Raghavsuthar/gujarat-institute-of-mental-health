@@ -96,3 +96,20 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 - Avoid unsupported professional-registration claims in the footer. Use the descriptive, localized public-education role instead.
 - Avoid absolute privacy guarantees that conflict with aggregate analytics. Tell visitors that aggregate page-view analytics may be sent when enabled and not to submit identifying details to the Q&A tool.
 - These source changes do not establish runtime accessibility, analytics behavior, or legal privacy-policy compliance; verify separately.
+
+
+## 2026-10-24 — Phase 4 lazy deep-link dataset loading
+
+**Status:** Proposed in PR `improve/phase-4-defer-content-data`.
+
+- Keep route components and their current schemas unchanged.
+- Remove eager dataset imports from `src/App.tsx`; load the relevant content module only when its URL contains a detail slug. Cancel stale effect results when the slug changes and fail closed to a null detail if the module fails to load.
+- Rationale: the entry module should not force all deep-link data collections into the initial chunk merely to resolve an optional modal.
+- Acceptance requires successful type-check/build, inspection of emitted chunk sizes, and direct-link checks for condition, child topic, women's topic, and substance routes. Performance targets must be measured separately with Lighthouse; this code change alone does not establish them.
+
+- Extend the split to global dialogs: load Search, Crisis, Screener, and detail-dialog components on demand, wrapped in `Suspense` with a null fallback. Render them only when requested or when the corresponding deep-linked record exists. Preserve crisis state handoff from screener/detail dialogs.
+
+
+### CI evidence update
+
+The Phase 4 build confirms code splitting: the previous 3,437.90 kB `index` chunk is replaced by `index-*` chunks of 421.62 kB, 432.33 kB, and 477.01 kB, while the condition collection is emitted as a separate 1,304.25 kB chunk (372.64 kB gzip). Crisis and screener dialogs are separate chunks. Do not describe this as a Lighthouse improvement or a verified reduction in initial network transfer until browser/network measurements are available. The remaining large conditions chunk should be considered for batch-level splitting.

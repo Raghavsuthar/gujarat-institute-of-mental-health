@@ -136,3 +136,19 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - Corrected footer profile wording to a localized “Psychiatry resident · Public education” descriptor and removed the unsupported NMC-registration claim.
 - Replaced the absolute “zero visitor data collection / strictly confidential” statement with a more qualified, trilingual privacy note that warns users not to enter identifying details into Q&A. This is copy-level risk reduction, not a substitute for a full privacy-policy and data-flow review.
 - Source-level review only; browser/axe/mobile keyboard verification remains **[UNVERIFIED]** until a preview can be interacted with using suitable tooling.
+
+
+## Phase 4 baseline and first optimization — 2026-10-24
+
+- Recorded CI build baseline from Phase 2: Vite reported a main JavaScript chunk around 3.43 MB uncompressed / 959 KB gzip, with a chunk-size warning above 600 kB. This is build output, not a Lighthouse measurement.
+- In `improve/phase-4-defer-content-data`, remove four eager dataset imports from the application entry and load the matching content module asynchronously only when a condition, child-psychiatry, women's mental-health, or substance detail slug exists.
+- This is a candidate bundle-splitting optimization. Actual before/after chunk sizes, deep-link loading behavior, and route regression checks must be confirmed from CI and preview before acceptance.
+- No Lighthouse or runtime performance score is claimed.
+
+- Follow-up within the same Phase 4 PR: seven global dialog components are now lazy-loaded and mounted only when opened or when a valid detail record is resolved. This is intended to keep search/screener/crisis/detail-modal implementation and SearchModal's data dependencies out of the initial entry path; confirm the actual chunk output in CI.
+
+
+### Phase 4 CI bundle output — 2026-10-24
+
+- The CI build for the on-demand dialog/data split no longer emits the previous single 3,437.90 kB `index` chunk. It emitted three `index-*` chunks at 421.62 kB, 432.33 kB, and 477.01 kB, plus a separate 1,304.25 kB `conditions-*` chunk (372.64 kB gzip). Other dialog components, including CrisisModal and ScreenerModal, are emitted as their own chunks.
+- This confirms chunk splitting in the build output; it does **not** establish total initial transfer size, route-level download behavior, Lighthouse performance, or real-user LCP/INP. The `conditions` chunk still exceeds the 600 kB warning threshold and remains a follow-up optimization target.

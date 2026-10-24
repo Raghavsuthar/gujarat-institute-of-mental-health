@@ -14,19 +14,13 @@ import {
   ActiveTab,
   Condition,
   SubstanceInfo,
+  ChildAdolescentTopic,
   WomensMentalHealthTopic,
 } from './types';
 import { Header } from './components/Header';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
 import { Footer } from './components/Footer';
 import { OfflineIndicator } from './components/OfflineIndicator';
-import { SearchModal } from './components/SearchModal';
-import { CrisisModal } from './components/CrisisModal';
-import { ScreenerModal } from './components/ScreenerModal';
-import { ConditionDetailModal } from './components/ConditionDetailModal';
-import { SubstanceDetailModal } from './components/SubstanceDetailModal';
-import { ChildPsychiatryModal } from './components/ChildPsychiatryModal';
-import { WomensMentalHealthModal } from './components/WomensMentalHealthModal';
 
 // Views - Lazy load heavy views for code splitting (named exports mapped to default)
 const HomeView = lazy(() => import('./views/HomeView').then(m => ({ default: m.HomeView })));
@@ -45,13 +39,16 @@ const ResourcesView = lazy(() => import('./views/ResourcesView').then(m => ({ de
 const OutreachView = lazy(() => import('./views/OutreachView').then(m => ({ default: m.OutreachView })));
 const AboutView = lazy(() => import('./views/AboutView').then(m => ({ default: m.AboutView })));
 const AdminAnalyticsView = lazy(() => import('./views/AdminAnalyticsView').then(m => ({ default: m.AdminAnalyticsView })));
+const SearchModal = lazy(() => import('./components/SearchModal').then((m) => ({ default: m.SearchModal })));
+const CrisisModal = lazy(() => import('./components/CrisisModal').then((m) => ({ default: m.CrisisModal })));
+const ScreenerModal = lazy(() => import('./components/ScreenerModal').then((m) => ({ default: m.ScreenerModal })));
+const ConditionDetailModal = lazy(() => import('./components/ConditionDetailModal').then((m) => ({ default: m.ConditionDetailModal })));
+const SubstanceDetailModal = lazy(() => import('./components/SubstanceDetailModal').then((m) => ({ default: m.SubstanceDetailModal })));
+const ChildPsychiatryModal = lazy(() => import('./components/ChildPsychiatryModal').then((m) => ({ default: m.ChildPsychiatryModal })));
+const WomensMentalHealthModal = lazy(() => import('./components/WomensMentalHealthModal').then((m) => ({ default: m.WomensMentalHealthModal })));
 import { EducationalQAAssistant } from './components/EducationalQAAssistant';
 
 // Data for deep linking lookups
-import { conditionsData } from './data/conditions';
-import { substancesData } from './data/substances';
-import { childAdolescentTopics } from './data/childAdolescent';
-import { womensMentalHealthTopics } from './data/womensMentalHealth';
 import { recordPageView } from './utils/analytics';
 
 const VALID_LANGS: Language[] = ['en', 'hi', 'gu'];
@@ -184,32 +181,46 @@ export default function App() {
   const womensTopicSlug = pathParts[1] === 'womens-mental-health' && pathParts[2] ? pathParts[2] : null;
   const substanceSlug = pathParts[1] === 'substances' && pathParts[2] ? pathParts[2] : null;
 
-  const deepLinkedCondition = useMemo(() => {
-    if (!conditionSlug) return null;
-    return conditionsData.find(
-      (c) => c.slug === conditionSlug || c.id === conditionSlug
-    ) || null;
+  // Defer content collections until a URL actually needs a detail record.
+  const [deepLinkedCondition, setDeepLinkedCondition] = useState<Condition | null>(null);
+  const [deepLinkedChildTopic, setDeepLinkedChildTopic] = useState<ChildAdolescentTopic | null>(null);
+  const [deepLinkedWomensTopic, setDeepLinkedWomensTopic] = useState<WomensMentalHealthTopic | null>(null);
+  const [deepLinkedSubstance, setDeepLinkedSubstance] = useState<SubstanceInfo | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!conditionSlug) { setDeepLinkedCondition(null); return; }
+    import('./data/conditions').then(({ conditionsData }) => {
+      if (!cancelled) setDeepLinkedCondition(conditionsData.find((item) => item.slug === conditionSlug || item.id === conditionSlug) || null);
+    }).catch(() => { if (!cancelled) setDeepLinkedCondition(null); });
+    return () => { cancelled = true; };
   }, [conditionSlug]);
 
-  const deepLinkedChildTopic = useMemo(() => {
-    if (!childTopicSlug) return null;
-    return childAdolescentTopics.find(
-      (t) => t.slug === childTopicSlug || t.id === childTopicSlug
-    ) || null;
+  useEffect(() => {
+    let cancelled = false;
+    if (!childTopicSlug) { setDeepLinkedChildTopic(null); return; }
+    import('./data/childAdolescent').then(({ childAdolescentTopics }) => {
+      if (!cancelled) setDeepLinkedChildTopic(childAdolescentTopics.find((item) => item.slug === childTopicSlug || item.id === childTopicSlug) || null);
+    }).catch(() => { if (!cancelled) setDeepLinkedChildTopic(null); });
+    return () => { cancelled = true; };
   }, [childTopicSlug]);
 
-  const deepLinkedWomensTopic = useMemo(() => {
-    if (!womensTopicSlug) return null;
-    return womensMentalHealthTopics.find(
-      (t) => t.slug === womensTopicSlug || t.id === womensTopicSlug
-    ) || null;
+  useEffect(() => {
+    let cancelled = false;
+    if (!womensTopicSlug) { setDeepLinkedWomensTopic(null); return; }
+    import('./data/womensMentalHealth').then(({ womensMentalHealthTopics }) => {
+      if (!cancelled) setDeepLinkedWomensTopic(womensMentalHealthTopics.find((item) => item.slug === womensTopicSlug || item.id === womensTopicSlug) || null);
+    }).catch(() => { if (!cancelled) setDeepLinkedWomensTopic(null); });
+    return () => { cancelled = true; };
   }, [womensTopicSlug]);
 
-  const deepLinkedSubstance = useMemo(() => {
-    if (!substanceSlug) return null;
-    return substancesData.find(
-      (s) => s.slug === substanceSlug || s.id === substanceSlug
-    ) || null;
+  useEffect(() => {
+    let cancelled = false;
+    if (!substanceSlug) { setDeepLinkedSubstance(null); return; }
+    import('./data/substances').then(({ substancesData }) => {
+      if (!cancelled) setDeepLinkedSubstance(substancesData.find((item) => item.slug === substanceSlug || item.id === substanceSlug) || null);
+    }).catch(() => { if (!cancelled) setDeepLinkedSubstance(null); });
+    return () => { cancelled = true; };
   }, [substanceSlug]);
 
   // Language switcher: replaces the current /:lang prefix while maintaining remaining path
@@ -442,74 +453,71 @@ export default function App() {
         </Suspense>
       </main>
 
-      {/* Global Modals */}
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        currentLang={currentLang}
-        onSelectCondition={(item) => navigate(`/${currentLang}/conditions/${item.slug}`)}
-        onSelectSubstance={(item) => navigate(`/${currentLang}/substances/${item.slug || item.id}`)}
-        onSelectChildTopic={(topic) => navigate(`/${currentLang}/child-psychiatry/${topic.slug || topic.id}`)}
-        onSelectWomensTopic={(topic) => navigate(`/${currentLang}/womens-mental-health/${topic.slug || topic.id}`)}
-        onNavigateTab={(tab) => handleTabChange(tab)}
-      />
+      {/* Global dialogs load only when needed to keep their code out of the initial route chunk. */}
+      <Suspense fallback={null}>
+        {isSearchOpen && <SearchModal
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+          currentLang={currentLang}
+          onSelectCondition={(item) => navigate(`/${currentLang}/conditions/${item.slug}`)}
+          onSelectSubstance={(item) => navigate(`/${currentLang}/substances/${item.slug || item.id}`)}
+          onSelectChildTopic={(topic) => navigate(`/${currentLang}/child-psychiatry/${topic.slug || topic.id}`)}
+          onSelectWomensTopic={(topic) => navigate(`/${currentLang}/womens-mental-health/${topic.slug || topic.id}`)}
+          onNavigateTab={(tab) => handleTabChange(tab)}
+        />}
 
-      <CrisisModal
-        isOpen={isCrisisOpen}
-        onClose={() => setIsCrisisOpen(false)}
-        currentLang={currentLang}
-      />
+        {isCrisisOpen && <CrisisModal
+          isOpen={isCrisisOpen}
+          onClose={() => setIsCrisisOpen(false)}
+          currentLang={currentLang}
+        />}
 
-      <ScreenerModal
-        isOpen={isScreenerOpen}
-        onClose={() => setIsScreenerOpen(false)}
-        currentLang={currentLang}
-        onOpenCrisis={() => {
-          setIsScreenerOpen(false);
-          setIsCrisisOpen(true);
-        }}
-      />
+        {isScreenerOpen && <ScreenerModal
+          isOpen={isScreenerOpen}
+          onClose={() => setIsScreenerOpen(false)}
+          currentLang={currentLang}
+          onOpenCrisis={() => {
+            setIsScreenerOpen(false);
+            setIsCrisisOpen(true);
+          }}
+        />}
 
-      {/* Bidirectionally URL-synced Condition Detail Modal */}
-      <ConditionDetailModal
-        condition={deepLinkedCondition}
-        onClose={() => navigate(`/${currentLang}/conditions`)}
-        currentLang={currentLang}
-        onOpenCrisis={() => {
-          navigate(`/${currentLang}/conditions`);
-          setIsCrisisOpen(true);
-        }}
-      />
+        {deepLinkedCondition && <ConditionDetailModal
+          condition={deepLinkedCondition}
+          onClose={() => navigate(`/${currentLang}/conditions`)}
+          currentLang={currentLang}
+          onOpenCrisis={() => {
+            navigate(`/${currentLang}/conditions`);
+            setIsCrisisOpen(true);
+          }}
+        />}
 
-      {/* Bidirectionally URL-synced Child Psychiatry Detail Modal */}
-      <ChildPsychiatryModal
-        topic={deepLinkedChildTopic}
-        onClose={() => navigate(`/${currentLang}/child-psychiatry`)}
-        currentLang={currentLang}
-        onOpenCrisis={() => {
-          navigate(`/${currentLang}/child-psychiatry`);
-          setIsCrisisOpen(true);
-        }}
-      />
+        {deepLinkedChildTopic && <ChildPsychiatryModal
+          topic={deepLinkedChildTopic}
+          onClose={() => navigate(`/${currentLang}/child-psychiatry`)}
+          currentLang={currentLang}
+          onOpenCrisis={() => {
+            navigate(`/${currentLang}/child-psychiatry`);
+            setIsCrisisOpen(true);
+          }}
+        />}
 
-      {/* Bidirectionally URL-synced Women's Mental Health Detail Modal */}
-      <WomensMentalHealthModal
-        topic={deepLinkedWomensTopic}
-        onClose={() => navigate(`/${currentLang}/womens-mental-health`)}
-        currentLang={currentLang}
-        onOpenCrisis={() => {
-          navigate(`/${currentLang}/womens-mental-health`);
-          setIsCrisisOpen(true);
-        }}
-      />
+        {deepLinkedWomensTopic && <WomensMentalHealthModal
+          topic={deepLinkedWomensTopic}
+          onClose={() => navigate(`/${currentLang}/womens-mental-health`)}
+          currentLang={currentLang}
+          onOpenCrisis={() => {
+            navigate(`/${currentLang}/womens-mental-health`);
+            setIsCrisisOpen(true);
+          }}
+        />}
 
-      {/* Bidirectionally URL-synced Substance Detail Modal */}
-      <SubstanceDetailModal
-        substance={deepLinkedSubstance}
-        onClose={() => navigate(`/${currentLang}/addiction`)}
-        currentLang={currentLang}
-      />
-
+        {deepLinkedSubstance && <SubstanceDetailModal
+          substance={deepLinkedSubstance}
+          onClose={() => navigate(`/${currentLang}/addiction`)}
+          currentLang={currentLang}
+        />}
+      </Suspense>
       {/* Footer */}
       <Footer
         currentLang={currentLang}
