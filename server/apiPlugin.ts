@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Plugin } from 'vite';
+import { isCrisisQuery } from './shared/analytics';
 
 const DATA_FILE = path.resolve('.analytics-data-dev.json');
 
@@ -64,9 +65,6 @@ function saveStore(store: AnalyticsStore) {
     console.error('Error saving analytics store:', err);
   }
 }
-
-// Crisis regex detector
-const CRISIS_REGEX = /\b(suicide|kill myself|end my life|want to die|hanging|poison|overdose|harm myself|मरना|आत्महत्या|जान देना|खुदकुशी|આત્મહત્યા|જીવ આપવો|મરી જવું)\b/i;
 
 export function apiServerPlugin(): Plugin {
   return {
@@ -218,7 +216,7 @@ export function apiServerPlugin(): Plugin {
               }
 
               // Crisis short-circuiting: NEVER query AI if distress/self-harm language detected!
-              if (CRISIS_REGEX.test(query)) {
+              if (isCrisisQuery(query)) {
                 res.setHeader('Content-Type', 'application/json');
                 res.statusCode = 200;
                 res.end(
