@@ -231,3 +231,10 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - The first axe scan found two serious categories: insufficient contrast on selected language buttons and visible-label/accessibility-name mismatches on the search and floating emergency buttons. Those source issues have been corrected by darkening selected language controls and including visible text in accessible names.
 - The axe gate now fails on serious or critical WCAG 2.0/2.1 A/AA findings. Re-run CI after these fixes before accepting this follow-up.
 - The initial scan was limited to the English privacy route and does not establish full-site conformance; live Vercel, screen-reader, offline, and Lighthouse checks remain separate.
+
+
+### Home-page profile card trust follow-up — 2026-10-24
+
+- The home-page author card still contained legacy “Consultant Psychiatrist”, completed-qualification, and NMC-registration claims after the broader About-page/structured-data correction.
+- The card now identifies the author as a DNB Psychiatry resident and describes Mindcare as general public mental-health education; it explicitly says the site does not provide personal diagnoses, consultations, or prescriptions.
+- A source-level regression test guards against reintroducing those unverified claims. This is a content/source check, not independent credential verification or a browser-rendering check.
