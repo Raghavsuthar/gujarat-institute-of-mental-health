@@ -23,61 +23,22 @@ interface AnalyticsStore {
 }
 
 function getInitialStore(): AnalyticsStore {
-  // Pre-seed some realistic baseline aggregations from community outreach campaigns
-  const today = new Date();
-  const dailyTrend: Array<{ date: string; views: number; events: number }> = [];
-
-  for (let i = 29; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(today.getDate() - i);
-    const dateStr = d.toISOString().split('T')[0];
-    const baseViews = 35 + Math.floor(Math.sin(i / 3) * 15) + (i % 7 === 0 ? 25 : 0);
-    const baseEvents = Math.floor(baseViews * 0.35);
-    dailyTrend.push({ date: dateStr, views: baseViews, events: baseEvents });
-  }
-
-  const totalViews = dailyTrend.reduce((acc, curr) => acc + curr.views, 0);
-  const totalEvents = dailyTrend.reduce((acc, curr) => acc + curr.events, 0);
-
+  // Empty baseline: analytics must only represent events actually received.
   return {
-    totalViews,
-    byLang: {
-      en: Math.round(totalViews * 0.48),
-      hi: Math.round(totalViews * 0.32),
-      gu: Math.round(totalViews * 0.20),
-    },
-    byPath: {
-      home: Math.round(totalViews * 0.28),
-      'conditions/depression': Math.round(totalViews * 0.16),
-      'conditions/generalized-anxiety': Math.round(totalViews * 0.12),
-      'interactive/screeners': Math.round(totalViews * 0.10),
-      myths: Math.round(totalViews * 0.09),
-      'addiction/alcohol': Math.round(totalViews * 0.08),
-      treatments: Math.round(totalViews * 0.07),
-      emergency: Math.round(totalViews * 0.05),
-      outreach: Math.round(totalViews * 0.05),
-    },
-    referrers: {
-      'Direct / QR Poster': Math.round(totalViews * 0.36),
-      'whatsapp.com': Math.round(totalViews * 0.32),
-      'instagram.com': Math.round(totalViews * 0.16),
-      'google.com': Math.round(totalViews * 0.12),
-      Other: Math.round(totalViews * 0.04),
-    },
-    deviceBreakdown: {
-      mobile: Math.round(totalViews * 0.76),
-      desktop: Math.round(totalViews * 0.20),
-      tablet: Math.round(totalViews * 0.04),
-    },
+    totalViews: 0,
+    byLang: { en: 0, hi: 0, gu: 0 },
+    byPath: {},
+    referrers: {},
+    deviceBreakdown: { mobile: 0, desktop: 0, tablet: 0 },
     events: {
-      screenerCompleted: Math.round(totalEvents * 0.35),
-      mythCardShared: Math.round(totalEvents * 0.25),
-      cardShared: Math.round(totalEvents * 0.18),
-      qrLanded: Math.round(totalEvents * 0.12),
-      pwaInstalled: 14,
-      readAloud: Math.round(totalEvents * 0.10),
+      screenerCompleted: 0,
+      mythCardShared: 0,
+      cardShared: 0,
+      qrLanded: 0,
+      pwaInstalled: 0,
+      readAloud: 0,
     },
-    dailyTrend,
+    dailyTrend: [],
     lastUpdated: new Date().toISOString(),
   };
 }
