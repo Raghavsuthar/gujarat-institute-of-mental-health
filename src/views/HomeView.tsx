@@ -82,7 +82,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         color1="#0d9488"
         color2="#fef3c7"
         speed={0.8}
-        className="rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300"
+        className="mindcare-home-hero rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300"
       >
         {/* Fine Top Accent Line: Nilgiri Teal to Surya Gold to Twilight Iris */}
         <div className="h-[3.5px] w-full bg-gradient-to-r from-[#0d9488] via-[#f59e0b] to-[#7c3aed]" aria-hidden="true" />
@@ -103,10 +103,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </span>
               <span className="text-[11px] font-medium text-slate-500">
                 {currentLang === 'en'
-                  ? 'MBBS, MD Psychiatry · NMC Registered'
+                  ? 'Psychiatry resident · Public education'
                   : currentLang === 'hi'
-                    ? 'एमबीबीएस, एमडी (मनोरोग) · NMC पंजीकृत'
-                    : 'MBBS, MD · NMC નોંધાયેલ'}
+                    ? 'मनोचिकित्सा रेज़िडेंट · जन-जागरूकता'
+                    : 'મનોચિકિત્સા રેસિડેન્ટ · જાહેર શિક્ષણ'}
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-2.5">
