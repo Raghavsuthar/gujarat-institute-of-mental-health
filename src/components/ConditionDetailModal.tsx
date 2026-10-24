@@ -203,10 +203,26 @@ export const ConditionDetailModal: React.FC<ConditionDetailModalProps> = ({
             />
           </div>
 
-          {condition.youtubeVideoId && (
-            <div className="my-2">
-              <YouTubeEmbed videoId={condition.youtubeVideoId} title={condition.name[currentLang]} currentLang={currentLang} />
-            </div>
+          {(condition.youtubeVideoId || condition.educationalVideoUrl) && (
+            <section className="my-3 space-y-2" aria-label={currentLang === 'hi' ? 'शैक्षिक वीडियो' : currentLang === 'gu' ? 'શૈક્ષણિક વિડિઓ' : 'Educational video'}>
+              <h3 className="text-sm font-semibold text-[#1c2430]">
+                {currentLang === 'hi' ? 'अनुशंसित शैक्षिक वीडियो' : currentLang === 'gu' ? 'ભલામણ કરેલ શૈક્ષણિક વિડિઓ' : 'Recommended educational video'}
+              </h3>
+              {condition.youtubeVideoId && (
+                <YouTubeEmbed
+                  videoId={condition.youtubeVideoId}
+                  title={condition.educationalVideoTitle?.[currentLang] || condition.name[currentLang]}
+                  currentLang={currentLang}
+                />
+              )}
+              {!condition.youtubeVideoId && condition.educationalVideoUrl && (
+                <a href={condition.educationalVideoUrl} target="_blank" rel="noopener noreferrer" className="block rounded-xl border border-teal-200 bg-teal-50 p-4 text-teal-900 hover:bg-teal-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700">
+                  <span className="font-semibold">{condition.educationalVideoTitle?.[currentLang] || condition.name[currentLang]}</span>
+                  <span className="mt-1 block text-sm">{currentLang === 'hi' ? 'आधिकारिक वीडियो पेज खोलें ↗' : currentLang === 'gu' ? 'સત્તાવાર વિડિઓ પેજ ખોલો ↗' : 'Open official video page ↗'}</span>
+                </a>
+              )}
+              {condition.educationalVideoSource && <p className="text-xs text-stone-500">{currentLang === 'hi' ? 'स्रोत' : currentLang === 'gu' ? 'સ્રોત' : 'Source'}: {condition.educationalVideoSource}</p>}
+            </section>
           )}
 
           {/* TAB 1: OVERVIEW & SYMPTOMS */}

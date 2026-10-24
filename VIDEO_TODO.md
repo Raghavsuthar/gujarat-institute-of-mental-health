@@ -1,6 +1,6 @@
 # Educational Video Curation Checklist & Integration Guide
 **Project:** Dr. Raghav Suthar — Public Psychiatry & Mental Health Education
-**Reviewer:** Dr. Raghav Suthar, Consultant Psychiatrist
+**Content curator:** Dr. Raghav Suthar, DNB Psychiatry resident; independent clinical review is pending
 
 ---
 
@@ -24,19 +24,25 @@ To safeguard patient safety and ensure clinical integrity:
 
 ---
 
+## 🔎 Audit Findings & Priority Queue (2026-10-20)
 
-### Verified integrations (checked 2026-10-20)
+The condition library's video field was unpopulated for its core entries; the detail modal already supported click-to-play YouTube embeds, but the condition data had placeholder TODOs rather than curated IDs. The substance detail view did not yet render educational videos.
 
-The following IDs were matched to public YouTube results from the named publisher and topic before being added to the condition records. These are general educational resources, not diagnostic tools or individualized medical advice. Video availability, captions, and embedding permissions can change; re-check periodically.
+### Highest-priority gaps remaining
 
-| Condition | Publisher / video | Video URL | Integration |
+| Priority | Condition/topic | Current status | Next action |
 |---|---|---|---|
-| Depression | National Institute of Mental Health (NIMH), “Mental Health Minute: Depression” | https://www.youtube.com/watch?v=lQhpetkwWnM | src/data/conditions.ts → depression |
-| Bipolar disorder | National Alliance on Mental Illness (NAMI), “What is Bipolar Disorder” | https://www.youtube.com/watch?v=GX2RB_LmLUE | src/data/conditions.ts → bipolar |
-| Anxiety disorders | National Institute of Mental Health (NIMH), “Mental Health Minute: Anxiety Disorders in Adults” | https://www.youtube.com/watch?v=UjPRVKS4OBg | src/data/conditions.ts → anxiety-gad |
-| Schizophrenia | National Alliance on Mental Illness (NAMI), “What is Schizophrenia” | https://www.youtube.com/watch?v=WS1TXT3cGyw | src/data/conditions.ts → schizophrenia |
+| P1 | Bipolar disorder | Missing verified video | Select a patient-facing video from APA/NIMHANS/NHS; do not reuse general awareness content without review. |
+| P1 | Panic disorder / panic attacks | Missing verified video | Find an evidence-based explainer that demystifies physical symptoms without implying all chest symptoms are anxiety. |
+| P1 | Schizophrenia | Official NIMH recording linked externally | Confirm recording playback, captions and regional accessibility before considering direct embedding. |
+| P1 | Alcohol use disorder | Integrated | NIH/NIAAA treatment-options video; ensure the text still emphasizes medically supervised withdrawal. |
+| P1 | Opioid use disorder | Integrated | APA educational overview. |
+| P2 | Tobacco/nicotine and cannabis use | Missing verified videos | Curate distinct, substance-specific education; avoid unverified detox or medication claims. |
+| P2 | PTSD, dementia/delirium, postpartum depression | Missing verified videos | Prioritize trauma-informed and caregiver-safe content from recognized health organizations. |
 
-The current UI renders the primary youtubeVideoId via YouTubeEmbed.tsx, which uses a click-to-play facade and youtube-nocookie.com. IDs above were verified against publisher/title search results; this is not a guarantee of future playback in every region or embedding context.
+**Verified embeds added in this change:** APA depression overview; ADAA anxiety overview; ADAA/IOCDF ERP overview; NIH/NIAAA alcohol-use-disorder treatment overview; APA opioid-use-disorder overview. Source pages confirmed the publisher, title and topic. These are English-language selections; localized versions remain a separate review task.
+
+---
 
 ## 📋 Comprehensive Video TODO Checklist
 
@@ -44,20 +50,20 @@ The current UI renders the primary youtubeVideoId via YouTubeEmbed.tsx, which us
 
 | Condition ID | Clinical Name | Suggested Video Topic | Status | Target YouTube ID |
 |---|---|---|---|---|
-| `depression` | Major Depressive Disorder | Clinical Depression: Symptoms, Brain Biology & Hope | ✅ Integrated (NIMH) | `lQhpetkwWnM` |
-| `bipolar` | Bipolar Disorder | Understanding Bipolar I & II: Manic vs Depressive Phases | ✅ Integrated (NAMI) | `GX2RB_LmLUE` |
+| `depression` | Major Depressive Disorder | Clinical Depression: Symptoms, Brain Biology & Hope | ✅ Integrated | `yEGVmiudF-o` — [APA: What is depression?](https://www.youtube.com/watch?v=yEGVmiudF-o) |
+| `bipolar` | Bipolar Disorder | Understanding Bipolar I & II: Manic vs Depressive Phases | ⏳ Pending | `// TODO(video): Bipolar disorder cycle, mood stabilization, and family role` |
 | `dysthymia` | Persistent Depressive Disorder | Chronic Low-Grade Depression (Dysthymia) vs Major Depression | ⏳ Pending | `// TODO(video): PDD overview and long-term psychological scaffolding` |
 | `cyclothymia` | Cyclothymic Disorder | Cyclothymia: Managing Chronic Mood Fluctuations | ⏳ Pending | `// TODO(video): Cyclothymic disorder diagnosis and daily tracking` |
-| `gad` | Generalized Anxiety Disorder | How Chronic Worry Affects the Body & Brain | ✅ Integrated (NIMH) | `UjPRVKS4OBg` |
+| `gad` | Generalized Anxiety Disorder | How Chronic Worry Affects the Body & Brain | ✅ Integrated | `gkSypHQ-a9g` — [ADAA: Anxiety & Anxiety Disorders](https://www.youtube.com/watch?v=gkSypHQ-a9g) |
 | `panic` | Panic Disorder & Agoraphobia | Anatomy of a Panic Attack & The Adrenaline Loop | ⏳ Pending | `// TODO(video): Panic sensations demystified and somatic grounding` |
 | `social_anxiety` | Social Anxiety Disorder | Social Anxiety: Cognitive Restructuring & Exposure | ⏳ Pending | `// TODO(video): Social anxiety vs introversion and behavioral exposure` |
 | `specific_phobia` | Specific Phobias | Phobias and Systematic Desensitization | ⏳ Pending | `// TODO(video): Systematic desensitization for specific phobias` |
 | `agoraphobia` | Agoraphobia | Agoraphobia: Breaking the Fear of Public / Open Spaces | ⏳ Pending | `// TODO(video): Agoraphobia recovery steps and panic loop interruption` |
-| `ocd` | Obsessive-Compulsive Disorder | The OCD Cycle (Obsessions, Anxiety, Compulsions) & ERP | ⏳ Pending | `// TODO(video): OCD cycle explained and how Exposure & Response Prevention works` |
+| `ocd` | Obsessive-Compulsive Disorder | The OCD Cycle (Obsessions, Anxiety, Compulsions) & ERP | ✅ Integrated | `EJcIwcIBMPw` — [ADAA/IOCDF: What is ERP like for Contamination OCD](https://www.youtube.com/watch?v=EJcIwcIBMPw) |
 | `body_dysmorphic` | Body Dysmorphic Disorder | BDD: Perception, Shame, and Evidence-Based Therapy | ⏳ Pending | `// TODO(video): BDD clinical reality vs cosmetic dissatisfaction` |
 | `hoarding` | Hoarding Disorder | Hoarding Disorder: Cognitive Processing & Compassionate Support | ⏳ Pending | `// TODO(video): Hoarding psychology and safety-first family approach` |
 | `trichotillomania` | Trichotillomania (Hair Pulling) | Body-Focused Repetitive Behaviors & Habit Reversal | ⏳ Pending | `// TODO(video): Habit Reversal Training for hair-pulling / skin-picking` |
-| `schizophrenia` | Schizophrenia | Understanding Psychosis, Dopamine, and Antipsychotic Care | ✅ Integrated (NAMI) | `WS1TXT3cGyw` |
+| `schizophrenia` | Schizophrenia | Understanding Psychosis, Dopamine, and Antipsychotic Care | 🔗 Official video page | [NIMH: Understanding Schizophrenia recording](https://www.nimh.nih.gov/news/events/2023/facebook-live-understanding-schizophrenia) — linked externally; no unverified ID embedded |
 | `schizoaffective` | Schizoaffective Disorder | Schizoaffective Disorder: Dual Diagnosis of Mood & Psychosis | ⏳ Pending | `// TODO(video): Schizoaffective management, sleep hygiene, and mood stability` |
 | `delusional` | Delusional Disorder | Fixed Non-Bizarre Beliefs and Compassionate Clinical Engagement | ⏳ Pending | `// TODO(video): Delusional disorder clinical approach and therapeutic alliance` |
 | `ptsd` | Post-Traumatic Stress Disorder | Trauma, The Amygdala, and Trauma-Informed Therapies | ⏳ Pending | `// TODO(video): PTSD trauma loop, hyperarousal, and EMDR/trauma-focused CBT` |
@@ -109,6 +115,16 @@ The current UI renders the primary youtubeVideoId via YouTubeEmbed.tsx, which us
 | `anticraving` | Anti-Craving & Substance Use Pharmacotherapy | Opioid / Alcohol Neurocircuitry, Relapse Prevention & Naltrexone/Acamprosate | ⏳ Pending | `// TODO(video): Anti-craving medications: Medication-Assisted Treatment (MAT) principles` |
 
 ---
+
+### 4. Substance Use Disorders — Priority Integrations
+
+| Substance ID | Topic | Status | Verified Video |
+|---|---|---|---|
+| `alcohol` | Alcohol use disorder treatment options | ✅ Integrated | [NIH/NIAAA: Treatment options for AUD](https://www.youtube.com/watch?v=SZhXdVs1Mmo) |
+| `opioids` | Opioid use disorder overview | ✅ Integrated | [APA: What is Opioid Use Disorder?](https://www.youtube.com/watch?v=CCLbKGKsp18) |
+| `bipolar` | Bipolar disorder overview | ⏳ Pending | No video ID added until a suitable video is verified on a trusted publisher page. |
+
+**Verification rule:** A YouTube ID is only embedded when the publisher/title/topic were confirmed from a reputable source page. Other conditions remain pending rather than receiving guessed IDs. English-language videos are currently used; Hindi/Gujarati versions should be added only after publisher, content, and captions are checked.
 
 ## 🛠️ How to Add a Video to Any Entry
 

@@ -11,6 +11,8 @@ interface YouTubeEmbedProps {
 export const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoId, title, currentLang }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
+  if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId)) return null;
+
   const labels = {
     en: {
       play: 'Play Educational Video',

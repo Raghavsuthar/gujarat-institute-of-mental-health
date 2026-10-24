@@ -267,6 +267,8 @@ const baseConditionsData: Condition[] = [
         year: '2021',
       },
     ],
+    educationalVideoTitle: { en: "Mental Health Minute: Depression", hi: "Mental Health Minute: Depression", gu: "Mental Health Minute: Depression" },
+    educationalVideoSource: 'National Institute of Mental Health (NIMH)',
     lastReviewed: '2026-09',
     relatedIds: ['cbt', 'behavioral-activation', 'ipt', 'antidepressants', 'anxiety-gad', 'bipolar'],
     relatedContent: {
@@ -538,6 +540,8 @@ const baseConditionsData: Condition[] = [
         year: '2021',
       },
     ],
+    educationalVideoTitle: { en: "What is Bipolar Disorder?", hi: "What is Bipolar Disorder?", gu: "What is Bipolar Disorder?" },
+    educationalVideoSource: 'National Alliance on Mental Illness (NAMI)',
     lastReviewed: '2026-09',
     relatedIds: ['mood-stabilizers', 'antipsychotics', 'family-psychoeducation', 'depression', 'schizophrenia'],
     relatedContent: {
@@ -802,6 +806,8 @@ const baseConditionsData: Condition[] = [
         year: '2016',
       },
     ],
+    educationalVideoTitle: { en: "Mental Health Minute: Anxiety Disorders in Adults", hi: "Mental Health Minute: Anxiety Disorders in Adults", gu: "Mental Health Minute: Anxiety Disorders in Adults" },
+    educationalVideoSource: 'National Institute of Mental Health (NIMH)',
     lastReviewed: '2026-09',
     relatedIds: ['cbt', 'act', 'antidepressants', 'anxiolytics', 'panic-disorder', 'depression'],
     relatedContent: {
@@ -1334,9 +1340,11 @@ const baseConditionsData: Condition[] = [
         year: '2005',
       },
     ],
+    educationalVideoTitle: { en: "What is ERP like for Contamination OCD?", hi: "What is ERP like for Contamination OCD?", gu: "What is ERP like for Contamination OCD?" },
+    educationalVideoSource: 'Anxiety and Depression Association of America / International OCD Foundation',
     lastReviewed: '2026-09',
     // TODO(video): OCD cycle explained and how Exposure & Response Prevention (ERP) rewires fear circuits
-    youtubeVideoId: undefined,
+    youtubeVideoId: 'EJcIwcIBMPw',
     relatedIds: ['erp', 'cbt', 'antidepressants', 'anxiety-gad'],
     relatedContent: {
       conditionSlugs: ['illness-anxiety-disorder', 'generalized-anxiety-disorder', 'major-depressive-disorder'],
@@ -1612,6 +1620,8 @@ const baseConditionsData: Condition[] = [
         year: '2005',
       },
     ],
+    educationalVideoTitle: { en: "What is Schizophrenia?", hi: "What is Schizophrenia?", gu: "What is Schizophrenia?" },
+    educationalVideoSource: 'National Alliance on Mental Illness (NAMI)',
     lastReviewed: '2026-09',
     relatedIds: ['antipsychotics', 'family-psychoeducation', 'sst', 'bipolar'],
     relatedContent: {

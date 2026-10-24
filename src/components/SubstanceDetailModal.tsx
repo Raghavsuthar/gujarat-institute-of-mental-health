@@ -4,6 +4,7 @@ import { SubstanceInfo, Language, ShareCardData } from '../types';
 import { translations } from '../data/translations';
 import { SocialShareBar } from './SocialShareBar';
 import { AudioReadAloud } from './AudioReadAloud';
+import { YouTubeEmbed } from './YouTubeEmbed';
 import { NeuralCircuitryIllustration, GrowthPathIllustration } from './visuals';
 
 interface SubstanceDetailModalProps {
@@ -160,6 +161,16 @@ export const SubstanceDetailModal: React.FC<SubstanceDetailModalProps> = ({
               variant="compact"
             />
           </div>
+
+          {substance.youtubeVideoId && (
+            <section className="my-3 space-y-2" aria-label={currentLang === 'hi' ? 'शैक्षिक वीडियो' : currentLang === 'gu' ? 'શૈક્ષણિક વિડિઓ' : 'Educational video'}>
+              <h3 className="text-sm font-semibold text-[#1c2430]">
+                {currentLang === 'hi' ? 'अनुशंसित शैक्षिक वीडियो' : currentLang === 'gu' ? 'ભલામણ કરેલ શૈક્ષણિક વિડિઓ' : 'Recommended educational video'}
+              </h3>
+              <YouTubeEmbed videoId={substance.youtubeVideoId} title={substance.educationalVideoTitle?.[currentLang] || substance.name[currentLang]} currentLang={currentLang} />
+              {substance.educationalVideoSource && <p className="text-xs text-stone-500">{currentLang === 'hi' ? 'स्रोत' : currentLang === 'gu' ? 'સ્રોત' : 'Source'}: {substance.educationalVideoSource}</p>}
+            </section>
+          )}
 
           {/* TAB 1: NEUROBIOLOGY */}
           {activeTab === 'neuro' && (

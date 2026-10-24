@@ -174,6 +174,9 @@ const baseSubstancesData: SubstanceInfo[] = [
         source: 'NIMHANS Guidelines',
       },
     ],
+    youtubeVideoId: 'SZhXdVs1Mmo',
+    educationalVideoTitle: { en: "Short Takes With NIAAA: Treatment Options for Alcohol Use Disorder", hi: "Short Takes With NIAAA: Treatment Options for Alcohol Use Disorder", gu: "Short Takes With NIAAA: Treatment Options for Alcohol Use Disorder" },
+    educationalVideoSource: 'National Institute on Alcohol Abuse and Alcoholism (NIAAA)',
     lastReviewed: '2026-08',
   },
   {
@@ -668,6 +671,9 @@ const baseSubstancesData: SubstanceInfo[] = [
         source: 'NIMHANS Guidelines',
       },
     ],
+    youtubeVideoId: 'CCLbKGKsp18',
+    educationalVideoTitle: { en: "What is an Opioid Use Disorder?", hi: "What is an Opioid Use Disorder?", gu: "What is an Opioid Use Disorder?" },
+    educationalVideoSource: 'American Psychiatric Association',
     lastReviewed: '2026-08',
   },
 ];

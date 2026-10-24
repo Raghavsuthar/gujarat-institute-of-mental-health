@@ -208,3 +208,9 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - Added evidence-guide coverage for the ten existing conditions that previously lacked a dedicated guide, completing the 23-condition guide map.
 - Added `docs/CONTENT_REVIEW.md` and `docs/CHANGELOG-content.md`, plus a test that checks condition coverage, trilingual fields, HTTPS source URLs, and source metadata.
 - Public guidance and source pages were checked during authoring. No independent clinician sign-off or browser-level review of rendered evidence cards is claimed; the review register lists these as pending.
+
+## Phase 6 video curation — 2026-10-24
+
+- Added source-attributed video metadata and rendering for condition and substance detail views, plus an ID-format guard for embeds.
+- Added coverage for OCD/ERP, alcohol use disorder, and opioid use disorder, while retaining existing NIMH/NAMI educational videos.
+- Added `docs/VIDEO_REVIEW.md` and automated source/ID metadata checks. Runtime playback, captions, regional availability, and independent clinical review remain unverified.

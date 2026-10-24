@@ -194,3 +194,11 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - Each summary includes source metadata, limitations, and non-diagnostic language. The personality-disorder summary explicitly limits the cited NICE CG78 recommendations to borderline personality disorder.
 - Added content-review and changelog records plus automated coverage/localization/source-metadata checks.
 - Automated validation cannot replace clinician sign-off, expert translation review, or browser verification.
+
+## 2026-10-24 — Attribute and validate educational videos
+
+**Status:** Implemented on `improve/phase-6-verified-videos`; CI pending.
+
+- Use the existing privacy-enhanced click-to-play player; validate the YouTube ID before rendering and show the educational title and source.
+- Add curated videos for OCD/ERP, alcohol use disorder, and opioid use disorder, retaining existing NIMH/NAMI selections for other priority topics.
+- Document English-only limitations and review requirements. Automated checks validate syntax and attribution, not playback or the clinical content of a video.

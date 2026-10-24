@@ -99,6 +99,9 @@ export interface Condition {
   };
   youtubeVideoId?: string;
   curatedVideoIds?: string[];
+  educationalVideoTitle?: LocalizedString;
+  educationalVideoSource?: string;
+  educationalVideoUrl?: string;
 }
 
 export interface SubstanceInfo {
@@ -148,6 +151,10 @@ export interface SubstanceInfo {
   lastReviewed: string;
   reviewStatus?: ReviewStatus;
   relatedIds?: string[];
+  youtubeVideoId?: string;
+  educationalVideoTitle?: LocalizedString;
+  educationalVideoSource?: string;
+  educationalVideoUrl?: string;
 }
 
 export interface DevelopmentVsConcernItem {
