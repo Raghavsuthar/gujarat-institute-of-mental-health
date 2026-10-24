@@ -13,5 +13,5 @@ test('home profile card avoids unverified consultant and registration claims', (
 
 test('home profile card describes the author as a psychiatry resident and the site as education', () => {
   assert.match(profileCard, /Psychiatry resident|DNB Psychiatry resident/i);
-  assert.match(profileCard, /public education|public mental-health education/i);
+  assert.match(profileCard, /public education|general mental-health education/i);
 });
