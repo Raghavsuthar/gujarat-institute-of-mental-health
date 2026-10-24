@@ -44,3 +44,27 @@ Never add these values to source control or prefix them with `VITE_`.
 - Verify live `/api/health`, `/api/analytics/ping`, `/api/analytics/summary`, and `/api/qa` after deployment.
 - Confirm the selected Upstash database's retention, access control, and billing settings in the owner account.
 - This PR does not provision an Upstash database or set production secrets.
+
+
+## 2026-10-24 — Dependency audit and build baseline
+
+**Status:** Findings confirmed by GitHub Actions CI run #72; remediation not yet applied.
+
+The report-only `npm audit` step found **10 advisories** in the installed dependency graph: 1 critical, 5 high, 3 moderate, and 1 low. npm reports compatible fixes available for the listed packages.
+
+| Package | Severity | Finding / note |
+|---|---|---|
+| `proxy-addr` | Critical | IP spoofing through IPv4-mapped IPv6 trusted subnet handling; GHSA-jqcg-44mw-7w3h |
+| `body-parser` | High | Denial of service with trailing bytes after a compressed request body; GHSA-27r3-jxmh-p828 |
+| `brace-expansion` | High | Multiple CPU/stack exhaustion advisories; GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-6j4f-fj2g-mc7p |
+| `vite` | High | Multiple advisories affecting versions up to 6.4.3; includes custom middleware cross-origin script execution and path access issues |
+| `sharp` | High | librsvg dependency vulnerability CVE-2026-96889; GHSA-wq5f-xc86-pv6w |
+| `source-map-js` | High | Event-loop denial of service via indexed source-map offsets; GHSA-68fv-2mgg-jv7q |
+| `fast-uri` | Moderate | Multiple URI normalization / scheme / host confusion advisories |
+| `qs` | Moderate | Array-limit bypass and denial of service advisories |
+| `express` | Moderate | Inherits the `qs` advisory in the installed dependency graph |
+| `serialize-javascript` | Low | Script-termination/XSS serialization advisories |
+
+**Decision:** Do not run `npm audit fix --force` or blindly upgrade major versions. Prepare a dedicated dependency-remediation PR using compatible fixes, then run content validation, typecheck, unit tests, production build, and a fresh `npm audit`. Review whether the Vite advisories affect production-only deployment or development tooling separately; do not dismiss them solely because some apply to the dev server.
+
+**Build baseline:** CI run #72 passed content validation, TypeScript checks, API safety tests, and production build. Vite reported a main JS chunk of approximately 3.43 MB uncompressed / 959 KB gzip, plus a warning that a chunk exceeds 600 kB. This is a Phase 4 performance target, not a failed build.
