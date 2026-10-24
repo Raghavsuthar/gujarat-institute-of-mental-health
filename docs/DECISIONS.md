@@ -215,3 +215,12 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - Add `SECURITY.md` and an owner review checklist. Do not add a repository-wide licence until the owner confirms rights and desired reuse for code, authored content, translations, images, videos, and screening instruments.
 
 **Acceptance limits:** No legal sign-off or independent translation review is claimed. Production data flows, AI-provider retention, Redis region/retention, contact channel, applicable law, and license choices remain owner-verification items. Runtime route rendering, keyboard navigation, axe, and mobile layout require preview/browser checks.
+
+
+## 2026-10-24 — Remove stale credentials from home-page profile card
+
+**Status:** Implemented on `improve/phase-3-profile-card-copy`; CI/preview verification pending.
+
+- Ruling: use “DNB Psychiatry resident” and public-education-only language in the home card — the repository's current profile correction identifies the author as a resident, while the previous card still asserted consultant status and registration without supporting evidence — cost if wrong: the card may be less specific than the owner wishes, but it avoids publishing unsupported credentials.
+- Keep the home card visually aligned with Calm Aurora through the existing `aurora-story-panel` surface instead of adding another component or dependency.
+- Add a source-level regression test for the stale credential wording. It does not establish registration status, clinical credentialing, or browser-level appearance.
