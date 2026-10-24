@@ -1,6 +1,6 @@
 # Mindcare Improvement Brief
 
-Read this file and execute it phase by phase. Repository: `Raghavsuthar/Mindcare`. Never edit `main) directly; use `improve/<phase-name>` branches, small commits, and a pull request per phase.
+Read this file and execute it phase by phase. Repository: `Raghavsuthar/Mindcare`. Never edit `main` directly; use `improve/<phase-name>` branches, small commits, and a pull request per phase.
 
 ## Mission
 
