@@ -17,6 +17,7 @@ import { Language } from '../types';
 import { faqsData } from '../data/faqs';
 import { glossaryData } from '../data/glossary';
 import { recordEvent } from '../utils/analytics';
+import { isCrisisQuery } from '../utils/crisisDetection';
 
 interface EducationalQAAssistantProps {
   currentLang: Language;
@@ -30,9 +31,6 @@ interface Message {
   isCrisis?: boolean;
   timestamp: Date;
 }
-
-// Crisis regex for immediate client-side short-circuiting
-const CLIENT_CRISIS_REGEX = /\b(suicide|kill myself|end my life|want to die|hanging|poison|overdose|harm myself|मरना|आत्महत्या|जान देना|खुदकुशी|આત્મહત્યા|જીવ આપવો|મરી જવું)\b/i;
 
 export const EducationalQAAssistant: React.FC<EducationalQAAssistantProps> = ({
   currentLang,
@@ -100,7 +98,7 @@ export const EducationalQAAssistant: React.FC<EducationalQAAssistantProps> = ({
     recordEvent('qa_assistant', 'query', currentLang);
 
     // 1. MANDATORY CLIENT CRISIS SHORT-CIRCUIT
-    if (CLIENT_CRISIS_REGEX.test(query)) {
+    if (isCrisisQuery(query)) {
       setIsTyping(false);
       const crisisMsg: Message = {
         id: (Date.now() + 1).toString(),
