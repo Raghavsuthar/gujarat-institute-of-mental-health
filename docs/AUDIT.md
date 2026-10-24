@@ -112,3 +112,11 @@ Attempts to retrieve `https://mindcare-five-delta.vercel.app/api/health` and `/a
 - No claim is made that the complete site is WCAG 2.2 AA compliant or meets the target Lighthouse scores.
 
 These limitations are explicit to avoid confusing source review with runtime verification.
+
+
+## Phase 3 UI baseline update — 2026-10-24
+
+- Added Calm Aurora shared design tokens and restrained CSS-only ambient background in `src/index.css`.
+- Applied the new hero identity class to the home page and documented token intent/accessibility in `docs/DESIGN_SYSTEM.md`.
+- Replaced the home-page author badge's unsupported “MBBS, MD Psychiatry · NMC Registered” claim with “Psychiatry resident · Public education” (localized in English, Hindi, and Gujarati).
+- Source-level review only at this point. No screenshots, axe scan, Lighthouse run, or live preview interaction is claimed until CI/preview/browser evidence is available.
