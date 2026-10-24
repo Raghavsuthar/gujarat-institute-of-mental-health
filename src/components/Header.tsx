@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={onOpenSearch}
             className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 active:scale-[0.97] text-sm border border-slate-200 hover:border-teal-400/60 transition cursor-pointer min-h-[44px] shadow-2xs"
             title={t.search.placeholder}
-            aria-label={t.search.placeholder}
+            aria-label={`${currentLang === 'en' ? 'Search topics' : currentLang === 'hi' ? 'खोजें...' : 'શોધો...'} — ${t.search.placeholder}`}
           >
             <Search className="w-4 h-4 text-teal-600" />
             <span className="hidden sm:inline text-xs text-slate-700 font-medium">
@@ -142,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={currentLang === 'en'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'en'
-                  ? 'bg-[#0d9488] text-white shadow-xs font-bold'
+                  ? 'bg-[#0f766e] text-white shadow-xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
@@ -153,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={currentLang === 'hi'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'hi'
-                  ? 'bg-[#0d9488] text-white shadow-xs font-bold'
+                  ? 'bg-[#0f766e] text-white shadow-xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={currentLang === 'gu'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'gu'
-                  ? 'bg-[#0d9488] text-white shadow-xs font-bold'
+                  ? 'bg-[#0f766e] text-white shadow-xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >

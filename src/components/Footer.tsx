@@ -234,7 +234,7 @@ export const Footer: React.FC<FooterProps> = ({
                 onClick={() => onLanguageChange('en')}
                 aria-pressed={currentLang === 'en'}
                 className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
-                  currentLang === 'en' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  currentLang === 'en' ? 'bg-[#0f766e] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 English
@@ -243,7 +243,7 @@ export const Footer: React.FC<FooterProps> = ({
                 onClick={() => onLanguageChange('hi')}
                 aria-pressed={currentLang === 'hi'}
                 className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
-                  currentLang === 'hi' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  currentLang === 'hi' ? 'bg-[#0f766e] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 हिन्दी
@@ -252,7 +252,7 @@ export const Footer: React.FC<FooterProps> = ({
                 onClick={() => onLanguageChange('gu')}
                 aria-pressed={currentLang === 'gu'}
                 className={`px-3 py-1.5 rounded-lg text-xs transition cursor-pointer min-h-[44px] ${
-                  currentLang === 'gu' ? 'bg-[#0d9488] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  currentLang === 'gu' ? 'bg-[#0f766e] text-white font-bold shadow-2xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 ગુજરાતી
@@ -263,11 +263,16 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
       </div>
 
+      <nav aria-label={currentLang === 'en' ? 'Legal information' : currentLang === 'hi' ? 'कानूनी जानकारी' : 'કાનૂની માહિતી'} className="max-w-7xl mx-auto flex flex-wrap justify-center gap-x-5 gap-y-2 px-4 py-4 text-xs font-semibold text-teal-900">
+        <a href={`/${currentLang}/privacy`} className="underline-offset-4 hover:underline">{currentLang === 'en' ? 'Privacy notice' : currentLang === 'hi' ? 'गोपनीयता सूचना' : 'ગોપનીયતા સૂચના'}</a>
+        <a href={`/${currentLang}/terms`} className="underline-offset-4 hover:underline">{currentLang === 'en' ? 'Terms of use' : currentLang === 'hi' ? 'उपयोग की शर्तें' : 'ઉપયોગની શરતો'}</a>
+      </nav>
+
       {/* Bottom Copyright & Compliance */}
       <div className="border-t border-slate-200/80 px-4 py-4 text-slate-500 text-xs bg-slate-50/50">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p>© {new Date().getFullYear()} {t.doctorName}. Public Psychiatry Education Portal. All content evidence-based.</p>
-          <p>Complies with National Medical Commission (NMC) Medical Ethics Regulations.</p>
+          <p>© {new Date().getFullYear()} {t.doctorName}. Mindcare · Public mental-health education.</p>
+          <p>{currentLang === 'en' ? 'Educational information; not individual medical care.' : currentLang === 'hi' ? 'शैक्षणिक जानकारी; व्यक्तिगत चिकित्सा देखभाल नहीं।' : 'શૈક્ષણિક માહિતી; વ્યક્તિગત તબીબી સંભાળ નથી.'}</p>
         </div>
       </div>
     </footer>

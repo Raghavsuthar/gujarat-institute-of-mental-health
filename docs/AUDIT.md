@@ -214,3 +214,20 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - Added source-attributed video metadata and rendering for condition and substance detail views, plus an ID-format guard for embeds.
 - Added coverage for OCD/ERP, alcohol use disorder, and opioid use disorder, while retaining existing NIMH/NAMI educational videos.
 - Added `docs/VIDEO_REVIEW.md` and automated source/ID metadata checks. Runtime playback, captions, regional availability, and independent clinical review remain unverified.
+
+
+## Phase 7 — privacy, terms, and responsible disclosure foundation (PR pending, 2026-10-24)
+
+- Added localized `/:lang/privacy` and `/:lang/terms` routes in a lazy-loaded view, with English, Hindi, and Gujarati copy. The pages are explicitly marked as drafts pending owner and legal review; they describe local storage, aggregate analytics, Q&A data flow, AI-processing possibility, and limitations without promising confidentiality or zero collection.
+- Added footer links to both pages and removed the unverified claim that the site complies with National Medical Commission medical ethics regulations. The footer now uses an educational-scope statement.
+- Added root `SECURITY.md` with responsible disclosure guidance and `docs/LEGAL_REVIEW.md` / `docs/LICENSE_DECISION.md` to record unresolved owner decisions.
+- These changes are source-level only until CI and a deployed preview are checked. No legal approval, independent translation review, production data-flow verification, or runtime accessibility pass is claimed.
+- Remaining owner blockers: publish a privacy/security contact channel; confirm analytics/Redis/AI-provider retention and region; select code/content licences; obtain legal and fluent clinical-language review. Phase 2 production acceptance remains blocked until required server-side configuration and live API/storage checks are verified.
+
+
+### Phase 7 browser/axe follow-up — 2026-10-24
+
+- Added a Chromium workflow that tests the built application locally in CI, covering privacy routes in all three languages, terms navigation, and horizontal overflow at 360/390/768/1280/1536 px. The initial run passed all six tests.
+- The first axe scan found two serious categories: insufficient contrast on selected language buttons and visible-label/accessibility-name mismatches on the search and floating emergency buttons. Those source issues have been corrected by darkening selected language controls and including visible text in accessible names.
+- The axe gate now fails on serious or critical WCAG 2.0/2.1 A/AA findings. Re-run CI after these fixes before accepting this follow-up.
+- The initial scan was limited to the English privacy route and does not establish full-site conformance; live Vercel, screen-reader, offline, and Lighthouse checks remain separate.

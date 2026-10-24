@@ -38,6 +38,7 @@ const ArticlesView = lazy(() => import('./views/ArticlesView').then(m => ({ defa
 const ResourcesView = lazy(() => import('./views/ResourcesView').then(m => ({ default: m.ResourcesView })));
 const OutreachView = lazy(() => import('./views/OutreachView').then(m => ({ default: m.OutreachView })));
 const AboutView = lazy(() => import('./views/AboutView').then(m => ({ default: m.AboutView })));
+const PrivacyTermsView = lazy(() => import('./views/PrivacyTermsView').then(m => ({ default: m.PrivacyTermsView })));
 const AdminAnalyticsView = lazy(() => import('./views/AdminAnalyticsView').then(m => ({ default: m.AdminAnalyticsView })));
 const SearchModal = lazy(() => import('./components/SearchModal').then((m) => ({ default: m.SearchModal })));
 const CrisisModal = lazy(() => import('./components/CrisisModal').then((m) => ({ default: m.CrisisModal })));
@@ -440,6 +441,10 @@ export default function App() {
           {/* Emergency Helplines */}
           <Route path="/:lang/emergency" element={<EmergencyView currentLang={currentLang} />} />
 
+          {/* Privacy notice and terms */}
+          <Route path="/:lang/privacy" element={<PrivacyTermsView currentLang={currentLang} page="privacy" />} />
+          <Route path="/:lang/terms" element={<PrivacyTermsView currentLang={currentLang} page="terms" />} />
+
           {/* About Dr. Raghav Suthar */}
           <Route path="/:lang/about" element={<AboutView currentLang={currentLang} />} />
 
@@ -576,10 +581,10 @@ export default function App() {
         onClick={handleFloatingEmergencyClick}
         aria-label={
           currentLang === 'en'
-            ? 'Emergency Crisis Support - Tele-MANAS 14416 (24x7)'
+            ? 'Emergency 14416 — Crisis Support (Tele-MANAS 14416 / 112)'
             : currentLang === 'hi'
-            ? 'आपातकालीन संकट सहायता - टेली-मानस 14416 (24x7)'
-            : 'ઇમરજન્સી સંકટ સહાય - ટેલી-માનસ ૧૪૪૧૬ (૨૪x૭)'
+            ? 'आपातकालीन 14416 — संकट सहायता (टेली-मानस 14416 / 112)'
+            : 'ઇમરજન્સી ૧૪૪૧૬ — સંકટ સહાય (ટેલી-માનસ ૧૪૪૧૬ / ૧૧૨)'
         }
         title={
           isEmergencyRoute

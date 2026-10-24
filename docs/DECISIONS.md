@@ -202,3 +202,16 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - Use the existing privacy-enhanced click-to-play player; validate the YouTube ID before rendering and show the educational title and source.
 - Add curated videos for OCD/ERP, alcohol use disorder, and opioid use disorder, retaining existing NIMH/NAMI selections for other priority topics.
 - Document English-only limitations and review requirements. Automated checks validate syntax and attribution, not playback or the clinical content of a video.
+
+
+## 2026-10-24 — Phase 7 privacy/terms draft and disclosure policy
+
+**Status:** Implemented on `improve/phase-7-privacy-security`; awaiting CI and preview checks.
+
+- Add English, Hindi, and Gujarati privacy notice and terms pages at language-prefixed routes. Both pages prominently state that they are drafts pending owner/legal review.
+- Describe local language preference/local analytics storage and the analytics event categories visible in the client code. Explain that Q&A messages are sent to the site API and may be forwarded to a configured AI provider; instruct visitors not to submit identifying or sensitive health information.
+- Avoid a blanket claim that the site is confidential, stores no data, is legally compliant, or has verified retention settings.
+- Remove the unverified footer statement asserting NMC medical-ethics compliance. Link the privacy and terms pages from the footer.
+- Add `SECURITY.md` and an owner review checklist. Do not add a repository-wide licence until the owner confirms rights and desired reuse for code, authored content, translations, images, videos, and screening instruments.
+
+**Acceptance limits:** No legal sign-off or independent translation review is claimed. Production data flows, AI-provider retention, Redis region/retention, contact channel, applicable law, and license choices remain owner-verification items. Runtime route rendering, keyboard navigation, axe, and mobile layout require preview/browser checks.
