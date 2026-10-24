@@ -116,8 +116,9 @@ export function normalizePingPayload(input: unknown): NormalizedAnalyticsPayload
   if (cleanedPath.length > 200) return null;
 
   const rawReferrer = typeof payload.referrerDomain === 'string' ? payload.referrerDomain : 'Direct / QR Poster';
+  const containsControlChars = /[\u0000-\u001f\u007f]/.test(rawReferrer);
   const cleanedReferrer = rawReferrer.replace(/[\u0000-\u001f\u007f]/g, '').trim();
-  let referrerDomain = cleanedReferrer;
+  let referrerDomain = containsControlChars ? 'Other' : cleanedReferrer;
   if (['Direct / QR Poster', 'QR Poster Scan', 'Internal Navigation', 'Other'].includes(cleanedReferrer)) {
     referrerDomain = cleanedReferrer;
   } else {
