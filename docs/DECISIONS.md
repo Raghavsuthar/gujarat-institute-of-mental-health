@@ -167,3 +167,12 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - A first attempt to split all three packages emitted `vendor-markdown` at 119.02 kB minified / 36.85 kB gzip, but the deployed preview HTML still contained a `modulepreload` for that chunk. This means the attempted split did **not** keep Markdown off the initial preload graph.
 - Removed the forced `vendor-markdown` manual chunk and let Rollup retain route-specific dynamic-import boundaries. Keep separate icon and Motion chunks only if CI/preview output confirms they are useful.
 - Acceptance requires a new CI build and preview HTML check confirming that no Markdown-specific chunk is preloaded on the home route. No Lighthouse or real network savings are claimed.
+
+## 2026-10-24 — Make PWA payload boundaries a build invariant
+
+**Status:** Implemented on `improve/phase-4-pwa-build-verification`; CI pending.
+
+- Preview inspection showed that a forced manual Markdown chunk could appear in the home page's module-preload list even though the Articles route was lazy. The build now checks that the generated HTML keeps article/Markdown code out of the initial preload list.
+- Validate that the compact condition index is non-empty, has localized names and search text, and is included in the service-worker precache manifest.
+- Verify that crisis and emergency code/content chunks are emitted and represented in the precache manifest, supporting—but not proving—offline availability.
+- These checks are artifact-level safeguards. They do not replace browser offline tests, keyboard/axe checks, or Lighthouse measurement.

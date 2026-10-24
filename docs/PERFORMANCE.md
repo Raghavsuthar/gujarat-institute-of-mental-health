@@ -44,3 +44,9 @@ No Lighthouse scores, Core Web Vitals, real initial network transfer, offline br
 - Splitting Lucide icons, Motion, and React Markdown into separate manual chunks emitted a `vendor-markdown` chunk at **119.02 kB minified / 36.85 kB gzip**, but the preview HTML still preloaded it from the home page. The attempted split therefore failed its main acceptance criterion.
 - The branch now removes the forced `vendor-markdown` chunk and relies on Rollup's route-level dynamic-import graph for Markdown. Check the new CI output and preview HTML before accepting this optimization.
 - Browser network traces, actual initial transfer, and Lighthouse remain unverified.
+
+## Phase 4 — automated PWA build-boundary checks
+
+- Added `scripts/verify-pwa-build.ts` to run after `vite build` and before the Express bundle.
+- The check asserts that the HTML entry does not module-preload the lazy Articles/Markdown code, the generated condition index has localized names and searchable text in English/Hindi/Gujarati, and the service-worker manifest includes the condition index plus crisis/emergency assets.
+- This verifies emitted build artifacts and the precache manifest only. It does not simulate a browser going offline, confirm service-worker activation/update UX, or provide Lighthouse/Core Web Vitals scores; those still require browser-level tests.

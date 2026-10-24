@@ -190,3 +190,9 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - `GET /api/analytics/summary`, `GET /api/analytics/ping`, and `GET /api/qa` returned HTTP 500 with Vercel `FUNCTION_INVOCATION_FAILED` plain-text responses, rather than the handlers' expected JSON status responses. These are not accepted as passing API checks.
 - The Vercel project environment listing (without decrypting values) contains only `GEMINI_API_KEY` and `APP_URL`; no preview-branch variables are configured, and `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, and `ADMIN_PASSWORD` are absent from the listed project environment.
 - Runtime error/log access returned HTTP 403 through the connected Vercel integration, so the function invocation root cause is not verified. Do not guess at a code fix or claim Phase 2 production acceptance. Next: restore authorized runtime-log access, diagnose the shared-helper invocation failure, provision the required server-side configuration without sharing secrets in chat, and retest JSON/status behavior.
+
+## Phase 4 build-level PWA checks — 2026-10-24
+
+- Added a production-build assertion for route-specific Markdown preload boundaries, the generated trilingual condition index, and crisis/emergency assets in the service-worker precache manifest.
+- This turns source/build assumptions into CI checks; it is not a browser offline simulation, visual check, or Lighthouse measurement.
+- CI results are pending for this branch.
