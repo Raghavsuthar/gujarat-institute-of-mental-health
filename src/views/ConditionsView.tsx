@@ -103,19 +103,37 @@ export const ConditionsView: React.FC<ConditionsViewProps> = ({
       <div className="space-y-3">
         {/* Category filter pills - accessible min 44px */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1" role="group" aria-label="Category filters">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3.5 py-2 rounded-md text-xs font-semibold whitespace-nowrap transition cursor-pointer min-h-[44px] flex items-center ${
-                selectedCategory === cat.id
-                  ? 'bg-[#115e59] text-white'
-                  : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const categoryCount = cat.id === 'all'
+              ? conditionsData.length
+              : conditionsData.filter((condition) => condition.category === cat.id).length;
+
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setSelectedCategory(cat.id)}
+                aria-pressed={selectedCategory === cat.id}
+                className={`px-3.5 py-2 rounded-md text-xs font-semibold whitespace-nowrap transition cursor-pointer min-h-[44px] flex items-center gap-2 ${
+                  selectedCategory === cat.id
+                    ? 'bg-[#115e59] text-white'
+                    : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  aria-label={`${categoryCount} conditions`}
+                  className={`inline-flex min-w-5 h-5 px-1 items-center justify-center rounded-full text-[10px] font-bold tabular-nums ${
+                    selectedCategory === cat.id
+                      ? 'bg-white/20 text-white'
+                      : 'bg-white text-stone-600 border border-stone-200'
+                  }`}
+                >
+                  {categoryCount}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Search across names, medical terms, overviews, and common symptoms in all three languages */}
