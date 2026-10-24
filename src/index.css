@@ -155,7 +155,6 @@
 /* Calm Aurora design system — Phase 3 */
 @layer base {
   :root {
-    color-scheme: light;
     --aurora-canvas: #f6f8fb;
     --aurora-surface: rgba(255, 255, 255, 0.94);
     --aurora-ink: #142b3b;
