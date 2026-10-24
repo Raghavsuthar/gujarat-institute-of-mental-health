@@ -386,4 +386,220 @@ export const conditionEvidenceGuides: Record<string, ConditionEvidenceGuide> = {
       gu: 'આ સામાન્ય શૈક્ષણિક સામગ્રી છે, નિદાન માટેની ચેકલિસ્ટ નથી. સતત ચિંતા હોય તો લાયક વ્યાવસાયિક દ્વારા મૂલ્યાંકન અને યોગ્ય સહાય અંગે ચર્ચા કરો.',
     },
   },
+
+  'geriatric-dementia-delirium': {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Dementia describes a progressive decline in memory or other thinking abilities that affects daily life. Delirium is different: it usually develops over hours or days, causes a change in attention or awareness, and can signal an urgent medical problem. Both deserve respectful assessment rather than being dismissed as normal ageing.',
+      hi: 'डिमेंशिया में याददाश्त या अन्य सोचने की क्षमताओं में धीरे-धीरे गिरावट आती है, जिससे दैनिक जीवन प्रभावित होता है। डिलीरियम अलग है: यह अक्सर कुछ घंटों या दिनों में शुरू होता है, ध्यान या जागरूकता बदल देता है और किसी जरूरी चिकित्सकीय समस्या का संकेत हो सकता है। दोनों का सम्मानपूर्वक मूल्यांकन जरूरी है; इन्हें सामान्य बुढ़ापा मानकर न टालें।',
+      gu: 'ડિમેન્શિયામાં યાદશક્તિ અથવા અન્ય વિચારશક્તિમાં ધીમે ધીમે ઘટાડો થાય છે, જે દૈનિક જીવનને અસર કરે છે. ડિલિરિયમ અલગ છે: તે સામાન્ય રીતે કલાકો કે દિવસોમાં શરૂ થાય છે, ધ્યાન અથવા જાગૃતિમાં ફેરફાર કરે છે અને તાત્કાલિક તબીબી સમસ્યાનું ચિહ્ન હોઈ શકે છે. બંનેનું સન્માનપૂર્વક મૂલ્યાંકન કરવું જોઈએ; તેને સામાન્ય વૃદ્ધાવસ્થા માનીને અવગણશો નહીં.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Dementia assessment may include history from the person and someone who knows them, review of medicines and physical health, cognitive assessment, and selected tests to look for treatable contributors.',
+          hi: 'डिमेंशिया के मूल्यांकन में व्यक्ति और उसे अच्छी तरह जानने वाले किसी व्यक्ति से इतिहास, दवाओं व शारीरिक स्वास्थ्य की समीक्षा, संज्ञानात्मक जाँच और उपचार योग्य कारणों की तलाश के लिए आवश्यक परीक्षण शामिल हो सकते हैं।',
+          gu: 'ડિમેન્શિયાના મૂલ્યાંકનમાં વ્યક્તિ અને તેને સારી રીતે ઓળખતી વ્યક્તિ પાસેથી ઇતિહાસ, દવાઓ તથા શારીરિક આરોગ્યની સમીક્ષા, જ્ઞાનાત્મક મૂલ્યાંકન અને સારવાર કરી શકાય એવા કારણો શોધવા માટે જરૂરી તપાસનો સમાવેશ થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'Memory problems have many possible causes. A screening result alone cannot establish a diagnosis, and care should account for language, education, hearing, vision, and the person’s usual abilities.',
+          hi: 'याददाश्त की समस्या के कई कारण हो सकते हैं। केवल स्क्रीनिंग से निदान तय नहीं होता; भाषा, शिक्षा, सुनने-देखने की क्षमता और व्यक्ति की पहले की कार्यक्षमता को ध्यान में रखना चाहिए।',
+          gu: 'યાદશક્તિની સમસ્યાના ઘણા સંભવિત કારણો હોય છે. માત્ર સ્ક્રીનિંગથી નિદાન નક્કી થતું નથી; ભાષા, શિક્ષણ, સાંભળવાની-જોવાની ક્ષમતા અને વ્યક્તિની અગાઉની કાર્યક્ષમતાને ધ્યાનમાં લેવી જોઈએ.',
+        },
+      },
+      {
+        text: {
+          en: 'A sudden change in attention, awareness, behaviour, or alertness may be delirium. Prompt medical assessment is important because infection, medicines, dehydration, pain, and other acute illnesses can contribute.',
+          hi: 'ध्यान, जागरूकता, व्यवहार या सतर्कता में अचानक बदलाव डिलीरियम हो सकता है। शीघ्र चिकित्सकीय जाँच जरूरी है, क्योंकि संक्रमण, दवाएँ, पानी की कमी, दर्द या अन्य तीव्र बीमारियाँ इसका कारण बन सकती हैं।',
+          gu: 'ધ્યાન, જાગૃતિ, વર્તન અથવા સતર્કતામાં અચાનક ફેરફાર ડિલિરિયમ હોઈ શકે છે. તાત્કાલિક તબીબી તપાસ મહત્વપૂર્ણ છે, કારણ કે ચેપ, દવાઓ, પાણીની અછત, દુખાવો અથવા અન્ય તીવ્ર બીમારીઓ કારણ બની શકે છે.',
+        },
+        limitation: {
+          en: 'Do not wait for a routine appointment if confusion begins suddenly or the person is difficult to wake, severely unwell, or unsafe. Seek urgent medical help.',
+          hi: 'यदि भ्रम अचानक शुरू हो, व्यक्ति को जगाना कठिन हो, वह बहुत बीमार लगे या सुरक्षित न हो, तो नियमित अपॉइंटमेंट का इंतजार न करें। तुरंत चिकित्सा सहायता लें।',
+          gu: 'જો ગૂંચવણ અચાનક શરૂ થાય, વ્યક્તિને જગાડવી મુશ્કેલ હોય, તે ગંભીર રીતે બીમાર લાગે અથવા સલામત ન હોય, તો નિયમિત મુલાકાતની રાહ ન જુઓ. તાત્કાલિક તબીબી મદદ લો.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Dementia: assessment, management and support for people living with dementia and their carers (NG97)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/ng97', note: 'Clinical guidance on dementia assessment, care, and support.' },
+      { title: 'Delirium: prevention, diagnosis and management in hospital and long-term care (CG103)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/cg103', note: 'Guidance on recognising and managing delirium.' },
+    ],
+    reviewedNote: {
+      en: 'Educational information only. Sudden confusion or a rapid change in awareness is urgent and needs prompt medical assessment.',
+      hi: 'यह केवल शैक्षिक जानकारी है। अचानक भ्रम या जागरूकता में तेजी से बदलाव एक आपात स्थिति हो सकती है और शीघ्र चिकित्सकीय जाँच जरूरी है।',
+      gu: 'આ માહિતી માત્ર શૈક્ષણિક હેતુ માટે છે. અચાનક ગૂંચવણ અથવા જાગૃતિમાં ઝડપથી ફેરફાર તાત્કાલિક સ્થિતિ હોઈ શકે છે અને તબીબી તપાસ જરૂરી છે.',
+    },
+  },
+  'anorexia-nervosa': {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Anorexia nervosa is an eating disorder involving restrictive eating and significant concern about weight, shape, or their effects. It can affect people at different body sizes and may cause serious physical complications; appearance alone cannot tell whether someone is unwell.',
+      hi: 'एनोरेक्सिया नर्वोसा एक ईटिंग डिसऑर्डर है जिसमें भोजन सीमित करना और वजन, शरीर के आकार या उनके प्रभावों को लेकर गहरी चिंता शामिल हो सकती है। यह अलग-अलग शरीर आकार वाले लोगों को प्रभावित कर सकता है और गंभीर शारीरिक जटिलताएँ पैदा कर सकता है; केवल दिखावट से बीमारी का पता नहीं चलता।',
+      gu: 'એનોરેક્સિયા નર્વોસા એક આહાર સંબંધિત વિકાર છે, જેમાં ખોરાક પર ગંભીર નિયંત્રણ અને વજન, શરીરના આકાર અથવા તેના પ્રભાવ અંગે તીવ્ર ચિંતા હોઈ શકે છે. તે વિવિધ શરીરાકાર ધરાવતા લોકોને અસર કરી શકે છે અને ગંભીર શારીરિક જટિલતાઓ ઊભી કરી શકે છે; દેખાવ પરથી જ કોઈની તબિયત નક્કી કરી શકાતી નથી.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Care commonly combines medical monitoring and nutritional rehabilitation with psychological treatment. Family involvement may be helpful for children and adolescents when appropriate.',
+          hi: 'देखभाल में अक्सर चिकित्सकीय निगरानी और पोषण बहाली के साथ मनोवैज्ञानिक उपचार शामिल होते हैं। उपयुक्त होने पर बच्चों और किशोरों के उपचार में परिवार की भागीदारी सहायक हो सकती है।',
+          gu: 'સંભાળમાં સામાન્ય રીતે તબીબી દેખરેખ અને પોષણ પુનઃસ્થાપન સાથે મનોવૈજ્ઞાનિક સારવારનો સમાવેશ થાય છે. યોગ્ય હોય ત્યારે બાળકો અને કિશોરોની સારવારમાં પરિવારની ભાગીદારી મદદરૂપ થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'Treatment should be individualised and coordinated across relevant professionals. The degree of medical risk cannot be judged from weight or appearance alone.',
+          hi: 'उपचार व्यक्ति के अनुसार होना चाहिए और संबंधित पेशेवरों के बीच समन्वय जरूरी है। केवल वजन या दिखावट से चिकित्सकीय जोखिम का आकलन नहीं किया जा सकता।',
+          gu: 'સારવાર વ્યક્તિગત જરૂરિયાત મુજબ અને સંબંધિત નિષ્ણાતોના સંકલનથી થવી જોઈએ. માત્ર વજન અથવા દેખાવ પરથી તબીબી જોખમ નક્કી કરી શકાતું નથી.',
+        },
+      },
+      {
+        text: {
+          en: 'Early, compassionate assessment can help identify physical risks and support recovery without blame or shame.',
+          hi: 'जल्दी और संवेदनशील मूल्यांकन शारीरिक जोखिम पहचानने और दोष या शर्म दिए बिना सुधार में मदद कर सकता है।',
+          gu: 'વહેલું અને સંવેદનશીલ મૂલ્યાંકન શારીરિક જોખમ ઓળખવામાં અને દોષારોપણ કે શરમ આપ્યા વિના સુધારામાં મદદ કરી શકે છે.',
+        },
+        limitation: {
+          en: 'Fainting, chest symptoms, severe weakness, dehydration, or inability to maintain intake may require urgent medical care.',
+          hi: 'बेहोशी, सीने के लक्षण, अत्यधिक कमजोरी, पानी की कमी या पर्याप्त भोजन-पानी न ले पाना तत्काल चिकित्सा की आवश्यकता पैदा कर सकता है।',
+          gu: 'બેભાન થવું, છાતીના લક્ષણો, ભારે નબળાઈ, પાણીની અછત અથવા પૂરતો ખોરાક-પ્રવાહી ન લઈ શકવું તાત્કાલિક તબીબી સારવારની જરૂરિયાત દર્શાવી શકે છે.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Eating disorders: recognition and treatment (NG69)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/ng69', note: 'Guidance on assessment and treatment of eating disorders.' },
+      { title: 'Eating Disorders', organization: 'National Institute of Mental Health', url: 'https://www.nimh.nih.gov/health/topics/eating-disorders', note: 'Public information on eating disorders and treatment.' },
+    ],
+    reviewedNote: {
+      en: 'This page is educational, not a diagnostic tool or meal plan. Eating disorders can be serious at any body size; seek professional assessment when concerned.',
+      hi: 'यह पृष्ठ शैक्षिक है, निदान का साधन या भोजन योजना नहीं। किसी भी शरीर आकार में ईटिंग डिसऑर्डर गंभीर हो सकता है; चिंता होने पर पेशेवर जाँच कराएँ।',
+      gu: 'આ પાનું શૈક્ષણિક છે, નિદાનનું સાધન કે ભોજન યોજના નથી. કોઈપણ શરીરાકારમાં આહાર વિકાર ગંભીર હોઈ શકે છે; ચિંતા હોય તો વ્યાવસાયિક મૂલ્યાંકન કરાવો.',
+    },
+  },
+  'bulimia-nervosa': {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Bulimia nervosa can involve repeated episodes of eating with a sense of loss of control followed by attempts to compensate, such as vomiting, fasting, or excessive exercise. People may experience it at any body size and may feel shame, so a non-judgemental approach matters.',
+      hi: 'बुलिमिया नर्वोसा में कभी-कभी नियंत्रण खोने की अनुभूति के साथ अधिक खाना और उसके बाद उल्टी, उपवास या अत्यधिक व्यायाम जैसे तरीकों से इसकी भरपाई करने की कोशिश शामिल हो सकती है। यह किसी भी शरीर आकार के व्यक्ति को हो सकता है; शर्म महसूस हो सकती है, इसलिए बिना निर्णय किए सहायता देना महत्वपूर्ण है।',
+      gu: 'બુલિમિયા નર્વોસામાં ક્યારેક નિયંત્રણ ગુમાવ્યાની લાગણી સાથે વધુ ખાવાના પ્રસંગો અને ત્યારબાદ ઊલટી, ઉપવાસ અથવા અતિશય કસરત દ્વારા તેની ભરપાઈ કરવાનો પ્રયાસ હોઈ શકે છે. તે કોઈપણ શરીરાકાર ધરાવતા વ્યક્તિને થઈ શકે છે અને શરમ અનુભવાઈ શકે છે, તેથી નિષ્પક્ષ સહાય મહત્વપૂર્ણ છે.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Evidence-based psychological treatment, guided self-help in suitable cases, and regular review can help. Medical assessment may be needed to check complications and overall health.',
+          hi: 'प्रमाण-आधारित मनोवैज्ञानिक उपचार, उपयुक्त मामलों में निर्देशित स्व-सहायता और नियमित समीक्षा मदद कर सकती है। जटिलताओं और समग्र स्वास्थ्य की जाँच के लिए चिकित्सकीय मूल्यांकन जरूरी हो सकता है।',
+          gu: 'પુરાવા આધારિત મનોવૈજ્ઞાનિક સારવાર, યોગ્ય કિસ્સામાં માર્ગદર્શિત સ્વ-સહાય અને નિયમિત સમીક્ષા મદદરૂપ થઈ શકે છે. જટિલતાઓ અને એકંદર આરોગ્ય તપાસવા તબીબી મૂલ્યાંકન જરૂરી હોઈ શકે છે.',
+        },
+        limitation: {
+          en: 'The appropriate approach depends on age, symptoms, medical status, and preferences. Self-help resources do not replace care when symptoms are persistent or physical risk is present.',
+          hi: 'उपयुक्त तरीका उम्र, लक्षणों, चिकित्सकीय स्थिति और पसंद पर निर्भर करता है। लगातार लक्षण या शारीरिक जोखिम होने पर स्व-सहायता संसाधन उपचार का विकल्प नहीं हैं।',
+          gu: 'યોગ્ય રીત ઉંમર, લક્ષણો, તબીબી સ્થિતિ અને પસંદગી પર આધારિત છે. લક્ષણો સતત રહે અથવા શારીરિક જોખમ હોય ત્યારે સ્વ-સહાય સંસાધનો સારવારનો વિકલ્પ નથી.',
+        },
+      },
+      {
+        text: {
+          en: 'Recovery support can include identifying triggers, reducing shame, and building regular, flexible eating patterns with professional guidance.',
+          hi: 'सुधार में ट्रिगर पहचानना, शर्म कम करना और पेशेवर मार्गदर्शन के साथ नियमित व लचीले भोजन पैटर्न बनाना शामिल हो सकता है।',
+          gu: 'સુધારામાં ટ્રિગર ઓળખવા, શરમ ઘટાડવા અને વ્યાવસાયિક માર્ગદર્શન સાથે નિયમિત તથા લવચીક ખાવાની રીત વિકસાવવાનો સમાવેશ થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'Avoid compensatory behaviours and rigid food rules; a qualified team can help plan safe next steps without blame.',
+          hi: 'भरपाई करने वाले व्यवहार और कठोर भोजन नियमों से बचें; योग्य टीम बिना दोष दिए सुरक्षित अगले कदम तय करने में मदद कर सकती है।',
+          gu: 'ભરપાઈ કરવા માટેના વર્તનો અને કઠોર ખોરાકના નિયમો ટાળો; લાયક ટીમ દોષારોપણ વિના સલામત આગળના પગલાં નક્કી કરવામાં મદદ કરી શકે છે.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Eating disorders: recognition and treatment (NG69)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/ng69', note: 'Guidance on bulimia assessment and treatment.' },
+      { title: 'Eating Disorders', organization: 'National Institute of Mental Health', url: 'https://www.nimh.nih.gov/health/topics/eating-disorders', note: 'Public information on treatment and recovery.' },
+    ],
+    reviewedNote: {
+      en: 'Educational information only. Purging, fainting, blood in vomit, chest pain, or severe weakness needs prompt medical advice or urgent care.',
+      hi: 'यह केवल शैक्षिक जानकारी है। उल्टी कर भोजन निकालना, बेहोशी, उल्टी में खून, सीने में दर्द या अत्यधिक कमजोरी होने पर शीघ्र चिकित्सकीय सलाह या आपात सहायता लें।',
+      gu: 'આ માહિતી માત્ર શૈક્ષણિક હેતુ માટે છે. ઊલટી દ્વારા ખોરાક કાઢવો, બેભાન થવું, ઊલટીમાં લોહી, છાતીમાં દુખાવો અથવા ભારે નબળાઈ હોય તો તાત્કાલિક તબીબી સલાહ અથવા ઇમરજન્સી મદદ લો.',
+    },
+  },
+  'binge-eating-disorder': {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Binge-eating disorder involves recurrent episodes of eating unusually large amounts with a sense of loss of control and distress, without regular compensatory behaviours. It is not a lack of willpower, and body size alone does not establish whether someone has an eating disorder.',
+      hi: 'बिंज-ईटिंग डिसऑर्डर में बार-बार बहुत अधिक भोजन करना, नियंत्रण खोने की अनुभूति और उससे परेशानी शामिल हो सकती है; इसके बाद नियमित रूप से भरपाई करने वाले व्यवहार नहीं होते। यह इच्छाशक्ति की कमी नहीं है, और केवल शरीर के आकार से ईटिंग डिसऑर्डर तय नहीं होता।',
+      gu: 'બિંજ-ઈટિંગ ડિસઓર્ડરમાં વારંવાર ખૂબ વધારે ખાવું, નિયંત્રણ ગુમાવ્યાની લાગણી અને તેનાથી તકલીફ અનુભવવી સામેલ હોઈ શકે છે; ત્યારબાદ નિયમિત ભરપાઈ કરતું વર્તન હોતું નથી. આ ઇચ્છાશક્તિની ખામી નથી અને માત્ર શરીરાકાર પરથી આહાર વિકાર નક્કી થતો નથી.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Guided self-help and psychological treatments such as CBT may help reduce binge-eating episodes and distress. Care can also address sleep, mood, stress, and other health needs.',
+          hi: 'निर्देशित स्व-सहायता और CBT जैसे मनोवैज्ञानिक उपचार अधिक खाने के दौर और उससे होने वाली परेशानी कम करने में मदद कर सकते हैं। देखभाल में नींद, मूड, तनाव और अन्य स्वास्थ्य जरूरतों पर भी ध्यान दिया जा सकता है।',
+          gu: 'માર્ગદર્શિત સ્વ-સહાય અને CBT જેવી મનોવૈજ્ઞાનિક સારવાર વધુ ખાવાના પ્રસંગો અને તેનાથી થતી તકલીફ ઘટાડવામાં મદદ કરી શકે છે. સંભાળમાં ઊંઘ, મૂડ, તણાવ અને અન્ય આરોગ્ય જરૂરિયાતો પર પણ ધ્યાન આપી શકાય છે.',
+        },
+        limitation: {
+          en: 'Treatment should avoid shame and weight stigma. A clinician can help choose an approach based on symptoms, preferences, and co-occurring conditions.',
+          hi: 'उपचार में शर्म और वजन संबंधी कलंक से बचना चाहिए। चिकित्सक लक्षणों, पसंद और साथ मौजूद स्थितियों के आधार पर तरीका चुनने में मदद कर सकता है।',
+          gu: 'સારવારમાં શરમ અને વજન સંબંધિત કલંક ટાળવો જોઈએ. તબીબ લક્ષણો, પસંદગી અને સાથે રહેલી સ્થિતિઓના આધારે યોગ્ય રીત પસંદ કરવામાં મદદ કરી શકે છે.',
+        },
+      },
+      {
+        text: {
+          en: 'Regular nourishment, noticing emotional or situational triggers, and practising coping strategies can support recovery when developed with appropriate guidance.',
+          hi: 'उचित मार्गदर्शन के साथ नियमित पोषण, भावनात्मक या परिस्थितिजन्य ट्रिगर पहचानना और सामना करने की रणनीतियों का अभ्यास सुधार में मदद कर सकता है।',
+          gu: 'યોગ્ય માર્ગદર્શન સાથે નિયમિત પોષણ, ભાવનાત્મક અથવા પરિસ્થિતિજન્ય ટ્રિગર ઓળખવા અને સામનો કરવાની રીતોનો અભ્યાસ સુધારામાં મદદ કરી શકે છે.',
+        },
+        limitation: {
+          en: 'Restrictive dieting can worsen cycles for some people. Seek professional support if episodes recur, cause distress, or affect health and daily life.',
+          hi: 'कुछ लोगों में अत्यधिक भोजन-प्रतिबंध इन चक्रों को बिगाड़ सकता है। यदि ऐसे दौर बार-बार हों, परेशानी दें या स्वास्थ्य व दैनिक जीवन प्रभावित करें तो पेशेवर सहायता लें।',
+          gu: 'કેટલાક લોકોમાં ખોરાક પર અતિશય નિયંત્રણ આ ચક્રને વધુ ખરાબ કરી શકે છે. આવા પ્રસંગો વારંવાર થાય, તકલીફ આપે અથવા આરોગ્ય અને દૈનિક જીવનને અસર કરે તો વ્યાવસાયિક સહાય લો.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Eating disorders: recognition and treatment (NG69)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/ng69', note: 'Guidance includes binge-eating disorder treatment.' },
+      { title: 'Eating Disorders', organization: 'National Institute of Mental Health', url: 'https://www.nimh.nih.gov/health/topics/eating-disorders', note: 'Public information about eating disorders.' },
+    ],
+    reviewedNote: {
+      en: 'This is educational content, not a diagnosis or diet plan. Help is available, and eating disorders can affect people at any body size.',
+      hi: 'यह शैक्षिक सामग्री है, निदान या डाइट प्लान नहीं। सहायता उपलब्ध है और ईटिंग डिसऑर्डर किसी भी शरीर आकार के व्यक्ति को प्रभावित कर सकता है।',
+      gu: 'આ શૈક્ષણિક સામગ્રી છે, નિદાન કે ડાયેટ પ્લાન નથી. સહાય ઉપલબ્ધ છે અને આહાર વિકાર કોઈપણ શરીરાકાર ધરાવતા વ્યક્તિને અસર કરી શકે છે.',
+    },
+  },
+  'autism-spectrum-disorder': {
+    title: { en: 'What research and guidelines say', hi: 'शोध और दिशानिर्देश क्या बताते हैं', gu: 'સંશોધન અને માર્ગદર્શિકા શું કહે છે' },
+    introduction: {
+      en: 'Autism is a neurodevelopmental difference that can influence communication, social interaction, sensory experiences, interests, and routines. Autistic people have varied strengths and support needs; autism is not caused by poor parenting and should not be reduced to a stereotype.',
+      hi: 'ऑटिज़्म एक न्यूरो-विकासात्मक भिन्नता है जो संवाद, सामाजिक संपर्क, संवेदनात्मक अनुभव, रुचियों और दिनचर्या को प्रभावित कर सकती है। ऑटिस्टिक लोगों की क्षमताएँ और सहायता की जरूरतें अलग-अलग होती हैं; ऑटिज़्म खराब परवरिश के कारण नहीं होता और इसे रूढ़ छवि तक सीमित नहीं करना चाहिए।',
+      gu: 'ઓટિઝમ એક ન્યુરો-વિકાસાત્મક ભિન્નતા છે, જે સંવાદ, સામાજિક પરસ્પર ક્રિયા, સંવેદનાત્મક અનુભવો, રસ અને રૂટિનને અસર કરી શકે છે. ઓટિસ્ટિક લોકોની શક્તિઓ અને સહાયની જરૂરિયાતો અલગ અલગ હોય છે; ઓટિઝમ ખરાબ ઉછેરને કારણે થતું નથી અને તેને રૂઢિચુસ્ત છબી સુધી મર્યાદિત ન કરવું જોઈએ.',
+    },
+    findings: [
+      {
+        text: {
+          en: 'Assessment considers developmental history, communication and behaviour patterns, daily functioning, strengths, and support needs. Input from the person and, when appropriate, family or carers can be useful.',
+          hi: 'मूल्यांकन में विकास का इतिहास, संवाद और व्यवहार के पैटर्न, दैनिक कामकाज, क्षमताएँ और सहायता की जरूरतें देखी जाती हैं। व्यक्ति तथा उपयुक्त होने पर परिवार या देखभालकर्ताओं की जानकारी उपयोगी हो सकती है।',
+          gu: 'મૂલ્યાંકનમાં વિકાસનો ઇતિહાસ, સંવાદ અને વર્તનના પેટર્ન, દૈનિક કાર્યક્ષમતા, શક્તિઓ અને સહાયની જરૂરિયાતો ધ્યાનમાં લેવાય છે. વ્યક્તિ તથા યોગ્ય હોય ત્યારે પરિવાર અથવા સંભાળ રાખનારની માહિતી ઉપયોગી થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'No single questionnaire or online quiz can confirm autism. Assessment should be respectful of culture, language, age, masking, and co-occurring conditions.',
+          hi: 'कोई एक प्रश्नावली या ऑनलाइन क्विज़ ऑटिज़्म की पुष्टि नहीं कर सकता। मूल्यांकन में संस्कृति, भाषा, उम्र, लक्षण छिपाने की प्रवृत्ति और साथ मौजूद स्थितियों का सम्मानपूर्वक ध्यान रखना चाहिए।',
+          gu: 'એક પ્રશ્નાવલી અથવા ઑનલાઇન ક્વિઝ ઓટિઝમની પુષ્ટિ કરી શકતી નથી. મૂલ્યાંકનમાં સંસ્કૃતિ, ભાષા, ઉંમર, લક્ષણો છુપાવવાની રીત અને સાથે રહેલી સ્થિતિઓને સન્માનપૂર્વક ધ્યાનમાં લેવી જોઈએ.',
+        },
+      },
+      {
+        text: {
+          en: 'Support may include communication accommodations, sensory adjustments, practical skills support, and help with co-occurring health or mental-health needs.',
+          hi: 'सहायता में संवाद के अनुकूल बदलाव, संवेदनात्मक जरूरतों के अनुसार वातावरण, व्यावहारिक कौशल सहायता और साथ मौजूद शारीरिक या मानसिक स्वास्थ्य जरूरतों की देखभाल शामिल हो सकती है।',
+          gu: 'સહાયમાં સંવાદ માટે અનુકૂળ ફેરફારો, સંવેદનાત્મક જરૂરિયાત મુજબ પર્યાવરણમાં ફેરફાર, વ્યવહારુ કૌશલ્ય સહાય અને સાથે રહેલી શારીરિક અથવા માનસિક આરોગ્ય જરૂરિયાતોની સંભાળનો સમાવેશ થઈ શકે છે.',
+        },
+        limitation: {
+          en: 'Support should focus on wellbeing, autonomy, communication, and meaningful participation—not forcing a person to hide harmless autistic traits.',
+          hi: 'सहायता का लक्ष्य स्वास्थ्य, स्वायत्तता, संवाद और सार्थक भागीदारी होना चाहिए—हानिरहित ऑटिस्टिक विशेषताओं को छिपाने के लिए मजबूर करना नहीं।',
+          gu: 'સહાયનો હેતુ સુખાકારી, સ્વાયત્તતા, સંવાદ અને અર્થપૂર્ણ ભાગીદારી હોવો જોઈએ—નિર્દોષ ઓટિસ્ટિક લક્ષણો છુપાવવા માટે દબાણ કરવું નહીં.',
+        },
+      },
+    ],
+    sources: [
+      { title: 'Autism spectrum disorder in under 19s: recognition, referral and diagnosis (CG128)', organization: 'NICE', url: 'https://www.nice.org.uk/guidance/cg128', note: 'Guidance on recognition and diagnostic assessment in children and young people.' },
+      { title: 'Autism', organization: 'Centers for Disease Control and Prevention', url: 'https://www.cdc.gov/autism/about/index.html', note: 'Public information on autism and support.' },
+    ],
+    reviewedNote: {
+      en: 'This page is educational and not a diagnostic checklist. If developmental or support concerns persist, a qualified professional can help assess needs and options.',
+      hi: 'यह पृष्ठ शैक्षिक है और निदान की चेकलिस्ट नहीं। विकास या सहायता को लेकर लगातार चिंता हो तो योग्य पेशेवर जरूरतों और विकल्पों का मूल्यांकन कर सकता है।',
+      gu: 'આ પાનું શૈક્ષણિક છે અને નિદાન માટેની ચેકલિસ્ટ નથી. વિકાસ અથવા સહાય અંગે સતત ચિંતા હોય તો લાયક વ્યાવસાયિક જરૂરિયાતો અને વિકલ્પોનું મૂલ્યાંકન કરી શકે છે.',
+    },
+  },
 };
