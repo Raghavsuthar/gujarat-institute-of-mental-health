@@ -10,7 +10,7 @@
 - Implement production endpoints as Vercel Functions under the root `api/` directory.
 - Keep `server.ts` as the Express entry point for Docker/self-host deployments.
 - Use Upstash Redis REST as the durable aggregate analytics store and shared rate-limit store for both API runtimes.
-- Share validation, crisis detection, token verification, rate limiting, and analytics storage helpers from `api/_lib/analytics.ts`.
+- Share validation, crisis detection, token verification, rate limiting, and analytics storage helpers from `server/shared/analytics.ts`.
 - Exclude `/api/*` from the SPA fallback rewrite.
 - If Upstash configuration is missing or storage is unavailable, API handlers return an explicit error instead of reporting fake analytics or silently treating HTML as JSON.
 
