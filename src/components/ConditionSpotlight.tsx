@@ -1,12 +1,13 @@
 import { motion, useReducedMotion } from 'motion/react';
 import { Brain, Heart, Repeat, Zap, ArrowRight, Sparkles } from 'lucide-react';
-import { Language, Condition } from '../types';
+import { Language } from '../types';
+import { SpotlightCondition } from '../data/conditionSpotlight';
 import { getCategoryTheme } from '../data/categoryThemes';
 
 interface Props {
   currentLang: Language;
-  conditions: Condition[];
-  onSelectCondition: (c: Condition) => void;
+  conditions: SpotlightCondition[];
+  onSelectCondition: (c: Pick<SpotlightCondition, 'slug'>) => void;
   onTabChange: (tab: 'conditions') => void;
 }
 
@@ -14,7 +15,7 @@ const SPOTLIGHT = [
   { id: 'depression', icon: Brain, gradient: 'from-amber-500/20 via-rose-500/10 to-transparent', accent: '#d97706', tag: { en: 'Mood', hi: 'मूड', gu: 'મૂડ' } },
   { id: 'anxiety-gad', icon: Heart, gradient: 'from-sky-500/20 via-teal-500/10 to-transparent', accent: '#0284c7', tag: { en: 'Anxiety', hi: 'चिंता', gu: 'ચિંતા' } },
   { id: 'ocd', icon: Repeat, gradient: 'from-indigo-500/20 via-violet-500/10 to-transparent', accent: '#4f46e5', tag: { en: 'OCD', hi: 'OCD', gu: 'OCD' } },
-  { id: 'adhd_adult', icon: Zap, gradient: 'from-orange-500/20 via-amber-500/10 to-transparent', accent: '#ea580c', tag: { en: 'ADHD', hi: 'ADHD', gu: 'ADHD' } },
+  { id: 'adhd', icon: Zap, gradient: 'from-orange-500/20 via-amber-500/10 to-transparent', accent: '#ea580c', tag: { en: 'ADHD', hi: 'ADHD', gu: 'ADHD' } },
 ];
 
 export function ConditionSpotlight({ currentLang, conditions, onSelectCondition, onTabChange }: Props) {
@@ -94,7 +95,7 @@ export function ConditionSpotlight({ currentLang, conditions, onSelectCondition,
                   {p.cond!.name[currentLang]}
                 </h4>
                 <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                  {p.cond!.overview[currentLang].slice(0, 110)}…
+                  {p.cond!.summary[currentLang]}
                 </p>
 
                 <div className="pt-2 flex items-center justify-between text-xs font-bold" style={{ color: theme.hex.text }}>

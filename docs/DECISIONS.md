@@ -113,3 +113,13 @@ The report-only `npm audit` step found **10 advisories** in the installed depend
 ### CI evidence update
 
 The Phase 4 build confirms code splitting: the previous 3,437.90 kB `index` chunk is replaced by `index-*` chunks of 421.62 kB, 432.33 kB, and 477.01 kB, while the condition collection is emitted as a separate 1,304.25 kB chunk (372.64 kB gzip). Crisis and screener dialogs are separate chunks. Do not describe this as a Lighthouse improvement or a verified reduction in initial network transfer until browser/network measurements are available. The remaining large conditions chunk should be considered for batch-level splitting.
+
+
+## 2026-10-24 — Keep home spotlights independent from the full condition library
+
+**Status:** Proposed in PR `improve/phase-4-lightweight-home-spotlights`.
+
+- Use a small presentation-only localized dataset for the four home spotlight cards instead of importing all of `src/data/conditions.ts` into `HomeView`.
+- Keep summaries generic and non-clinical; the condition library remains the source for full educational content. The spotlight click only requires the matching slug to navigate to the detail route.
+- Correct the stale ADHD spotlight ID to `adhd`, matching the existing condition record.
+- Acceptance requires TypeScript/build success and inspection of emitted chunks. Confirm that home spotlights render and that all four links resolve in the preview before considering the optimization complete.

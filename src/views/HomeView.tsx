@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 import { Language, ActiveTab, Condition, SubstanceInfo } from '../types';
 import { translations } from '../data/translations';
-import { conditionsData } from '../data/conditions';
+import { conditionSpotlightData } from '../data/conditionSpotlight';
 import { updatePageSEO } from '../utils/seo';
 import { MythOfTheDay } from '../components/MythOfTheDay';
 import { PWAInstallButton } from '../components/PWAInstallButton';
@@ -40,7 +40,7 @@ import { AnnotatedText } from '../components/AnnotatedText';
 interface HomeViewProps {
   currentLang: Language;
   onTabChange: (tab: ActiveTab) => void;
-  onSelectCondition: (item: Condition) => void;
+  onSelectCondition: (item: Pick<Condition, 'slug'>) => void;
   onSelectSubstance: (item: SubstanceInfo) => void;
   onOpenSearch: () => void;
   onOpenCrisis: () => void;
@@ -643,7 +643,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* Eye-catching condition spotlight */}
       <ConditionSpotlight
         currentLang={currentLang}
-        conditions={conditionsData}
+        conditions={conditionSpotlightData}
         onSelectCondition={onSelectCondition}
         onTabChange={onTabChange as (tab: 'conditions') => void}
       />

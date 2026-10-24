@@ -152,3 +152,11 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 
 - The CI build for the on-demand dialog/data split no longer emits the previous single 3,437.90 kB `index` chunk. It emitted three `index-*` chunks at 421.62 kB, 432.33 kB, and 477.01 kB, plus a separate 1,304.25 kB `conditions-*` chunk (372.64 kB gzip). Other dialog components, including CrisisModal and ScreenerModal, are emitted as their own chunks.
 - This confirms chunk splitting in the build output; it does **not** establish total initial transfer size, route-level download behavior, Lighthouse performance, or real-user LCP/INP. The `conditions` chunk still exceeds the 600 kB warning threshold and remains a follow-up optimization target.
+
+
+## Phase 4 follow-up — lightweight home-page spotlights — 2026-10-24
+
+- The home view previously imported the full 531 KB source file `src/data/conditions.ts` solely to provide four featured cards to `ConditionSpotlight`; CI emitted a 1,304.25 kB minified `conditions-*` chunk.
+- Added a compact localized `src/data/conditionSpotlight.ts` with only four cards' IDs, slugs, categories, names, and short generic summaries. The full clinical dataset remains owned by the conditions library/detail flow.
+- Corrected the spotlight ADHD identifier from `adhd_adult` to the existing data ID `adhd` and aligned its slug with the record in `newConditions.ts`.
+- This should keep the large conditions dataset off the home route's import graph. Confirm emitted chunks and preview behavior in CI; no Lighthouse or runtime route test is claimed.
