@@ -139,9 +139,9 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'રાષ્ટ્રીય સંદર્ભ કેન્દ્ર (બેંગલુરુ સ્થિત અને ડિજિટલ સેવાઓ)',
     },
     availability: {
-      en: 'OPD Working Hours & 24/7 Emergency Casualty [VERIFY: confirm OPD timings]',
-      hi: 'ओपीडी कार्यदिवस एवं 24 घंटे आपातकालीन कैजुअल्टी [VERIFY]',
-      gu: 'ઓપીડી સમય અને ૨૪ કલાક ઇમરજન્સી [VERIFY]',
+      en: 'Contact NIMHANS directly for current OPD hours and service availability',
+      hi: 'ओपीडी समय और उपलब्ध सेवाओं की पुष्टि के लिए निम्हांस से सीधे संपर्क करें',
+      gu: 'ઓપીડી સમય અને ઉપલબ્ધ સેવાઓ માટે નિમહાન્સનો સીધો સંપર્ક કરો',
     },
     languages: {
       en: 'English, Hindi, Kannada, and major regional languages',
@@ -165,8 +165,8 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'જિલ્લા માનસિક સ્વાસ્થ્ય કાર્યક્રમ (DMHP - ગુજરાત અને ભારત)',
     },
     category: 'government',
-    number: 'Contact Nearest District Civil Hospital / Sub-District Hospital [VERIFY: check local district DMHP contact lists]',
-    operatedBy: 'State Health Departments under the National Mental Health Programme (NMHP) [VERIFY: confirm district coverage in Gujarat]',
+    number: 'Contact the nearest government district or sub-district hospital and ask whether a District Mental Health Programme service is available',
+    operatedBy: 'Government of India and state health departments under the National Mental Health Programme; local service availability varies',
     description: {
       en: 'Decentralized public mental health care infrastructure operational across Indian districts. Qualified psychiatrists, clinical psychologists, and psychiatric social workers provide free/subsidized OPD consultations, essential psychiatric medications, and community outreach.',
       hi: 'भारत के जिला अस्पतालों में संचालित सरकारी कार्यक्रम। यहां मनोचिकित्सक, क्लिनिकल साइकोलॉजिस्ट और सोशल वर्कर मुफ्त या नाममात्र शुल्क पर आवश्यक दवाएं और परामर्श देते हैं।',
@@ -178,9 +178,9 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'ગુજરાતના મોટાભાગના જિલ્લા મથકોની સિવિલ હોસ્પિટલમાં ઉપલબ્ધ',
     },
     availability: {
-      en: 'Monday to Saturday General OPD Timings (usually 9:00 AM - 1:00 PM and 3:00 PM - 5:00 PM) [VERIFY: confirm local civil hospital OPD timings]',
-      hi: 'सोमवार से शनिवार सामान्य ओपीडी समय [VERIFY]',
-      gu: 'સોમવાર થી શનિવાર જનરલ ઓપીડી સમય [VERIFY]',
+      en: "Check the selected hospital's official website or contact desk for local OPD timings",
+      hi: 'स्थानीय ओपीडी समय के लिए संबंधित अस्पताल की आधिकारिक वेबसाइट या संपर्क कक्ष से पुष्टि करें',
+      gu: 'સ્થાનિક ઓપીડી સમય માટે સંબંધિત હોસ્પિટલની સત્તાવાર વેબસાઇટ અથવા સંપર્ક કક્ષેથી પુષ્ટિ કરો',
     },
     languages: {
       en: 'Gujarati, Hindi, and local state languages',
@@ -192,7 +192,7 @@ export const indiaResourcesData: IndiaResource[] = [
       hi: 'सरकारी टोकन शुल्क / आवश्यक दवाएं निःशुल्क',
       gu: 'સામાન્ય કેસ ફી / આવશ્યક દવાઓ મફત',
     },
-    verificationStatus: 'National Health Mission Programme [VERIFY: confirm district roster]',
+    verificationStatus: 'Government mental-health programme; verify availability with the local district hospital',
     lastReviewed: '2026-08',
   },
   {
@@ -203,8 +203,8 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'જિલ્લા વ્યસનમુક્તિ કેન્દ્રો (DDAC / IRCA)',
     },
     category: 'community',
-    number: 'National Toll-Free Drug De-addiction Helpline: 1800-11-0031 [VERIFY: confirm active status of drug helpline]',
-    operatedBy: 'Supported by Ministry of Social Justice and Empowerment / State Social Defense Departments [VERIFY]',
+    number: 'National toll-free drug de-addiction helpline: 14446 (Government of India)',
+    operatedBy: 'Ministry of Social Justice and Empowerment, Government of India, and implementing government or voluntary-sector partners',
     description: {
       en: 'Specialized residential and outpatient rehabilitation facilities for substance use disorders (alcohol, tobacco, opioids, cannabis). Provide medically monitored detoxification, relapse prevention counselling, and family support.',
       hi: 'शराब और मादक पदार्थों के व्यसनों से मुक्ति के लिए संचालित आवासीय और गैर-आवासीय केंद्र। यहां मेडिकल डिटॉक्सिफिकेशन और मनोवैज्ञानिक काउंसलिंग दी जाती है।',
@@ -216,9 +216,9 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'ગુજરાત અને ભારતના નિયુક્ત જિલ્લાઓ',
     },
     availability: {
-      en: 'Outpatient consultations and scheduled inpatient admissions [VERIFY]',
-      hi: 'ओपीडी एवं भर्ती सुविधाएं [VERIFY]',
-      gu: 'ઓપીડી અને દાખલ થવાની સુવિધા [VERIFY]',
+      en: 'Services, admission options, eligibility, and availability vary by centre; contact the centre before travelling',
+      hi: 'सेवाएं, भर्ती की सुविधा और पात्रता केंद्र के अनुसार अलग हो सकती हैं; जाने से पहले संपर्क करें',
+      gu: 'સેવાઓ, દાખલ થવાની સુવિધા અને પાત્રતા કેન્દ્ર પ્રમાણે બદલાય છે; જતાં પહેલાં સંપર્ક કરો',
     },
     languages: {
       en: 'Gujarati, Hindi, English',
@@ -226,12 +226,12 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'ગુજરાતી, હિન્દી, અંગ્રેજી',
     },
     cost: {
-      en: 'Subsidized under government welfare schemes [VERIFY: confirm eligibility criteria]',
-      hi: 'सरकारी योजनाओं के तहत रियायती या निःशुल्क [VERIFY]',
-      gu: 'સરકારી યોજનાઓ હેઠળ રાહત દરે [VERIFY]',
+      en: 'Fees and eligibility vary by centre and scheme; confirm directly with the provider',
+      hi: 'शुल्क और पात्रता केंद्र तथा योजना के अनुसार बदलते हैं; संबंधित केंद्र से पुष्टि करें',
+      gu: 'ફી અને પાત્રતા કેન્દ્ર તથા યોજના પ્રમાણે બદલાય છે; સંબંધિત કેન્દ્ર પાસેથી પુષ્ટિ કરો',
     },
-    verificationStatus: 'MoSJE Accredited Institutions [VERIFY]',
-    lastReviewed: '2026-08',
+    verificationStatus: 'Use the Government of India Ministry of Social Justice and Empowerment directory to check current listed centres',
+    lastReviewed: '2026-10',
   },
   {
     id: 'vandrevala-foundation',
@@ -259,14 +259,14 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: '૨૪ કલાક, સાતેય દિવસ (સત્તાવાર સેવા પૃષ્ઠ મુજબ)',
     },
     languages: {
-      en: 'Hindi, English, Gujarati, and other regional languages [VERIFY]',
-      hi: 'हिन्दी, अंग्रेजी, गुजराती एवं अन्य भाषाएं [VERIFY]',
-      gu: 'હિન્દી, અંગ્રેજી, ગુજરાતી અને અન્ય ભાષાઓ [VERIFY]',
+      en: 'Language availability varies; ask the service directly about your preferred language',
+      hi: 'भाषा की उपलब्धता अलग-अलग हो सकती है; अपनी पसंदीदा भाषा के बारे में सीधे पूछें',
+      gu: 'ભાષાની ઉપલબ્ધતા અલગ હોઈ શકે છે; તમારી પસંદગીની ભાષા વિશે સીધું પૂછો',
     },
     cost: {
-      en: 'Free Counselling Service (standard telecom call rates apply unless toll-free) [VERIFY]',
-      hi: 'निःशुल्क काउंसलिंग सेवा [VERIFY]',
-      gu: 'નિઃશુલ્ક કાઉન્સિલિંગ સેવા [VERIFY]',
+      en: 'Free mental-health support by call or WhatsApp; the official service page lists +91 9999 666 555',
+      hi: 'आधिकारिक सेवा पृष्ठ के अनुसार कॉल या WhatsApp द्वारा निःशुल्क मानसिक स्वास्थ्य सहायता',
+      gu: 'સત્તાવાર સેવા પૃષ્ઠ મુજબ કૉલ અથવા WhatsApp દ્વારા મફત માનસિક સ્વાસ્થ્ય સહાય',
     },
     websiteUrl: 'https://www.vandrevalafoundation.com/free-counseling/contact-us',
     verificationStatus: 'Official foundation contact page checked 2026-10; service details may change',
