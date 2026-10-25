@@ -178,7 +178,7 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'ગુજરાતના મોટાભાગના જિલ્લા મથકોની સિવિલ હોસ્પિટલમાં ઉપલબ્ધ',
     },
     availability: {
-      en: 'Check the selected hospital's official website or contact desk for local OPD timings',
+      en: "Check the selected hospital's official website or contact desk for local OPD timings",
       hi: 'स्थानीय ओपीडी समय के लिए संबंधित अस्पताल की आधिकारिक वेबसाइट या संपर्क कक्ष से पुष्टि करें',
       gu: 'સ્થાનિક ઓપીડી સમય માટે સંબંધિત હોસ્પિટલની સત્તાવાર વેબસાઇટ અથવા સંપર્ક કક્ષેથી પુષ્ટિ કરો',
     },
