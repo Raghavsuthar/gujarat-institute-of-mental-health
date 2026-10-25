@@ -224,3 +224,10 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 - Ruling: use “DNB Psychiatry resident” and public-education-only language in the home card — the repository's current profile correction identifies the author as a resident, while the previous card still asserted consultant status and registration without supporting evidence — cost if wrong: the card may be less specific than the owner wishes, but it avoids publishing unsupported credentials.
 - Keep the home card visually aligned with Calm Aurora through the existing `aurora-story-panel` surface instead of adding another component or dependency.
 - Add a source-level regression test for the stale credential wording. It does not establish registration status, clinical credentialing, or browser-level appearance.
+
+## 2026-10-25 — Calm & Compassionate visual direction
+
+- Decision: use warm ivory surfaces, sage-green accents, forest-green primary actions, readable dark-green text, and restrained sand-gold accents for Mindcare's shared visual language.
+- Rationale: the site is public-facing mental-health education; the interface should feel calm and approachable without weakening clinical clarity or emergency visibility.
+- Scope: CSS design layer and header accent only in this change. No clinical content, screening behavior, language routes, API behavior, or data handling is intentionally changed.
+- Verification: pending CI and preview review; do not describe this as production-applied until the PR is merged and deployed.
