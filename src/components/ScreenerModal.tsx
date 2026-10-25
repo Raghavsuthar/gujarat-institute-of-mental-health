@@ -8,6 +8,7 @@ interface ScreenerModalProps {
   isOpen: boolean;
   onClose: () => void;
   currentLang: Language;
+  initialToolId: string;
   onOpenCrisis: () => void;
 }
 
@@ -15,9 +16,10 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
   isOpen,
   onClose,
   currentLang,
+  initialToolId,
   onOpenCrisis,
 }) => {
-  const [selectedToolId, setSelectedToolId] = useState<string>('phq9');
+  const [selectedToolId, setSelectedToolId] = useState<string>(initialToolId);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
 
@@ -34,18 +36,16 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
     setShowResults(false);
   };
 
-  const answeredCount = Object.keys(answers).length;
+  const answeredCount = activeTool.questions.filter((question) => typeof answers[question.id] === 'number').length;
   const totalQuestions = activeTool.questions.length;
   const isComplete = answeredCount === totalQuestions;
+  const totalScore = activeTool.questions.reduce((sum, question) => sum + (answers[question.id] ?? 0), 0);
+  const maxScore = totalQuestions * Math.max(0, ...activeTool.frequencyOptions.map((option) => option.value));
 
-  // Total score calculation safely typed
-  let totalScore = 0;
-  for (const key of Object.keys(answers)) {
-    totalScore += answers[Number(key)] || 0;
-  }
-
-  // Check crisis question (Question 9 in PHQ-9)
-  const isCrisisTriggered = selectedToolId === 'phq9' && typeof answers[9] === 'number' && answers[9] > 0;
+  // Trigger support guidance for any explicitly marked safety-sensitive question.
+  const isCrisisTriggered = activeTool.questions.some(
+    (question) => question.isCrisisQuestion && (answers[question.id] ?? 0) > 0
+  );
 
   // Find interpretation safely
   const interpretation = activeTool.interpretations.find(
@@ -240,7 +240,7 @@ export const ScreenerModal: React.FC<ScreenerModalProps> = ({
                   Total Educational Score
                 </span>
                 <div className="text-4xl font-semibold text-[#1c2430]">
-                  {totalScore} <span className="text-lg text-stone-400 font-normal">/ {totalQuestions * 3}</span>
+                  {totalScore} <span className="text-lg text-stone-400 font-normal">/ {maxScore}</span>
                 </div>
                 <div className="inline-block px-3 py-1 rounded-full bg-[#ccfbf1] text-[#115e59] text-xs font-semibold">
                   {interpretation.level[currentLang]}
