@@ -7,7 +7,7 @@ import { updatePageSEO } from '../utils/seo';
 
 interface InteractiveViewProps {
   currentLang: Language;
-  onOpenScreener: () => void;
+  onOpenScreener: (toolId: string) => void;
   onOpenCrisis: () => void;
 }
 
@@ -107,7 +107,7 @@ export const InteractiveView: React.FC<InteractiveViewProps> = ({
             <div className="mt-6 pt-4 border-t border-stone-100">
               <button
                 type="button"
-                onClick={onOpenScreener}
+                onClick={() => onOpenScreener(tool.id)}
                 className="w-full py-2.5 px-4 rounded-md bg-[#115e59] hover:bg-[#0f4f4b] text-white text-xs font-semibold transition flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
               >
                 <span>{currentLang === 'en' ? 'Launch Reflection Tool' : currentLang === 'hi' ? 'प्रश्नावली शुरू करें' : 'પ્રશ્નાવલિ શરૂ કરો'}</span>
