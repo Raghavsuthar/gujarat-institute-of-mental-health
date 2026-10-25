@@ -1,7 +1,7 @@
-# Mindcare Repository Audit
+# Gujarat Institute of Mental Health Repository Audit
 
 **Audit date:** 2026-10-24  
-**Repository:** `Raghavsuthar/Mindcare`  
+**Repository:** `Raghavsuthar/Gujarat Institute of Mental Health`  
 **Base commit audited:** `2a5f0e46c7d078b6030c62ff2a91ce9ca0318f91`  
 **Audit branch:** `improve/audit`  
 **Scope:** Source/configuration review through GitHub repository access, plus attempted production deployment/API access. This is not a full browser-based penetration, accessibility, or performance audit.
@@ -33,7 +33,7 @@ The production deployment metadata was retrievable from Vercel and reports a REA
 
 ### 1. Repository baseline and CI
 
-- Latest audited commit: [`2a5f0e4`](https://github.com/Raghavsuthar/Mindcare/commit/2a5f0e46c7d078b6030c62ff2a91ce9ca0318f91).
+- Latest audited commit: [`2a5f0e4`](https://github.com/Raghavsuthar/Gujarat Institute of Mental Health/commit/2a5f0e46c7d078b6030c62ff2a91ce9ca0318f91).
 - Vercel deployment metadata reports production target `READY`, project `mindcare`, framework `vite`, and Git commit `2a5f0e46c7d078b6030c62ff2a91ce9ca0318f91`.
 - `.github/workflows/ci.yml:1-31` runs Node 22, installs dependencies, runs `npm run validate`, `npm run lint`, and `npm run build`.
 - `package.json` declares `lint` as `tsc --noEmit`; it is type-checking, not ESLint.
@@ -236,7 +236,7 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 ### Home-page profile card trust follow-up — 2026-10-24
 
 - The home-page author card still contained legacy “Consultant Psychiatrist”, completed-qualification, and NMC-registration claims after the broader About-page/structured-data correction.
-- The card now identifies the author as a DNB Psychiatry resident and describes Mindcare as general public mental-health education; it explicitly says the site does not provide personal diagnoses, consultations, or prescriptions.
+- The card now identifies the author as a DNB Psychiatry resident and describes Gujarat Institute of Mental Health as general public mental-health education; it explicitly says the site does not provide personal diagnoses, consultations, or prescriptions.
 - A source-level regression test guards against reintroducing those unverified claims. This is a content/source check, not independent credential verification or a browser-rendering check.
 
 

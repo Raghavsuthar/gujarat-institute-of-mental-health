@@ -19,7 +19,7 @@ export interface ConditionEvidenceGuide {
 }
 
 /**
- * Public-facing evidence summaries for the first Mindcare content-quality pilot.
+ * Public-facing evidence summaries for the first Gujarat Institute of Mental Health content-quality pilot.
  * These summaries explain guidance in plain language; they are not a substitute
  * for clinical review. Source pages should be checked again before future updates.
  */

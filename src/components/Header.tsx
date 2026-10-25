@@ -94,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2.5">
             <img
               src="/mindcare-logo.svg"
-              alt="MindCare — Dr. Raghav Suthar"
+              alt="Gujarat Institute of Mental Health — Dr. Raghav Suthar"
               className="h-10 w-auto sm:h-12 shrink-0"
               width={96}
               height={24}

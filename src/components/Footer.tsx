@@ -69,10 +69,10 @@ export const Footer: React.FC<FooterProps> = ({
           </p>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
             {currentLang === 'en'
-              ? 'Educational Resource Only. MindCare is designed to demystify mental illnesses for Indian patients and caregivers. It does NOT provide individual medical diagnoses, emergency consultations, or drug prescriptions.'
+              ? 'Educational Resource Only. Gujarat Institute of Mental Health is designed to demystify mental illnesses for Indian patients and caregivers. It does NOT provide individual medical diagnoses, emergency consultations, or drug prescriptions.'
               : currentLang === 'hi'
-                ? 'केवल शैक्षणिक संसाधन। MindCare भारतीय मरीजों और परिजनों के लिए मानसिक बीमारियों को सरल भाषा में समझाने हेतु है। यह व्यक्तिगत निदान, आपातकालीन परामर्श या दवा का पर्चा प्रदान नहीं करता।'
-                : 'માત્ર શૈક્ષણિક સંસાધન. MindCare ભારતીય દર્દીઓ અને પરિવારો માટે માનસિક બીમારીઓને સરળ ભાષામાં સમજાવવા માટે છે. તે વ્યક્તિગત નિદાન, ઇમરજન્સી પરામર્શ કે દવાનું પ્રિસ્ક્રિપ્શન આપતું નથી.'}
+                ? 'केवल शैक्षणिक संसाधन। Gujarat Institute of Mental Health भारतीय मरीजों और परिजनों के लिए मानसिक बीमारियों को सरल भाषा में समझाने हेतु है। यह व्यक्तिगत निदान, आपातकालीन परामर्श या दवा का पर्चा प्रदान नहीं करता।'
+                : 'માત્ર શૈક્ષણિક સંસાધન. Gujarat Institute of Mental Health ભારતીય દર્દીઓ અને પરિવારો માટે માનસિક બીમારીઓને સરળ ભાષામાં સમજાવવા માટે છે. તે વ્યક્તિગત નિદાન, ઇમરજન્સી પરામર્શ કે દવાનું પ્રિસ્ક્રિપ્શન આપતું નથી.'}
           </p>
         </div>
       </div>
@@ -271,7 +271,7 @@ export const Footer: React.FC<FooterProps> = ({
       {/* Bottom Copyright & Compliance */}
       <div className="border-t border-slate-200/80 px-4 py-4 text-slate-500 text-xs bg-slate-50/50">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p>© {new Date().getFullYear()} {t.doctorName}. Mindcare · Public mental-health education.</p>
+          <p>© {new Date().getFullYear()} {t.doctorName}. Gujarat Institute of Mental Health · Public mental-health education.</p>
           <p>{currentLang === 'en' ? 'Educational information; not individual medical care.' : currentLang === 'hi' ? 'शैक्षणिक जानकारी; व्यक्तिगत चिकित्सा देखभाल नहीं।' : 'શૈક્ષણિક માહિતી; વ્યક્તિગત તબીબી સંભાળ નથી.'}</p>
         </div>
       </div>

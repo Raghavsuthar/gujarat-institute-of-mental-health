@@ -227,7 +227,7 @@ Implementation PRs #13 (API hardening), #15–#16 (visual/accessibility polish),
 
 ## 2026-10-25 — Calm & Compassionate visual direction
 
-- Decision: use warm ivory surfaces, sage-green accents, forest-green primary actions, readable dark-green text, and restrained sand-gold accents for Mindcare's shared visual language.
+- Decision: use warm ivory surfaces, sage-green accents, forest-green primary actions, readable dark-green text, and restrained sand-gold accents for Gujarat Institute of Mental Health's shared visual language.
 - Rationale: the site is public-facing mental-health education; the interface should feel calm and approachable without weakening clinical clarity or emergency visibility.
 - Scope: CSS design layer and header accent only in this change. No clinical content, screening behavior, language routes, API behavior, or data handling is intentionally changed.
 - Verification: pending CI and preview review; do not describe this as production-applied until the PR is merged and deployed.

@@ -1,6 +1,6 @@
 # ECC-to-ChatGPT Capability Mapping
 
-This maps common agentic coding practices to the Mindcare/ChatGPT workflow. It is not an official integration or a complete copy of any upstream project.
+This maps common agentic coding practices to the Gujarat Institute of Mental Health/ChatGPT workflow. It is not an official integration or a complete copy of any upstream project.
 
 | Practice | ChatGPT-compatible adaptation | Limitation |
 |---|---|---|

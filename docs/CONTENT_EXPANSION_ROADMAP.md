@@ -7,11 +7,11 @@
 
 Build a comprehensive, trustworthy public mental-health education library for India in English, Hindi, and Gujarati. Keep content understandable on mobile, non-stigmatizing, accessible, culturally respectful, and educational rather than diagnostic or a substitute for individualized care.
 
-"All content available online" is not a safe or legally realistic target: sources have copyright and licensing terms, recommendations differ by population and jurisdiction, and content changes. Mindcare should synthesize verified public guidance in original wording, link to primary sources, and avoid copying entire articles, paywalled texts, proprietary instruments, or videos. A claim must not be added until its source has been opened and checked.
+"All content available online" is not a safe or legally realistic target: sources have copyright and licensing terms, recommendations differ by population and jurisdiction, and content changes. Gujarat Institute of Mental Health should synthesize verified public guidance in original wording, link to primary sources, and avoid copying entire articles, paywalled texts, proprietary instruments, or videos. A claim must not be added until its source has been opened and checked.
 
 ## Initial repository review
 
-- Mindcare already has condition/topic data, trilingual localization, evidence-guide summaries, screening/reflection tools, crisis links, educational videos, and content validation.
+- Gujarat Institute of Mental Health already has condition/topic data, trilingual localization, evidence-guide summaries, screening/reflection tools, crisis links, educational videos, and content validation.
 - Existing content-review and changelog files should remain the record of what was added and actually reviewed.
 - The project guidance calls for small phase branches/PRs, opened source links for clinical claims, no invented citations, and CI validation/type-check/build/tests before merge.
 - The right next step is a coverage and quality audit, not duplicating content already present.

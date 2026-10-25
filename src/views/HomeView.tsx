@@ -654,7 +654,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* About Dr. Raghav Suthar Snippet */}
       <section className="aurora-story-panel p-6 sm:p-8 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-start gap-6 transition-shadow">
         <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shrink-0 border border-teal-200/70 shadow-xs overflow-hidden">
-          <img src="/mindcare-logo.svg" alt="MindCare logo" className="w-14 h-14 object-contain" width={56} height={56} />
+          <img src="/mindcare-logo.svg" alt="Gujarat Institute of Mental Health logo" className="w-14 h-14 object-contain" width={56} height={56} />
         </div>
         <div className="space-y-2 flex-1">
           <div className="flex flex-wrap items-baseline gap-2">
@@ -675,7 +675,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               onClick={() => onTabChange('about')}
               className="text-xs font-semibold text-[#115e59] hover:underline cursor-pointer min-h-[44px] flex items-center"
             >
-              {currentLang === 'en' ? 'Read About Mindcare and its educational scope' : currentLang === 'hi' ? 'Mindcare और इसके शैक्षिक उद्देश्य के बारे में पढ़ें' : 'Mindcare અને તેના શૈક્ષણિક હેતુ વિશે વાંચો'}
+              {currentLang === 'en' ? 'Read About Gujarat Institute of Mental Health and its educational scope' : currentLang === 'hi' ? 'Gujarat Institute of Mental Health और इसके शैक्षिक उद्देश्य के बारे में पढ़ें' : 'Gujarat Institute of Mental Health અને તેના શૈક્ષણિક હેતુ વિશે વાંચો'}
             </button>
           </div>
         </div>

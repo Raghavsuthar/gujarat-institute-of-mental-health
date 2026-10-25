@@ -279,7 +279,7 @@ header.sticky nav[aria-label="Primary Navigation"] { scrollbar-width: thin; scro
   .aurora-card:hover { transform: none !important; }
 }
 
-/* Mindcare Calm & Compassionate theme — sage, ivory, and forest green */
+/* Gujarat Institute of Mental Health Calm & Compassionate theme — sage, ivory, and forest green */
 @layer base {
   :root {
     --bg-canvas: #FAF8F2;

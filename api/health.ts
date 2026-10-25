@@ -9,7 +9,7 @@ export default function handler(req: ApiRequestLike, res: ApiResponseLike) {
   }
   res.status(200).json({
     status: 'ok',
-    service: 'Mindcare public psychiatry education portal',
+    service: 'Gujarat Institute of Mental Health public psychiatry education portal',
     runtime: 'vercel-function',
     timestamp: new Date().toISOString(),
   });

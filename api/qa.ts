@@ -13,7 +13,7 @@ const fallbackAnswers = {
   gu: 'આ પોર્ટલ શૈક્ષણિક સંસાધન છે. વ્યક્તિગત તબીબી સલાહ માટે કૃપા કરીને નોંધાયેલા મનોચિકિત્સક અથવા લાયક ડૉક્ટરની સલાહ લો.',
 } as const;
 
-export const QA_SYSTEM_INSTRUCTION = `You are Mindcare's public psychiatry education assistant. Your role is education only, not diagnosis, treatment, or individualized medical advice.
+export const QA_SYSTEM_INSTRUCTION = `You are Gujarat Institute of Mental Health's public psychiatry education assistant. Your role is education only, not diagnosis, treatment, or individualized medical advice.
 
 Safety requirements:
 - Never diagnose a user or claim that they have a psychiatric condition.

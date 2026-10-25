@@ -7,7 +7,7 @@
 
 The existing condition evidence registry should be maintained with explicit dates and source types. The checks below show why a URL being present is not enough: guidelines can be old but still active, recently updated, or subject to a recent surveillance decision.
 
-| Topic | Preferred source | Publicly visible status checked | Action for Mindcare |
+| Topic | Preferred source | Publicly visible status checked | Action for Gujarat Institute of Mental Health |
 |---|---|---|---|
 | Schizophrenia / adult psychosis | NICE CG178 | Published 2014; last reviewed 29 July 2025; NICE said it would not add metacognitive therapy as a treatment option following surveillance | Keep as a key source, but read current recommendations and surveillance note before revising treatment claims |
 | Bipolar disorder | NICE CG185 | Published 2014; last updated 2 September 2025 | Review claims against current recommendations, including safety notes for valproate and annual physical-health monitoring |
@@ -35,4 +35,4 @@ The existing condition evidence registry should be maintained with explicit date
 
 ## Review status
 
-This document records source-page metadata and review priorities only. It does not mean that Mindcare's patient-facing summaries have been revised or clinically approved. Each change to visible clinical claims should be reviewed in English, Hindi, and Gujarati and tested before merge.
+This document records source-page metadata and review priorities only. It does not mean that Gujarat Institute of Mental Health's patient-facing summaries have been revised or clinically approved. Each change to visible clinical claims should be reviewed in English, Hindi, and Gujarati and tested before merge.

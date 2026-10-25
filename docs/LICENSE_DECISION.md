@@ -2,7 +2,7 @@
 
 **Status: no blanket licence selected.**
 
-Mindcare contains application code, authored educational text, translated text, graphics, and references or media from third parties. They may not all have the same rights holder or licence. A repository-wide licence should not be added until the owner decides what may be reused and confirms ownership/permissions for each category.
+Gujarat Institute of Mental Health contains application code, authored educational text, translated text, graphics, and references or media from third parties. They may not all have the same rights holder or licence. A repository-wide licence should not be added until the owner decides what may be reused and confirms ownership/permissions for each category.
 
 ## Decisions required
 
@@ -12,4 +12,4 @@ Mindcare contains application code, authored educational text, translated text, 
 4. **Images, videos, and questionnaire instruments:** verify rights and redistribution rules individually before bundling or reproducing them.
 5. **Contributor rights:** confirm ownership/permission for contributions before publishing a licence.
 
-Until the owner makes and records these choices, do not describe Mindcare as open source and do not imply unrestricted copying or redistribution. The public Terms of Use page explains this limitation. This file is a decision record, not legal advice.
+Until the owner makes and records these choices, do not describe Gujarat Institute of Mental Health as open source and do not imply unrestricted copying or redistribution. The public Terms of Use page explains this limitation. This file is a decision record, not legal advice.

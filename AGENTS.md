@@ -1,8 +1,8 @@
-# Mindcare Agent Guide
+# Gujarat Institute of Mental Health Agent Guide
 
 ## Mission
 
-Mindcare is a trilingual (English, Hindi, Gujarati) public psychiatry education portal. It is educational, not diagnostic or a substitute for individualized care. Treat crisis, substance-use, screening, and treatment content as clinically sensitive.
+Gujarat Institute of Mental Health is a trilingual (English, Hindi, Gujarati) public psychiatry education portal. It is educational, not diagnostic or a substitute for individualized care. Treat crisis, substance-use, screening, and treatment content as clinically sensitive.
 
 ## Stack
 

@@ -1,6 +1,6 @@
-# ChatGPT Project Instructions — Mindcare Engineering
+# ChatGPT Project Instructions — Gujarat Institute of Mental Health Engineering
 
-Follow repository `AGENTS.md` first; these instructions supplement, not override, it. Mindcare is a trilingual public psychiatry and mental-health education portal.
+Follow repository `AGENTS.md` first; these instructions supplement, not override, it. Gujarat Institute of Mental Health is a trilingual public psychiatry and mental-health education portal.
 
 ## Operating method
 1. **Inspect:** read relevant files, project instructions, package scripts, current branch, and established patterns. Do not assume files or framework behavior.
@@ -20,7 +20,7 @@ Follow repository `AGENTS.md` first; these instructions supplement, not override
 - Do not expose environment values, tokens, credentials, personal data, or secret-bearing logs. Use synthetic test fixtures only.
 
 ## Clinical and content safety
-- Mindcare educates; it does not diagnose, prescribe, or replace individual clinical assessment.
+- Gujarat Institute of Mental Health educates; it does not diagnose, prescribe, or replace individual clinical assessment.
 - Verify medical statements against reliable primary guidelines or peer-reviewed sources before adding them. Do not invent citations, statistics, identifiers, or hotline numbers.
 - Keep crisis information accurate for the intended geography and crisis pathways visible and functional.
 - Keep screening tools educational, respect licensing, and never present a screening score as a diagnosis.

@@ -1,10 +1,10 @@
-# Mindcare Improvement Brief
+# Gujarat Institute of Mental Health Improvement Brief
 
-Read this file and execute it phase by phase. Repository: `Raghavsuthar/Mindcare`. Never edit `main` directly; use `improve/<phase-name>` branches, small commits, and a pull request per phase.
+Read this file and execute it phase by phase. Repository: `Raghavsuthar/Gujarat Institute of Mental Health`. Never edit `main` directly; use `improve/<phase-name>` branches, small commits, and a pull request per phase.
 
 ## Mission
 
-Harden, deepen, and visually improve Mindcare, a trilingual (English, Hindi, Gujarati) public mental-health education portal for India. Keep the product educational, non-diagnostic, culturally respectful, accessible, privacy-preserving, and fast on low-end Android devices.
+Harden, deepen, and visually improve Gujarat Institute of Mental Health, a trilingual (English, Hindi, Gujarati) public mental-health education portal for India. Keep the product educational, non-diagnostic, culturally respectful, accessible, privacy-preserving, and fast on low-end Android devices.
 
 ## Non-negotiable rules
 

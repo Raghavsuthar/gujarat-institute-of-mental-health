@@ -1,9 +1,9 @@
-# ECC-Inspired AI Development Workflows for Mindcare
+# ECC-Inspired AI Development Workflows for Gujarat Institute of Mental Health
 
 This folder adapts selected engineering practices common in agentic coding workflows to ChatGPT and other repository-aware coding assistants. It is documentation, not a runtime installer: it does not install Claude Code, configure ChatGPT account settings, create integrations, or run hooks by itself.
 
 ## Start here
-1. Copy `CHATGPT_PROJECT_INSTRUCTIONS.md` into the instructions field of a ChatGPT Project dedicated to Mindcare.
+1. Copy `CHATGPT_PROJECT_INSTRUCTIONS.md` into the instructions field of a ChatGPT Project dedicated to Gujarat Institute of Mental Health.
 2. Keep the workflow Markdown files as project reference material.
 3. For each task, ask the assistant to inspect the current repository and name the workflow it will follow.
 4. Prefer a small feature branch and pull request. Do not commit directly to `main`.
@@ -19,8 +19,8 @@ This folder adapts selected engineering practices common in agentic coding workf
 - `workflows/session-handoff.md` — durable handoff notes between sessions
 - `ECC_COMPONENT_MAPPING.md` — what transfers to ChatGPT and what needs external tooling
 
-## Mindcare guardrails
-- Mindcare is a public mental-health education resource in English, Hindi, and Gujarati; it is not a diagnostic service or replacement for individualized care.
+## Gujarat Institute of Mental Health guardrails
+- Gujarat Institute of Mental Health is a public mental-health education resource in English, Hindi, and Gujarati; it is not a diagnostic service or replacement for individualized care.
 - Do not invent clinical claims, statistics, citations, DOI/PMID identifiers, hotline details, or licensing permissions. Verify sources and mark unresolved claims `[UNVERIFIED]`.
 - Preserve locale-prefixed routes (`/en`, `/hi`, `/gu`), deep links, crisis-access pathways, screening disclaimers, and PWA/offline behavior.
 - Treat user-facing clinical content as requiring qualified human review, especially crisis, medication, child/adolescent, pregnancy, and substance-use content.
@@ -30,4 +30,4 @@ This folder adapts selected engineering practices common in agentic coding workf
 - Do not force-push, merge a PR, or deploy production without explicit authorization.
 
 ## Reusable task prompt
-> Use the Mindcare workflow docs in `docs/ai-workflows/`. Inspect the current branch, repository instructions, and relevant code before changing anything. State the goal, risks, and a small plan. Make changes on a dedicated branch, run relevant validation, review the diff, and report exact results plus remaining risks. Do not commit directly to `main`, merge, or deploy production without explicit permission.
+> Use the Gujarat Institute of Mental Health workflow docs in `docs/ai-workflows/`. Inspect the current branch, repository instructions, and relevant code before changing anything. State the goal, risks, and a small plan. Make changes on a dedicated branch, run relevant validation, review the diff, and report exact results plus remaining risks. Do not commit directly to `main`, merge, or deploy production without explicit permission.

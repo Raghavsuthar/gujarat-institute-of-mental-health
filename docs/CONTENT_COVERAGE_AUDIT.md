@@ -1,11 +1,11 @@
-# Mindcare content coverage audit — Phase 0
+# Gujarat Institute of Mental Health content coverage audit — Phase 0
 
 **Audit date:** 2026-10-25  
 **Scope:** Static repository inventory of content data, evidence-guide metadata, India resource records, video curation notes, and existing validation. This is a source-code audit, not a clinical review or a live-site/browser audit.
 
 ## Executive summary
 
-Mindcare already has a substantial trilingual condition library and a first evidence-guide system. The next step should be quality, safety, and completeness—not simply adding more disorder names.
+Gujarat Institute of Mental Health already has a substantial trilingual condition library and a first evidence-guide system. The next step should be quality, safety, and completeness—not simply adding more disorder names.
 
 ### Confirmed repository findings
 
