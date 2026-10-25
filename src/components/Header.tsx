@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       {/* Visual Identity Fine Top Accent: Radiant Emerald to Surya Gold to Twilight Iris */}
-      <div className="h-[3.5px] w-full bg-gradient-to-r from-[#0d9488] via-[#f59e0b] to-[#7c3aed] shadow-xs" aria-hidden="true" />
+      <div className="h-[3.5px] w-full bg-gradient-to-r from-[#245b4a] via-[#d6a85f] to-[#8aa995] shadow-xs" aria-hidden="true" />
 
       {/* Main Brand & Controls Header */}
       <div className="max-w-7xl mx-auto px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-4">
