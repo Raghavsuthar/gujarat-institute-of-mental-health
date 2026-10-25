@@ -45,13 +45,9 @@ This is a targeted inventory of the five core condition modules—not a count of
 
 A missing guide does **not** mean the condition page itself is missing or unsafe; it means there is no matching key in this specific evidence-guide registry. Existing guide presence likewise does not establish that every claim is fully sourced or recently reviewed.
 
-## Recommended authoring order
+## Recommended next step
 
-1. **Schizophrenia / psychosis** — distinguish symptoms, assessment, treatment options, and urgent risk.
-2. **Bipolar disorder** — include the importance of assessing past mania/hypomania and avoid overgeneralized depression-only treatment claims.
-3. **OCD** — explain evidence-based CBT with exposure and response prevention (ERP), avoid reinforcing compulsions or reassurance cycles, and clarify that exposure should be planned with appropriate support.
-4. **PTSD** — describe trauma-focused treatments accurately and avoid presenting generic relaxation as a substitute for indicated care.
-5. **ADHD** — distinguish assessment from online checklists and address lifespan/context.
+All 23 IDs in these five condition modules have a matching evidence-guide key. The next task is therefore **depth and quality review**, not creating duplicate guides. Review guide sources for currency, source-to-claim alignment, trilingual equivalence, limitations, and whether the guidance is appropriate to the condition and population. Prioritize schizophrenia/psychosis, bipolar disorder, OCD, PTSD, and ADHD for this deeper review because safety and treatment nuance are especially important.
 
 ## Acceptance criteria for the next authoring batch
 
