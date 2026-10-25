@@ -246,3 +246,9 @@ This is a source-level change, not proof of visual acceptance. Screenshots at 36
 - Score totals and displayed maximums now derive from the active tool's questions and answer options, rather than assuming every tool uses a 0–3 scale. Safety guidance now follows each question's explicit crisis marker instead of a PHQ-9-only hard-coded question ID.
 - Added a Playwright regression test for opening GAD-7 from its own card. CI results are pending; no production behavior is claimed until checks and preview are reviewed.
 - Clinical limitation: these interaction fixes do not validate the clinical scoring/translation/licensing of every listed instrument. That review remains separate and required before describing all tools as validated.
+
+## Calm & Compassionate theme implementation — 2026-10-25
+
+- Added a sage, warm-ivory, and forest-green visual layer to `src/index.css`, reusing the existing shared design classes and preserving the mobile safe-area, reduced-motion, and crisis-strip rules.
+- Updated the header accent from teal/gold/purple to forest/sand/sage so the brand accent aligns with the selected theme.
+- This is a source-level styling change only. Build, type-check, browser screenshots, mobile widths, contrast, and trilingual font rendering must be verified in CI/preview before merge. Crisis messaging remains visually distinct.
