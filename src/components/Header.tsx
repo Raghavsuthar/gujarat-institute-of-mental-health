@@ -85,7 +85,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="h-[3.5px] w-full bg-gradient-to-r from-[#245b4a] via-[#d6a85f] to-[#8aa995] shadow-xs" aria-hidden="true" />
 
       {/* Main Brand & Controls Header */}
-      <div className="max-w-7xl mx-auto px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3.5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-4">
         {/* Brand identity */}
         <button
           onClick={() => handleNavClick('home')}
@@ -95,15 +95,15 @@ export const Header: React.FC<HeaderProps> = ({
             <img
               src="/mindcare-logo.svg"
               alt="MindCare — Dr. Raghav Suthar"
-              className="h-10 w-auto sm:h-12 shrink-0"
+              className="h-8 w-auto sm:h-12 shrink-0"
               width={96}
               height={24}
             />
             <div className="flex flex-col">
-              <span className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-teal-700 transition-colors leading-tight">
+              <span className="text-sm sm:text-2xl font-bold text-[#24332e] tracking-tight group-hover:text-[#245b4a] transition-colors leading-tight">
                 {t.doctorName}
               </span>
-              <span className="text-[11px] sm:text-xs text-slate-600 font-normal leading-tight">
+              <span className="hidden sm:block text-[11px] sm:text-xs text-slate-600 font-normal leading-tight">
                 {siteMetadata.tagline[currentLang]}
               </span>
             </div>
@@ -115,11 +115,11 @@ export const Header: React.FC<HeaderProps> = ({
         </button>
 
         {/* Action Controls: Search, PWA Install, Language Switcher, Mobile Menu */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1 sm:gap-3 max-w-full">
           {/* Quick Search Button: 44px tap target */}
           <button
             onClick={onOpenSearch}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200/80 text-slate-700 active:scale-[0.97] text-sm border border-slate-200 hover:border-teal-400/60 transition cursor-pointer min-h-[44px] shadow-2xs"
+            className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg bg-[#eaf1e9] hover:bg-[#dce9df] text-[#24332e] active:scale-[0.97] text-sm border border-[#c9d7cc] transition cursor-pointer min-h-[44px] shadow-2xs"
             title={t.search.placeholder}
             aria-label={`${currentLang === 'en' ? 'Search topics' : currentLang === 'hi' ? 'खोजें...' : 'શોધો...'} — ${t.search.placeholder}`}
           >
@@ -136,13 +136,13 @@ export const Header: React.FC<HeaderProps> = ({
           <PWAInstallButton currentLang={currentLang} variant="button" />
 
           {/* Language Switcher: 44px min tap targets */}
-          <div className="flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200" role="group" aria-label="Language selection">
+          <div className="flex items-center bg-[#eaf1e9] p-0.5 sm:p-1 rounded-full border border-[#c9d7cc]" role="group" aria-label="Language selection">
             <button
               onClick={() => onLanguageChange('en')}
               aria-pressed={currentLang === 'en'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'en'
-                  ? 'bg-[#0f766e] text-white shadow-xs font-bold'
+                  ? 'bg-[#245b4a] text-white shadow-xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
@@ -153,7 +153,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={currentLang === 'hi'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'hi'
-                  ? 'bg-[#0f766e] text-white shadow-xs font-bold'
+                  ? 'bg-[#245b4a] text-white shadow-xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
@@ -164,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={currentLang === 'gu'}
               className={`px-3 py-2 text-xs font-semibold rounded-md transition cursor-pointer min-h-[44px] flex items-center justify-center ${
                 currentLang === 'gu'
-                  ? 'bg-[#0f766e] text-white shadow-xs font-bold'
+                  ? 'bg-[#245b4a] text-white shadow-xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
               }`}
             >
@@ -186,7 +186,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Desktop Navigation Bar: Horizontal, clear radiant text */}
-      <nav className="hidden lg:block border-t border-slate-200/80 bg-slate-50/75 backdrop-blur-xs px-4" aria-label="Primary Navigation">
+      <nav className="hidden lg:block border-t border-[#e4e9e1] bg-[#faf8f2]/90 backdrop-blur-xs px-4" aria-label="Primary Navigation">
         <div className="max-w-7xl mx-auto flex items-center gap-1.5 overflow-x-auto py-1 text-sm font-medium">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
@@ -197,7 +197,7 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-current={isActive ? 'page' : undefined}
                 className={`px-3.5 py-2 rounded-md transition-all whitespace-nowrap cursor-pointer min-h-[44px] flex items-center text-xs sm:text-sm ${
                   isActive
-                    ? 'text-teal-900 font-bold bg-white shadow-xs border-b-2 border-[#0d9488]'
+                    ? 'text-teal-900 font-bold bg-white shadow-xs border-b-2 border-[#245b4a]'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 active:scale-[0.97]'
                 }`}
               >
