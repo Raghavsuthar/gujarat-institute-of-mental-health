@@ -126,6 +126,11 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCrisisOpen, setIsCrisisOpen] = useState(false);
   const [isScreenerOpen, setIsScreenerOpen] = useState(false);
+  const [selectedScreenerId, setSelectedScreenerId] = useState('phq9');
+  const handleOpenScreener = (toolId = 'phq9') => {
+    setSelectedScreenerId(toolId);
+    setIsScreenerOpen(true);
+  };
 
   // Toast state for #floating-emergency-icon when already on emergency route
   const [showEmergencyToast, setShowEmergencyToast] = useState(false);
@@ -301,7 +306,7 @@ export default function App() {
                 onSelectSubstance={(sub) => navigate(`/${currentLang}/substances/${sub.slug || sub.id}`)}
                 onOpenSearch={() => setIsSearchOpen(true)}
                 onOpenCrisis={() => setIsCrisisOpen(true)}
-                onOpenScreener={() => setIsScreenerOpen(true)}
+                onOpenScreener={handleOpenScreener}
               />
             }
           />
@@ -422,7 +427,7 @@ export default function App() {
             element={
               <InteractiveView
                 currentLang={currentLang}
-                onOpenScreener={() => setIsScreenerOpen(true)}
+                onOpenScreener={handleOpenScreener}
                 onOpenCrisis={() => setIsCrisisOpen(true)}
               />
             }
@@ -481,6 +486,7 @@ export default function App() {
           isOpen={isScreenerOpen}
           onClose={() => setIsScreenerOpen(false)}
           currentLang={currentLang}
+          initialToolId={selectedScreenerId}
           onOpenCrisis={() => {
             setIsScreenerOpen(false);
             setIsCrisisOpen(true);
