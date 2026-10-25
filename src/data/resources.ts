@@ -9,8 +9,8 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'ટેલી-માનસ (રાષ્ટ્રીય ટેલી મેન્ટલ હેલ્થ પ્રોગ્રામ - ભારત સરકાર)',
     },
     category: 'helpline',
-    number: '14416 / 1800-891-4416 [VERIFY: confirm current official short-code and toll-free reachability across all telecom operators]',
-    operatedBy: 'Ministry of Health and Family Welfare (MoHFW), Government of India; Nodal Centre: NIMHANS Bengaluru [VERIFY: confirm nodal operational details]',
+    number: '14416 / 1800-89-14416',
+    operatedBy: 'Ministry of Health and Family Welfare (MoHFW), Government of India',
     description: {
       en: 'A comprehensive, 24/7, toll-free digital mental health tele-counselling service launched by the Government of India across all States and Union Territories. Offers immediate psychological first aid, basic counselling, and referral to district mental health teams.',
       hi: 'भारत सरकार द्वारा शुरू की गई 24 घंटे और सातों दिन निःशुल्क मानसिक स्वास्थ्य टेली-परामर्श सेवा। इसमें प्रशिक्षित मनोवैज्ञानिकों द्वारा संकटकालीन सहायता और जिला स्तरीय टीमों को रेफरल प्रदान किया जाता है।',
@@ -36,8 +36,8 @@ export const indiaResourcesData: IndiaResource[] = [
       hi: 'पूर्णतः निःशुल्क (सरकारी टोल-फ्री सेवा)',
       gu: 'સંપૂર્ણ મફત (સરકારી ટોલ-ફ્રી સેવા)',
     },
-    websiteUrl: 'https://telemanas.mohfw.gov.in/ [VERIFY: confirm official portal URL]',
-    verificationStatus: 'Verified Government Emergency Service [VERIFY: confirm annual status]',
+    websiteUrl: 'https://telemanas.mohfw.gov.in/',
+    verificationStatus: 'Government mental-health support service — official contact details checked 2026-10',
     lastReviewed: '2026-08',
   },
   {
@@ -48,8 +48,8 @@ export const indiaResourcesData: IndiaResource[] = [
       gu: 'રાષ્ટ્રીય ઇમરજન્સી સેવા (ERSS - ૧૧૨)',
     },
     category: 'helpline',
-    number: '112 [VERIFY: confirm unified emergency number functionality nationwide]',
-    operatedBy: 'Ministry of Home Affairs & State Police / Ambulance Networks [VERIFY: confirm multi-agency response]',
+    number: '112',
+    operatedBy: 'National Emergency Response Support System (ERSS), Government of India',
     description: {
       en: 'The pan-India single emergency number for immediate physical distress, acute life-threatening psychiatric emergencies, suicidal attempts in progress, and medical ambulance transport.',
       hi: 'अति-गंभीर आपातकालीन स्थितियों, जीवन को खतरे, आत्महत्या के तत्काल प्रयास या एम्बुलेंस की आवश्यकता के लिए भारत का एकल राष्ट्रीय आपातकालीन नंबर।',
@@ -75,8 +75,8 @@ export const indiaResourcesData: IndiaResource[] = [
       hi: 'निःशुल्क',
       gu: 'મફત',
     },
-    websiteUrl: 'https://112.gov.in/ [VERIFY: confirm portal details]',
-    verificationStatus: 'Verified National Emergency Number [VERIFY]',
+    websiteUrl: 'https://112.gov.in/',
+    verificationStatus: 'National emergency response number — official portal checked 2026-10',
     lastReviewed: '2026-08',
   },
   {
