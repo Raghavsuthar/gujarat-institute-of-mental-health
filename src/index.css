@@ -278,3 +278,130 @@ header.sticky nav[aria-label="Primary Navigation"] { scrollbar-width: thin; scro
   .aurora-card, .aurora-story-panel, .aurora-detail-shell { transition: none !important; }
   .aurora-card:hover { transform: none !important; }
 }
+
+/* Mindcare Calm & Compassionate theme — sage, ivory, and forest green */
+@layer base {
+  :root {
+    --bg-canvas: #FAF8F2;
+    --bg-surface: #FFFFFF;
+    --text-primary: #24332E;
+    --text-secondary: #52645B;
+    --text-muted: #52645B;
+    --accent-teal: #245B4A;
+    --accent-teal-dark: #194637;
+    --accent-teal-deep: #12382D;
+    --accent-teal-subtle: #EAF1E9;
+    --accent-teal-border: #C9D7CC;
+    --accent-marigold: #D6A85F;
+    --accent-marigold-dark: #8A6426;
+    --accent-marigold-deep: #654718;
+    --accent-marigold-subtle: #F7F0E2;
+    --accent-marigold-border: #E8D8B7;
+    --accent-iris: #6E8174;
+    --accent-iris-dark: #43594B;
+    --accent-iris-deep: #24332E;
+    --accent-iris-subtle: #EAF1E9;
+    --accent-iris-border: #C9D7CC;
+    --border-subtle: #E4E9E1;
+    --border-card: #C9D7CC;
+    --aurora-canvas: #FAF8F2;
+    --aurora-surface: #FFFFFF;
+    --aurora-ink: #24332E;
+    --aurora-muted: #52645B;
+    --aurora-teal: #245B4A;
+    --aurora-teal-deep: #194637;
+    --aurora-indigo: #6E8174;
+    --aurora-lilac: #EAF1E9;
+    --aurora-coral: #B94B42;
+    --aurora-line: #C9D7CC;
+    --aurora-shadow: 0 14px 38px rgba(36, 51, 46, 0.09);
+    --aurora-radius-card: 1.25rem;
+  }
+
+  html, body {
+    background-color: #FAF8F2;
+    color: #24332E;
+  }
+
+  body {
+    background-image:
+      radial-gradient(ellipse at 8% 0%, rgba(220, 233, 223, 0.52), transparent 34rem),
+      radial-gradient(ellipse at 96% 10%, rgba(247, 240, 226, 0.42), transparent 32rem),
+      linear-gradient(180deg, #FAF8F2 0%, #F8F8F2 52%, #FAF8F2 100%);
+  }
+
+  h1, h2, h3, h4 { color: #24332E; }
+
+  ::selection {
+    color: #FFFFFF;
+    background: #245B4A;
+  }
+
+  button:focus-visible, a:focus-visible, input:focus-visible,
+  select:focus-visible, textarea:focus-visible {
+    outline-color: #245B4A;
+    outline-offset: 3px;
+  }
+}
+
+.radial-mesh-glow {
+  background-color: #FAF8F2;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(220, 233, 223, 0.5) 0px, transparent 40%),
+    radial-gradient(at 100% 0%, rgba(247, 240, 226, 0.42) 0px, transparent 40%);
+}
+
+.glass-surface {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: #E4E9E1;
+  box-shadow: 0 8px 24px rgba(36, 51, 46, 0.06);
+}
+
+.interactive-card, .aurora-card {
+  border-color: #D5DED5;
+  border-radius: 1.25rem;
+  box-shadow: 0 5px 18px rgba(36, 51, 46, 0.045);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover, .aurora-card:hover {
+    border-color: #A8C0AE;
+    box-shadow: 0 14px 30px rgba(36, 51, 46, 0.09);
+  }
+}
+
+header.sticky {
+  background-color: rgba(250, 248, 242, 0.96);
+  border-bottom-color: #D5DED5;
+  box-shadow: 0 5px 24px rgba(36, 51, 46, 0.05);
+}
+
+.aurora-header { border-bottom-color: #D5DED5; }
+.aurora-story-panel, .aurora-notice { border-color: #D5DED5; }
+.aurora-footer { background: linear-gradient(180deg, #FFFFFF 0%, #F5F7F1 100%); }
+.aurora-footer .aurora-notice { background: linear-gradient(120deg, #F2F7F1 0%, #FAF8F2 100%); }
+
+.mindcare-home-hero {
+  border-color: rgba(82, 119, 94, 0.25);
+  box-shadow: 0 22px 56px rgba(36, 51, 46, 0.08);
+}
+
+.mindcare-home-hero::after {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(220, 233, 223, 0.7), transparent 55%),
+    radial-gradient(ellipse at 94% 12%, rgba(247, 240, 226, 0.72), transparent 48%);
+}
+
+.aurora-crisis-strip {
+  background: #FFF1EF !important;
+  border-bottom-color: rgba(185, 75, 66, 0.2);
+}
+.aurora-crisis-strip > div { color: #813B35; }
+header.sticky nav[aria-label="Primary Navigation"] {
+  scrollbar-color: rgba(36, 91, 74, 0.35) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-card, .aurora-card, .mindcare-home-hero { transition: none !important; }
+  .interactive-card:hover, .aurora-card:hover { transform: none !important; }
+}
