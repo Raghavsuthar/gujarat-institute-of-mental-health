@@ -6,26 +6,23 @@
 ## Results
 
 - Condition IDs discovered in the five source modules: **23 unique IDs**.
-- IDs with a matching top-level evidence-guide key: **6**.
-- IDs without a matching top-level evidence-guide key: **17**.
+- IDs with a matching top-level evidence-guide key: **23**.
+- IDs without a matching top-level evidence-guide key: **0**.
 
 ### Matching IDs
 
 - `depression`
 - `bipolar`
+- `anxiety-gad`
+- `panic-disorder`
 - `ocd`
 - `schizophrenia`
 - `ptsd`
-- `adhd`
-
-### Missing evidence-guide keys
-
-- `anxiety-gad`
-- `panic-disorder`
 - `geriatric-dementia-delirium`
 - `anorexia-nervosa`
 - `bulimia-nervosa`
 - `binge-eating-disorder`
+- `adhd`
 - `autism-spectrum-disorder`
 - `social-anxiety-disorder`
 - `specific-phobia`
@@ -37,6 +34,10 @@
 - `personality-disorders-overview`
 - `postpartum-depression-and-anxiety`
 - `body-dysmorphic-disorder`
+
+### Missing evidence-guide keys
+
+
 
 ## Interpretation
 
