@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Plugin } from 'vite';
-import { isCrisisQuery } from './shared/analytics';
+import { hasValidAdminToken, isCrisisQuery } from './shared/analytics';
 
 const DATA_FILE = path.resolve('.analytics-data-dev.json');
 
@@ -154,17 +154,19 @@ export function apiServerPlugin(): Plugin {
 
         // 2. GET /api/analytics/summary
         if (url.startsWith('/api/analytics/summary') && req.method === 'GET') {
-          const authHeader = req.headers['authorization'];
-          const urlObj = new URL(url, 'http://localhost:3000');
-          const keyParam = urlObj.searchParams.get('key');
-          const adminPassword = process.env.ADMIN_PASSWORD || process.env.VITE_ADMIN_PASSWORD || 'drraghav2026';
+          const adminPassword = process.env.ADMIN_PASSWORD;
 
-          const token = authHeader ? authHeader.replace(/^Bearer\s+/i, '') : keyParam;
+          if (!adminPassword || adminPassword.length < 32) {
+            res.setHeader('Content-Type', 'application/json');
+            res.statusCode = 503;
+            res.end(JSON.stringify({ error: 'Admin analytics is not configured.' }));
+            return;
+          }
 
-          if (!token || token !== adminPassword) {
+          if (!hasValidAdminToken({ headers: { authorization: req.headers['authorization'] } }, adminPassword)) {
             res.setHeader('Content-Type', 'application/json');
             res.statusCode = 401;
-            res.end(JSON.stringify({ error: 'Unauthorized. Invalid admin password.' }));
+            res.end(JSON.stringify({ error: 'Unauthorized.' }));
             return;
           }
 

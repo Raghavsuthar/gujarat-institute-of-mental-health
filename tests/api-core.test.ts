@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizePingPayload } from '../server/shared/analytics';
+import { hasValidAdminToken, normalizePingPayload } from '../server/shared/analytics';
 import { isCrisisQuery } from '../src/utils/crisisDetection';
 
 test('crisis detection catches English self-harm phrases before model use', () => {
@@ -51,4 +51,14 @@ test('analytics path and referrer values are bounded and control characters remo
   assert.ok(normalized);
   assert.equal(normalized.path, 'en/conditions/depression');
   assert.equal(normalized.referrerDomain, 'Other');
+});
+
+
+test('admin analytics requires a long server-side secret and a Bearer header', () => {
+  const secret = 'test-only-secret-that-is-longer-than-32-chars';
+  assert.equal(hasValidAdminToken({ headers: { authorization: `Bearer ${secret}` } }, secret), true);
+  assert.equal(hasValidAdminToken({ headers: { authorization: secret } }, secret), false);
+  assert.equal(hasValidAdminToken({ headers: { authorization: 'Bearer wrong-secret' } }, secret), false);
+  assert.equal(hasValidAdminToken({ headers: { authorization: `Bearer ${secret}` } }, 'short'), false);
+  assert.equal(hasValidAdminToken({ headers: {} }, secret), false);
 });
